@@ -13,3 +13,8 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           use-mathlib-cache: true
+      # os logs do Actions não são legíveis de fora: os erros do build vão para as anotações do job
+      - name: erros do build como anotações
+        if: failure()
+        run: |
+          lake build 2>&1 | grep -E -A4 "error" | head -150 | sed -E 's/%/%25/g; s/^/::warning title=lake build::/' || true
