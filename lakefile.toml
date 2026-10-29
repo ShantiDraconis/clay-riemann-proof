@@ -1,0 +1,16 @@
+name = "ClayRiemannProof"
+version = "0.1.0"
+defaultTargets = ["ClayRiemannProof"]
+
+[leanOptions]
+autoImplicit = false
+
+# O enunciado vem fixado por commit: a prova nunca pode trocar o problema.
+# O nome tem que ser o `name` do lakefile do repositório do enunciado.
+[[require]]
+name = "ClayRiemann"
+git = "https://github.com/ShantiDraconis/clay-riemann-statement.git"
+rev = "47fe26ac0fce1c611a8d26b6959dc108e4268092"
+
+[[lean_lib]]
+name = "ClayRiemannProof"
