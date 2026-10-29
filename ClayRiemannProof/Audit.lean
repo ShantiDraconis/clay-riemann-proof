@@ -2,6 +2,7 @@ import ClayRiemannProof.BaezDuarte.Defs
 import ClayRiemannProof.BaezDuarte.Faithful
 import ClayRiemannProof.Zeta.Strip
 import ClayRiemannProof.BaezDuarte.MellinRho
+import ClayRiemannProof.BaezDuarte.NymanBeurling
 import ClayRiemannProof.BaezDuarte.Sufficiency
 import ClayRiemannProof.Fourier.PlancherelL1L2
 import ClayRiemannProof.Fourier.MellinPlancherel
@@ -1039,3 +1040,47 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.target_iff_noZero_half_78' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.target_iff_noZero_half_78
+
+/-! ## `ClayRiemannProof/BaezDuarte/NymanBeurling.lean` -/
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.rhoθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.rhoθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.fθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.fθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.rhoθ_eq_comp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.rhoθ_eq_comp
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.cpow_inv_neg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.cpow_inv_neg
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_rhoθ_aux' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_rhoθ_aux
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellinConvergent_rhoθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellinConvergent_rhoθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_rhoθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_rhoθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.fθ_eq_zero_of_one_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.fθ_eq_zero_of_one_lt
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.fθ_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.fθ_eq
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellinConvergent_fθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellinConvergent_fθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_fθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_fθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_fθ_eq_integral_Ioc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.mellin_fθ_eq_integral_Ioc
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.integral_Ioc_fθ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.integral_Ioc_fθ
+
+/-- info: 'ClayRiemannProof.BaezDuarte.NymanBeurling.integral_Ioc_fθ_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.integral_Ioc_fθ_eq_zero
