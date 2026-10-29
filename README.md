@@ -144,7 +144,8 @@ integral contra `t^{s−1}` de toda a família. A prova reaproveita `MellinRho.m
 
 **O que NÃO é**: não é prova de RH nem um passo novo em direção a ela; é a identidade clássica que liga
 a família `f_θ` aos zeros de `ζ`. A identidade vale na faixa `0 < Re s < 1`; a forma
-`∫_0^1 {θ/x} x^{s−1} dx` sozinha (sem o termo `θ{1/x}`) tem também o termo `θ/(s−1)`.
+`∫_0^1 {θ/x} x^{s−1} dx` sozinha (sem o termo `θ{1/x}`) tem também o termo `θ/(s−1)` (observação,
+não formalizada aqui).
 
 **Origem**: escrito neste repositório.
 
