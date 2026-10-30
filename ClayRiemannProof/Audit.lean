@@ -15,6 +15,8 @@ import ClayRiemannProof.Zeta.PerronSmoothed
 import ClayRiemannProof.BaezDuarte.Necessity
 import ClayRiemannProof.BaezDuarteGap
 import ClayRiemannProof.QuasiRH
+import ClayRiemannProof.Zeta.Symmetry
+import ClayRiemannProof.FiniteWorlds
 
 /-!
 # Auditoria de axiomas
@@ -1039,3 +1041,211 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.target_iff_noZero_half_78' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.target_iff_noZero_half_78
+
+/-! ## `ClayRiemannProof/Zeta/Symmetry.lean` -/
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.tensao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.espelho
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.torcao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.compressao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.compressao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.tensao_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.tensao_tensao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.espelho_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.espelho_espelho
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.torcao_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.torcao_torcao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.torcao_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.torcao_eq
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.tensao_fixo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.tensao_fixo_iff
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.espelho_fixo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.espelho_fixo_iff
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.torcao_fixo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.torcao_fixo_iff
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.re_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.re_tensao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.re_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.re_torcao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.re_compressao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.re_compressao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.compressao_neutro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.compressao_neutro
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.compressao_comp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.compressao_comp
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.compressao_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.compressao_tensao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.rigidez_neutro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.rigidez_neutro
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.Trivial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.Trivial
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.re_trivial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.re_trivial
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.nao_neg_nat_of_re_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.nao_neg_nat_of_re_pos
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.zero_trivial_de_re_nao_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.zero_trivial_de_re_nao_pos
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.zero_na_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.zero_na_faixa
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.Z
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.mem_Z_iff_nao_trivial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.mem_Z_iff_nao_trivial
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.tensao_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.tensao_mem_Z
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.espelho_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.espelho_mem_Z
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.torcao_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.torcao_mem_Z
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.H_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.H_real
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.H_real_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.H_real_nonneg
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.zeta_real_neg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.zeta_real_neg
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.zeta_ne_zero_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.zeta_ne_zero_real
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.zeta_meio_neg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.zeta_meio_neg
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.im_ne_zero_of_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.im_ne_zero_of_mem_Z
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.quarteto
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.FimLivre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.FimLivre
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.InicioLivre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.InicioLivre
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.fimLivre_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.fimLivre_um
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.inicioLivre_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.inicioLivre_zero
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.fimLivre_mono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.fimLivre_mono
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.inicioLivre_mono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.inicioLivre_mono
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.fim_iff_inicio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.fim_iff_inicio
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_imp_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_imp_re
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_iff_fim' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_iff_fim
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_iff_inicio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_iff_inicio
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.uniao_fins' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.uniao_fins
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.uniao_inicios' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.uniao_inicios
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_iff_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_iff_torcao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_iff_compressao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_iff_compressao
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.colar_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.colar_meio
+
+/-- info: 'ClayRiemannProof.Zeta.Symmetry.riemann_iff_colares' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Zeta.Symmetry.riemann_iff_colares
+
+/-! ## `ClayRiemannProof/FiniteWorlds.lean` -/
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.Sat' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.Sat
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.satAdd' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.satAdd
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.le_ultimo' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.le_ultimo
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.ultimo_absorve' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.ultimo_absorve
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.satAdd_comm' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.satAdd_comm
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.satAdd_assoc' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.satAdd_assoc
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.cancelamento_falha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.cancelamento_falha
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.nao_ha_ultimo_inteiro' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.nao_ha_ultimo_inteiro
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.RHateZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.RHateZ
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.RHnoMundo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.RHnoMundo
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.RHateZ_anti' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.RHateZ_anti
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.rhNoMundo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.rhNoMundo_iff
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.target_iff_todos_os_mundos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.target_iff_todos_os_mundos
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.not_target_iff_um_mundo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.not_target_iff_um_mundo
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.rhNoMundo_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.rhNoMundo_zero
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.PlattTrudgian2021' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.PlattTrudgian2021
+
+/-- info: 'ClayRiemannProof.FiniteWorlds.rhNoMundo_platt_trudgian' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.rhNoMundo_platt_trudgian

@@ -16,4 +16,6 @@ import ClayRiemannProof.Zeta.PerronSmoothed
 import ClayRiemannProof.BaezDuarte.Necessity
 import ClayRiemannProof.BaezDuarteGap
 import ClayRiemannProof.QuasiRH
+import ClayRiemannProof.Zeta.Symmetry
+import ClayRiemannProof.FiniteWorlds
 import ClayRiemannProof.Audit

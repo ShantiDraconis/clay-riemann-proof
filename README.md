@@ -109,11 +109,54 @@ pela simetria `s ↦ 1 − s` da equação funcional da Mathlib, `target_iff_noZ
 `openAIQuasiRH78_of_target` mostra que a hipótese é consequência de RH, portanto não é
 trivialmente falsa (refutá-la refutaria RH).
 
-**O que NÃO é**: não é prova de RH, nem verificação do resultado da OpenAI (cuja formalização não
-foi conferida por este repositório). Segundo a reportagem, a versão posterior (2026-10-05) afirma
-só `1/12 ≤ Re s ≤ 11/12` e não foi verificada em Lean.
+**O que NÃO é**: não é prova de RH, nem verificação do resultado da OpenAI. O enunciado formalizado
+por eles é `OAI.riemannZeta_ne_zero_of_seven_eighths_lt_re` (`ζ(s) ≠ 0` para `Re s > 7/8`), em
+[`openai/math`](https://github.com/openai/math), pasta `lean/`, commit `1581d4c`, com Lean `v4.34.1` e
+outra Mathlib; ele não é importado nem recompilado aqui. O artigo de 2026-10-05 da mesma série expõe
+separadamente a etapa intermediária `Re s > 11/12`.
 
 **Origem**: escrito neste repositório (a parte da equação funcional segue o argumento de
 `riemannHypothesis_of_strip` de `ATK/BaezDuarteBridge.lean`).
 
 **Axiomas**: `[propext, Classical.choice, Quot.sound]`.
+
+## 3. A ponte com as aritméticas finitas (teorema)
+
+Arquivos: `ClayRiemannProof/FiniteWorlds.lean` e `ClayRiemannProof/Zeta/Symmetry.lean`.
+
+```lean
+abbrev Sat (Z : ℕ) := Fin (Z + 1)                 -- {0,…,Z}: Z é o último inteiro deste mundo
+def satAdd (a b : Sat Z) : Sat Z                  -- a ⊕ b = min Z (a + b)
+theorem ultimo_absorve (a : Sat Z) : satAdd (Fin.last Z) a = Fin.last Z
+theorem cancelamento_falha (hZ : 1 ≤ Z) : ∃ a b c, satAdd a c = satAdd b c ∧ a ≠ b
+theorem nao_ha_ultimo_inteiro : ¬ ∃ Z : ℕ, ∀ n : ℕ, n ≤ Z
+
+def RHateZ (Z : ℕ) : Prop                         -- todo zero não trivial com |Im s| ≤ Z está em Re s = 1/2
+def RHnoMundo (Z : ℕ) : Prop := ∀ h : Sat Z, RHateZ h.val
+theorem rhNoMundo_iff : RHnoMundo Z ↔ RHateZ Z
+theorem target_iff_todos_os_mundos : Target ↔ ∀ Z : ℕ, RHnoMundo Z
+theorem not_target_iff_um_mundo : ¬ Target ↔ ∃ Z : ℕ, ¬ RHnoMundo Z
+theorem rhNoMundo_zero : RHnoMundo 0              -- certificado: não há zero não trivial real
+def PlattTrudgian2021 : Prop := RHateZ 3000175332800
+theorem rhNoMundo_platt_trudgian (h : PlattTrudgian2021) : RHnoMundo 3000175332800
+```
+
+**O que é**: uma aritmética finita com último inteiro `Z` existe sem contradição (soma saturada, em que
+`Z ⊕ 1 = Z`), ao preço do cancelamento. Cada mundo `Sat Z` enxerga os zeros de altura `|Im s| ≤ Z`. O
+enunciado do Clay é exatamente "RH vale em todo mundo finito", e RH é falsa exatamente quando falha em
+**um** mundo finito: um contraexemplo, se existir, mora numa altura finita. O mundo `Z = 0` está certificado
+(a reta real não tem zero não trivial). O mundo `Z = 3 000 175 332 800` vale condicionalmente à
+verificação de Platt e Trudgian (*The Riemann hypothesis is true up to 3·10¹²*, Bull. London Math. Soc. 53
+(2021) 792–797), que entra como hipótese nomeada.
+
+**O que NÃO é**: nenhum mundo finito isolado implica o enunciado do Clay; a passagem de "cada `Z`" para
+"todo `Z`" é o problema em aberto. Um último inteiro dentro de `ℕ` é contraditório
+(`nao_ha_ultimo_inteiro`) e não é usado.
+
+**Origem**: `Zeta/Symmetry.lean` é o `ATK/ZetaSimetria.lean` do kernel ATK (espelho público, M-Core
+`390e378`), portado; `FiniteWorlds.lean` é novo. A aritmética saturada segue `ATK/ZeroClasses/Finito.lean`
+(`satAdd_assoc`, `terminal_absorve`, `cancelamento_falha`).
+
+**Axiomas**: `Sat` e `le_ultimo` não dependem de nenhum; `satAdd`, `satAdd_comm`, `satAdd_assoc` e
+`nao_ha_ultimo_inteiro` usam `[propext, Quot.sound]`; os demais `[propext, Classical.choice, Quot.sound]`.
+Todas as 68 declarações novas estão fixadas em `ClayRiemannProof/Audit.lean`.
