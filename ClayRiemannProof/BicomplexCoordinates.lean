@@ -101,15 +101,19 @@ theorem i_mul_second_plane (a b : Int) :
 
 theorem real_minus_one_plus_i_complex_y (a b : Int) :
     (add (complexEmbed (-1) 0) (iTimes (complexEmbed a b))).re = -1 - b := by
-  simp [add, i_mul_complex, complexEmbed]
+  rw [i_mul_complex]
+  change -1 + (-b) = -1 - b
+  ring
 
 theorem real_minus_one_plus_i_real_y (a : Int) :
     (add (complexEmbed (-1) 0) (iTimes (complexEmbed a 0))).re = -1 := by
-  simp [add, i_mul_complex, complexEmbed]
+  rw [i_mul_complex]
+  rfl
 
 theorem real_minus_one_plus_i_independent_j (a b : Int) :
     (add (complexEmbed (-1) 0) (iTimes (secondPlaneEmbed a b))).re = -1 := by
-  simp [add, i_mul_second_plane, complexEmbed]
+  rw [i_mul_second_plane]
+  rfl
 
 /-- In ordinary complex arithmetic, Re(-1 + i(0-3i)) = 2. -/
 theorem complex_y_example_re_two :
