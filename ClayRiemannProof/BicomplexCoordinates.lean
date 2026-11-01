@@ -65,6 +65,10 @@ theorem k_sq : mul basisK basisK = one := by decide
 
 theorem j_inverse_left : mul basisJ (neg basisJ) = one := by decide
 theorem j_inverse_right : mul (neg basisJ) basisJ = one := by decide
+theorem j_ne_i : basisJ ≠ basisI := by decide
+theorem j_ne_neg_i : basisJ ≠ neg basisI := by decide
+
+theorem real_of_negative_one_ne_two : (-1 : Int) ≠ 2 := by decide
 
 /-- Euclidean coordinate norm squared; this is not asserted to be
 multiplicative for bicomplex multiplication. -/
@@ -118,6 +122,11 @@ theorem real_minus_one_plus_i_independent_j (a b : Int) :
 /-- In ordinary complex arithmetic, Re(-1 + i(0-3i)) = 2. -/
 theorem complex_y_example_re_two :
     (add (complexEmbed (-1) 0) (iTimes (complexEmbed 0 (-3)))).re = 2 := by
+  decide
+
+/-- With y=-i, the ordinary complex value -1+i y is zero. -/
+theorem complex_y_example_zero :
+    add (complexEmbed (-1) 0) (iTimes (complexEmbed 0 (-1))) = zero := by
   decide
 
 /-- The two idempotent components of sigma + it + kb have real
