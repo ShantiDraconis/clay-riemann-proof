@@ -53,7 +53,16 @@ theorem hypothetical_rectangle_real_parts (delta gamma : ℝ) :
     (centered ⟨1 / 2 - delta, gamma⟩).re = -delta ∧
     (centered ⟨1 / 2 + delta, -gamma⟩).re = delta ∧
     (centered ⟨1 / 2 - delta, -gamma⟩).re = -delta := by
-  simp [re_centered]
-  constructor <;> norm_num <;> ring
+  constructor
+  · simp [centered]
+    ring
+  constructor
+  · simp [centered]
+    ring
+  constructor
+  · simp [centered]
+    ring
+  · simp [centered]
+    ring
 
 end ClayRiemannProof.CenteredStabilityBridge
