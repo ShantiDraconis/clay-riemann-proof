@@ -13,7 +13,7 @@ namespace ClayRiemannProof.CenteredStabilityBridge
 open ClayRiemannProof.Zeta.Symmetry
 
 /-- Shift the critical line Re(s)=1/2 to the imaginary axis. -/
-def centered (s : ℂ) : ℂ := s - (1 / 2 : ℂ)
+noncomputable def centered (s : ℂ) : ℂ := s - (1 / 2 : ℂ)
 
 /-- The real coordinate after centering is Re(s)-1/2. -/
 theorem re_centered (s : ℂ) : (centered s).re = s.re - 1 / 2 := by
@@ -53,16 +53,6 @@ theorem hypothetical_rectangle_real_parts (delta gamma : ℝ) :
     (centered ⟨1 / 2 - delta, gamma⟩).re = -delta ∧
     (centered ⟨1 / 2 + delta, -gamma⟩).re = delta ∧
     (centered ⟨1 / 2 - delta, -gamma⟩).re = -delta := by
-  constructor
-  · simp [centered]
-    ring
-  constructor
-  · simp [centered]
-    ring
-  constructor
-  · simp [centered]
-    ring
-  · simp [centered]
-    ring
+  simp [centered]
 
 end ClayRiemannProof.CenteredStabilityBridge
