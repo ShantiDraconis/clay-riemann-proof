@@ -160,3 +160,22 @@ verificação de Platt e Trudgian (*The Riemann hypothesis is true up to 3·10¹
 **Axiomas**: `Sat` e `le_ultimo` não dependem de nenhum; `satAdd`, `satAdd_comm`, `satAdd_assoc` e
 `nao_ha_ultimo_inteiro` usam `[propext, Quot.sound]`; os demais `[propext, Classical.choice, Quot.sound]`.
 Todas as 68 declarações novas estão fixadas em `ClayRiemannProof/Audit.lean`.
+
+## Álgebra bicomplexa de coordenadas (suplementar; não prova RH)
+
+Arquivo: `ClayRiemannProof/BicomplexCoordinates.lean`.
+
+O módulo formaliza identidades de coordenadas: `i²=j²=-1`, `ij=ji=k`, `k²=1`,
+`(1+k)(1-k)=0) com fatores não nulos, o inverso de `j`, e as contas de
+`-1+i(a+ib)` versus `-1+i(a+jb)`. Também verifica que as coordenadas reais
+dos componentes idempotentes são `σ+b` e `σ-b), ambas iguais a `σ) quando `b=0).
+
+Aqui `a+ib` usa a unidade complexa ordinária: `-1+i(a+ib)=(-1-b)+ia`; isso não requer
+uma extensão bicomplexa. Com uma unidade independente `j), `i(a+jb)=ia+kb), e o
+coeficiente escalar real não muda. Zero-divisores são elementos não nulos cujo produto
+pode ser zero; isso não torna um valor de função igual a zero quando apenas um componente
+idempotente se anula.
+
+Esta seção não define `ζ) sobre os bicomplexos e não implica que os zeros da zeta clássica
+estejam ou não na linha crítica. A Hipótese de Riemann continua aberta neste repositório.
+
