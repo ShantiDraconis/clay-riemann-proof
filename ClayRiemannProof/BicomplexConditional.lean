@@ -34,7 +34,9 @@ theorem both_components_RH_force_center
   have hm : (componentMinus sigma t b).re = 1 / 2 :=
     hRH _ ⟨hMinus, by simpa [componentMinus] using hMinusLo,
       by simpa [componentMinus] using hMinusHi⟩
-  constructor <;> simp only [componentPlus, componentMinus, Complex.mk_re] at hp hm <;> linarith
+  have hp' : sigma + b = 1 / 2 := by simpa [componentPlus] using hp
+  have hm' : sigma - b = 1 / 2 := by simpa [componentMinus] using hm
+  constructor <;> linarith
 
 /-- One component equation alone does not determine b: this is a coordinate
 counterexample, not a claim that the selected point is a zeta zero. -/
