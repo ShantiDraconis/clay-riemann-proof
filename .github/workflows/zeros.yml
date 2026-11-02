@@ -1,0 +1,54 @@
+name: Zeros acima de 3e12
+# Zeros de ζ acima da altura já verificada (Platt–Trudgian, 3·10¹²), com aritmética intervalar (FLINT 3 / Arb).
+# Cálculo finito fora do kernel do Lean: não muda OPEN_MATH. O resultado vai para a branch resultados-zeros.
+on:
+  workflow_dispatch:
+    inputs:
+      contiguos:
+        description: "quantos zeros contíguos logo acima de 3e12"
+        default: "200000"
+  push:
+    branches: [main]
+    paths:
+      - "computations/zeros/**"
+      - ".github/workflows/zeros.yml"
+permissions:
+  contents: write
+jobs:
+  zeros:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+          dpkg -s libflint-dev | grep -E "^Version"
+      - name: compila
+        run: gcc -O2 -o zeros computations/zeros/zeros.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
+      - name: confere o método em altura baixa (zeros conhecidos)
+        run: |
+          ./zeros hardy 1 5 128 | tee baixo.json
+          ./zeros platt 10000 5 128 | tee platt_baixo.json
+          ./zeros hardy 10000 5 128 | tee hardy_baixo.json
+      - name: janelas acima de 3e12
+        run: python3 computations/zeros/janelas.py ./zeros resultados 16200 "${{ github.event.inputs.contiguos || '200000' }}" 2>&1 | tee janelas.log
+      - name: erros como anotações
+        if: failure()
+        run: |
+          cat compila.log janelas.log 2>/dev/null | tail -40 | sed -E 's/%/%25/g; s/^/::warning title=zeros::/' || true
+      - name: grava na branch resultados-zeros
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          cp baixo.json platt_baixo.json hardy_baixo.json compila.log janelas.log /tmp/r/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-zeros || true
+          if git rev-parse --verify -q origin/resultados-zeros; then git checkout -q -B resultados-zeros origin/resultados-zeros; else git checkout -q --orphan resultados-zeros; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "zeros acima de 3e12: run ${{ github.run_id }} (${{ github.sha }})" || true
+          git push -q origin resultados-zeros

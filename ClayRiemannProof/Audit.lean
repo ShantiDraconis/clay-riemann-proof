@@ -24,6 +24,7 @@ import ClayRiemannProof.Locks
 import ClayRiemannProof.Bridges
 import ClayRiemannProof.TresTravas
 import ClayRiemannProof.Analogs
+import ClayRiemannProof.Fronteira.Clay
 
 /-!
 # Auditoria de axiomas
@@ -1686,3 +1687,74 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Analogs.selberg_polya' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Analogs.selberg_polya
+
+/-! ## `ClayRiemannProof/Fronteira/Hadamard.lean` -/
+
+/-- info: 'ClayRiemannProof.Fronteira.xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.xi
+
+/-- info: 'ClayRiemannProof.Fronteira.xi_one_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.xi_one_sub
+
+/-- info: 'ClayRiemannProof.Fronteira.differentiable_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.differentiable_xi
+
+/-- info: 'ClayRiemannProof.Fronteira.xi_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.xi_zero
+
+/-- info: 'ClayRiemannProof.Fronteira.xi_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.xi_one
+
+/-- info: 'ClayRiemannProof.Fronteira.xi_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.xi_eq
+
+/-- info: 'ClayRiemannProof.Fronteira.XiHadamard' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.XiHadamard
+
+
+/-! ## `ClayRiemannProof/Fronteira/Li.lean` -/
+
+/-- info: 'ClayRiemannProof.Fronteira.liCoeff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.liCoeff
+
+/-- info: 'ClayRiemannProof.Fronteira.CriterioDeLi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.CriterioDeLi
+
+/-- info: 'ClayRiemannProof.Fronteira.PositividadeDeLi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.PositividadeDeLi
+
+
+/-! ## `ClayRiemannProof/Fronteira/Ht.lean` -/
+
+/-- info: 'ClayRiemannProof.Fronteira.Phi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.Phi
+
+/-- info: 'ClayRiemannProof.Fronteira.H' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.H
+
+/-- info: 'ClayRiemannProof.Fronteira.deBruijnNewman' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.deBruijnNewman
+
+/-- info: 'ClayRiemannProof.Fronteira.H0_eh_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.H0_eh_xi
+
+/-- info: 'ClayRiemannProof.Fronteira.RodgersTao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.RodgersTao
+
+/-- info: 'ClayRiemannProof.Fronteira.RH_iff_Lambda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.RH_iff_Lambda
+
+/-- info: 'ClayRiemannProof.Fronteira.PlattTrudgianLambda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.PlattTrudgianLambda
+
+
+/-! ## `ClayRiemannProof/Fronteira/Clay.lean` -/
+
+/-- info: 'ClayRiemannProof.Fronteira.clay_como_proposto_falso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.clay_como_proposto_falso
+
+/-- info: 'ClayRiemannProof.Fronteira.target_de_li' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.target_de_li
+
+/-- info: 'ClayRiemannProof.Fronteira.target_de_dbn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fronteira.target_de_dbn

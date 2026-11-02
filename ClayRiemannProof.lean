@@ -26,5 +26,9 @@ import ClayRiemannProof.HeightThirteen
 import ClayRiemannProof.Bridges
 import ClayRiemannProof.TresTravas
 import ClayRiemannProof.Analogs
+import ClayRiemannProof.Fronteira.Hadamard
+import ClayRiemannProof.Fronteira.Li
+import ClayRiemannProof.Fronteira.Ht
+import ClayRiemannProof.Fronteira.Clay
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
