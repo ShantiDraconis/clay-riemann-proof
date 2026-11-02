@@ -510,13 +510,32 @@ Turing) e todos os zeros de índice `N(T_PT) + 1 … N(g_b + 5000)` pelo método
 `N(b) − N(a)`, que conta todos os zeros de `0 < Re s < 1` nessas alturas; um zero fora da reta (com o par `1 − ρ̄` na
 mesma altura) quebraria a igualdade. O resultado e a lista de zeros vão para a branch `resultados-zeros`.
 
+**Resultado** (execução 41546782883, 983 s, FLINT 3.0.1, precisão de 256 bits):
+
+| altura `T` | `N(T)` exato |
+|---|---|
+| `T_PT = 3 000 175 332 800` | 12 363 153 437 138 (igual ao publicado por Platt–Trudgian) |
+| `g_b = 3 000 175 337 471,5` | 12 363 153 457 130 |
+| `g_b + 5000 = 3 000 175 342 471,5` | 12 363 153 478 531 |
+
+- `(T_PT, g_b]`: 19 992 zeros, todos em `Re s = ½`; igual a `N(g_b) − N(T_PT)`.
+- `(g_b, g_b + 5000]`: **21 401 zeros, todos em `Re s = ½`**; igual a `N(g_b + 5000) − N(g_b)`. Primeiro
+  `t = 3 000 175 337 471,501016502…`, último `t = 3 000 175 342 471,339274324…`.
+- As 41 393 bolas são disjuntas e estão em ordem (maior raio `5,01·10⁻¹⁸`). O par mais próximo — onde um par de zeros
+  sairia da reta, se saísse — são os zeros 12 363 153 465 694 e 12 363 153 465 695, em
+  `t ≈ 3 000 175 339 472,0499` e `3 000 175 339 472,0579` (distância `0,0080`): os dois estão na reta, separados.
+- Conclusão: nenhum zero de ζ com `0 < Re s < 1`, `Re s ≠ ½` e `3 000 175 332 800 < Im s ≤ 3 000 175 342 471,5`.
+  Com Platt–Trudgian: RH conferida (numericamente, com intervalos) até a altura `3 000 175 342 471,5`.
+  A lista completa (índice, ordenada, raio) está em `zeros_faixa.csv.gz` na branch `resultados-zeros`.
+
 **O que NÃO é**: prova. É a mesma verificação finita que o mundo fez até 3·10¹², levada um pouco além; nenhuma altura
 finita fecha RH. Não entra no kernel do Lean.
 
-**Estado em 2/11/2026**: a execução `41542819161` do workflow falhou antes de gravar zeros. O `N(T_PT)` devolvido
-(`12 362 403 019 661`) não bate com o publicado (`12 363 153 437 138`; `θ(T_PT)/π + 1 = 12 363 153 437 137,1`), e o
-script quebrou ao ler esse número. A janela da seção 15 foi feita localmente com a mesma biblioteca e começa
-exatamente no índice publicado.
+**Sobre a execução `41542819161`**: ela calculou `N(3·10¹²) = 12 362 403 019 661` (a altura redonda `3·10¹²`, não
+`T_PT`) e quebrou ao ler o número, que a Arb imprime com casas decimais. As execuções seguintes calculam em `T_PT`, e
+`N(T_PT) = 12 363 153 437 138` sai igual ao publicado. A janela `janelaA` da seção 15, feita à parte com a mesma
+biblioteca, começa no índice `12 363 153 437 138` (`t = 3 000 175 332 799,93…`, logo abaixo de `T_PT`) e é coerente com
+a lista acima, que começa no índice seguinte (`t = 3 000 175 332 800,2865…`).
 
 ## 14. O critério de Li sem Hadamard: a forma finita, `ξ` e o encontro reta–círculo (teorema)
 
