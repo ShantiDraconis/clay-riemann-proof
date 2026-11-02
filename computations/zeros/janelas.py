@@ -95,19 +95,49 @@ estado["zeros_entre_T_PT_e_g_b"] = N_GB - N_PT
 estado["zeros_entre_g_b_e_T_fim"] = N_FIM - N_GB
 grava()
 
-# 2. todos os zeros de N_PT+1 a N_FIM
+# 2. todos os zeros de N_PT+1 a N_FIM; cada bloco pede MARGEM zeros a mais de cada lado e fica com o miolo (os zeros
+# da borda de um bloco do método local saem com bola maior)
+MARGEM = 40
 zeros = []  # (índice, meio, raio)
 n = N_PT + 1
 while n <= N_FIM and time.time() - INICIO < ORCAMENTO:
     k = min(5000, N_FIM - n + 1)
-    r, seg = roda("platt", n, k, 128)
-    zs = [bola(z) for z in r["zeros"]]
+    r, seg = roda("platt", n - MARGEM, k + 2 * MARGEM, 256)
+    zs = [bola(z) for z in r["zeros"]][MARGEM:MARGEM + k]
     estado["blocos"].append({"n": str(n), "pedidos": k, "achados": len(zs), "segundos": round(seg, 1)})
     if not zs:
         break
     zeros += [(n + i, m, rr) for i, (m, rr) in enumerate(zs)]
     n += len(zs)
     grava()
+
+# 2b. zeros cuja bola encosta na do vizinho (ou com raio > 1e-6): de novo pelo método geral (Gram/Rosser/Turing)
+def ruins(zs):
+    out = set()
+    for j, (_, m, rr) in enumerate(zs):
+        if rr > Decimal("1e-6"):
+            out.add(j)
+        if j + 1 < len(zs) and m + rr >= zs[j + 1][1] - zs[j + 1][2]:
+            out |= {j, j + 1}
+    return sorted(out)
+
+
+rr0 = ruins(zeros)
+estado["refinamento"] = {"antes": len(rr0), "refinados": 0}
+for j in rr0:
+    if time.time() - INICIO > ORCAMENTO:
+        break
+    i = zeros[j][0]
+    try:
+        r, seg = roda("hardy", i, 1, 256, timeout=1800)
+        m, rr = bola(r["zeros"][0])
+        zeros[j] = (i, m, rr)
+        estado["refinamento"]["refinados"] += 1
+    except Exception as ex:  # noqa: BLE001
+        estado["refinamento"].setdefault("erros", []).append(f"{i}: {str(ex)[:200]}")
+    grava()
+estado["refinamento"]["depois"] = len(ruins(zeros))
+grava()
 
 with gzip.open(OUT / "zeros_faixa.csv.gz", "wt") as f:
     f.write("indice,ordenada_meio,raio\n")

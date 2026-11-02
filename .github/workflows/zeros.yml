@@ -48,7 +48,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin resultados-zeros:refs/remotes/origin/resultados-zeros || true
-          if git rev-parse --verify -q origin/resultados-zeros; then git checkout -q -B resultados-zeros origin/resultados-zeros; else git checkout -q --orphan resultados-zeros; git rm -rq . || true; fi
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-zeros; then git checkout -q -f -B resultados-zeros origin/resultados-zeros; else git checkout -q --orphan resultados-zeros; git rm -rq . || true; fi
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -r /tmp/r/. .
           git add -A
