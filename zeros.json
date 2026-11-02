@@ -1,0 +1,105 @@
+{
+ "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+ "T_PT": "3000175332800",
+ "N_PT_publicado": "12363153437138",
+ "g_b": "3000175337471.5",
+ "T_fim": "3000175342471.5",
+ "blocos": [
+  {
+   "n": "12363153437139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 108.9
+  },
+  {
+   "n": "12363153442139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 109.7
+  },
+  {
+   "n": "12363153447139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 108.0
+  },
+  {
+   "n": "12363153452139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 107.9
+  },
+  {
+   "n": "12363153457139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 108.2
+  },
+  {
+   "n": "12363153462139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 118.9
+  },
+  {
+   "n": "12363153467139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 120.1
+  },
+  {
+   "n": "12363153472139",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 120.8
+  },
+  {
+   "n": "12363153477139",
+   "pedidos": 1393,
+   "achados": 1393,
+   "segundos": 68.4
+  }
+ ],
+ "N(T_PT)": {
+  "T": "3000175332800",
+  "N": "12363153437138",
+  "arb": "12363153437138.0000000000000000",
+  "segundos": 5.9
+ },
+ "segundos": 983.3,
+ "N(g_b)": {
+  "T": "3000175337471.5",
+  "N": "12363153457130",
+  "arb": "12363153457130.0000000000000000",
+  "segundos": 3.0
+ },
+ "N(T_fim)": {
+  "T": "3000175342471.5",
+  "N": "12363153478531",
+  "arb": "12363153478531.0000000000000000",
+  "segundos": 3.0
+ },
+ "N_PT_confere_com_Platt_Trudgian": true,
+ "zeros_entre_T_PT_e_g_b": 19992,
+ "zeros_entre_g_b_e_T_fim": 21401,
+ "refinamento": {
+  "antes": 0,
+  "refinados": 0,
+  "depois": 0
+ },
+ "conferencia": {
+  "todos_os_indices_calculados": true,
+  "zeros_calculados": 41393,
+  "bolas_disjuntas_e_em_ordem": true,
+  "nenhuma_bola_cruza_g_b_e_extremos_dentro": true,
+  "zeros_na_reta_em_(T_PT,g_b]": 19992,
+  "zeros_na_reta_em_(g_b,T_fim]": 21401,
+  "igual_a_N(g_b)-N(T_PT)": true,
+  "igual_a_N(T_fim)-N(g_b)": true,
+  "maior_raio": "5.01E-18",
+  "menor_distancia_entre_zeros": "0.00798702848319928",
+  "primeiro_zero_da_faixa_nova": "3000175337471.50101650218663391",
+  "ultimo_zero_da_faixa_nova": "3000175342471.33927432440709622"
+ },
+ "conclusao": "nenhum zero fora da reta em 0 < Re s < 1 com T_PT < Im s ≤ T_fim (contagem fecha)"
+}
