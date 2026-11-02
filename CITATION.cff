@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Se usar ou citar estas formalizações, cite este repositório."
+title: "clay-riemann-proof: formalizações em Lean 4 em torno do enunciado de Riemann do Clay (sem prova de RH)"
+type: software
+authors:
+  - family-names: "Fagliari"
+    given-names: "Tiago Paschoalatto"
+    orcid: "https://orcid.org/0009-0006-6874-3910"
+repository-code: "https://github.com/ShantiDraconis/clay-riemann-proof"
+keywords:
+  - Riemann hypothesis
+  - Lean 4
+  - Mathlib
+  - formal verification
+  - Báez-Duarte criterion
+  - Nyman-Beurling criterion

@@ -22,6 +22,7 @@ import ClayRiemannProof.HyperTruncation
 import ClayRiemannProof.Bicomplex
 import ClayRiemannProof.Locks
 import ClayRiemannProof.Bridges
+import ClayRiemannProof.TresTravas
 
 /-!
 # Auditoria de axiomas
@@ -1573,3 +1574,65 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
  Classical.choice,
  Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.BaezDuarte.NymanBeurling.integral_Ioc_fθ_eq_zero
+
+/-! ## `ClayRiemannProof/TresTravas.lean` -/
+
+/-- info: 'ClayRiemannProof.TresTravas.Travas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.Travas
+
+/-- info: 'ClayRiemannProof.TresTravas.zeta_tem_as_tres' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.zeta_tem_as_tres
+
+/-- info: 'ClayRiemannProof.TresTravas.quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.quarteto
+
+/-- info: 'ClayRiemannProof.TresTravas.G' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G
+
+/-- info: 'ClayRiemannProof.TresTravas.G_inteira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_inteira
+
+/-- info: 'ClayRiemannProof.TresTravas.G_ponte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_ponte
+
+/-- info: 'ClayRiemannProof.TresTravas.G_conjugacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_conjugacao
+
+/-- info: 'ClayRiemannProof.TresTravas.fator_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.fator_ne_zero
+
+/-- info: 'ClayRiemannProof.TresTravas.G_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_euler
+
+/-- info: 'ClayRiemannProof.TresTravas.G_travas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_travas
+
+/-- info: 'ClayRiemannProof.TresTravas.G_zero_quarto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_zero_quarto
+
+/-- info: 'ClayRiemannProof.TresTravas.G_zero_tres_quartos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.G_zero_tres_quartos
+
+/-- info: 'ClayRiemannProof.TresTravas.tres_travas_nao_bastam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.tres_travas_nao_bastam
+
+/-- info: 'ClayRiemannProof.TresTravas.retangulo_nao_colapsa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.retangulo_nao_colapsa
+
+/-- info: 'ClayRiemannProof.TresTravas.sem_ponte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.sem_ponte
+
+/-- info: 'ClayRiemannProof.TresTravas.E' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.E
+
+/-- info: 'ClayRiemannProof.TresTravas.sem_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.sem_euler
+
+/-- info: 'ClayRiemannProof.TresTravas.C' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.C
+
+/-- info: 'ClayRiemannProof.TresTravas.sem_conjugacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.sem_conjugacao
+
+/-- info: 'ClayRiemannProof.TresTravas.travas_independentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresTravas.travas_independentes
