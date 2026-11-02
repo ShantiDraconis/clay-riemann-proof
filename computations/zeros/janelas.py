@@ -74,6 +74,16 @@ def nz(T):
     return inteiro(r["N"]), r["N"], round(seg, 1)
 
 
+def _registra_erro(tipo, valor, tb):
+    import traceback
+    estado["erro"] = "".join(traceback.format_exception(tipo, valor, tb))[-1500:]
+    grava()
+    sys.__excepthook__(tipo, valor, tb)
+
+
+sys.excepthook = _registra_erro
+
+
 # 1. contagens exatas
 for nome, T in (("T_PT", T_PT), ("g_b", G_B), ("T_fim", T_FIM)):
     N, txt, seg = nz(T)

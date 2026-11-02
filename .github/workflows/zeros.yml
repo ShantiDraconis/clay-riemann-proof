@@ -37,7 +37,9 @@ jobs:
       - name: erros como anotações
         if: failure()
         run: |
-          cat compila.log janelas.log 2>/dev/null | tail -40 | sed -E 's/%/%25/g; s/^/::warning title=zeros::/' || true
+          { grep -E -B2 -A6 "Traceback|Error|error" janelas.log compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=zeros-erro::/' || true
+          echo
+          python3 -c "import json;d=json.load(open('resultados/zeros.json'));print(json.dumps({k:v for k,v in d.items() if k!='blocos'},ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=zeros-estado::/' || true
       - name: grava na branch resultados-zeros
         if: always()
         run: |
@@ -45,7 +47,7 @@ jobs:
           cp baixo.json platt_baixo.json hardy_baixo.json compila.log janelas.log /tmp/r/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-zeros || true
+          git fetch origin resultados-zeros:refs/remotes/origin/resultados-zeros || true
           if git rev-parse --verify -q origin/resultados-zeros; then git checkout -q -B resultados-zeros origin/resultados-zeros; else git checkout -q --orphan resultados-zeros; git rm -rq . || true; fi
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -r /tmp/r/. .
