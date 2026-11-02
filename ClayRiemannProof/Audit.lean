@@ -25,6 +25,10 @@ import ClayRiemannProof.Bridges
 import ClayRiemannProof.TresTravas
 import ClayRiemannProof.Analogs
 import ClayRiemannProof.Fronteira.Clay
+import ClayRiemannProof.LiFinite
+import ClayRiemannProof.Turing
+import ClayRiemannProof.Xi
+import ClayRiemannProof.LiCircle
 
 /-!
 # Auditoria de axiomas
@@ -1758,3 +1762,201 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Fronteira.target_de_dbn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Fronteira.target_de_dbn
+
+/-- info: 'ClayRiemannProof.Xi.differentiable_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.differentiable_xi
+
+/-- info: 'ClayRiemannProof.Xi.xi_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_eq
+
+/-- info: 'ClayRiemannProof.Xi.xi_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_zero
+
+/-- info: 'ClayRiemannProof.Xi.xi_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_one
+
+/-- info: 'ClayRiemannProof.Xi.xi_one_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_one_sub
+
+/-- info: 'ClayRiemannProof.Xi.xi_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_conj
+
+/-- info: 'ClayRiemannProof.Xi.completed_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.completed_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Xi.xi_ne_zero_of_one_le_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_ne_zero_of_one_le_re
+
+/-- info: 'ClayRiemannProof.Xi.xi_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.xi_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Xi.target_iff_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.target_iff_xi
+
+/-- info: 'ClayRiemannProof.Xi.esqueleto_falso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.esqueleto_falso
+
+/-- info: 'ClayRiemannProof.Xi.hasDerivAt_xi_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.hasDerivAt_xi_one
+
+/-- info: 'ClayRiemannProof.Xi.li_one_eq_logDeriv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.li_one_eq_logDeriv
+
+/-- info: 'ClayRiemannProof.Xi.li_one_eq_completed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.li_one_eq_completed
+
+/-- info: 'ClayRiemannProof.Xi.li_one_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.li_one_eq
+
+/-- info: 'ClayRiemannProof.Xi.gamma_gt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.gamma_gt
+
+/-- info: 'ClayRiemannProof.Xi.log_four_pi_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.log_four_pi_lt
+
+/-- info: 'ClayRiemannProof.Xi.log_four_pi_gt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.log_four_pi_gt
+
+/-- info: 'ClayRiemannProof.Xi.li_one_bounds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.li_one_bounds
+
+/-- info: 'ClayRiemannProof.Xi.li_one_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Xi.li_one_pos
+
+/-- info: 'ClayRiemannProof.LiCircle.mob_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.mob_eq
+
+/-- info: 'ClayRiemannProof.LiCircle.mob_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.mob_ne_zero
+
+/-- info: 'ClayRiemannProof.LiCircle.normSq_sub_one_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.normSq_sub_one_sub
+
+/-- info: 'ClayRiemannProof.LiCircle.normSq_mob_eq_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.normSq_mob_eq_one_iff
+
+/-- info: 'ClayRiemannProof.LiCircle.normSq_mob_lt_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.normSq_mob_lt_one_iff
+
+/-- info: 'ClayRiemannProof.LiCircle.norm_eq_one_iff_normSq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.norm_eq_one_iff_normSq
+
+/-- info: 'ClayRiemannProof.LiCircle.mob_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.mob_espelho
+
+/-- info: 'ClayRiemannProof.LiCircle.mob_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.mob_tensao
+
+/-- info: 'ClayRiemannProof.LiCircle.mob_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.mob_torcao
+
+/-- info: 'ClayRiemannProof.LiCircle.liQ_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.liQ_eq
+
+/-- info: 'ClayRiemannProof.LiCircle.liQ_inv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.liQ_inv
+
+/-- info: 'ClayRiemannProof.LiCircle.re_pow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.re_pow
+
+/-- info: 'ClayRiemannProof.LiCircle.exists_re_pow_gt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.exists_re_pow_gt
+
+/-- info: 'ClayRiemannProof.LiCircle.liQ_neg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.liQ_neg
+
+/-- info: 'ClayRiemannProof.LiCircle.li_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.li_quarteto
+
+/-- info: 'ClayRiemannProof.LiCircle.liQ_mob' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.liQ_mob
+
+/-- info: 'ClayRiemannProof.LiCircle.li_termo_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.li_termo_nonneg
+
+/-- info: 'ClayRiemannProof.LiCircle.ne_zero_of_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.ne_zero_of_mem_Z
+
+/-- info: 'ClayRiemannProof.LiCircle.ne_one_of_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.ne_one_of_mem_Z
+
+/-- info: 'ClayRiemannProof.LiCircle.target_iff_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.target_iff_circulo
+
+/-- info: 'ClayRiemannProof.LiCircle.target_iff_li_quartetos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.target_iff_li_quartetos
+
+/-- info: 'ClayRiemannProof.LiCircle.target_iff_ramanujan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.target_iff_ramanujan
+
+/-- info: 'ClayRiemannProof.LiCircle.encontro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiCircle.encontro
+
+/-- info: 'ClayRiemannProof.LiFinite.cayley_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.cayley_mul
+
+/-- info: 'ClayRiemannProof.LiFinite.normSq_cayley_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.normSq_cayley_mul
+
+/-- info: 'ClayRiemannProof.LiFinite.norm_sq_cayley' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.norm_sq_cayley
+
+/-- info: 'ClayRiemannProof.LiFinite.norm_cayley_eq_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.norm_cayley_eq_one_iff
+
+/-- info: 'ClayRiemannProof.LiFinite.one_lt_norm_cayley_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.one_lt_norm_cayley_iff
+
+/-- info: 'ClayRiemannProof.LiFinite.bnd_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.bnd_nonneg
+
+/-- info: 'ClayRiemannProof.LiFinite.re_geom_ge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.re_geom_ge
+
+/-- info: 'ClayRiemannProof.LiFinite.re_mul_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.re_mul_re
+
+/-- info: 'ClayRiemannProof.LiFinite.li_chave' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.li_chave
+
+/-- info: 'ClayRiemannProof.LiFinite.li_finito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.li_finito
+
+/-- info: 'ClayRiemannProof.LiFinite.li_no_mundo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.li_no_mundo
+
+/-- info: 'ClayRiemannProof.LiFinite.li_detecta_fora_da_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.LiFinite.li_detecta_fora_da_reta
+
+/-- info: 'ClayRiemannProof.Turing.naReta_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.naReta_re
+
+/-- info: 'ClayRiemannProof.Turing.naReta_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.naReta_im
+
+/-- info: 'ClayRiemannProof.Turing.naReta_injective' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.naReta_injective
+
+/-- info: 'ClayRiemannProof.Turing.naReta_mem_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.naReta_mem_Z
+
+/-- info: 'ClayRiemannProof.Turing.zero_em_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.zero_em_aberto
+
+/-- info: 'ClayRiemannProof.Turing.trocas_de_sinal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.trocas_de_sinal
+
+/-- info: 'ClayRiemannProof.Turing.turing_logica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.turing_logica
+
+/-- info: 'ClayRiemannProof.Turing.turing_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.turing_janela
+
+/-- info: 'ClayRiemannProof.Turing.janelas_colam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.janelas_colam
+
+/-- info: 'ClayRiemannProof.Turing.rhateZ_estende' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.rhateZ_estende
+
+/-- info: 'ClayRiemannProof.Turing.rhNoMundo_estende' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Turing.rhNoMundo_estende

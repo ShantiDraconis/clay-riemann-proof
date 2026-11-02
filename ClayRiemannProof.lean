@@ -30,5 +30,9 @@ import ClayRiemannProof.Fronteira.Hadamard
 import ClayRiemannProof.Fronteira.Li
 import ClayRiemannProof.Fronteira.Ht
 import ClayRiemannProof.Fronteira.Clay
+import ClayRiemannProof.LiFinite
+import ClayRiemannProof.Xi
+import ClayRiemannProof.LiCircle
+import ClayRiemannProof.Turing
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
