@@ -17,6 +17,8 @@ import ClayRiemannProof.BaezDuarteGap
 import ClayRiemannProof.QuasiRH
 import ClayRiemannProof.Zeta.Symmetry
 import ClayRiemannProof.FiniteWorlds
+import ClayRiemannProof.HyperTruncation
+import ClayRiemannProof.Bicomplex
 
 /-!
 # Auditoria de axiomas
@@ -1249,3 +1251,153 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.FiniteWorlds.rhNoMundo_platt_trudgian' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.FiniteWorlds.rhNoMundo_platt_trudgian
+
+/-! ## `ClayRiemannProof/HyperTruncation.lean` -/
+
+/-- info: 'ClayRiemannProof.HyperTruncation.DOmega' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.DOmega
+
+/-- info: 'ClayRiemannProof.HyperTruncation.IsInfinitesimal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.IsInfinitesimal
+
+/-- info: 'ClayRiemannProof.HyperTruncation.DOmega_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.DOmega_nonneg
+
+/-- info: 'ClayRiemannProof.HyperTruncation.target_iff_DOmega_infinitesimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.target_iff_DOmega_infinitesimal
+
+/-- info: 'ClayRiemannProof.HyperTruncation.nat_lt_omega' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.nat_lt_omega
+
+/-- info: 'ClayRiemannProof.HyperTruncation.nat_lt_omega_sub_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HyperTruncation.nat_lt_omega_sub_one
+
+/-! ## `ClayRiemannProof/Bicomplex.lean` -/
+
+/-- info: 'ClayRiemannProof.Bicomplex.BC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.BC
+
+/-- info: 'ClayRiemannProof.Bicomplex.zero_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zero_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.zero_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zero_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.one_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.one_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.one_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.one_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.add_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.add_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.add_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.add_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.neg_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.neg_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.neg_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.neg_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.sub_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.sub_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.sub_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.sub_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.mul_c1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.mul_c1
+
+/-- info: 'ClayRiemannProof.Bicomplex.mul_c2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.mul_c2
+
+/-- info: 'ClayRiemannProof.Bicomplex.j' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.j
+
+/-- info: 'ClayRiemannProof.Bicomplex.iBC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.iBC
+
+/-- info: 'ClayRiemannProof.Bicomplex.k' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.k
+
+/-- info: 'ClayRiemannProof.Bicomplex.j_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.j_sq
+
+/-- info: 'ClayRiemannProof.Bicomplex.i_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.i_sq
+
+/-- info: 'ClayRiemannProof.Bicomplex.k_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.k_eq
+
+/-- info: 'ClayRiemannProof.Bicomplex.k_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.k_sq
+
+/-- info: 'ClayRiemannProof.Bicomplex.divisor_de_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.divisor_de_zero
+
+/-- info: 'ClayRiemannProof.Bicomplex.plus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.plus
+
+/-- info: 'ClayRiemannProof.Bicomplex.minus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.minus
+
+/-- info: 'ClayRiemannProof.Bicomplex.plus_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.plus_add
+
+/-- info: 'ClayRiemannProof.Bicomplex.minus_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.minus_add
+
+/-- info: 'ClayRiemannProof.Bicomplex.plus_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.plus_mul
+
+/-- info: 'ClayRiemannProof.Bicomplex.minus_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.minus_mul
+
+/-- info: 'ClayRiemannProof.Bicomplex.ofPair' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.ofPair
+
+/-- info: 'ClayRiemannProof.Bicomplex.plus_ofPair' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.plus_ofPair
+
+/-- info: 'ClayRiemannProof.Bicomplex.minus_ofPair' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.minus_ofPair
+
+/-- info: 'ClayRiemannProof.Bicomplex.eq_iff_plus_minus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.eq_iff_plus_minus
+
+/-- info: 'ClayRiemannProof.Bicomplex.eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Bicomplex.divisor_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.divisor_iff
+
+/-- info: 'ClayRiemannProof.Bicomplex.zetaBC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zetaBC
+
+/-- info: 'ClayRiemannProof.Bicomplex.zetaBC_ofComplex' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zetaBC_ofComplex
+
+/-- info: 'ClayRiemannProof.Bicomplex.zetaBC_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zetaBC_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Bicomplex.zetaBC_divisor_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.zetaBC_divisor_iff
+
+/-- info: 'ClayRiemannProof.Bicomplex.NaoTrivial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.NaoTrivial
+
+/-- info: 'ClayRiemannProof.Bicomplex.RHbc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.RHbc
+
+/-- info: 'ClayRiemannProof.Bicomplex.target_iff_RHbc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.target_iff_RHbc
+
+/-- info: 'ClayRiemannProof.Bicomplex.re_altura_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.re_altura_real
+
+/-- info: 'ClayRiemannProof.Bicomplex.re_altura_complexa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bicomplex.re_altura_complexa
