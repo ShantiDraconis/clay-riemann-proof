@@ -20,6 +20,7 @@ import ClayRiemannProof.Zeta.Symmetry
 import ClayRiemannProof.FiniteWorlds
 import ClayRiemannProof.HyperTruncation
 import ClayRiemannProof.Bicomplex
+import ClayRiemannProof.Locks
 import ClayRiemannProof.HeightThirteen
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

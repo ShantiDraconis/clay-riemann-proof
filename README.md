@@ -285,3 +285,27 @@ deslocamento `σ_ef = σ − b` acontece dentro de `ℂ` com uma altura complexa
 **Origem**: novo neste repositório. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (fixados em
 `ClayRiemannProof/Audit.lean`).
 
+## 7. As "travas" de Euler: o que é teorema e o que não é
+
+Arquivo: `ClayRiemannProof/Locks.lean`.
+
+```lean
+theorem target_iff_desvio_zero : Target ↔ ∀ ρ, ζ ρ = 0 → (não trivial) → ρ ≠ 1 → ρ.re - 1/2 = 0   -- "b = 0"
+theorem trava1_algebra (hp : 1 < p) : p ^ (-σ) = p ^ (-(1 - σ)) ↔ σ = 1/2
+theorem ponte_vale_em_todo_sigma (s : ℂ) : completedRiemannZeta (1 - s) = completedRiemannZeta s
+theorem ponte_em_sete_decimos (t : ℝ) : Λ(0,3 − it) = Λ(0,7 + it)
+theorem simetria_nao_basta : ∃ G, (∀ s, G (1 - s) = G s) ∧ G (1/4) = 0 ∧ G (3/4) = 0 ∧ (1/4 : ℂ).re ≠ 1/2
+theorem trava2_complexo : (1 + I) * (1 - I) = 2
+theorem zeta_tem_zeros_em_C : riemannZeta (-2) = 0
+theorem euler_trava (h : 1 ≤ s.re) : riemannZeta s ≠ 0
+theorem retangulo (hρ : ρ ∈ Z) : torcao ρ ∈ Z ∧ espelho ρ ∈ Z
+```
+
+**O que é**: separa, no kernel, o que é verdadeiro nas duas "travas" propostas. A igualdade `p^{−σ} = p^{−(1−σ)}`
+só vale em `σ = ½`, mas isso **não** restringe os zeros: a equação funcional vale em todo `σ`, inclusive `0,7`, e
+uma função simétrica pode ter zeros fora de `½`. `ℂ` não ter divisores de zero também não impede zeros (`ζ(−2) = 0`).
+A trava efetiva do produto de Euler é `ζ(s) ≠ 0` para `Re s ≥ 1`.
+
+**O que NÃO é**: não é prova nem refutação de RH; mostra que as duas "travas" não implicam RH.
+**Origem**: novo neste repositório. **Axiomas**: `[propext, Classical.choice, Quot.sound]`.
+

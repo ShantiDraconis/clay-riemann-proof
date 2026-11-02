@@ -19,6 +19,7 @@ import ClayRiemannProof.Zeta.Symmetry
 import ClayRiemannProof.FiniteWorlds
 import ClayRiemannProof.HyperTruncation
 import ClayRiemannProof.Bicomplex
+import ClayRiemannProof.Locks
 
 /-!
 # Auditoria de axiomas
@@ -1401,3 +1402,35 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Bicomplex.re_altura_complexa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Bicomplex.re_altura_complexa
+
+/-! ## `ClayRiemannProof/Locks.lean` -/
+
+/-- info: 'ClayRiemannProof.Locks.target_iff_desvio_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.target_iff_desvio_zero
+
+/-- info: 'ClayRiemannProof.Locks.trava1_algebra' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.trava1_algebra
+
+/-- info: 'ClayRiemannProof.Locks.ponte_vale_em_todo_sigma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.ponte_vale_em_todo_sigma
+
+/-- info: 'ClayRiemannProof.Locks.ponte_em_sete_decimos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.ponte_em_sete_decimos
+
+/-- info: 'ClayRiemannProof.Locks.simetria_nao_basta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.simetria_nao_basta
+
+/-- info: 'ClayRiemannProof.Locks.trava2_complexo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.trava2_complexo
+
+/-- info: 'ClayRiemannProof.Locks.sem_divisor_de_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.sem_divisor_de_zero
+
+/-- info: 'ClayRiemannProof.Locks.zeta_tem_zeros_em_C' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.zeta_tem_zeros_em_C
+
+/-- info: 'ClayRiemannProof.Locks.euler_trava' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.euler_trava
+
+/-- info: 'ClayRiemannProof.Locks.retangulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Locks.retangulo
