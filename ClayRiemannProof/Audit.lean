@@ -23,6 +23,7 @@ import ClayRiemannProof.Bicomplex
 import ClayRiemannProof.Locks
 import ClayRiemannProof.Bridges
 import ClayRiemannProof.TresTravas
+import ClayRiemannProof.Analogs
 
 /-!
 # Auditoria de axiomas
@@ -1636,3 +1637,52 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.TresTravas.travas_independentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.TresTravas.travas_independentes
+
+
+/-- info: 'ClayRiemannProof.Analogs.quarteto_abstrato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.quarteto_abstrato
+
+/-- info: 'ClayRiemannProof.Analogs.xi_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.xi_simetrica
+
+/-- info: 'ClayRiemannProof.Analogs.quartetoPoly_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.quartetoPoly_simetrica
+
+/-- info: 'ClayRiemannProof.Analogs.simetria_nao_basta_abstrata' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.simetria_nao_basta_abstrata
+
+/-- info: 'ClayRiemannProof.Analogs.partes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.partes
+
+/-- info: 'ClayRiemannProof.Analogs.ihara_ramanujan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.ihara_ramanujan
+
+/-- info: 'ClayRiemannProof.Analogs.ihara_fora_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.ihara_fora_real
+
+/-- info: 'ClayRiemannProof.Analogs.ihara_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.ihara_quarteto
+
+/-- info: 'ClayRiemannProof.Analogs.circulo_iff_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.circulo_iff_reta
+
+/-- info: 'ClayRiemannProof.Analogs.lee_yang_dois_spins' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.lee_yang_dois_spins
+
+/-- info: 'ClayRiemannProof.Analogs.lee_yang_ferro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.lee_yang_ferro
+
+/-- info: 'ClayRiemannProof.Analogs.lam_real_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.lam_real_iff
+
+/-- info: 'ClayRiemannProof.Analogs.linha_iff_quarto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.linha_iff_quarto
+
+/-- info: 'ClayRiemannProof.Analogs.excepcional' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.excepcional
+
+/-- info: 'ClayRiemannProof.Analogs.zeta_sem_saida_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.zeta_sem_saida_real
+
+/-- info: 'ClayRiemannProof.Analogs.selberg_polya' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Analogs.selberg_polya

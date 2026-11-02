@@ -25,5 +25,6 @@ import ClayRiemannProof.Locks
 import ClayRiemannProof.HeightThirteen
 import ClayRiemannProof.Bridges
 import ClayRiemannProof.TresTravas
+import ClayRiemannProof.Analogs
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
