@@ -500,12 +500,15 @@ Quot.sound]` (20 guardas).
 
 Arquivos: `computations/zeros/zeros.c`, `computations/zeros/janelas.py`, `.github/workflows/zeros.yml`.
 
-Platt e Trudgian (2021) verificaram que todos os zeros com `0 < Im s ≤ 3·10¹²` estão em `Re s = ½`. O workflow
-continua daí com aritmética intervalar (FLINT 3 / Arb): calcula `N(3·10¹²)` exato (contagem de Turing) e os zeros de
-índice `N + 1, N + 2, …` pelo método local de Platt. Cada um sai como zero de `Z(t)` com o índice certificado, isto é,
-é o próximo zero de ζ contando todos (na reta e fora dela): se houvesse um zero fora da reta na faixa, a contagem não
-fecharia. Depois, amostras de 1000 zeros consecutivos nas alturas 10¹³ … 10²². O resultado vai para a branch
-`resultados-zeros`.
+Platt e Trudgian (2021): até `T_PT = 3 000 175 332 800` há exatamente 12 363 153 437 138 zeros, todos em
+`Re s = ½`. Um certificado de mais 20 000 zeros, até `g_b = 3 000 175 337 471,5`, foi citado em outubro de 2026; não o
+localizamos, então a faixa `(T_PT, g_b]` é recalculada junto. A faixa nova pedida é `(g_b, g_b + 5000]`.
+
+O workflow usa aritmética intervalar (FLINT 3 / Arb): `N(T)` exato em `T_PT`, `g_b` e `g_b + 5000` (contagem de
+Turing) e todos os zeros de índice `N(T_PT) + 1 … N(g_b + 5000)` pelo método local de Platt, cada um como bola
+`[t ± r]` com `Z(t) = 0` (em `Re s = ½`). Conferência: o número de zeros na reta em `(a, b]` tem que ser igual a
+`N(b) − N(a)`, que conta todos os zeros de `0 < Re s < 1` nessas alturas; um zero fora da reta (com o par `1 − ρ̄` na
+mesma altura) quebraria a igualdade. O resultado e a lista de zeros vão para a branch `resultados-zeros`.
 
 **O que NÃO é**: prova. É a mesma verificação finita que o mundo fez até 3·10¹², levada um pouco além; nenhuma altura
 finita fecha RH. Não entra no kernel do Lean.

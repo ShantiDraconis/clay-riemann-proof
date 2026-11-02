@@ -1,35 +1,49 @@
-"""Janelas de zeros de ζ acima de 3·10¹² (Platt–Trudgian 2021), certificadas com Arb (FLINT 3).
+"""Zeros de ζ na faixa logo acima da verificação rigorosa publicada, certificados com Arb (FLINT 3).
 
-    python3 janelas.py ./zeros resultados/
+    python3 janelas.py ./zeros resultados/ [orcamento_s]
 
-1. N(3·10¹²) exato (contagem de Turing no Arb).
-2. Bloco contíguo: os zeros de índice N+1, N+2, … — cada um é o próximo zero de ζ contando TODOS os zeros (na reta e
-   fora dela), e sai como zero de Z(t), isto é, em Re s = 1/2. Junto com Platt–Trudgian, a hipótese de Riemann fica
-   conferida até a altura do último zero do bloco.
-3. Amostras em alturas maiores (10¹³ … 10²²): blocos de zeros consecutivos em torno do índice N(T) aproximado.
+Alturas (exatas, em texto):
 
-Nada disto é prova de RH: é a mesma verificação finita que o mundo fez até 3·10¹², levada um pouco além.
+* T_PT = 3 000 175 332 800 — fim da verificação de Platt & Trudgian (2021): até essa altura há exatamente
+  12 363 153 437 138 zeros, todos em Re s = 1/2.
+* g_b = 3 000 175 337 471,5 — fim de um certificado de 20 000 zeros depois de T_PT citado em out/2026 (não localizado
+  aqui; a faixa (T_PT, g_b] é recalculada, de modo que o resultado não depende dele).
+* T_fim = g_b + 5000 — a faixa nova pedida, (g_b, g_b + 5000].
+
+O que sai:
+
+1. N(T) exato em T_PT, g_b e T_fim (acb_dirichlet_zeta_nzeros: contagem de Turing com aritmética intervalar).
+2. Todos os zeros de índice N(T_PT)+1 … N(T_fim), pelo método local de Platt (acb_dirichlet_platt_local_hardy_z_zeros),
+   cada um como bola [t ± r] com Z(t) = 0, isto é, em Re s = 1/2.
+3. Conferência: o número de zeros na reta com altura em (a, b] é igual a N(b) − N(a) — a contagem de TODOS os zeros
+   da faixa crítica 0 < Re s < 1 nessas alturas. Se houvesse um zero fora da reta (que viria com o par 1 − ρ̄ na mesma
+   altura), N(b) − N(a) seria maior. Igualdade = nenhum zero fora da reta em 0 < Re s < 1, a < Im s ≤ b.
+
+Nada disto é prova de RH: é a verificação finita, levada 5000 unidades além.
 """
+import gzip
 import json
 import math
 import re
 import subprocess
 import sys
 import time
+from decimal import Decimal
 from pathlib import Path
 
 BIN = sys.argv[1]
 OUT = Path(sys.argv[2])
 OUT.mkdir(parents=True, exist_ok=True)
-ORCAMENTO = float(sys.argv[3]) if len(sys.argv) > 3 else 4.5 * 3600  # segundos para começar blocos novos
-T_PT = "3000000000000"
+ORCAMENTO = float(sys.argv[3]) if len(sys.argv) > 3 else 4.5 * 3600
+T_PT, N_PT_PUBLICADO = "3000175332800", 12363153437138
+G_B = "3000175337471.5"
+T_FIM = str(Decimal(G_B) + 5000)
 INICIO = time.time()
 estado = {"fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
-          "verificado_antes": "Platt & Trudgian (2021): todos os zeros com 0 < Im s ≤ 3·10¹² estão em Re s = 1/2",
-          "blocos": []}
+          "T_PT": T_PT, "N_PT_publicado": str(N_PT_PUBLICADO), "g_b": G_B, "T_fim": T_FIM, "blocos": []}
 
 
-def roda(*args, timeout=3 * 3600):
+def roda(*args, timeout=4 * 3600):
     t0 = time.time()
     r = subprocess.run([BIN, *map(str, args)], capture_output=True, text=True, timeout=timeout)
     if r.returncode:
@@ -39,7 +53,15 @@ def roda(*args, timeout=3 * 3600):
 
 def bola(s):
     m = re.match(r"\[?\s*([0-9.eE+-]+)\s*(?:\+/-\s*([0-9.eE+-]+))?\s*\]?", s)
-    return m.group(1), (m.group(2) or "0")
+    return Decimal(m.group(1)), Decimal(m.group(2) or "0")
+
+
+def inteiro(s):
+    """N(T) sai do Arb como bola exata ("12362403019661.0000…" sem raio): confere que é inteiro exato."""
+    meio, raio = bola(s)
+    if raio != 0 or meio != meio.to_integral_value():
+        raise ValueError(f"N(T) não é inteiro exato: {s}")
+    return int(meio)
 
 
 def grava():
@@ -47,54 +69,69 @@ def grava():
     (OUT / "zeros.json").write_text(json.dumps(estado, ensure_ascii=False, indent=1) + "\n")
 
 
-def n_aprox(T):
-    """N(T) ≈ (T/2π)·log(T/2πe) + 7/8 (Riemann–von Mangoldt sem S(T)): só para escolher o índice da amostra."""
-    x = T / (2 * math.pi)
-    return int(x * math.log(x / math.e) + 7 / 8)
+def nz(T):
+    r, seg = roda("nzeros", T, 256)
+    return inteiro(r["N"]), r["N"], round(seg, 1)
 
 
-def bloco(n, total, passo, rotulo, prec=128):
-    feitos, ult = 0, None
-    while feitos < total and time.time() - INICIO < ORCAMENTO:
-        k = min(passo, total - feitos)
-        r, seg = roda("platt", n + feitos, k, prec)
-        zs = [bola(z) for z in r["zeros"]]
-        if not zs:
-            estado["blocos"].append({"rotulo": rotulo, "n": str(n + feitos), "achados": 0, "segundos": round(seg, 1)})
-            break
-        alturas = [float(m) for m, _ in zs]
-        crescente = all(a < b for a, b in zip(alturas, alturas[1:]))
-        estado["blocos"].append({
-            "rotulo": rotulo, "metodo": "platt", "n_primeiro": str(n + feitos), "n_ultimo": str(n + feitos + len(zs) - 1),
-            "achados": len(zs), "pedidos": k, "segundos": round(seg, 1), "ordenadas_crescentes": crescente,
-            "primeiro": {"t": zs[0][0], "raio": zs[0][1]}, "ultimo": {"t": zs[-1][0], "raio": zs[-1][1]},
-            "maior_raio": max(zs, key=lambda z: float(z[1]))[1],
-            "menor_intervalo_entre_zeros": min((b - a for a, b in zip(alturas, alturas[1:])), default=None),
-            "zeros": [m for m, _ in zs] if len(zs) <= 400 else None,
-        })
-        feitos += len(zs)
-        ult = zs[-1][0]
-        grava()
-    return feitos, ult
-
-
-r, seg = roda("nzeros", T_PT, 256)
-N = int(bola(r["N"])[0])
-estado["N_3e12"] = {"N": str(N), "texto": r["N"], "segundos": round(seg, 1)}
-grava()
-
-# 2. bloco contíguo logo acima de 3·10¹²
-feitos, ult = bloco(N + 1, int(sys.argv[4]) if len(sys.argv) > 4 else 200000, 20000, "contiguo_acima_de_3e12")
-estado["contiguo"] = {"de_indice": str(N + 1), "zeros": feitos, "ate_altura": ult}
-grava()
-
-# 3. amostras em alturas maiores
-for e in (13, 14, 15, 16, 18, 20, 22):
-    if time.time() - INICIO > ORCAMENTO:
-        break
-    try:
-        bloco(n_aprox(10.0 ** e), 1000, 1000, f"amostra_1e{e}")
-    except Exception as ex:  # noqa: BLE001
-        estado["blocos"].append({"rotulo": f"amostra_1e{e}", "erro": str(ex)[:300]})
+# 1. contagens exatas
+for nome, T in (("T_PT", T_PT), ("g_b", G_B), ("T_fim", T_FIM)):
+    N, txt, seg = nz(T)
+    estado[f"N({nome})"] = {"T": T, "N": str(N), "arb": txt, "segundos": seg}
     grava()
+N_PT, N_GB, N_FIM = (int(estado[f"N({k})"]["N"]) for k in ("T_PT", "g_b", "T_fim"))
+estado["N_PT_confere_com_Platt_Trudgian"] = N_PT == N_PT_PUBLICADO
+estado["zeros_entre_T_PT_e_g_b"] = N_GB - N_PT
+estado["zeros_entre_g_b_e_T_fim"] = N_FIM - N_GB
+grava()
+
+# 2. todos os zeros de N_PT+1 a N_FIM
+zeros = []  # (índice, meio, raio)
+n = N_PT + 1
+while n <= N_FIM and time.time() - INICIO < ORCAMENTO:
+    k = min(5000, N_FIM - n + 1)
+    r, seg = roda("platt", n, k, 128)
+    zs = [bola(z) for z in r["zeros"]]
+    estado["blocos"].append({"n": str(n), "pedidos": k, "achados": len(zs), "segundos": round(seg, 1)})
+    if not zs:
+        break
+    zeros += [(n + i, m, rr) for i, (m, rr) in enumerate(zs)]
+    n += len(zs)
+    grava()
+
+with gzip.open(OUT / "zeros_faixa.csv.gz", "wt") as f:
+    f.write("indice,ordenada_meio,raio\n")
+    for i, m, rr in zeros:
+        f.write(f"{i},{m},{rr}\n")
+
+# 3. conferências
+completo = bool(zeros) and zeros[-1][0] == N_FIM
+alturas = [m for _, m, _ in zeros]
+crescente = all(a + ra < b - rb for (_, a, ra), (_, b, rb) in zip(zeros, zeros[1:]))
+gb, tfim, tpt = Decimal(G_B), Decimal(T_FIM), Decimal(T_PT)
+na_faixa_nova = [z for z in zeros if gb < z[1] <= tfim]
+na_faixa_antiga = [z for z in zeros if tpt < z[1] <= gb]
+fronteiras_ok = (completo and zeros[0][1] - zeros[0][2] > tpt and zeros[-1][1] + zeros[-1][2] <= tfim
+                 and all(not (z[1] - z[2] <= gb < z[1] + z[2]) for z in zeros))
+estado["conferencia"] = {
+    "todos_os_indices_calculados": completo,
+    "zeros_calculados": len(zeros),
+    "bolas_disjuntas_e_em_ordem": crescente,
+    "nenhuma_bola_cruza_g_b_e_extremos_dentro": fronteiras_ok,
+    "zeros_na_reta_em_(T_PT,g_b]": len(na_faixa_antiga),
+    "zeros_na_reta_em_(g_b,T_fim]": len(na_faixa_nova),
+    "igual_a_N(g_b)-N(T_PT)": len(na_faixa_antiga) == N_GB - N_PT,
+    "igual_a_N(T_fim)-N(g_b)": len(na_faixa_nova) == N_FIM - N_GB,
+    "maior_raio": str(max((z[2] for z in zeros), default=0)),
+    "menor_distancia_entre_zeros": str(min((b - a for a, b in zip(alturas, alturas[1:])), default=0)),
+    "primeiro_zero_da_faixa_nova": str(na_faixa_nova[0][1]) if na_faixa_nova else None,
+    "ultimo_zero_da_faixa_nova": str(na_faixa_nova[-1][1]) if na_faixa_nova else None,
+}
+estado["conclusao"] = (
+    "nenhum zero fora da reta em 0 < Re s < 1 com T_PT < Im s ≤ T_fim (contagem fecha)"
+    if completo and crescente and fronteiras_ok and estado["conferencia"]["igual_a_N(g_b)-N(T_PT)"]
+    and estado["conferencia"]["igual_a_N(T_fim)-N(g_b)"] else "inconclusivo: ver conferencia")
+grava()
 print(json.dumps({k: v for k, v in estado.items() if k != "blocos"}, ensure_ascii=False, indent=1))
+if estado["conclusao"].startswith("inconclusivo"):
+    sys.exit(1)

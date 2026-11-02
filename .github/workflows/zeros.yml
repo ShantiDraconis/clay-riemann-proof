@@ -1,12 +1,9 @@
 name: Zeros acima de 3e12
-# Zeros de ζ acima da altura já verificada (Platt–Trudgian, 3·10¹²), com aritmética intervalar (FLINT 3 / Arb).
+# Zeros de ζ de T_PT = 3 000 175 332 800 (fim de Platt–Trudgian) até g_b + 5000 = 3 000 175 342 471,5, com aritmética
+# intervalar (FLINT 3 / Arb).
 # Cálculo finito fora do kernel do Lean: não muda OPEN_MATH. O resultado vai para a branch resultados-zeros.
 on:
   workflow_dispatch:
-    inputs:
-      contiguos:
-        description: "quantos zeros contíguos logo acima de 3e12"
-        default: "200000"
   push:
     branches: [main]
     paths:
@@ -26,14 +23,17 @@ jobs:
           sudo apt-get install -y -q libflint-dev
           dpkg -s libflint-dev | grep -E "^Version"
       - name: compila
+        shell: bash
         run: gcc -O2 -o zeros computations/zeros/zeros.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
       - name: confere o método em altura baixa (zeros conhecidos)
+        shell: bash
         run: |
           ./zeros hardy 1 5 128 | tee baixo.json
           ./zeros platt 10000 5 128 | tee platt_baixo.json
           ./zeros hardy 10000 5 128 | tee hardy_baixo.json
-      - name: janelas acima de 3e12
-        run: python3 computations/zeros/janelas.py ./zeros resultados 16200 "${{ github.event.inputs.contiguos || '200000' }}" 2>&1 | tee janelas.log
+      - name: faixa (T_PT, g_b + 5000]
+        shell: bash
+        run: python3 computations/zeros/janelas.py ./zeros resultados 16200 2>&1 | tee janelas.log
       - name: erros como anotações
         if: failure()
         run: |
