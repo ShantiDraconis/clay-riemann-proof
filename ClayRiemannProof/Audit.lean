@@ -20,6 +20,7 @@ import ClayRiemannProof.FiniteWorlds
 import ClayRiemannProof.HyperTruncation
 import ClayRiemannProof.Bicomplex
 import ClayRiemannProof.Locks
+import ClayRiemannProof.Bridges
 
 /-!
 # Auditoria de axiomas
@@ -1434,3 +1435,87 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Locks.retangulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Locks.retangulo
+
+/-- info: 'ClayRiemannProof.Bridges.delta_injective' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_injective
+
+/-- info: 'ClayRiemannProof.Bridges.delta_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Bridges.delta_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_tensao
+
+/-- info: 'ClayRiemannProof.Bridges.delta_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_espelho
+
+/-- info: 'ClayRiemannProof.Bridges.delta_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_torcao
+
+/-- info: 'ClayRiemannProof.Bridges.delta_compressao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.delta_compressao
+
+/-- info: 'ClayRiemannProof.Bridges.baricentro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.baricentro
+
+/-- info: 'ClayRiemannProof.Bridges.tensoes_cancelam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.tensoes_cancelam
+
+/-- info: 'ClayRiemannProof.Bridges.energia_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.energia_eq
+
+/-- info: 'ClayRiemannProof.Bridges.energia_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.energia_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Bridges.energia_lt_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.energia_lt_um
+
+/-- info: 'ClayRiemannProof.Bridges.vetor_de_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.vetor_de_zero
+
+/-- info: 'ClayRiemannProof.Bridges.card_orbita_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.card_orbita_reta
+
+/-- info: 'ClayRiemannProof.Bridges.card_orbita_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.card_orbita_fora
+
+/-- info: 'ClayRiemannProof.Bridges.target_iff_nos_desfeitos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.target_iff_nos_desfeitos
+
+/-- info: 'ClayRiemannProof.Bridges.not_target_iff_no' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.not_target_iff_no
+
+/-- info: 'ClayRiemannProof.Bridges.lam_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_tensao
+
+/-- info: 'ClayRiemannProof.Bridges.lam_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_espelho
+
+/-- info: 'ClayRiemannProof.Bridges.lam_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_re
+
+/-- info: 'ClayRiemannProof.Bridges.lam_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_im
+
+/-- info: 'ClayRiemannProof.Bridges.lam_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_na_reta
+
+/-- info: 'ClayRiemannProof.Bridges.target_iff_lam_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.target_iff_lam_real
+
+/-- info: 'ClayRiemannProof.Bridges.lam_re_gt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.lam_re_gt
+
+/-- info: 'ClayRiemannProof.Bridges.gam_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.gam_re
+
+/-- info: 'ClayRiemannProof.Bridges.gam_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.gam_im
+
+/-- info: 'ClayRiemannProof.Bridges.target_iff_gam_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.target_iff_gam_real
+
+/-- info: 'ClayRiemannProof.Bridges.hilbert_polya' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.hilbert_polya
+
+/-- info: 'ClayRiemannProof.Bridges.pontes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Bridges.pontes

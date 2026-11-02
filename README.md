@@ -4,8 +4,8 @@ Depende do enunciado em [`ShantiDraconis/clay-riemann-statement`](https://github
 fixado no commit `47fe26a`. O alvo é `ClayRiemann.Statement`, sem redefinição
 (`abbrev Target := ClayRiemann.Statement`, que é o `RiemannHypothesis` da Mathlib).
 
-Estado: sem prova. `OPEN_MATH = true`. Nada abaixo prova RH: há uma equivalência exata
-(`Target ↔ Gap`) e um resultado condicional a um teorema externo.
+Estado: sem prova. `OPEN_MATH = true`. Nada abaixo prova RH: há equivalências exatas (as treze estão reunidas
+em `Bridges.pontes`, seção 8), um resultado condicional a um teorema externo e o mundo `Z = 13` certificado.
 
 Regras: nenhum `sorry`, `axiom`, `native_decide` ou marcador; `#print axioms ClayRiemannProof.main` fixado
 com `#guard_msgs` quando `main` existir.
@@ -16,7 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 297 declarações públicas acrescentadas. Todas dependem apenas de
+de `#print axioms` de cada uma das 452 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (705 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -309,3 +310,46 @@ A trava efetiva do produto de Euler é `ζ(s) ≠ 0` para `Re s ≥ 1`.
 **O que NÃO é**: não é prova nem refutação de RH; mostra que as duas "travas" não implicam RH.
 **Origem**: novo neste repositório. **Axiomas**: `[propext, Classical.choice, Quot.sound]`.
 
+## 8. Pontes, nós, leis, operadores, vetores e tensões
+
+Arquivo: `ClayRiemannProof/Bridges.lean`.
+
+```lean
+-- vetor de desvio δ(s) = (b, t) = (Re s − ½, Im s) e os operadores de Klein como trocas de sinal
+theorem delta_tensao (s) : delta (tensao s) = -delta s                          -- (−b, −t)
+theorem delta_espelho (s) : delta (espelho s) = ((delta s).1, -(delta s).2)      -- (b, −t)
+theorem delta_torcao (s) : delta (torcao s) = (-(delta s).1, (delta s).2)        -- (−b, t)
+theorem delta_compressao (l s) : delta (compressao l s) = l • delta s
+-- leis do quarteto (incondicionais)
+theorem baricentro (s) : (s + espelho s + tensao s + torcao s) / 4 = 1 / 2
+theorem tensoes_cancelam (s) : b(s) + b(s̄) + b(1 − s) + b(1 − s̄) = 0
+theorem energia_eq (s) : energia s = 4 * (s.re - 1 / 2) ^ 2
+theorem energia_lt_um (hs : s ∈ Z) : energia s < 1
+theorem vetor_de_zero (hs : s ∈ Z) : |b| < 1 / 2 ∧ 13 < |t|
+-- o nó: a órbita de Klein de um zero
+theorem card_orbita_reta (hs : s ∈ Z) (h : s.re = 1 / 2) : (orbita s).card = 2
+theorem card_orbita_fora (hs : s ∈ Z) (h : s.re ≠ 1 / 2) : (orbita s).card = 4
+theorem target_iff_nos_desfeitos : Target ↔ ∀ s ∈ Z, (orbita s).card = 2
+theorem not_target_iff_no : ¬ Target ↔ ∃ s ∈ Z, (orbita s).card = 4
+-- parâmetro espectral λ = s(1 − s) (Selberg) e ordenada γ = −i(s − ½)
+theorem lam_im (s) : (lam s).im = -2 * (s.re - 1 / 2) * s.im                    -- Im λ = −2bt
+theorem lam_na_reta (h : s.re = 1 / 2) : lam s = 1/4 + t²
+theorem target_iff_lam_real : Target ↔ ∀ s ∈ Z, (lam s).im = 0
+theorem lam_re_gt (hs : s ∈ Z) : 169 < (lam s).re
+theorem target_iff_gam_real : Target ↔ ∀ s ∈ Z, (gam s).im = 0
+theorem hilbert_polya (T : E →ₗ[ℂ] E) (hT : T.IsSymmetric)
+    (h : ∀ s ∈ Z, HasEigenvalue T (gam s)) : Target
+-- a ponte única
+theorem pontes : List.TFAE [Target, Gap, D_ω infinitesimal, ∀ M, RHnoMundo M, RHbc, b = 0,
+    sem zeros em ½ < Re s < 1, ∀ a > ½, FimLivre a, torção fixa os zeros, energia 0, nós desfeitos,
+    λ real, γ real]
+```
+
+**O que é**: a camada de operadores, vetores e tensões sobre os zeros, e a reunião das treze formulações do
+repositório num único `List.TFAE`. São incondicionais o baricentro, o cancelamento das tensões, a energia `< 1`, o
+vetor de todo zero em `(−½, ½) × {|t| > 13}` e `Re λ > 169`. `hilbert_polya` é a forma exata da ponte de
+Hilbert–Pólya: os autovalores de um operador simétrico são reais.
+
+**O que NÃO é**: `pontes` mostra que as treze formulações são a mesma proposição. Nenhuma é mais fraca, e provar
+qualquer uma é provar RH. `hilbert_polya` não constrói operador nenhum. Não é prova de RH.
+**Origem**: novo neste repositório. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (28 guardas).
