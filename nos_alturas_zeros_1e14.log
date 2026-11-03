@@ -1,0 +1,21 @@
+{"aglomeração": 15, "vazio": 18, "Gram triplo": 31, "Rosser": 2, "S extremo": 51, "par frágil": 8}
+ 14.00 467888702916008–467888702916014 t=100000000000211.660641…3.097747 Gram triplo/Rosser/S extremo/vazio | vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620); vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620); S extremo: S = -1.017 logo depois do zero (−2.017 
+ 14.00 467888702917058–467888702917070 t=100000000000428.647701…1.314585 Gram triplo/Rosser/S extremo/vazio | vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674); vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674); S extremo: S = -0.788 logo depois do zero (−1.
+ 10.30 467888702934875–467888702934944 t=100000000004111.679384…5.639887 S extremo/aglomeração/vazio | aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674); aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740); aglomeração L=10: 12 zeros onde 
+ 10.07 467888702924336–467888702924346 t=100000000001932.971086…5.287404 S extremo/par frágil/vazio | vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674); S extremo: S = -0.709 logo depois do zero (−1.709 antes); par frágil: s = 0.0323
+  8.74 467888702933918–467888702933947 t=100000000003913.870193…9.775098 S extremo/aglomeração | aglomeração L=25: 28 zeros onde se esperam 25 (Σ = 0.740); S extremo: S = 1.990 logo depois do zero (−-0.990 antes)
+  8.40 467888702919212–467888702919222 t=100000000000873.886009…6.269210 S extremo/vazio | vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674); S extremo: S = -0.845 logo depois do zero (−1.845 antes)
+  8.24 467888702922805–467888702922814 t=100000000001616.52318…8.532150 S extremo/vazio | S extremo: S = 1.777 logo depois do zero (−-0.777 antes); vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)
+  8.22 467888702934513–467888702934518 t=100000000004036.674151…7.836143 S extremo/aglomeração | aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540); S extremo: S = 1.770 logo depois do zero (−-0.770 antes)
+  8.15 467888702928978–467888702929003 t=100000000002892.396249…7.865445 S extremo/vazio | vazio L=25: 23 zeros onde se esperam 25 (Σ = 0.740); S extremo: S = -0.740 logo depois do zero (−1.740 antes)
+  8.08 467888702923805–467888702923809 t=100000000001823.273970…4.010031 S extremo/vazio | S extremo: S = 1.711 logo depois do zero (−-0.711 antes); vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620)
+  8.06 467888702932687–467888702932716 t=100000000003659.445771…5.185105 S extremo/aglomeração | aglomeração L=25: 28 zeros onde se esperam 25 (Σ = 0.740); S extremo: S = 1.684 logo depois do zero (−-0.684 antes)
+  7.71 467888702934596–467888702934599 t=100000000004053.950915…4.262053 Gram triplo/aglomeração | aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540); Gram triplo: 3 zeros em [g_467888702934595, g_467888702934596)
+  7.71 467888702934690–467888702934773 t=100000000004073.482332…0.368290 Gram triplo/aglomeração | aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540); aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540); aglomeração L=25: 27 zeros onde se esp
+  7.56 467888702924814–467888702924818 t=100000000002032.131836…2.528843 aglomeração | aglomeração L=2: 5 zeros onde se esperam 2 (Σ = 0.540)
+  6.47 467888702919158–467888702919162 t=100000000000862.709300…3.762200 S extremo | S extremo: S = 1.877 logo depois do zero (−-0.877 antes)
+  6.47 467888702917713–467888702917717 t=100000000000564.104261…4.983291 S extremo | S extremo: S = 1.876 logo depois do zero (−-0.876 antes)
+  6.45 467888702921546–467888702921558 t=100000000001356.706998…8.741097 aglomeração | aglomeração L=10: 13 zeros onde se esperam 10 (Σ = 0.674)
+  6.38 467888702920576–467888702920580 t=100000000001155.953833…6.960038 S extremo | S extremo: S = -0.836 logo depois do zero (−1.836 antes)
+  6.33 467888702916670–467888702916674 t=100000000000348.604335…9.580475 S extremo | S extremo: S = -0.818 logo depois do zero (−1.818 antes)
+  6.28 467888702924698–467888702924702 t=100000000002008.174373…8.863479 S extremo | S extremo: S = -0.796 logo depois do zero (−1.796 antes)

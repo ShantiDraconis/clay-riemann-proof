@@ -1,0 +1,1050 @@
+{
+ "rotulo": "alturas_zeros_1e14",
+ "zeros": 20000,
+ "altura": 100000000002066.77,
+ "desvio_S_selberg": 0.41946249348738335,
+ "nos": [
+  {
+   "i0": 1026,
+   "i1": 1032,
+   "tipos": [
+    "Gram triplo",
+    "Rosser",
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620)",
+    "vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620)",
+    "S extremo: S = -1.017 logo depois do zero (−2.017 antes)",
+    "Rosser: bloco de 2 intervalos com 0 zeros (g_467888702916009)",
+    "Rosser: bloco de 1 intervalos com 3 zeros (g_467888702916011)",
+    "Gram triplo: 3 zeros em [g_467888702916011, g_467888702916012)"
+   ],
+   "pontos": 14.0,
+   "indice_inicio": 467888702916008,
+   "indice_fim": 467888702916014,
+   "t_inicio": "100000000000211.660641563643313576834571425865940",
+   "t_fim": "100000000000213.097747651000161864866383803353245",
+   "S_max_no": 1.5932038156838755
+  },
+  {
+   "i0": 2076,
+   "i1": 2088,
+   "tipos": [
+    "Gram triplo",
+    "Rosser",
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)",
+    "vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)",
+    "S extremo: S = -0.788 logo depois do zero (−1.788 antes)",
+    "Rosser: bloco de 3 intervalos com 1 zeros (g_467888702917064)",
+    "S extremo: S = -1.028 logo depois do zero (−2.028 antes)",
+    "Rosser: bloco de 1 intervalos com 3 zeros (g_467888702917067)",
+    "Gram triplo: 3 zeros em [g_467888702917067, g_467888702917068)"
+   ],
+   "pontos": 14.0,
+   "indice_inicio": 467888702917058,
+   "indice_fim": 467888702917070,
+   "t_inicio": "100000000000428.647701472403213141252109556098290",
+   "t_fim": "100000000000431.314585043210809643187903170803422",
+   "S_max_no": 1.3169172108151908
+  },
+  {
+   "i0": 19893,
+   "i1": 19962,
+   "tipos": [
+    "S extremo",
+    "aglomeração",
+    "vazio"
+   ],
+   "detalhes": [
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "vazio L=25: 23 zeros onde se esperam 25 (Σ = 0.740)",
+    "S extremo: S = -0.804 logo depois do zero (−1.804 antes)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)"
+   ],
+   "pontos": 10.300089315583282,
+   "indice_inicio": 467888702934875,
+   "indice_fim": 467888702934944,
+   "t_inicio": "100000000004111.679384283722906871168917868702664",
+   "t_fim": "100000000004125.639887518260489118785314092322680",
+   "S_max_no": 1.4969768111142745
+  },
+  {
+   "i0": 9354,
+   "i1": 9364,
+   "tipos": [
+    "S extremo",
+    "par frágil",
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)",
+    "S extremo: S = -0.709 logo depois do zero (−1.709 antes)",
+    "par frágil: s = 0.0323"
+   ],
+   "pontos": 10.074429421328942,
+   "indice_inicio": 467888702924336,
+   "indice_fim": 467888702924346,
+   "t_inicio": "100000000001932.971086413048379436112175265526233",
+   "t_fim": "100000000001935.287404885151238128029541453064032",
+   "S_max_no": 1.3372410404161283
+  },
+  {
+   "i0": 18936,
+   "i1": 18965,
+   "tipos": [
+    "S extremo",
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=25: 28 zeros onde se esperam 25 (Σ = 0.740)",
+    "S extremo: S = 1.990 logo depois do zero (−-0.990 antes)"
+   ],
+   "pontos": 8.743046573342472,
+   "indice_inicio": 467888702933918,
+   "indice_fim": 467888702933947,
+   "t_inicio": "100000000003913.870193167192753533893957162411228",
+   "t_fim": "100000000003919.775098269200274462937414010101997",
+   "S_max_no": 1.9895301423810228
+  },
+  {
+   "i0": 4230,
+   "i1": 4240,
+   "tipos": [
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)",
+    "S extremo: S = -0.845 logo depois do zero (−1.845 antes)"
+   ],
+   "pontos": 8.397555555932575,
+   "indice_inicio": 467888702919212,
+   "indice_fim": 467888702919222,
+   "t_inicio": "100000000000873.88600924765409510021191838191553",
+   "t_fim": "100000000000876.2692100922987612112143603615142",
+   "S_max_no": 1.2352965438150874
+  },
+  {
+   "i0": 7823,
+   "i1": 7832,
+   "tipos": [
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.777 logo depois do zero (−-0.777 antes)",
+    "vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674)"
+   ],
+   "pontos": 8.235293513497378,
+   "indice_inicio": 467888702922805,
+   "indice_fim": 467888702922814,
+   "t_inicio": "100000000001616.52318",
+   "t_fim": "100000000001618.532150",
+   "S_max_no": 1.7765467778225514
+  },
+  {
+   "i0": 19531,
+   "i1": 19536,
+   "tipos": [
+    "S extremo",
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "S extremo: S = 1.770 logo depois do zero (−-0.770 antes)"
+   ],
+   "pontos": 8.21946273818885,
+   "indice_inicio": 467888702934513,
+   "indice_fim": 467888702934518,
+   "t_inicio": "100000000004036.674151821887824720166239890223587",
+   "t_fim": "100000000004037.836143194045970952299907719510276",
+   "S_max_no": 1.7699063613377974
+  },
+  {
+   "i0": 13996,
+   "i1": 14021,
+   "tipos": [
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=25: 23 zeros onde se esperam 25 (Σ = 0.740)",
+    "S extremo: S = -0.740 logo depois do zero (−1.740 antes)"
+   ],
+   "pontos": 8.147065532711128,
+   "indice_inicio": 467888702928978,
+   "indice_fim": 467888702929003,
+   "t_inicio": "100000000002892.396249883520023640222",
+   "t_fim": "100000000002897.86544541020010070704",
+   "S_max_no": 1.5980309417213254
+  },
+  {
+   "i0": 8823,
+   "i1": 8827,
+   "tipos": [
+    "S extremo",
+    "vazio"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.711 logo depois do zero (−-0.711 antes)",
+    "vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620)"
+   ],
+   "pontos": 8.078244857055765,
+   "indice_inicio": 467888702923805,
+   "indice_fim": 467888702923809,
+   "t_inicio": "100000000001823.273970538586559387216368502046291",
+   "t_fim": "100000000001824.010031716029381407308925594533532",
+   "S_max_no": 1.7106707567927082
+  },
+  {
+   "i0": 17705,
+   "i1": 17734,
+   "tipos": [
+    "S extremo",
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=25: 28 zeros onde se esperam 25 (Σ = 0.740)",
+    "S extremo: S = 1.684 logo depois do zero (−-0.684 antes)"
+   ],
+   "pontos": 8.055678034053699,
+   "indice_inicio": 467888702932687,
+   "indice_fim": 467888702932716,
+   "t_inicio": "100000000003659.445771044127716406810021364563650",
+   "t_fim": "100000000003665.185105295663373134762877516934274",
+   "S_max_no": 1.6839401143251884
+  },
+  {
+   "i0": 19614,
+   "i1": 19617,
+   "tipos": [
+    "Gram triplo",
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "Gram triplo: 3 zeros em [g_467888702934595, g_467888702934596)"
+   ],
+   "pontos": 7.7059174269507675,
+   "indice_inicio": 467888702934596,
+   "indice_fim": 467888702934599,
+   "t_inicio": "100000000004053.950915014221122243150008447863194",
+   "t_fim": "100000000004054.262053453213553899668644553941210",
+   "S_max_no": 1.442507152773138
+  },
+  {
+   "i0": 19708,
+   "i1": 19791,
+   "tipos": [
+    "Gram triplo",
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "Gram triplo: 3 zeros em [g_467888702934705, g_467888702934706)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=5: 7 zeros onde se esperam 5 (Σ = 0.620)",
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)"
+   ],
+   "pontos": 7.7059174269507675,
+   "indice_inicio": 467888702934690,
+   "indice_fim": 467888702934773,
+   "t_inicio": "100000000004073.482332324607585924545635482665079",
+   "t_fim": "100000000004090.368290114037623875596837540027556",
+   "S_max_no": 1.4764071110672758
+  },
+  {
+   "i0": 9832,
+   "i1": 9836,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 5 zeros onde se esperam 2 (Σ = 0.540)"
+   ],
+   "pontos": 7.558876140426151,
+   "indice_inicio": 467888702924814,
+   "indice_fim": 467888702924818,
+   "t_inicio": "100000000002032.131836423935893841381258171095506",
+   "t_fim": "100000000002032.528843913517295231371481892008244",
+   "S_max_no": 1.6726315905709057
+  },
+  {
+   "i0": 4176,
+   "i1": 4180,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.877 logo depois do zero (−-0.877 antes)"
+   ],
+   "pontos": 6.4746298383876,
+   "indice_inicio": 467888702919158,
+   "indice_fim": 467888702919162,
+   "t_inicio": "100000000000862.7093007081626018166884556762703",
+   "t_fim": "100000000000863.76220066395640112733617340262526",
+   "S_max_no": 1.8769393894431101
+  },
+  {
+   "i0": 2731,
+   "i1": 2735,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.876 logo depois do zero (−-0.876 antes)"
+   ],
+   "pontos": 6.471709271585871,
+   "indice_inicio": 467888702917713,
+   "indice_fim": 467888702917717,
+   "t_inicio": "100000000000564.104261084544990265403907320863646",
+   "t_fim": "100000000000564.983291046117899201066287703325372",
+   "S_max_no": 1.8757143212100602
+  },
+  {
+   "i0": 6564,
+   "i1": 6576,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=10: 13 zeros onde se esperam 10 (Σ = 0.674)"
+   ],
+   "pontos": 6.45081380070628,
+   "indice_inicio": 467888702921546,
+   "indice_fim": 467888702921558,
+   "t_inicio": "100000000001356.7069989580765155",
+   "t_fim": "100000000001358.7410973817381574",
+   "S_max_no": 1.4860296952989296
+  },
+  {
+   "i0": 5594,
+   "i1": 5598,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.836 logo depois do zero (−1.836 antes)"
+   ],
+   "pontos": 6.376691275011795,
+   "indice_inicio": 467888702920576,
+   "indice_fim": 467888702920580,
+   "t_inicio": "100000000001155.953833298269623966451984",
+   "t_fim": "100000000001156.96003826929588386849611",
+   "S_max_no": 0.5793247675903859
+  },
+  {
+   "i0": 1688,
+   "i1": 1692,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.818 logo depois do zero (−1.818 antes)"
+   ],
+   "pontos": 6.333051721168439,
+   "indice_inicio": 467888702916670,
+   "indice_fim": 467888702916674,
+   "t_inicio": "100000000000348.604335358849804962767570969095743",
+   "t_fim": "100000000000349.580475727868973599631579725512727",
+   "S_max_no": 0.9247276153003304
+  },
+  {
+   "i0": 9716,
+   "i1": 9720,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.796 logo depois do zero (−1.796 antes)"
+   ],
+   "pontos": 6.280770347929364,
+   "indice_inicio": 467888702924698,
+   "indice_fim": 467888702924702,
+   "t_inicio": "100000000002008.174373596167414903478309581403050",
+   "t_fim": "100000000002008.863479678013607824024938554384769",
+   "S_max_no": 0.16665705040182638
+  },
+  {
+   "i0": 7687,
+   "i1": 7691,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.795 logo depois do zero (−-0.795 antes)"
+   ],
+   "pontos": 6.2794509847108815,
+   "indice_inicio": 467888702922669,
+   "indice_fim": 467888702922673,
+   "t_inicio": "100000000001588.466645",
+   "t_fim": "100000000001589.4067712",
+   "S_max_no": 1.7950691808038644
+  },
+  {
+   "i0": 9709,
+   "i1": 9713,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.790 logo depois do zero (−-0.790 antes)"
+   ],
+   "pontos": 6.267396323698836,
+   "indice_inicio": 467888702924691,
+   "indice_fim": 467888702924695,
+   "t_inicio": "100000000002006.333921900323714958427341965493280",
+   "t_fim": "100000000002007.510526027428404904249288408297836",
+   "S_max_no": 1.790012702637607
+  },
+  {
+   "i0": 2459,
+   "i1": 2463,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.787 logo depois do zero (−-0.787 antes)"
+   ],
+   "pontos": 6.259508579660386,
+   "indice_inicio": 467888702917441,
+   "indice_fim": 467888702917445,
+   "t_inicio": "100000000000508.006633027271220310817156507567884",
+   "t_fim": "100000000000508.828104680183336376047611223003070",
+   "S_max_no": 1.786704089855248
+  },
+  {
+   "i0": 9876,
+   "i1": 9880,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.785 logo depois do zero (−-0.785 antes)"
+   ],
+   "pontos": 6.254714704868479,
+   "indice_inicio": 467888702924858,
+   "indice_fim": 467888702924862,
+   "t_inicio": "100000000002040.979705204486099613425937184531834",
+   "t_fim": "100000000002041.961079897067288816495030419301261",
+   "S_max_no": 1.7846932391815686
+  },
+  {
+   "i0": 15947,
+   "i1": 15951,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.777 logo depois do zero (−1.777 antes)"
+   ],
+   "pontos": 6.236817669574833,
+   "indice_inicio": 467888702930929,
+   "indice_fim": 467888702930933,
+   "t_inicio": "100000000003295.7693",
+   "t_fim": "100000000003296.912",
+   "S_max_no": 1.0622840050439244
+  },
+  {
+   "i0": 4700,
+   "i1": 4704,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.772 logo depois do zero (−-0.772 antes)"
+   ],
+   "pontos": 6.22334155983851,
+   "indice_inicio": 467888702919682,
+   "indice_fim": 467888702919686,
+   "t_inicio": "100000000000971.10207921874710374060807437746",
+   "t_fim": "100000000000971.978663903488010884624361276910",
+   "S_max_no": 1.7715333815387564
+  },
+  {
+   "i0": 11817,
+   "i1": 11821,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.770 logo depois do zero (−1.770 antes)"
+   ],
+   "pontos": 6.218966888073901,
+   "indice_inicio": 467888702926799,
+   "indice_fim": 467888702926803,
+   "t_inicio": "100000000002442.173741715280683650707913483627848",
+   "t_fim": "100000000002443.126086234002297140785397984805704",
+   "S_max_no": 0.7934223095129874
+  },
+  {
+   "i0": 5898,
+   "i1": 5902,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.764 logo depois do zero (−1.764 antes)"
+   ],
+   "pontos": 6.205892099275506,
+   "indice_inicio": 467888702920880,
+   "indice_fim": 467888702920884,
+   "t_inicio": "100000000001218.8342226193330405537702",
+   "t_fim": "100000000001219.616186656674350017314",
+   "S_max_no": 0.5781871678246514
+  },
+  {
+   "i0": 19232,
+   "i1": 19236,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.761 logo depois do zero (−1.761 antes)"
+   ],
+   "pontos": 6.198383896107294,
+   "indice_inicio": 467888702934214,
+   "indice_fim": 467888702934218,
+   "t_inicio": "100000000003974.826362520472170423081471099292798",
+   "t_fim": "100000000003975.894568742068310498892322943117452",
+   "S_max_no": 0.755713979904141
+  },
+  {
+   "i0": 7604,
+   "i1": 7608,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.761 logo depois do zero (−-0.761 antes)"
+   ],
+   "pontos": 6.19752690568481,
+   "indice_inicio": 467888702922586,
+   "indice_fim": 467888702922590,
+   "t_inicio": "100000000001571.4383353",
+   "t_fim": "100000000001572.34659817",
+   "S_max_no": 1.7607051023389308
+  },
+  {
+   "i0": 2219,
+   "i1": 2223,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.756 logo depois do zero (−1.756 antes)"
+   ],
+   "pontos": 6.186889341664369,
+   "indice_inicio": 467888702917201,
+   "indice_fim": 467888702917205,
+   "t_inicio": "100000000000458.382375928566266619905270703416167",
+   "t_fim": "100000000000459.244486351844028823496350825729716",
+   "S_max_no": 0.45931416093375044
+  },
+  {
+   "i0": 3168,
+   "i1": 3172,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.753 logo depois do zero (−-0.753 antes)"
+   ],
+   "pontos": 6.180231957661294,
+   "indice_inicio": 467888702918150,
+   "indice_fim": 467888702918154,
+   "t_inicio": "100000000000654.494260366155166630780299477670497",
+   "t_fim": "100000000000655.410376543949095839365809481928701",
+   "S_max_no": 1.7534505203162523
+  },
+  {
+   "i0": 11368,
+   "i1": 11372,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.752 logo depois do zero (−-0.752 antes)"
+   ],
+   "pontos": 6.176363085839606,
+   "indice_inicio": 467888702926350,
+   "indice_fim": 467888702926354,
+   "t_inicio": "100000000002349.327898248163301302789304176393516",
+   "t_fim": "100000000002350.124954529110618575671563570178169",
+   "S_max_no": 1.751827673694944
+  },
+  {
+   "i0": 4662,
+   "i1": 4666,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.746 logo depois do zero (−-0.746 antes)"
+   ],
+   "pontos": 6.162618625612587,
+   "indice_inicio": 467888702919644,
+   "indice_fim": 467888702919648,
+   "t_inicio": "100000000000963.2816655766794011202046048012",
+   "t_fim": "100000000000964.095551403631479651314097574756",
+   "S_max_no": 1.7460623881364803
+  },
+  {
+   "i0": 11906,
+   "i1": 11910,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.742 logo depois do zero (−1.742 antes)"
+   ],
+   "pontos": 6.152161741768271,
+   "indice_inicio": 467888702926888,
+   "indice_fim": 467888702926892,
+   "t_inicio": "100000000002460.844967734545550661162950710645512",
+   "t_fim": "100000000002461.54774107740489393143949197455980",
+   "S_max_no": 0.06120022529623741
+  },
+  {
+   "i0": 7001,
+   "i1": 7005,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.734 logo depois do zero (−1.734 antes)"
+   ],
+   "pontos": 6.1336300686504535,
+   "indice_inicio": 467888702921983,
+   "indice_fim": 467888702921987,
+   "t_inicio": "100000000001446.7694197750027",
+   "t_fim": "100000000001447.741281806672",
+   "S_max_no": 0.6013112104632654
+  },
+  {
+   "i0": 15606,
+   "i1": 15610,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.733 logo depois do zero (−1.733 antes)"
+   ],
+   "pontos": 6.131469949518781,
+   "indice_inicio": 467888702930588,
+   "indice_fim": 467888702930592,
+   "t_inicio": "100000000003225.26913872",
+   "t_fim": "100000000003226.3887852",
+   "S_max_no": 1.1450233278599784
+  },
+  {
+   "i0": 16679,
+   "i1": 16683,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.731 logo depois do zero (−-0.731 antes)"
+   ],
+   "pontos": 6.127717666382432,
+   "indice_inicio": 467888702931661,
+   "indice_fim": 467888702931665,
+   "t_inicio": "100000000003447.043171823746127991055699322265449",
+   "t_fim": "100000000003447.964018185926172367041686265503029",
+   "S_max_no": 1.7314227447526982
+  },
+  {
+   "i0": 8887,
+   "i1": 8891,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.730 logo depois do zero (−1.730 antes)"
+   ],
+   "pontos": 6.125090358496679,
+   "indice_inicio": 467888702923869,
+   "indice_fim": 467888702923873,
+   "t_inicio": "100000000001836.646529465811412992370963516027356",
+   "t_fim": "100000000001837.463431046952950390539509200894044",
+   "S_max_no": 0.40848144386720864
+  },
+  {
+   "i0": 12994,
+   "i1": 12998,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.727 logo depois do zero (−-0.727 antes)"
+   ],
+   "pontos": 6.116983748044043,
+   "indice_inicio": 467888702927976,
+   "indice_fim": 467888702927980,
+   "t_inicio": "100000000002685.383907804782105319193265624",
+   "t_fim": "100000000002686.4746609781463299674857416141",
+   "S_max_no": 1.7269202686015874
+  },
+  {
+   "i0": 10710,
+   "i1": 10714,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.724 logo depois do zero (−-0.724 antes)"
+   ],
+   "pontos": 6.109586494394163,
+   "indice_inicio": 467888702925692,
+   "indice_fim": 467888702925696,
+   "t_inicio": "100000000002213.376081175280771259799370341505413",
+   "t_fim": "100000000002214.232358404229594953587457954720426",
+   "S_max_no": 1.7238173981406502
+  },
+  {
+   "i0": 19001,
+   "i1": 19005,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.719 logo depois do zero (−-0.719 antes)"
+   ],
+   "pontos": 6.0985337591469,
+   "indice_inicio": 467888702933983,
+   "indice_fim": 467888702933987,
+   "t_inicio": "100000000003927.032249226859479873577772638261048",
+   "t_fim": "100000000003927.832524110076168150441384788627580",
+   "S_max_no": 1.719181190253977
+  },
+  {
+   "i0": 13232,
+   "i1": 13236,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.715 logo depois do zero (−1.715 antes)"
+   ],
+   "pontos": 6.087429204984129,
+   "indice_inicio": 467888702928214,
+   "indice_fim": 467888702928218,
+   "t_inicio": "100000000002734.74876208296610706987579521",
+   "t_fim": "100000000002735.62176895462475995389063590",
+   "S_max_no": 0.7754215074905916
+  },
+  {
+   "i0": 12638,
+   "i1": 12642,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.712 logo depois do zero (−-0.712 antes)"
+   ],
+   "pontos": 6.082100577883945,
+   "indice_inicio": 467888702927620,
+   "indice_fim": 467888702927624,
+   "t_inicio": "100000000002611.87749404773117470164021336311",
+   "t_fim": "100000000002612.662994596710756903312863438919",
+   "S_max_no": 1.712288087065488
+  },
+  {
+   "i0": 10496,
+   "i1": 10500,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.708 logo depois do zero (−-0.708 antes)"
+   ],
+   "pontos": 6.072553941945456,
+   "indice_inicio": 467888702925478,
+   "indice_fim": 467888702925482,
+   "t_inicio": "100000000002169.107463174289229037239248431937068",
+   "t_fim": "100000000002170.129481066343638866414502196925852",
+   "S_max_no": 1.7082836313503131
+  },
+  {
+   "i0": 12924,
+   "i1": 12928,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.705 logo depois do zero (−1.705 antes)"
+   ],
+   "pontos": 6.064589310711633,
+   "indice_inicio": 467888702927906,
+   "indice_fim": 467888702927910,
+   "t_inicio": "100000000002671.07251226018800480644524437499",
+   "t_fim": "100000000002672.092524875289910769463403770",
+   "S_max_no": 0.37156301779434353
+  },
+  {
+   "i0": 10012,
+   "i1": 10016,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.703 logo depois do zero (−-0.703 antes)"
+   ],
+   "pontos": 6.059799613791926,
+   "indice_inicio": 467888702924994,
+   "indice_fim": 467888702924998,
+   "t_inicio": "100000000002069.017045886471669959930421685961970",
+   "t_fim": "100000000002069.918942549980425762967025106878188",
+   "S_max_no": 1.7029336690602772
+  },
+  {
+   "i0": 9190,
+   "i1": 9217,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=25: 28 zeros onde se esperam 25 (Σ = 0.740)"
+   ],
+   "pontos": 6.055678034053698,
+   "indice_inicio": 467888702924172,
+   "indice_fim": 467888702924199,
+   "t_inicio": "100000000001899.433843156290346246471265513232206",
+   "t_fim": "100000000001904.599625189797219593587310710558218",
+   "S_max_no": 1.599561252420159
+  },
+  {
+   "i0": 3122,
+   "i1": 3126,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.699 logo depois do zero (−-0.699 antes)"
+   ],
+   "pontos": 6.049302608736291,
+   "indice_inicio": 467888702918104,
+   "indice_fim": 467888702918108,
+   "t_inicio": "100000000000644.962817693863661271324239852574416",
+   "t_fim": "100000000000645.826689550671004437591434209060145",
+   "S_max_no": 1.6985305691454908
+  },
+  {
+   "i0": 11010,
+   "i1": 11014,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.698 logo depois do zero (−-0.698 antes)"
+   ],
+   "pontos": 6.048392645642535,
+   "indice_inicio": 467888702925992,
+   "indice_fim": 467888702925996,
+   "t_inicio": "100000000002275.366478156559194650160198979841659",
+   "t_fim": "100000000002276.103729829003070662493013122481434",
+   "S_max_no": 1.6981488737572024
+  },
+  {
+   "i0": 14811,
+   "i1": 14815,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.694 logo depois do zero (−1.694 antes)"
+   ],
+   "pontos": 6.037538538507512,
+   "indice_inicio": 467888702929793,
+   "indice_fim": 467888702929797,
+   "t_inicio": "100000000003061.159515722102081",
+   "t_fim": "100000000003062.05586978325085",
+   "S_max_no": 0.11426744127535031
+  },
+  {
+   "i0": 14720,
+   "i1": 14724,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.689 logo depois do zero (−1.689 antes)"
+   ],
+   "pontos": 6.025708102121258,
+   "indice_inicio": 467888702929702,
+   "indice_fim": 467888702929706,
+   "t_inicio": "100000000003042.3407263517863812",
+   "t_fim": "100000000003043.11527174355414",
+   "S_max_no": 0.41307716694777785
+  },
+  {
+   "i0": 714,
+   "i1": 718,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.683 logo depois do zero (−-0.683 antes)"
+   ],
+   "pontos": 6.011761462794539,
+   "indice_inicio": 467888702915696,
+   "indice_fim": 467888702915700,
+   "t_inicio": "100000000000147.254681298315801687710775464391000",
+   "t_fim": "100000000000148.014049086847713067968667064305866",
+   "S_max_no": 1.6827834664603896
+  },
+  {
+   "i0": 934,
+   "i1": 938,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.681 logo depois do zero (−-0.681 antes)"
+   ],
+   "pontos": 6.00853869968419,
+   "indice_inicio": 467888702915916,
+   "indice_fim": 467888702915920,
+   "t_inicio": "100000000000192.745781084054173667102966821687536",
+   "t_fim": "100000000000193.458591500874403843065610736439987",
+   "S_max_no": 1.6814316382102037
+  },
+  {
+   "i0": 251,
+   "i1": 255,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = -0.681 logo depois do zero (−1.681 antes)"
+   ],
+   "pontos": 6.006385992528523,
+   "indice_inicio": 467888702915233,
+   "indice_fim": 467888702915237,
+   "t_inicio": "100000000000051.542638560542698043582265644840779",
+   "t_fim": "100000000000052.450132945324222380523968768140477",
+   "S_max_no": 0.7670395233930488
+  },
+  {
+   "i0": 14261,
+   "i1": 14265,
+   "tipos": [
+    "S extremo"
+   ],
+   "detalhes": [
+    "S extremo: S = 1.679 logo depois do zero (−-0.679 antes)"
+   ],
+   "pontos": 6.001948338842036,
+   "indice_inicio": 467888702929243,
+   "indice_fim": 467888702929247,
+   "t_inicio": "100000000002947.354982197722324485",
+   "t_fim": "100000000002948.3064221532506159577",
+   "S_max_no": 1.6786672290183722
+  },
+  {
+   "i0": 19546,
+   "i1": 19549,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)"
+   ],
+   "pontos": 5.7059174269507675,
+   "indice_inicio": 467888702934528,
+   "indice_fim": 467888702934531,
+   "t_inicio": "100000000004039.940323546883192807908911197431369",
+   "t_fim": "100000000004040.332093554258896177764931116019200",
+   "S_max_no": 0.8362378156494643
+  },
+  {
+   "i0": 19603,
+   "i1": 19606,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)"
+   ],
+   "pontos": 5.7059174269507675,
+   "indice_inicio": 467888702934585,
+   "indice_fim": 467888702934588,
+   "t_inicio": "100000000004051.634385733109488287192169269592904",
+   "t_fim": "100000000004052.046921553167947194851034077891722",
+   "S_max_no": 1.1594082592596124
+  },
+  {
+   "i0": 19842,
+   "i1": 19870,
+   "tipos": [
+    "aglomeração"
+   ],
+   "detalhes": [
+    "aglomeração L=10: 12 zeros onde se esperam 10 (Σ = 0.674)",
+    "aglomeração L=25: 27 zeros onde se esperam 25 (Σ = 0.740)",
+    "aglomeração L=2: 4 zeros onde se esperam 2 (Σ = 0.540)"
+   ],
+   "pontos": 5.7059174269507675,
+   "indice_inicio": 467888702934824,
+   "indice_fim": 467888702934852,
+   "t_inicio": "100000000004101.135249848443613991748437809236852",
+   "t_fim": "100000000004106.666114585996766624028442135437893",
+   "S_max_no": 1.1726968119148997
+  },
+  {
+   "i0": 4842,
+   "i1": 4844,
+   "tipos": [
+    "vazio"
+   ],
+   "detalhes": [
+    "vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620)"
+   ],
+   "pontos": 5.227102119233956,
+   "indice_inicio": 467888702919824,
+   "indice_fim": 467888702919826,
+   "t_inicio": "100000000001000.32697020356677060509496643843",
+   "t_fim": "100000000001000.967129804137897168142146122557",
+   "S_max_no": 1.5086204283450313
+  }
+ ],
+ "contagem_por_tipo": {
+  "aglomeração": 15,
+  "vazio": 18,
+  "Gram triplo": 31,
+  "Rosser": 2,
+  "S extremo": 51,
+  "par frágil": 8
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "rotulo": "alturas_zeros_1e16",
+ "nos": [
+  {
+   "indice_inicio": 54118226280294375,
+   "indice_fim": 54118226280294389,
+   "zeros_no_no": 15,
+   "tipos": [
+    "Gram triplo",
+    "Rosser",
+    "S extremo",
+    "aglomeração"
+   ],
+   "pontos": 14.0,
+   "t_inicio": "10000000000000340.523754984773754670729758038802",
+   "t_fim": "10000000000000342.82609347394630839576717609987",
+   "detalhes": [
+    "S extremo: S = -1.020 logo depois do zero (−2.020 antes)",
+    "Rosser: bloco de 2 intervalos com 0 zeros (g_54118226280294375)",
+    "Rosser: bloco de 1 intervalos com 3 zeros (g_54118226280294377)",
+    "aglomeração L=10: 13 zeros onde se esperam 10 (Σ = 0.674)"
+   ],
+   "segundos_platt": 326.4,
+   "platt_concorda_com_a_lista": true,
+   "maior_raio": "7.43E-31",
+   "erro": "Command '['./zeros', 'nzeros', '10000000000000340.404983242535599', '384']' timed out after 3600 seconds"
+  }
+ ]
+}
