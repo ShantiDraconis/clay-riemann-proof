@@ -1,6 +1,6 @@
 # Nós suspeitos e o ataque em cada um
 
-Nós atacados: 28; contagem local fechando (nenhum zero fora da reta no nó): 28.
+Nós atacados: 29; contagem local fechando (nenhum zero fora da reta no nó): 29.
 
 | lista | índices | t (início) | zeros | tipos | contagem local fecha | Platt de novo | Gram/Rosser/Turing |
 |---|---|---|---|---|---|---|---|
@@ -32,3 +32,4 @@ Nós atacados: 28; contagem local fechando (nenhum zero fora da reta no nó): 28
 | continuacao_zeros1 | 12363154174780–12363154174785 | 3000175505147.6147348148 | 6 | Gram triplo/Rosser/S extremo/par frágil | True | True | True |
 | continuacao_zeros1 | 12363154479388–12363154479402 | 3000175576318.4157769487 | 15 | Gram triplo/Rosser/S extremo/aglomeração | True | True | True |
 | continuacao_zeros1 | 12363154480001–12363154480034 | 3000175576461.7755489844 | 34 | Gram triplo/Rosser/S extremo/aglomeração | True | True | True |
+| continuacao_zeros1 | 12363154499170–12363154499199 | 3000175580940.3638390008 | 30 | Gram triplo/Rosser/S extremo/aglomeração | True | True | True |

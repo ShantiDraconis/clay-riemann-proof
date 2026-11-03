@@ -39,7 +39,17 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363154499170
+"indice_inicio": 12363154499170,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo",
+"aglomeração"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
 "indice_inicio": 12363154357939
