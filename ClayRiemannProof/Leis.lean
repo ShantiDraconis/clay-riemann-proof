@@ -1,6 +1,7 @@
 import ClayRiemannProof.PrimeiroFora
 import ClayRiemannProof.Bridges
 import ClayRiemannProof.Colisao
+import ClayRiemannProof.Continuacao
 
 /-!
 # As leis por trás dos gráficos: `S(t)`, Gram e Rosser; unidades do fluxo de de Bruijn; matrizes; produto; habitantes
@@ -326,6 +327,34 @@ theorem classes_orbita {s : ℂ} (hs : s ∈ Z) : (orbita s).card = 2 ∨ (orbit
   · exact Or.inl (card_orbita_reta hs h)
   · exact Or.inr (card_orbita_fora hs h)
 
+/-- **Os zeros fora da reta de uma janela vêm em pares na mesma altura**: com `ρ`, também `1 − ρ̄`, distinto de `ρ`.
+É o que uma verificação veria: dois zeros a mais na contagem `N(T₂) − N(T₁)` na mesma altura, sem troca de sinal de
+`Z(t)` correspondente. -/
+theorem fora_em_pares {T₁ T₂ : ℝ} {ρ : ℂ} (h : ρ ∈ Fora ∩ Turing.Janela T₁ T₂) :
+    torcao ρ ∈ Fora ∩ Turing.Janela T₁ T₂ ∧ torcao ρ ≠ ρ ∧ (torcao ρ).im = ρ.im := by
+  obtain ⟨⟨hz, hre⟩, -, h1, h2⟩ := h
+  have him : (torcao ρ).im = ρ.im := by simp [torcao]
+  refine ⟨⟨⟨torcao_mem_Z hz, ?_⟩, torcao_mem_Z hz, by rw [him]; exact h1, by rw [him]; exact h2⟩, ?_, him⟩
+  · rw [re_torcao]
+    intro h
+    exact hre (by linarith)
+  · intro h
+    exact hre ((torcao_fixo_iff ρ).mp h)
+
+/-- **O déficit é pelo menos 2**: se uma janela tem um zero fora da reta, tem pelo menos dois, na mesma altura. -/
+theorem deficit_ao_menos_dois {T₁ T₂ : ℝ} (h : (Fora ∩ Turing.Janela T₁ T₂).Nonempty) :
+    2 ≤ (Fora ∩ Turing.Janela T₁ T₂).encard := by
+  obtain ⟨ρ, hρ⟩ := h
+  obtain ⟨hρ', hne, -⟩ := fora_em_pares hρ
+  have hsub : ({ρ, torcao ρ} : Set ℂ) ⊆ Fora ∩ Turing.Janela T₁ T₂ := by
+    intro x hx
+    simp only [mem_insert_iff, mem_singleton_iff] at hx
+    rcases hx with rfl | rfl
+    · exact hρ
+    · exact hρ'
+  calc (2 : ℕ∞) = ({ρ, torcao ρ} : Set ℂ).encard := (Set.encard_pair hne.symm).symm
+    _ ≤ _ := Set.encard_le_encard hsub
+
 /-- **Sem habitantes até a altura 13**: nenhum zero não trivial tem `|Im s| ≤ 13` (`HeightThirteen`). -/
 theorem sem_habitantes_ate_13 : {s ∈ Z | |s.im| ≤ 13} = ∅ := by
   ext s
@@ -339,6 +368,18 @@ theorem fora_ate_janela_vazio (hPT : PlattTrudgian2021) (hJ : PrimeiroFora.Janel
   simp only [mem_ofPred_eq, mem_empty_iff_false, iff_false, not_and]
   intro hs him
   have hW := PrimeiroFora.rhAteZ_janela hPT hJ
+  have hz := hs.1
+  exact hs.2 (hW s hz.1 ((mem_Z_iff_nao_trivial s).mp hz).2
+    (fun h1 => by rw [h1] at hz; exact absurd hz.2.2 (by simp)) (by exact_mod_cast him))
+
+/-- **`Fora` sem habitantes até `3 000 175 822 471`**, condicional a Platt–Trudgian e às duas janelas da Arb
+(`Continuacao.JanelaContinuacao2026`: a continuação contígua, 2 054 383 zeros na reta). -/
+theorem fora_ate_continuacao_vazio (hPT : PlattTrudgian2021) (hJ : PrimeiroFora.JanelaArb2026)
+    (hC : Continuacao.JanelaContinuacao2026) : {s ∈ Fora | |s.im| ≤ 3000175822471} = ∅ := by
+  ext s
+  simp only [mem_ofPred_eq, mem_empty_iff_false, iff_false, not_and]
+  intro hs him
+  have hW := Continuacao.rhAteZ_continuacao hPT hJ hC
   have hz := hs.1
   exact hs.2 (hW s hz.1 ((mem_Z_iff_nao_trivial s).mp hz).2
     (fun h1 => by rw [h1] at hz; exact absurd hz.2.2 (by simp)) (by exact_mod_cast him))

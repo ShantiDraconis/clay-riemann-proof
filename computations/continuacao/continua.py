@@ -2,9 +2,10 @@
 
     python3 continua.py ./zeros saida/ I [orcamento_s]
 
-É aqui que estaria o PRIMEIRO zero fora da reta, se existisse: a seção 13 do README certificou tudo até
-C0 = 3 000 175 342 471,5 (com Platt–Trudgian), e `PrimeiroFora.primeiro_fora_acima_janela` diz que o primeiro zero fora
-da reta, se existir, tem altura maior que isso. A faixa I (0, 1, 2, …) é (C0 + I·H, C0 + (I+1)·H], H = 120 000.
+É aqui que estaria o PRIMEIRO zero fora da reta, se existisse: tudo até C0 já foi conferido (Platt–Trudgian, a seção 13
+do README e as execuções anteriores desta continuação, listadas em `inicio.json`), e
+`Continuacao.primeiro_fora_acima_continuacao` diz que o primeiro zero fora da reta, se existir, tem altura maior.
+C0 e N(C0) vêm de `inicio.json`. A faixa I (0, 1, 2, …) é (C0 + I·H, C0 + (I+1)·H], H = 120 000.
 
 O que sai, para a faixa (a, b]:
 
@@ -33,17 +34,18 @@ OUT = Path(sys.argv[2])
 I = int(sys.argv[3])
 ORCAMENTO = float(sys.argv[4]) if len(sys.argv) > 4 else 18500
 OUT.mkdir(parents=True, exist_ok=True)
-C0, H = Decimal("3000175342471.5"), Decimal(120000)
-N_C0_ANTERIOR = 12363153478531  # N(C0) da execução 41546782883 (seção 13)
+INICIO = json.loads((Path(__file__).parent / "inicio.json").read_text())
+C0, H = Decimal(INICIO["C0"]), Decimal(120000)
+N_C0_ANTERIOR = int(INICIO["N(C0)"])  # N(C0) calculado pela execução anterior
 A, B = C0 + I * H, C0 + (I + 1) * H
 PREC, BLOCO, MARGEM = 256, 5000, 40
-INICIO = time.time()
+T_INICIO = time.time()
 estado = {"fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
           "faixa": I, "a": str(A), "b": str(B), "blocos": [], "falhas": []}
 
 
 def grava():
-    estado["segundos"] = round(time.time() - INICIO, 1)
+    estado["segundos"] = round(time.time() - T_INICIO, 1)
     (OUT / f"faixa{I}.json").write_text(json.dumps(estado, ensure_ascii=False, indent=1) + "\n")
 
 
@@ -83,13 +85,13 @@ Na, sa = nz(A)
 Nb, sb = nz(B)
 estado.update({"N(a)": str(Na), "N(b)": str(Nb), "zeros_esperados": Nb - Na, "segundos_nzeros": [sa, sb]})
 if I == 0:
-    estado["N(C0)_confere_com_secao_13"] = Na == N_C0_ANTERIOR
+    estado["N(C0)_confere_com_a_execucao_anterior"] = Na == N_C0_ANTERIOR
 grava()
 
 # 2. todos os zeros de N(a)+1 a N(b); cada bloco pede MARGEM zeros a mais de cada lado e fica com o miolo
 zeros = []  # (índice, meio, raio)
 n = Na + 1
-while n <= Nb and time.time() - INICIO < ORCAMENTO:
+while n <= Nb and time.time() - T_INICIO < ORCAMENTO:
     k = min(BLOCO, Nb - n + 1)
     r, seg = roda("platt", n - MARGEM, k + 2 * MARGEM, PREC)
     zs = [bola(z) for z in r["zeros"]][MARGEM:MARGEM + k]

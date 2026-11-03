@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 742 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (995 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 745 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (998 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1294,8 +1294,11 @@ theorem produto_na_reta (Re z = 0) : … = (w² + (Im z)²)²
 theorem target_iff_fora_vazio : Target ↔ Fora = ∅
 theorem fora_vazio_ou_quatro : Fora = ∅ ∨ 4 ≤ Fora.encard
 theorem classes_orbita : (orbita s).card = 2 ∨ (orbita s).card = 4
+theorem fora_em_pares (h : ρ ∈ Fora ∩ Janela T₁ T₂) : 1 − ρ̄ ∈ Fora ∩ Janela T₁ T₂ ∧ 1 − ρ̄ ≠ ρ ∧ Im(1 − ρ̄) = Im ρ
+theorem deficit_ao_menos_dois (h : (Fora ∩ Janela T₁ T₂).Nonempty) : 2 ≤ (Fora ∩ Janela T₁ T₂).encard
 theorem sem_habitantes_ate_13 : {s ∈ Z | |Im s| ≤ 13} = ∅
 theorem fora_ate_janela_vazio (hPT) (hJ) : {s ∈ Fora | |Im s| ≤ 3 000 175 342 471} = ∅
+theorem fora_ate_continuacao_vazio (hPT) (hJ) (hC) : {s ∈ Fora | |Im s| ≤ 3 000 175 822 471} = ∅
 ```
 
 **O que é**: as leis exatas por trás dos gráficos de `S(t)`, Gram, Rosser e dos pares forçados.
@@ -1308,6 +1311,10 @@ theorem fora_ate_janela_vazio (hPT) (hJ) : {s ∈ Fora | |Im s| ≤ 3 000 175 34
 - **Operadores**: as três simetrias são as matrizes de sinal do grupo de Klein.
 - **Produto do quarteto**: é um polinômio par real, e na reta vira um quadrado perfeito (par duplo).
 - **Habitantes**: Clay é `Fora = ∅`; `Fora` vazio ou com pelo menos 4 habitantes; órbitas só das classes 2 e 4.
+- **Como um zero fora da reta apareceria numa verificação**: numa janela de alturas, `ρ` e `1 − ρ̄` estão na mesma
+  altura e são distintos (`fora_em_pares`); logo o déficit `(N(T₂) − N(T₁)) − (zeros na reta)` é 0 ou pelo menos 2
+  (`deficit_ao_menos_dois`; a mesma lei que `Paridade.furo_de_dois`, na forma de conjunto). Na altura do par, `N`
+  sobe 2 e `S` sobe 2 (não desce), sem as duas trocas de sinal de `Z(t)` correspondentes.
 
 Conferência independente dos números da seção 24, feita a partir da lista certificada de 41 393 zeros (fora do kernel):
 - intervalos de Gram com 0, 1, 2 e 3 zeros: 6 172, 29 125, 6 017 e 77;
@@ -1318,7 +1325,69 @@ Conferência independente dos números da seção 24, feita a partir da lista ce
 **O que NÃO é**: as leis de `S` e de Gram são identidades de contagem; não dizem onde estão os zeros. O deslocamento
 forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
-Classical.choice, Quot.sound]` (29 guardas).
+Classical.choice, Quot.sound]` (32 guardas).
+
+## 30. Continuação contígua: RH conferida até 3 000 175 822 471,5 (cálculo certificado fora do kernel)
+
+Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
+`.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
+(FLINT 3 / Arb, 256 bits). Faixas, zeros (`zeros{0..3}.csv.gz`) e log na raiz da branch `resultados-continuacao`;
+os agregados em `computations/continuacao/resultados/de_3000175342471.5/` (`continuacao.json`, `gram.json`).
+
+Logo acima do fim da seção 13 está onde o primeiro zero fora da reta estaria, se existisse
+(`PrimeiroFora.primeiro_fora_acima_janela`). Quatro faixas contíguas de 120 000 unidades de altura:
+
+| faixa | `(a, b]` | `N(a)` | `N(b)` | zeros na reta | déficit |
+|---|---|---|---|---|---|
+| 0 | `(3 000 175 342 471,5; …462 471,5]` | 12 363 153 478 531 | 12 363 153 992 127 | 513 596 | 0 |
+| 1 | `(…462 471,5; …582 471,5]` | 12 363 153 992 127 | 12 363 154 505 723 | 513 596 | 0 |
+| 2 | `(…582 471,5; …702 471,5]` | 12 363 154 505 723 | 12 363 155 019 318 | 513 595 | 0 |
+| 3 | `(…702 471,5; …822 471,5]` | 12 363 155 019 318 | 12 363 155 532 914 | 513 596 | 0 |
+
+- `N` exato nas cinco pontas (`acb_dirichlet_zeta_nzeros`, contagem de Turing intervalar). O `N(a)` da faixa 0 é o
+  `N` do fim da seção 13, e cada `N(b)` é igual ao `N(a)` da faixa seguinte, calculado por outro job.
+- 2 054 383 zeros pelo método local de Platt: índices seguidos, bolas disjuntas e em ordem, raio máximo
+  `5,01·10⁻¹⁸`, todos com `Z(t) = 0`, isto é, em `Re s = ½`.
+- Com Platt–Trudgian e a seção 13: todo zero não trivial com `0 < Im s ≤ 3 000 175 822 471,5` está na reta, e
+  `N(3 000 175 822 471,5) = 12 363 155 532 914 = 12 363 153 437 138 + 41 393 + 2 054 383`.
+
+**Estatística da faixa** (fora do kernel):
+- espaçamento normalizado `s`: variância 0,1761 (GUE 0,1781); fração com `s < 0,08` igual a `5,30·10⁻⁴`
+  (GUE `≈ 5,61·10⁻⁴`); 4 pares com `s < 0,01`.
+- Gram: intervalos com 0, 1, 2, 3 e 4 zeros: 307 766, 1 442 949, 299 567, 4 098 e 1; 20,66% de pontos de Gram ruins.
+  O intervalo com 4 zeros é `[g_{12363155349036}, g_{12363155349037})`, zeros …349 037 a …349 040, em
+  `t ≈ 3 000 175 779 509,21` a `509,44`.
+- Rosser: 88 exceções. Cada uma é um par de blocos vizinhos, um com excesso e outro com falta (`Gram.bloco_par`).
+- `S(t)`: máximo 2,326 logo depois do zero 12 363 154 829 321 (`t ≈ 3 000 175 658 078,709`); mínimo −2,226 logo
+  antes do zero 12 363 154 660 798 (`t ≈ 3 000 175 618 704,687`); desvio-padrão 0,393.
+
+**Pares mais frágeis** (`λ` de Csordas–Smith–Varga em `x = 2γ`, com `g` pela faixa mais a cauda pela densidade;
+estimativa fora do kernel):
+
+| zeros | `t` | `Δγ` | `s` | `Δ²g` | `λ_CSV` |
+|---|---|---|---|---|---|
+| 12 363 153 756 750/751 | 3 000 175 407 476,4146 | `9,585·10⁻⁴` | 0,0041 | `4,98·10⁻⁵` | `−4,59·10⁻⁷` |
+| 12 363 153 570 515/516 | 3 000 175 363 963,2429 | `2,058·10⁻³` | 0,0088 | `3,93·10⁻⁴` | `−2,12·10⁻⁶` |
+| 12 363 153 873 626/627 | 3 000 175 434 784,3130 | `2,166·10⁻³` | 0,0093 | `3,52·10⁻⁴` | `−2,35·10⁻⁶` |
+| 12 363 155 255 037/038 | 3 000 175 757 546,3725 | `2,182·10⁻³` | 0,0093 | `3,40·10⁻⁴` | `−2,38·10⁻⁶` |
+| 12 363 154 627 231/232 | 3 000 175 610 861,4975 | `2,562·10⁻³` | 0,0110 | `3,43·10⁻⁴` | `−3,28·10⁻⁶` |
+
+O primeiro par está 8,3 vezes mais próximo que o par 694/695 da seção 13 (`Δγ = 0,007987`), e seu `λ` é cerca de 70
+vezes menor em módulo. Para 2,05 milhões de espaçamentos do GUE, o mínimo típico é `≈ 0,0076` e a chance de algum
+`s < 0,0041` é `≈ 14%`: não é anomalia.
+
+No kernel, os teoremas desta faixa estão em `ClayRiemannProof/Continuacao.lean` (seção 26:
+`JanelaContinuacao2026` como hipótese nomeada, `rhAteZ_continuacao`, `primeiro_fora_acima_continuacao`,
+`par_mais_fragil_continuacao` com `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷`) e em `Leis.fora_ate_continuacao_vazio`
+(`{s ∈ Fora | |Im s| ≤ 3 000 175 822 471} = ∅`, condicional às mesmas três verificações).
+
+**A próxima execução** começa onde esta terminou: `inicio.json` tem `C0 = 3 000 175 822 471,5` e
+`N(C0) = 12 363 155 532 914`, e a faixa 0 recalcula esse `N` para colar. Resultados em `resultados-continuacao/de_<C0>/`.
+
+**O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
+ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
+(teorema de Csordas–Smith–Varga, fora do kernel), mas Rodgers–Tao provaram `Λ ≥ 0`, e por pares de Lehmer já se tinha
+`Λ > −1,1·10⁻¹¹` (Saouter–Gourdon–Demichel, 2011): estes pares não melhoram nada sobre `Λ`. `OPEN_MATH = true`.
 
 ## Autor
 

@@ -2536,3 +2536,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Leis.fora_ate_janela_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Leis.fora_ate_janela_vazio
+
+/-- info: 'ClayRiemannProof.Leis.fora_em_pares' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.fora_em_pares
+
+/-- info: 'ClayRiemannProof.Leis.deficit_ao_menos_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.deficit_ao_menos_dois
+
+/-- info: 'ClayRiemannProof.Leis.fora_ate_continuacao_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.fora_ate_continuacao_vazio

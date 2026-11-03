@@ -18,13 +18,19 @@ from pathlib import Path
 import numpy as np
 
 ENT, SAI = Path(sys.argv[1]), Path(sys.argv[2])
+INICIO = json.loads((Path(__file__).parent / "inicio.json").read_text())
+C0 = Decimal(INICIO["C0"])
 SAI.mkdir(parents=True, exist_ok=True)
 faixas = {}
 for p in sorted(ENT.rglob("faixa*.json")):
     d = json.loads(p.read_text())
     faixas[int(d["faixa"])] = (d, p.parent)
 out = {"faixas": {}, "colagem": [], "pares_mais_frageis": []}
-contiguo_ate, contiguo_ok = Decimal("3000175342471.5"), True
+contiguo_ate, contiguo_ok = C0, True
+if 0 in faixas:  # colagem com a execução anterior: N(C0) calculado de novo pela faixa 0
+    out["colagem"].append({"altura": str(C0), "N_pela_faixa": faixas[0][0].get("N(a)"),
+                           "N_pela_execucao_anterior": str(INICIO["N(C0)"]),
+                           "confere": faixas[0][0].get("N(a)") == str(INICIO["N(C0)"])})
 total_zeros = 0
 todos_pares = []
 for I in sorted(faixas):
@@ -73,7 +79,7 @@ for I in sorted(faixas):
         lam = ((1 - 1.25 * q) ** 0.8 - 1) / (8 * g) if q < 0.8 else None
         todos_pares.append({"faixa": I, "k": rows[k][0], "gamma_k": rows[k][1], "gamma_k1": rows[k + 1][1],
                             "intervalo": float(gaps[k]), "espacamento_normalizado": float(s[k]),
-                            "Delta2_g": q, "lehmer": q < 0.8, "lambda_CSV": lam})
+                            "Delta2_g": float(q), "lehmer": bool(q < 0.8), "lambda_CSV": lam})
     out["faixas"][I]["estatistica"] = {"zeros": n, "s_min": float(s.min()), "s_medio": float(s.mean()),
                                        "variancia_s": float(s.var()), "variancia_GUE": 3 * math.pi / 8 - 1,
                                        "s_min_esperado_GUE": (9 / (math.pi ** 2 * n)) ** (1 / 3)}
@@ -82,7 +88,7 @@ out["pares_mais_frageis"] = todos_pares[:20]
 out["deficits"] = {I: faixas[I][0].get("conferencia", {}).get("deficit_(zeros_fora_da_reta)") for I in faixas}
 out["falhas"] = {I: faixas[I][0].get("falhas") for I in faixas if faixas[I][0].get("falhas")}
 out["colagem_ok"] = all(c["confere"] for c in out["colagem"])
-out["contiguo"] = {"de": "3000175342471.5", "ate": str(contiguo_ate), "zeros_na_reta": total_zeros}
+out["contiguo"] = {"de": str(C0), "ate": str(contiguo_ate), "zeros_na_reta": total_zeros}
 alguma_fora = any((v or 0) > 0 for v in out["deficits"].values())
 paradas = {I: faixas[I][0]["parou_em"] for I in faixas if faixas[I][0].get("parou_em")}
 if paradas:
@@ -92,8 +98,9 @@ if paradas:
 out["conclusao"] = (
     "ACHADO: déficit > 0 — zeros fora da reta indicados; isolar com caixas e o princípio do argumento"
     if alguma_fora else
-    f"nenhum zero fora da reta em 0 < Re s < 1, 3000175342471.5 < Im s ≤ {contiguo_ate} "
-    f"({total_zeros} zeros, todos na reta); com a seção 13 e Platt–Trudgian: RH conferida até {contiguo_ate}"
-    if out["colagem_ok"] and contiguo_ate > Decimal("3000175342471.5") else "inconclusivo: ver faixas")
+    f"nenhum zero fora da reta em 0 < Re s < 1, {C0} < Im s ≤ {contiguo_ate} "
+    f"({total_zeros} zeros, todos na reta); com as execuções anteriores, a seção 13 e Platt–Trudgian: "
+    f"RH conferida até {contiguo_ate}"
+    if out["colagem_ok"] and contiguo_ate > C0 else "inconclusivo: ver faixas")
 (SAI / "continuacao.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
 print(json.dumps({k: v for k, v in out.items() if k not in ("faixas",)}, ensure_ascii=False, indent=1)[:6000])

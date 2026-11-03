@@ -1,0 +1,9 @@
+{
+ "C0": "3000175822471.5",
+ "N(C0)": 12363155532914,
+ "fonte": "execução 41559243734: N(b) da faixa 3 (e N(a) da faixa 0 = 12363153478531, igual ao da seção 13)",
+ "anteriores": [
+  {"de": "3000175342471.5", "ate": "3000175822471.5", "zeros_na_reta": 2054383, "deficit": 0, "execucao": 41559243734,
+   "resultado": "faixas e zeros na raiz da branch resultados-continuacao; agregados em computations/continuacao/resultados/de_3000175342471.5"}
+ ]
+}
