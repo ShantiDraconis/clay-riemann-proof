@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 745 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (998 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 766 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 019 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1265,7 +1265,7 @@ mais baixa tende a 0, todo empurrão fixo acaba tirando zeros da reta". Gráfico
 
 **Licença do repositório**: CC0 1.0 (domínio público), arquivo `LICENSE`.
 
-## 29. As leis por trás dos gráficos: `S(t)`, Gram e Rosser; unidades de de Bruijn; matrizes; habitantes (teorema)
+## 30. As leis por trás dos gráficos: `S(t)`, Gram e Rosser; unidades de de Bruijn; matrizes; habitantes (teorema)
 
 Arquivo: `ClayRiemannProof/Leis.lean`.
 
@@ -1327,7 +1327,7 @@ forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
 Classical.choice, Quot.sound]` (32 guardas).
 
-## 30. Continuação contígua: RH conferida até 3 000 175 822 471,5 (cálculo certificado fora do kernel)
+## 31. Continuação contígua: RH conferida até 3 000 175 822 471,5 (cálculo certificado fora do kernel)
 
 Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
 `.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
@@ -1388,6 +1388,48 @@ No kernel, os teoremas desta faixa estão em `ClayRiemannProof/Continuacao.lean`
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
 (teorema de Csordas–Smith–Varga, fora do kernel), mas Rodgers–Tao provaram `Λ ≥ 0`, e por pares de Lehmer já se tinha
 `Λ > −1,1·10⁻¹¹` (Saouter–Gourdon–Demichel, 2011): estes pares não melhoram nada sobre `Λ`. `OPEN_MATH = true`.
+
+## 32. As correções no kernel: cada afirmação errada dos gráficos, com o teorema que a decide
+
+Arquivo: `ClayRiemannProof/Correcoes.lean`.
+
+Os textos e gráficos colados em 3/11/2026 traziam afirmações sobre como um zero fora da reta apareceria, quanto um
+par precisaria ser empurrado e onde estaria o fechamento. Cada uma está abaixo, com o enunciado correto e o teorema.
+
+| afirmação | correto | teorema |
+|---|---|---|
+| um quarteto faz `S` saltar −2 | um par `ρ, 1 − ρ̄` sozinho numa janela conta 2 em `N` e 0 na reta (déficit exatamente 2); `S` **sobe**, entre 0 e 2 | `par_fora_na_janela`, `S_sobe_no_par`; `Leis.fora_em_pares`, `Leis.deficit_ao_menos_dois`, `Paridade.furo_de_dois` |
+| `N` na caixa `[0,51; 0,99]` seria 1 | com `b < 0,01`, nenhum dos dois zeros do par está na caixa | `par_fora_da_caixa` |
+| o par #6 forçado tem `b = 0,00245` em `λ = −3,19·10⁻⁵` | na colisão `b = 0` | `b_na_colisao`, `par6_valores_errados` |
+| `b = 0,00678` em `λ = 10⁻⁴` | `b(−5·10⁻⁵) ∈ (0,0030; 0,0031)`, `b(−10⁻⁴) ∈ (0,0058; 0,0059)`, `b(−2·10⁻⁴) ∈ (0,0091; 0,0092)` | `par6_forcado`, `bForcado_eh_desvio` |
+| a escala de fechamento é `Λ → 0⁻` | com Rodgers–Tao, `Λ < 0` é impossível e RH ⟺ `Λ = 0` | `lambda_negativo_impossivel`, `rh_iff_lambda_zero` |
+| o par #6 "precisa só de 10⁻⁵ de força" para fechar | qualquer `λ < 0` de par de Lehmer é estritamente mais fraco que `Λ ≥ 0` | `cota_de_lehmer_mais_fraca` |
+| Gram triplo é `Z` roçando 0 sem cruzar | 3 zeros num intervalo são 3 trocas de sinal; `j` zeros fazem `S` subir `j − 1` | `gram_k_zeros`, `Leis.gram_triplo`, `gram_quadruplo` |
+| — (lacuna) | `JanelaContinuacao2026` sai das quatro contagens exatas da Arb e da fatia da seção 13 | `continuacao_de_contagens`, `janelaContinuacao_de_contagens`, `rhAteZ_de_contagens` |
+
+**Correções que são de dados, não de teorema** (fonte: as listas certificadas das seções 13 e 31):
+- `⟨δ⟩ = 2π/log(T/2π)`: 0,2337 em `3·10¹²`, 0,2067 em `10¹⁴`, 0,1795 em `10¹⁶`, 0,1287 em `10²²` (não 0,118).
+- A fração de espaçamentos com `s < 0,08` é `5,30·10⁻⁴` em 2,05 milhões de zeros (GUE `≈ 5,61·10⁻⁴`), não
+  `14/41 393 = 3,4·10⁻⁴`. As contagens "esperadas até `10²²`" são médias estatísticas, não candidatos a quarteto.
+- A frequência não é "a cada ~500/690 em `t`, independente de `T`": em número de zeros ela é quase constante; em `t`
+  ela escala com `2π/log(T/2π)`. As exceções de Rosser crescem com `T`: 1 em 41 393 zeros na seção 13, 88 em
+  2 054 383 (1 a cada ~23 000) na seção 31.
+- `0,006262 < β < 0,993738` em `3·10¹²` é a região **ainda permitida** pela região sem zeros explícita
+  (`1 − 1/(5,5587 log t)`), não uma "região livre"; e até `3 000 175 822 471,5` tudo já está na reta.
+- Análogos fora da reta: Davenport–Heilbronn `0,808517 + 85,699348i` e `ζ(s) + ζ(s + 1)` em
+  `0,0988845 + 14,1534792i` conferem (`mpmath`, `|f| ≈ 5·10⁻³²`). "Epstein `0,65 + 100i`" e "Ihara `0,25 + 20i`" não
+  existem. O zero de Epstein conferido (forma `m² + 5n²`) é `0,932970 + 15,668250i` (seção 19). Num grafo
+  `(q+1)`-regular a adjacência é simétrica, logo seus autovalores `l` são reais, e fora do círculo os zeros de Ihara
+  ficam no eixo real (`Analogs.ihara_fora_real`).
+- As curvas "P fechar" não têm modelo de probabilidade por trás. O painel de Li não foi calculado.
+- `Λ ≤ 0,1787854` (atribuído a um blog) não foi verificado; o provado é `Λ ≤ 0,2` (seção 12).
+
+**Auditoria do repositório** (3/11/2026): os 66 arquivos `.lean` são alcançados pela raiz; nenhum `sorry`, `admit`,
+`axiom` ou `native_decide`; todas as referências `Módulo.nome` do README existem; todo teorema tem guarda, depois de
+corrigir uma guarda duplicada (`Leis.colisao_em_gama` no lugar de `Leis.colisao_em_gama'`).
+
+**O que NÃO é**: as correções não aproximam nem afastam RH; dizem só o que cada número significa. `OPEN_MATH = true`.
+**Axiomas**: `[propext, Classical.choice, Quot.sound]` (20 guardas, mais a de `PrimeiroFora.JanelaArb2026`).
 
 ## Autor
 

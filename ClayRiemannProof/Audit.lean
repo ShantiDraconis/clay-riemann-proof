@@ -46,6 +46,7 @@ import ClayRiemannProof.Alturas
 import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Leis
+import ClayRiemannProof.Correcoes
 
 /-!
 # Auditoria de axiomas
@@ -2486,8 +2487,8 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Leis.colisao_em_gama' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_em_gama
 
-/-- info: 'ClayRiemannProof.Leis.colisao_em_gama' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_em_gama
+/-- info: 'ClayRiemannProof.Leis.colisao_em_gama'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_em_gama'
 
 /-- info: 'ClayRiemannProof.Leis.colisao_par_mais_fragil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_par_mais_fragil
@@ -2545,3 +2546,68 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Leis.fora_ate_continuacao_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Leis.fora_ate_continuacao_vazio
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.JanelaArb2026' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.JanelaArb2026
+
+/-! ## `ClayRiemannProof/Correcoes.lean` -/
+
+/-- info: 'ClayRiemannProof.Correcoes.par_fora_na_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.par_fora_na_janela
+
+/-- info: 'ClayRiemannProof.Correcoes.S_sobe_no_par' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.S_sobe_no_par
+
+/-- info: 'ClayRiemannProof.Correcoes.par_fora_da_caixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.par_fora_da_caixa
+
+/-- info: 'ClayRiemannProof.Correcoes.bForcado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.bForcado
+
+/-- info: 'ClayRiemannProof.Correcoes.bForcado_eh_desvio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.bForcado_eh_desvio
+
+/-- info: 'ClayRiemannProof.Correcoes.b_na_colisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.b_na_colisao
+
+/-- info: 'ClayRiemannProof.Correcoes.metade_raiz_entre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.metade_raiz_entre
+
+/-- info: 'ClayRiemannProof.Correcoes.par6_forcado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.par6_forcado
+
+/-- info: 'ClayRiemannProof.Correcoes.par6_valores_errados' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.par6_valores_errados
+
+/-- info: 'ClayRiemannProof.Correcoes.rh_iff_lambda_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.rh_iff_lambda_zero
+
+/-- info: 'ClayRiemannProof.Correcoes.lambda_negativo_impossivel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.lambda_negativo_impossivel
+
+/-- info: 'ClayRiemannProof.Correcoes.cota_de_lehmer_mais_fraca' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.cota_de_lehmer_mais_fraca
+
+/-- info: 'ClayRiemannProof.Correcoes.gram_k_zeros' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.gram_k_zeros
+
+/-- info: 'ClayRiemannProof.Correcoes.gram_quadruplo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.gram_quadruplo
+
+/-- info: 'ClayRiemannProof.Correcoes.janelaNaReta_de_fora_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.janelaNaReta_de_fora_vazio
+
+/-- info: 'ClayRiemannProof.Correcoes.janelaNaReta_restringe' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.janelaNaReta_restringe
+
+/-- info: 'ClayRiemannProof.Correcoes.faixa_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.faixa_na_reta
+
+/-- info: 'ClayRiemannProof.Correcoes.continuacao_de_contagens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.continuacao_de_contagens
+
+/-- info: 'ClayRiemannProof.Correcoes.janelaContinuacao_de_contagens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.janelaContinuacao_de_contagens
+
+/-- info: 'ClayRiemannProof.Correcoes.rhAteZ_de_contagens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.rhAteZ_de_contagens
