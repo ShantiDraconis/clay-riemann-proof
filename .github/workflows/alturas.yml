@@ -1,5 +1,5 @@
 name: Alturas onde os pares ficam mais frageis
-# Janelas certificadas de zeros de ζ em 10¹⁴, 10¹⁶, 10¹⁸, 10²⁰ e 10²² (FLINT 3 / Arb, método local de Platt + contagem
+# Janelas certificadas de zeros de ζ em 10¹⁴, 10¹⁶, 10¹⁷ e 10¹⁸ (uma tarefa por altura) (FLINT 3 / Arb, método local de Platt + contagem
 # de Turing), com os pares de Lehmer e a cota de Csordas–Smith–Varga de cada janela. Cálculo finito fora do kernel:
 # não muda OPEN_MATH. O resultado vai para a branch resultados-alturas.
 on:
@@ -12,9 +12,21 @@ on:
 permissions:
   contents: write
 jobs:
-  alturas:
+  altura:
     runs-on: ubuntu-24.04
     timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - e: 14
+            n: 20000
+          - e: 16
+            n: 20000
+          - e: 17
+            n: 20000
+          - e: 18
+            n: 20000
     steps:
       - uses: actions/checkout@v4
       - name: FLINT 3 (com o Arb)
@@ -24,19 +36,44 @@ jobs:
       - name: compila
         shell: bash
         run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
-      - name: janelas nas alturas grandes
+      - name: janela em 10^${{ matrix.e }}
         shell: bash
-        run: python3 computations/alturas/alturas.py ./zeros resultados 18000 2>&1 | tee alturas.log
+        run: python3 computations/alturas/alturas.py ./zeros resultados 18500 ${{ matrix.e }} ${{ matrix.n }} 2>&1 | tee resultados-log-${{ matrix.e }}.txt
       - name: estado como anotação
         if: always()
         run: |
-          python3 -c "import json;d=json.load(open('resultados/alturas.json'));print(json.dumps([{k:v for k,v in j.items() if k!='estatistica'} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas::/' || true
-          { grep -E -B2 -A6 "Traceback|Error|error" alturas.log compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=alturas-erro::/' || true
+          python3 -c "import json;d=json.load(open('resultados/alturas_1e${{ matrix.e }}.json'));print(json.dumps([{k:v for k,v in j.items() if k not in ('estatistica','blocos')} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas-${{ matrix.e }}::/' || true
+          { grep -E -B2 -A6 "Traceback|Error|error" resultados-log-${{ matrix.e }}.txt compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=alturas-erro::/' || true
+      - name: guarda o log
+        if: always()
+        run: cp resultados-log-${{ matrix.e }}.txt resultados/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: altura-${{ matrix.e }}
+          path: resultados/
+          retention-days: 14
+  junta:
+    needs: altura
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: tarefas
+      - name: junta as alturas
+        run: python3 computations/alturas/junta.py tarefas resultados 2>&1 | tee junta.log
+      - name: estado como anotação
+        if: always()
+        run: |
+          python3 -c "import json;d=json.load(open('resultados/alturas.json'));print(json.dumps([{k:v for k,v in j.items() if k not in ('estatistica','blocos')} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas::/' || true
       - name: grava na branch resultados-alturas
         if: always()
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
-          cp compila.log alturas.log /tmp/r/ 2>/dev/null || true
+          for d in tarefas/altura-*; do cp "$d"/*.txt "$d"/alturas_1e*.json /tmp/r/ 2>/dev/null || true; done
+          cp junta.log /tmp/r/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin resultados-alturas:refs/remotes/origin/resultados-alturas || true

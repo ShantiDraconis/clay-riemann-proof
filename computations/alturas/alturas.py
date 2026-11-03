@@ -1,6 +1,15 @@
 """Janelas certificadas nas alturas onde um par de zeros fica mais frágil (FLINT 3 / Arb).
 
-    python3 alturas.py ./zeros resultados/ [orcamento_s]
+    python3 alturas.py ./zeros resultados/ [orcamento_s] [expoente N]
+
+Com `expoente N`, só a altura 10^expoente (uma tarefa do workflow por altura, em paralelo); o resultado vai para
+`alturas_1eXX.json` e `junta.py` monta o `alturas.json`. O método local de Platt devolve menos zeros do que o pedido
+quando o pedido é grande (8 048 de 20 002 em 10¹⁴, 17 848 de 20 002 em 10¹⁸ no run 41554617926): cada chamada
+fica com os zeros que vieram (sem os MARGEM da ponta, onde falta margem) e a próxima recomeça dali; o estado é gravado
+depois de cada chamada e o orçamento é conferido entre elas, com uma reserva para as duas contagens de Turing. O custo
+de uma chamada cresce com a altura e quase não depende do número de zeros pedidos (157 s em 10¹⁴, 336 s em 10¹⁶,
+4 906 s em 10¹⁸); em 10²⁰ uma chamada não terminou em 4 h, e 10²⁰ e 10²² ficam fora do alcance deste método num
+runner de 6 h.
 
 Pela lei da colisão (ClayRiemannProof/Colisao.lean), um par a distância Δ (em x = 2γ) sai da reta do fluxo de de
 Bruijn em t = −Δ²/8; com os vizinhos, a cota de Csordas–Smith–Varga dá λ = ((1 − (5/4)Δ²g)^{4/5} − 1)/(8g). Com
@@ -31,8 +40,11 @@ BIN = sys.argv[1]
 OUT = Path(sys.argv[2])
 OUT.mkdir(parents=True, exist_ok=True)
 ORCAMENTO = float(sys.argv[3]) if len(sys.argv) > 3 else 5 * 3600
-ALVOS = [(14, 20000), (16, 20000), (18, 20000), (20, 10000), (22, 10000)]
-MARGEM = 40
+ALVOS = [(14, 20000), (16, 20000), (17, 20000), (18, 20000)]
+if len(sys.argv) > 5:
+    ALVOS = [(int(sys.argv[4]), int(sys.argv[5]))]
+MARGEM, BLOCO = 40, 25000
+ARQ = OUT / (f"alturas_1e{ALVOS[0][0]}.json" if len(sys.argv) > 5 else "alturas.json")
 INICIO = time.time()
 PI = Decimal("3.14159265358979323846264338327950288419716939937510582097494459230781640628620899")
 estado = {"fonte": "FLINT/Arb: acb_dirichlet_platt_local_hardy_z_zeros, acb_dirichlet_zeta_nzeros", "janelas": []}
@@ -40,10 +52,15 @@ estado = {"fonte": "FLINT/Arb: acb_dirichlet_platt_local_hardy_z_zeros, acb_diri
 
 def grava():
     estado["segundos"] = round(time.time() - INICIO, 1)
-    (OUT / "alturas.json").write_text(json.dumps(estado, ensure_ascii=False, indent=1) + "\n")
+    ARQ.write_text(json.dumps(estado, ensure_ascii=False, indent=1) + "\n")
+
+
+def restante():
+    return ORCAMENTO - (time.time() - INICIO)
 
 
 def roda(*args, timeout=4 * 3600):
+    timeout = max(60, min(timeout, restante()))
     t0 = time.time()
     r = subprocess.run([BIN, *map(str, args)], capture_output=True, text=True, timeout=timeout)
     if r.returncode:
@@ -110,23 +127,44 @@ def lehmer(gam, T, k_max=120):
 
 
 for e, N in ALVOS:
-    if time.time() - INICIO > ORCAMENTO:
+    if restante() < 600:
         estado["janelas"].append({"altura": f"1e{e}", "pulada": "orçamento de tempo"})
+        grava()
         break
     T = Decimal(10) ** e
     n0 = n_aprox(T)
-    j = {"altura": f"1e{e}", "n0": str(n0), "N": N}
+    reserva = 3600 if e >= 20 else 900  # tempo guardado para as duas contagens de Turing
+    j = {"altura": f"1e{e}", "n0": str(n0), "N_pedido": N, "blocos": [], "falhas": []}
     estado["janelas"].append(j)
     grava()
     try:
-        # zeros n0−1 … n0+N (um a mais de cada lado para os pontos médios), com margem do método local
-        r, seg = roda("platt", n0 - 1 - MARGEM, N + 2 + 2 * MARGEM, 320)
-        zs = [bola(z) for z in r["zeros"]][MARGEM:MARGEM + N + 2]
-        j["segundos_zeros"] = round(seg, 1)
-        if len(zs) < N + 2:
-            j["erro"] = f"o método devolveu {len(zs)} de {N + 2} zeros"
+        # zeros n0−1 … n0+N (um a mais de cada lado para os pontos médios), em blocos com margem
+        zs, n, seg_total = [], n0 - 1, 0.0
+        while n <= n0 + N and restante() > reserva:
+            k = min(BLOCO, n0 + N - n + 1)
+            r, seg = roda("platt", n - MARGEM, k + 2 * MARGEM, 320)
+            todos = [bola(z) for z in r["zeros"]]
+            # veio tudo: fica com o miolo; veio menos: fica com o que veio menos os MARGEM da ponta (sem margem)
+            fim = MARGEM + k if len(todos) >= k + 2 * MARGEM else len(todos) - MARGEM
+            bl = todos[MARGEM:fim] if fim > MARGEM else []
+            if len(bl) < k:
+                j["falhas"].append({"n": str(n), "pedidos": k, "achados_brutos": len(todos), "aproveitados": len(bl)})
+            if not bl:
+                j["parou_em"] = str(n)
+                break
+            zs += bl
+            seg_total += seg
+            j["blocos"].append({"n": str(n), "achados": len(bl), "segundos": round(seg, 1)})
+            n += len(bl)
+            j["zeros_obtidos"] = len(zs)
+            grava()
+        j["segundos_zeros"] = round(seg_total, 1)
+        if len(zs) < 3:
+            j["erro"] = f"só {len(zs)} zeros obtidos"
             grava()
             continue
+        N = len(zs) - 2  # a janela certificada são os zeros n0 … n0+N−1 (o primeiro e o último dão os pontos médios)
+        j["N"] = N
         disj = all(a[0] + a[1] < b[0] - b[1] for a, b in zip(zs, zs[1:]))
         Ta = (zs[0][0] + zs[1][0]) / 2
         Tb = (zs[-2][0] + zs[-1][0]) / 2

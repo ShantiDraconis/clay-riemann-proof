@@ -728,9 +728,17 @@ varredura pesa mais que a altura. Previsão para as janelas do workflow:
 |---|---|---|---|---|
 | 10¹⁴ | 20 000 | 4,838 | 0,0357 | −2,7·10⁻⁵ |
 | 10¹⁶ | 20 000 | 5,571 | 0,0357 | −2,1·10⁻⁵ |
+| 10¹⁷ | 20 000 | 5,938 | 0,0357 | −1,8·10⁻⁵ |
 | 10¹⁸ | 20 000 | 6,304 | 0,0357 | −1,6·10⁻⁵ |
-| 10²⁰ | 10 000 | 7,037 | 0,045 | −2,1·10⁻⁵ |
-| 10²² | 10 000 | 7,770 | 0,045 | −1,7·10⁻⁵ |
+
+**O primeiro run (41554617926) não certificou nenhuma janela.** Pedidos de 20 002 zeros numa só chamada, o método
+local de Platt devolveu 8 048 (10¹⁴), 8 664 (10¹⁶) e 17 848 (10¹⁸), e a chamada de 10²⁰ não terminou em 4 h. O
+custo de uma chamada cresce com a altura e quase não depende de quantos zeros se pedem: 157 s, 336 s e 4 906 s. Entre
+10¹⁶ e 10¹⁸ isso é cerca de `T^{0,58}`, o que dá umas 19 h por chamada em 10²⁰. Por isso 10²⁰ e 10²² ficam fora do
+alcance deste método num runner de 6 h (a fronteira, seção 23, varre essas alturas com blocos menores). O
+`alturas.py` agora fica com os zeros que cada chamada devolveu e recomeça dali, e grava o estado depois de cada
+chamada. O workflow roda uma tarefa por altura (10¹⁴, 10¹⁶, 10¹⁷, 10¹⁸) em paralelo e `junta.py` monta o
+`alturas.json`.
 
 **A faixa provável, se existisse um quarteto**: altura além da verificada; no par de menor `s` de uma varredura
 grande (é lá que `λ` chega mais perto de 0); com `β − ½` pequeno, porque logo depois do limiar o afastamento é
