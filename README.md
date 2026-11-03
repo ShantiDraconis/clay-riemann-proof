@@ -968,6 +968,54 @@ as listas certificadas (faixa da seção 13, janelas das alturas, continuação 
 **O que NÃO é**: aglomerações, vazios e violações de Rosser são irregularidades esperadas numa sequência do tipo GUE;
 um nó só seria zero fora da reta se a contagem local não fechasse. `OPEN_MATH = true`.
 
+## 26. Formalização dos cálculos: o que o kernel confere em cada número
+
+Arquivos: `ClayRiemannProof/Lehmer.lean`, `ClayRiemannProof/Paridade.lean`, `ClayRiemannProof/Gram.lean`,
+`ClayRiemannProof/QuartetoDesenhado.lean`.
+
+Os números das seções 13, 16, 24 e 25 vêm da Arb, fora do kernel. Cada lei que leva desses números a uma conclusão
+agora está no kernel. Os números entram como hipóteses nomeadas (bolas `|γ − c| ≤ r`, valores de `N` nos pontos de
+Gram, a condição de Lehmer `Δ²g ≤ 4/5`) e o kernel confere a aritmética.
+
+| cálculo | lei | no kernel |
+|---|---|---|
+| contagem de Turing numa janela | zeros fora da reta vêm aos pares `ρ`, `1 − ρ̄` na mesma altura: são em número par | `Paridade.fora_par` |
+| contagem que fecha | zeros na janela = zeros na reta ⟹ nenhum fora da reta | `Paridade.contagem_fecha` |
+| contagem que não fecha | a diferença é **pelo menos 2**, nunca 1 | `Paridade.furo_de_dois` |
+| lei de Gram | `S(g_m) = N(g_m) − m − 1` é inteiro; zeros no bloco = comprimento + variação de `S` | `Gram.S_gram`, `Gram.zeros_no_bloco` |
+| regra de Rosser | entre dois pontos de Gram bons, excesso e falta só de 2 em 2 | `Gram.bloco_par` |
+| o aglomerado | pontos bons, `S = 0, 2, 0`, bloco de comprimento 1 com 3 zeros e bloco de comprimento 2 com 0 | `Gram.aglomerado_rosser` |
+| cota de CSV de um par de Lehmer | `−(5/32)Δ² ≤ λ ≤ −Δ²/8` para `Δ²g ≤ 4/5`; logo `λ < 0` | `Lehmer.csv_ge`, `Lehmer.csv_le_isolado`, `Lehmer.csv_neg` |
+| CSV e a lei da colisão (seção 16) | sem vizinhos (`g → 0⁺`), `λ → −Δ²/8` | `Lehmer.csv_limite` |
+| unidades | em `x = c·γ`, `λ` vezes `c²`; de `γ` para `x = 2γ` (o tempo de de Bruijn), vezes 4 | `Lehmer.csv_escala`, `Lehmer.csv_x_de_gamma` |
+| par 052/053 do aglomerado | `−6,23·10⁻⁴ ≤ λ ≤ −4,98·10⁻⁴` para todo `g` | `Lehmer.aglomerado_052_053` |
+| par mais frágil (694/695) | `−3,99·10⁻⁵ ≤ λ ≤ −3,18·10⁻⁵` para todo `g` | `Lehmer.par_mais_fragil` |
+| quarteto desenhado em `0,3 ± 14i`, `0,7 ± 14i` | `|ζ| ≥ 1/10` nos quatro pontos (avaliação certificada no kernel) | `QuartetoDesenhado.quarteto_desenhado` |
+
+**O aglomerado, conferido na lista certificada** (`t − 3 000 175 335 000`):
+
+| | `t` | distância ao próximo | `s` | `S` logo depois |
+|---|---|---|---|---|
+| zero …051 | 583,53824041 | 0,1945668 | 0,8327 | 0,454 |
+| zero …052 | 583,73280730 | 0,0315609 | 0,1351 | 0,621 |
+| zero …053 | 583,76436820 | 0,1039775 | 0,4450 | 1,486 |
+| zero …054 | 583,86834571 | 0,5180912 | 2,2174 | **2,041** |
+| zero …055 | 584,38643694 | 0,2753771 | 1,1786 | 0,823 |
+
+Pontos de Gram: `g_{…050} = 583,64425247`, `g_{…051} = 583,87789923`, `g_{…052} = 584,11154599`,
+`g_{…053} = 584,34519274` (espaçamento 0,233647). O intervalo `[g_{…050}, g_{…051})` tem os zeros 052, 053 e 054;
+`[g_{…051}, g_{…053})` não tem nenhum. A exceção de Rosser (no sentido estrito, bloco com menos zeros que intervalos)
+é o bloco vazio `[g_{…051}, g_{…053}]`; os dois zeros que faltam nele estão no intervalo anterior. Para o par 052/053,
+`g` (±300 vizinhos e a cauda pela densidade, em `x = 2γ`) é 57,673, `Δ²g = 0,2298` e `λ = −5,143·10⁻⁴`, dentro do
+intervalo do kernel. Em coordenadas `γ` o mesmo número é `−1,286·10⁻⁴` (um quarto). O tempo do fluxo de de Bruijn
+é o de `x`.
+
+Na faixa há 202 nós distintos. A soma 17 + 19 + 77 + 1 + 95 + 14 = 223 conta duas vezes um nó com dois tipos.
+
+**O que NÃO é**: os teoremas com hipóteses de dados não provam os dados. Eles dizem: se as bolas da Arb estão certas,
+então isto vale. O teorema de Csordas–Smith–Varga (`Λ ≥ λ`) não está no kernel. Nada aqui prova ou refuta RH.
+`OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
