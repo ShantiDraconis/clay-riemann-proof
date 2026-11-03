@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 650 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (903 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 657 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (910 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -824,6 +824,41 @@ os colares e a coordenada centrada da seção 19.
 
 **O que NÃO é**: as 22 são a mesma proposição; provar qualquer uma é provar RH, e nenhuma é mais fraca.
 `OPEN_MATH = true`. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (1 guarda).
+## 22. Forçar o zero no quarteto
+
+Arquivos: `ClayRiemannProof/QuartetoForcado.lean`, `computations/lehmer/forca.py`, `computations/lehmer/forca.json`.
+
+```lean
+def Q (γ₀ κ : ℝ) (w : ℂ) : ℂ := ((w - I * γ₀) ^ 2 + κ) * ((w + I * γ₀) ^ 2 + κ)   -- w = s − ½
+theorem Q_simetrica : Simetrica (Q γ₀ κ)                     -- Q(−w) = Q(w), Q(w̄) = conj Q(w), como ξ
+theorem Q_na_reta (hκ : 0 ≤ κ) : ∀ w, Q γ₀ κ w = 0 → w.re = 0
+theorem Q_quarteto (hκ : κ < 0) : Q γ₀ κ (√(−κ) + iγ₀) = 0 ∧ Q γ₀ κ (−√(−κ) + iγ₀) = 0 ∧ … ∧ 0 < √(−κ)
+theorem quarteto_forcado : (∀ w, Q γ₀ ((a² + 2t)/4) w = 0 → w.re = 0) ↔ -(a ^ 2) / 2 ≤ t
+theorem Q_quarteto_abstrato (h : Q γ₀ κ w = 0) : Q γ₀ κ (-w) = 0 ∧ Q γ₀ κ (conj w) = 0 ∧ Q γ₀ κ (-conj w) = 0
+```
+
+**O que é**: em `ζ` o quarteto não se força (a função é fixa e, na faixa da seção 13, todos os zeros estão na reta).
+Força-se na deformação de de Bruijn: abaixo do tempo de colisão `t_c` de um par, o par sai da reta, e as duas
+simetrias de `ξ` o completam em quarteto `½ ± b ± iγ_c`, com `b = √(2(t_c − t))/2`. Pelo teorema de Rodgers–Tao
+(`Λ ≥ 0`), para todo `t < 0` a deformação `H_t` tem zeros fora da reta.
+
+**O quarteto forçado nos pares mais frágeis da faixa certificada** (vizinhos congelados durante a colisão; `t_c`
+coincide com o `λ` de Csordas–Smith–Varga até a quarta casa):
+
+| par (índice) | centro `γ_c` | `t_c` | quarteto em `t = 2t_c`: `½ ± b ± iγ_c` |
+|---|---|---|---|
+| 12 363 153 465 694 | 3 000 175 339 472,05388 | −3,1927·10⁻⁵ | `b = 3,995·10⁻³` |
+| 12 363 153 454 258 | 3 000 175 336 800,28301 | −4,0783·10⁻⁵ | `b = 4,516·10⁻³` |
+| 12 363 153 460 076 | 3 000 175 338 159,61616 | −4,5018·10⁻⁵ | `b = 4,744·10⁻³` |
+
+O primeiro quarteto que a deformação para trás cria nessa faixa nasce no par 12 363 153 465 694, em
+`t = −3,1927·10⁻⁵`, com afastamento `b ∝ √(t_c − t)`: em `t = 2t_c` são os zeros `½ ± 0,003995 ± i·3 000 175 339 472,0539`
+de `H_t` (não de `ζ`).
+
+**O que NÃO é**: um zero de `ζ`. Em `t = 0` (a própria `ζ`) esse par está na reta, certificado. O modelo `Q` é exato;
+os números da tabela são a dinâmica dos zeros com os vizinhos congelados (estimativa fora do kernel). `OPEN_MATH = true`.
+**Origem**: de Bruijn (1950), Newman (1976), Csordas–Smith–Varga (1994), Rodgers–Tao (2018); o quarteto forçado no
+kernel, novo. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (7 guardas).
 
 ## Autor
 

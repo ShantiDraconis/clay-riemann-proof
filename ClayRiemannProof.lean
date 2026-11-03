@@ -34,6 +34,7 @@ import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Turing
 import ClayRiemannProof.Colisao
+import ClayRiemannProof.QuartetoForcado
 import ClayRiemannProof.Verification
 import ClayRiemannProof.BicomplexCoordinates
 import ClayRiemannProof.BicomplexConditional

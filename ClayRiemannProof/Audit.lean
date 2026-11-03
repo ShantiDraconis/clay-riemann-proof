@@ -30,6 +30,7 @@ import ClayRiemannProof.Turing
 import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Colisao
+import ClayRiemannProof.QuartetoForcado
 import ClayRiemannProof.Verification
 import ClayRiemannProof.BicomplexCoordinates
 import ClayRiemannProof.BicomplexConditional
@@ -2185,3 +2186,25 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.BicomplexCoordinates.projection_b_zero' depends on axioms: [propext] -/
 #guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.projection_b_zero
+/-! ## `ClayRiemannProof/QuartetoForcado.lean` -/
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.Q' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.Q_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q_simetrica
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.quadrado_neg_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.quadrado_neg_re
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.Q_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q_na_reta
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.Q_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q_quarteto
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.quarteto_forcado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.quarteto_forcado
+
+/-- info: 'ClayRiemannProof.QuartetoForcado.Q_quarteto_abstrato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q_quarteto_abstrato
