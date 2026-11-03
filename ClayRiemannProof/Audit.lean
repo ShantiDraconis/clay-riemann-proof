@@ -37,6 +37,10 @@ import ClayRiemannProof.BicomplexConditional
 import ClayRiemannProof.CenteredStabilityBridge
 import ClayRiemannProof.PrimeiroFora
 import ClayRiemannProof.PontesTotal
+import ClayRiemannProof.Lehmer
+import ClayRiemannProof.Paridade
+import ClayRiemannProof.Gram
+import ClayRiemannProof.QuartetoDesenhado
 
 /-!
 # Auditoria de axiomas
@@ -2208,3 +2212,134 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.QuartetoForcado.Q_quarteto_abstrato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.QuartetoForcado.Q_quarteto_abstrato
+
+/-! ## `ClayRiemannProof/Lehmer.lean` -/
+
+/-- info: 'ClayRiemannProof.Lehmer.csv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv
+
+/-- info: 'ClayRiemannProof.Lehmer.bernoulli_quatro_quintos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.bernoulli_quatro_quintos
+
+/-- info: 'ClayRiemannProof.Lehmer.acima_da_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.acima_da_reta
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_le_isolado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_le_isolado
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_ge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_ge
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_neg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_neg
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_escala' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_escala
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_x_de_gamma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_x_de_gamma
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_limite' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_limite
+
+/-- info: 'ClayRiemannProof.Lehmer.dif_bolas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.dif_bolas
+
+/-- info: 'ClayRiemannProof.Lehmer.csv_por_distancia' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.csv_por_distancia
+
+/-- info: 'ClayRiemannProof.Lehmer.aglomerado_052_053' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.aglomerado_052_053
+
+/-- info: 'ClayRiemannProof.Lehmer.par_mais_fragil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Lehmer.par_mais_fragil
+
+/-! ## `ClayRiemannProof/Paridade.lean` -/
+
+/-- info: 'ClayRiemannProof.Paridade.card_par_aux' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.card_par_aux
+
+/-- info: 'ClayRiemannProof.Paridade.NaJanela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.NaJanela
+
+/-- info: 'ClayRiemannProof.Paridade.NaReta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.NaReta
+
+/-- info: 'ClayRiemannProof.Paridade.Fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.Fora
+
+/-- info: 'ClayRiemannProof.Paridade.naJanela_finita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.naJanela_finita
+
+/-- info: 'ClayRiemannProof.Paridade.fora_finito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.fora_finito
+
+/-- info: 'ClayRiemannProof.Paridade.naReta_finita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.naReta_finita
+
+/-- info: 'ClayRiemannProof.Paridade.im_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.im_torcao
+
+/-- info: 'ClayRiemannProof.Paridade.torcao_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.torcao_fora
+
+/-- info: 'ClayRiemannProof.Paridade.torcao_ne' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.torcao_ne
+
+/-- info: 'ClayRiemannProof.Paridade.fora_par' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.fora_par
+
+/-- info: 'ClayRiemannProof.Paridade.janela_uniao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.janela_uniao
+
+/-- info: 'ClayRiemannProof.Paridade.contagem_soma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.contagem_soma
+
+/-- info: 'ClayRiemannProof.Paridade.furo_de_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.furo_de_dois
+
+/-- info: 'ClayRiemannProof.Paridade.contagem_fecha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.contagem_fecha
+
+/-! ## `ClayRiemannProof/Gram.lean` -/
+
+/-- info: 'ClayRiemannProof.Gram.S' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.S
+
+/-- info: 'ClayRiemannProof.Gram.S_gram' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.S_gram
+
+/-- info: 'ClayRiemannProof.Gram.S_gram_inteiro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.S_gram_inteiro
+
+/-- info: 'ClayRiemannProof.Gram.zeros_no_bloco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.zeros_no_bloco
+
+/-- info: 'ClayRiemannProof.Gram.Bom' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.Bom
+
+/-- info: 'ClayRiemannProof.Gram.bloco_par' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.bloco_par
+
+/-- info: 'ClayRiemannProof.Gram.aglomerado_rosser' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Gram.aglomerado_rosser
+
+/-! ## `ClayRiemannProof/QuartetoDesenhado.lean` -/
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.cota_07_mais' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.cota_07_mais
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.cota_03_mais' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.cota_03_mais
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.cota_07_menos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.cota_07_menos
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.cota_03_menos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.cota_03_menos
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.nao_zero_de_cota' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.nao_zero_de_cota
+
+/-- info: 'ClayRiemannProof.QuartetoDesenhado.quarteto_desenhado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.quarteto_desenhado

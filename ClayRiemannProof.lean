@@ -41,5 +41,9 @@ import ClayRiemannProof.BicomplexConditional
 import ClayRiemannProof.CenteredStabilityBridge
 import ClayRiemannProof.PrimeiroFora
 import ClayRiemannProof.PontesTotal
+import ClayRiemannProof.Lehmer
+import ClayRiemannProof.Paridade
+import ClayRiemannProof.Gram
+import ClayRiemannProof.QuartetoDesenhado
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
