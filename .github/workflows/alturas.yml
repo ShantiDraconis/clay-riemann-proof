@@ -1,9 +1,21 @@
 name: Alturas onde os pares ficam mais frageis
-# Janelas certificadas de zeros de ζ em 10¹⁴, 10¹⁶, 10¹⁷ e 10¹⁸ (uma tarefa por altura) (FLINT 3 / Arb, método local de Platt + contagem
-# de Turing), com os pares de Lehmer e a cota de Csordas–Smith–Varga de cada janela. Cálculo finito fora do kernel:
-# não muda OPEN_MATH. O resultado vai para a branch resultados-alturas.
+# Janelas certificadas de zeros de ζ (FLINT 3 / Arb, método local de Platt + contagem de Turing), com os pares de
+# Lehmer e a cota de Csordas–Smith–Varga de cada janela. Cálculo finito fora do kernel: não muda OPEN_MATH.
+# Três etapas, cada uma grava o que produziu assim que termina (nada se perde num corte de tempo):
+#   zeros    — uma tarefa por altura; a lista bruta vai para o disco depois de cada chamada da Arb e para a branch
+#              resultados-alturas no fim da tarefa;
+#   contagem — N(T_a) e N(T_b) em tarefas separadas, em paralelo, cada uma com o seu orçamento;
+#   junta    — confere índice, contagem e bolas; junta com o que já estava na branch (não apaga nenhuma altura).
+# 10¹⁴, 10¹⁶ e 10¹⁷ já estão certificadas (run 41588835957); por padrão roda só 10¹⁸.
 on:
   workflow_dispatch:
+    inputs:
+      alturas:
+        description: 'expoentes, lista JSON (ex.: ["17","18"])'
+        default: '["18"]'
+      n:
+        description: "zeros por janela"
+        default: "20000"
   push:
     branches: [main]
     paths:
@@ -12,21 +24,13 @@ on:
 permissions:
   contents: write
 jobs:
-  altura:
+  zeros:
     runs-on: ubuntu-24.04
     timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - e: 14
-            n: 20000
-          - e: 16
-            n: 20000
-          - e: 17
-            n: 20000
-          - e: 18
-            n: 20000
+        e: ${{ fromJSON(github.event.inputs.alturas || '["18"]') }}
     steps:
       - uses: actions/checkout@v4
       - name: FLINT 3 (com o Arb)
@@ -34,27 +38,72 @@ jobs:
           sudo apt-get update -q
           sudo apt-get install -y -q libflint-dev
       - name: compila
-        shell: bash
         run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
-      - name: janela em 10^${{ matrix.e }}
-        shell: bash
-        run: python3 computations/alturas/alturas.py ./zeros resultados 18500 ${{ matrix.e }} ${{ matrix.n }} 2>&1 | tee resultados-log-${{ matrix.e }}.txt
+      - name: zeros em 10^${{ matrix.e }}
+        run: python3 computations/alturas/alturas.py zeros ./zeros resultados 20000 ${{ matrix.e }} ${{ github.event.inputs.n || '20000' }} 2>&1 | tee log-zeros-${{ matrix.e }}.txt
       - name: estado como anotação
         if: always()
         run: |
-          python3 -c "import json;d=json.load(open('resultados/alturas_1e${{ matrix.e }}.json'));print(json.dumps([{k:v for k,v in j.items() if k not in ('estatistica','blocos')} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas-${{ matrix.e }}::/' || true
-          { grep -E -B2 -A6 "Traceback|Error|error" resultados-log-${{ matrix.e }}.txt compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=alturas-erro::/' || true
-      - name: guarda o log
+          python3 -c "import json;d=json.load(open('resultados/zeros_1e${{ matrix.e }}.json'));print(json.dumps({k:v for k,v in d.items() if k!='blocos'},ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas-zeros-${{ matrix.e }}::/' || true
+      - name: guarda
         if: always()
-        run: cp resultados-log-${{ matrix.e }}.txt resultados/ 2>/dev/null || true
+        run: |
+          mkdir -p resultados && cp log-zeros-${{ matrix.e }}.txt resultados/ 2>/dev/null || true
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: altura-${{ matrix.e }}
+          name: zeros-${{ matrix.e }}
           path: resultados/
-          retention-days: 14
+          retention-days: 30
+      - name: grava já na branch resultados-alturas
+        if: always()
+        run: python3 computations/grava_resultados.py resultados-alturas /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "alturas (zeros 1e${{ matrix.e }})"
+  contagem:
+    needs: zeros
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        e: ${{ fromJSON(github.event.inputs.alturas || '["18"]') }}
+        lado: [a, b]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: zeros-${{ matrix.e }}
+          path: zeros-${{ matrix.e }}
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: N(T_${{ matrix.lado }}) em 10^${{ matrix.e }}
+        run: python3 computations/alturas/alturas.py contagem ./zeros resultados 20000 ${{ matrix.e }} ${{ matrix.lado }} zeros-${{ matrix.e }} 2>&1 | tee log-contagem-${{ matrix.e }}-${{ matrix.lado }}.txt
+      - name: estado como anotação
+        if: always()
+        run: |
+          cat resultados/contagem_1e${{ matrix.e }}_${{ matrix.lado }}.json 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=alturas-contagem-${{ matrix.e }}-${{ matrix.lado }}::/' || true
+      - name: guarda
+        if: always()
+        run: |
+          mkdir -p resultados && cp log-contagem-*.txt resultados/ 2>/dev/null || true
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contagem-${{ matrix.e }}-${{ matrix.lado }}
+          path: resultados/
+          retention-days: 30
+      - name: grava já na branch resultados-alturas
+        if: always()
+        run: python3 computations/grava_resultados.py resultados-alturas /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "alturas (contagem 1e${{ matrix.e }} ${{ matrix.lado }})"
   junta:
-    needs: altura
+    needs: [zeros, contagem]
     if: always()
     runs-on: ubuntu-24.04
     steps:
@@ -62,25 +111,19 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: tarefas
-      - name: junta as alturas
-        run: python3 computations/alturas/junta.py tarefas resultados 2>&1 | tee junta.log
+      - name: o que já estava na branch
+        run: |
+          git fetch -q origin resultados-alturas:refs/remotes/origin/resultados-alturas || true
+          git show origin/resultados-alturas:alturas.json > existente.json 2>/dev/null || true
+      - name: fecha e junta
+        run: python3 computations/alturas/junta.py tarefas resultados existente.json 2>&1 | tee junta.log
       - name: estado como anotação
         if: always()
         run: |
-          python3 -c "import json;d=json.load(open('resultados/alturas.json'));print(json.dumps([{k:v for k,v in j.items() if k not in ('estatistica','blocos')} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas::/' || true
+          python3 -c "import json;d=json.load(open('resultados/alturas.json'));print(json.dumps([{k:v for k,v in j.items() if k not in ('estatistica','blocos','falhas','tentativas')} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas::/' || true
       - name: grava na branch resultados-alturas
         if: always()
         run: |
+          mkdir -p resultados && cp junta.log resultados/ 2>/dev/null || true
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
-          for d in tarefas/altura-*; do cp "$d"/*.txt "$d"/alturas_1e*.json /tmp/r/ 2>/dev/null || true; done
-          cp junta.log /tmp/r/ 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-alturas:refs/remotes/origin/resultados-alturas || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-alturas; then git checkout -q -f -B resultados-alturas origin/resultados-alturas; else git checkout -q --orphan resultados-alturas; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "alturas: run ${{ github.run_id }} (${{ github.sha }})" || true
-          git push -q origin resultados-alturas
+          python3 computations/grava_resultados.py resultados-alturas /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "alturas"
