@@ -1,0 +1,107 @@
+[
+{
+"indice_inicio": 12363154174780,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo",
+"par frágil"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363154479388,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo",
+"aglomeração"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363154480001,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo",
+"aglomeração"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363154499170
+},
+{
+"indice_inicio": 12363154357939
+},
+{
+"indice_inicio": 12363154011099
+},
+{
+"indice_inicio": 12363154118193
+},
+{
+"indice_inicio": 12363154206334
+},
+{
+"indice_inicio": 12363154309597
+},
+{
+"indice_inicio": 12363154324338
+},
+{
+"indice_inicio": 12363154355777
+},
+{
+"indice_inicio": 12363154473629
+},
+{
+"indice_inicio": 12363154003081
+},
+{
+"indice_inicio": 12363154356420
+},
+{
+"indice_inicio": 12363154369933
+},
+{
+"indice_inicio": 12363154456031
+},
+{
+"indice_inicio": 12363154490135
+},
+{
+"indice_inicio": 12363154006635
+},
+{
+"indice_inicio": 12363154113558
+},
+{
+"indice_inicio": 12363154354109
+},
+{
+"indice_inicio": 12363154091963
+},
+{
+"indice_inicio": 12363154168363
+},
+{
+"indice_inicio": 12363154314407
+},
+{
+"indice_inicio": 12363154317797
+},
+{
+"indice_inicio": 12363154337129
+}
+]
