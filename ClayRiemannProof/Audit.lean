@@ -43,6 +43,7 @@ import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
 import ClayRiemannProof.Continuacao
 import ClayRiemannProof.Forca
+import ClayRiemannProof.Empurrao
 
 /-!
 # Auditoria de axiomas
@@ -2405,3 +2406,32 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Forca.zeta_empurrada_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Forca.zeta_empurrada_quarteto
+
+/-! ## `ClayRiemannProof/Empurrao.lean` -/
+
+/-- info: 'ClayRiemannProof.Empurrao.fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora
+
+/-- info: 'ClayRiemannProof.Empurrao.fora_mono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora_mono
+
+/-- info: 'ClayRiemannProof.Empurrao.fora_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora_eq_zero_iff
+
+/-- info: 'ClayRiemannProof.Empurrao.limiar_da_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.limiar_da_janela
+
+/-- info: 'ClayRiemannProof.Empurrao.fora_total' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora_total
+
+/-- info: 'ClayRiemannProof.Empurrao.fora_uniao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora_uniao
+
+/-- info: 'ClayRiemannProof.Empurrao.fora_composta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.fora_composta
+
+/-- info: 'ClayRiemannProof.Empurrao.minimo_desce' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.minimo_desce
+
+/-- info: 'ClayRiemannProof.Empurrao.empurrao_fixo_acaba_tirando' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Empurrao.empurrao_fixo_acaba_tirando
