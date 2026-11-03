@@ -904,6 +904,14 @@ medida até agora é a da continuação contígua (seção 26): 2 054 383 zeros 
 `λ = −4,593·10⁻⁷`. A fórmula prevê `−1,6·10⁻⁶` para esse `N`; o par observado está 3,5 vezes mais perto de `0⁻`, dentro
 da flutuação do mínimo de 2 milhões de espaçamentos.
 
+**O que a primeira onda deu** (branch `resultados-fronteira`): 65 800 zeros, todos em 10¹⁸ (37 600 no deslocamento
+0 e 28 200 no deslocamento 10¹²; as tarefas de 10¹³, 10¹⁴ e 10¹⁶ pararam no retorno parcial e as de 10²⁰–10²² foram
+canceladas pelo tempo sem dados). O par mais frágil: zeros 6 144 758 226 908 699 989/…990, `γ ≈ 10¹⁸ + 3 899,320`,
+intervalo 0,004024, `s = 0,0254` (GUE para 37 600 espaçamentos: 0,0290), `λ = −8,10·10⁻⁶` contra `−1,05·10⁻⁵` previsto.
+No kernel, com as bolas da Arb (raio 2,4·10⁻³⁰) como hipótese: `−1,013·10⁻⁵ ≤ λ ≤ −8,09·10⁻⁶`
+(`Continuacao.par_mais_fragil_1e18`). É 4 vezes mais perto de `0⁻` que o par da seção 13 e 18 vezes mais longe que o
+da continuação (2 milhões de zeros): de novo, quem manda é `N`.
+
 **Zeros por segundo medidos e a escala escolhida** (um job, método local de Platt; o mérito é `N·ρ³` por hora):
 
 | altura | origem | zeros/s | `ρ` | mérito `N·ρ³`/h |
@@ -1028,6 +1036,7 @@ Gram, a condição de Lehmer `Δ²g ≤ 4/5`) e o kernel confere a aritmética.
 | unidades | em `x = c·γ`, `λ` vezes `c²`; de `γ` para `x = 2γ` (o tempo de de Bruijn), vezes 4 | `Lehmer.csv_escala`, `Lehmer.csv_x_de_gamma` |
 | par 052/053 do aglomerado | `−6,23·10⁻⁴ ≤ λ ≤ −4,98·10⁻⁴` para todo `g` | `Lehmer.aglomerado_052_053` |
 | par mais frágil (694/695) | `−3,99·10⁻⁵ ≤ λ ≤ −3,18·10⁻⁵` para todo `g` | `Lehmer.par_mais_fragil` |
+| par mais frágil da fronteira em 10¹⁸ | `λ ∈ [−1,013·10⁻⁵, −8,09·10⁻⁶]` | `Continuacao.par_mais_fragil_1e18` |
 | continuação contígua até `…822 471,5` | RH até 3 000 175 822 471 (condicional às janelas); par mais frágil `λ ∈ [−5,75·10⁻⁷, −4,59·10⁻⁷]` | `Continuacao.rhAteZ_continuacao`, `Continuacao.par_mais_fragil_continuacao` |
 | quarteto desenhado em `0,3 ± 14i`, `0,7 ± 14i` | `|ζ| ≥ 1/10` nos quatro pontos (avaliação certificada no kernel) | `QuartetoDesenhado.quarteto_desenhado` |
 
