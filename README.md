@@ -944,6 +944,27 @@ da continuação (2 milhões de zeros): de novo, quem manda é `N`.
 A escala de maior mérito é 10¹⁴. A onda do ataque (`varre2.py`, com a mesma correção do retorno parcial) varre 16
 janelas ali, com deslocamentos de 3·10¹² a 18·10¹² no índice, sem repetir as da fronteira.
 
+**A 2ª onda da fronteira** (run 41591657623, `varre.py` corrigido): 7 791 406 zeros em 16 janelas de 10¹³ a 10¹⁸,
+todos na reta. A tabela completa está em `RESUMO.md` da branch `resultados-fronteira`; a 1ª onda ficou em
+`historico/run-41557877448/`. O par mais frágil são os zeros 467 888 702 979 044/…045 (`γ ≈ 10¹⁴ + 13 241,144`):
+intervalo 0,0010522, `s = 0,0051` (o GUE espera 0,0123 para os 492 030 espaçamentos da janela),
+`λ = −5,536·10⁻⁷`, contra `−3,22·10⁻⁶` previsto. No kernel, com as bolas da Arb (raio 7,8·10⁻²⁹) como hipótese,
+`−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` (`Continuacao.par_mais_fragil_onda2`, branch `fronteira-onda2-teorema`, aguardando o
+CI do Lean). O 2º e o 3º pares vêm de 10¹⁶ (−7,79·10⁻⁷, e o par 54 118 226 280 296 885/886 da seção 18, −9,73·10⁻⁷).
+
+| conjunto | zeros | `λ` do par mais frágil |
+|---|---|---|
+| seção 13 (3·10¹²) | 41 393 | −3,19·10⁻⁵ |
+| fronteira, 1ª onda (10¹⁸) | 65 800 | −8,10·10⁻⁶ |
+| alturas, 10¹⁶ (seção 18) | 20 000 | −9,73·10⁻⁷ |
+| **fronteira, 2ª onda (10¹⁴)** | **7 791 406** | **−5,54·10⁻⁷** |
+| continuação (3·10¹²) | 2 054 383 | −4,59·10⁻⁷ |
+| recorde publicado (Saouter–Gourdon–Demichel 2011) | ≈ 10¹³ | −1,14541·10⁻¹¹ |
+
+Com 3,8 vezes mais zeros que a continuação, a 2ª onda não passou dela (−5,54 contra −4,59·10⁻⁷). O mínimo de cada
+varredura flutua muito em torno da lei de escala: na janela de 10¹⁴ ele saiu 6 vezes abaixo da previsão; na de 10¹⁷,
+no deslocamento 10¹², 1,9 vez acima.
+
 **O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
 `N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
 de alturas — nenhum quarteto escondido no lugar mais provável.
