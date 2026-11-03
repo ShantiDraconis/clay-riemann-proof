@@ -36,5 +36,6 @@ import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Turing
 import ClayRiemannProof.Colisao
 import ClayRiemannProof.Verification
+import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
