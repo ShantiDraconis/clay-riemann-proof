@@ -1,0 +1,49 @@
+name: Alturas onde os pares ficam mais frageis
+# Janelas certificadas de zeros de ζ em 10¹⁴, 10¹⁶, 10¹⁸, 10²⁰ e 10²² (FLINT 3 / Arb, método local de Platt + contagem
+# de Turing), com os pares de Lehmer e a cota de Csordas–Smith–Varga de cada janela. Cálculo finito fora do kernel:
+# não muda OPEN_MATH. O resultado vai para a branch resultados-alturas.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "computations/alturas/**"
+      - ".github/workflows/alturas.yml"
+permissions:
+  contents: write
+jobs:
+  alturas:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        shell: bash
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
+      - name: janelas nas alturas grandes
+        shell: bash
+        run: python3 computations/alturas/alturas.py ./zeros resultados 18000 2>&1 | tee alturas.log
+      - name: estado como anotação
+        if: always()
+        run: |
+          python3 -c "import json;d=json.load(open('resultados/alturas.json'));print(json.dumps([{k:v for k,v in j.items() if k!='estatistica'} for j in d['janelas']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=alturas::/' || true
+          { grep -E -B2 -A6 "Traceback|Error|error" alturas.log compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=alturas-erro::/' || true
+      - name: grava na branch resultados-alturas
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          cp compila.log alturas.log /tmp/r/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-alturas:refs/remotes/origin/resultados-alturas || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-alturas; then git checkout -q -f -B resultados-alturas origin/resultados-alturas; else git checkout -q --orphan resultados-alturas; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "alturas: run ${{ github.run_id }} (${{ github.sha }})" || true
+          git push -q origin resultados-alturas

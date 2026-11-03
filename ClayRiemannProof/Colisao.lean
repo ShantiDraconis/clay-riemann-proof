@@ -13,7 +13,8 @@ O modelo exato de um par isolado é `H_t(z) = z² − a² − 2t` (zeros `±a` e
 * `calor_t`, `calor_z`: satisfaz `∂ₜH = −2 = −∂²_z H`;
 * `zeros_reais_iff`: os dois zeros são reais exatamente para `t ≥ −a²/2`;
 * `colisao`: com a distância `Δ`, o tempo de colisão é `−Δ²/8`;
-* `mais_proximo_sai_depois`: quanto menor `Δ`, mais perto de `t = 0` o par sai da reta.
+* `mais_proximo_sai_depois`: quanto menor `Δ`, mais perto de `t = 0` o par sai da reta;
+* `raiz_quadrada`: passado o limiar, o par sai perpendicular à reta, a uma distância `√(2(t* − t))`.
 
 Para `ζ`, Csordas–Smith–Varga (1994) acrescentam os vizinhos: um par de Lehmer (`Δ²g < 4/5`) dá
 `Λ ≥ λ = ((1 − (5/4)Δ²g)^{4/5} − 1)/(8g) = −Δ²/8 + O(Δ⁴g)`. O termo principal é exatamente o `−Δ²/8` daqui.
@@ -88,6 +89,22 @@ theorem colisao (Δ t : ℝ) : (∀ z : ℂ, H2 (Δ / 2) t z = 0 → z.im = 0) �
 theorem mais_proximo_sai_depois {Δ₁ Δ₂ : ℝ} (h : |Δ₁| < |Δ₂|) : -(Δ₂ ^ 2) / 8 < -(Δ₁ ^ 2) / 8 := by
   have := sq_lt_sq.mpr h
   linarith
+
+/-- **Lei da raiz quadrada** (ponto excepcional): passado o tempo de colisão `t* = −a²/2`, o par sai da reta
+perpendicularmente, em `±i·√(2(t* − t))`: o afastamento cresce como a raiz da distância ao limiar. É a forma normal
+de toda colisão de dois zeros (fluxo do calor, ponto excepcional PT, colisão de Krein, Hopf): logo depois do limiar o
+afastamento é pequeno. -/
+theorem raiz_quadrada (a t : ℝ) (ht : t ≤ -(a ^ 2) / 2) :
+    H2 a t (I * (Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℂ)) = 0 ∧
+      (I * (Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℂ)).im = Real.sqrt (2 * (-(a ^ 2) / 2 - t)) := by
+  have hc : 0 ≤ 2 * (-(a ^ 2) / 2 - t) := by linarith
+  have hsq : ((Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℝ) : ℂ) ^ 2 = ((2 * (-(a ^ 2) / 2 - t) : ℝ) : ℂ) := by
+    rw [← ofReal_pow, Real.sq_sqrt hc]
+  refine ⟨?_, by simp⟩
+  unfold H2
+  have : (I * (Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℂ)) ^ 2 = -((2 * (-(a ^ 2) / 2 - t) : ℝ) : ℂ) := by
+    rw [mul_pow, hsq, I_sq]; ring
+  rw [this]; push_cast; ring
 
 /-- Em `t = 0` (a função de partida) os dois zeros estão na reta real, qualquer que seja a distância. -/
 theorem na_reta_em_zero (a : ℝ) : ∀ z : ℂ, H2 a 0 z = 0 → z.im = 0 :=

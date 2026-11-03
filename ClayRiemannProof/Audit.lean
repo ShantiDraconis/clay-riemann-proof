@@ -1986,6 +1986,9 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Colisao.na_reta_em_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Colisao.na_reta_em_zero
 
+/-- info: 'ClayRiemannProof.Colisao.raiz_quadrada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.raiz_quadrada
+
 /-- info: 'ClayRiemannProof.Verification.injetiva_de_derivada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Verification.injetiva_de_derivada
 

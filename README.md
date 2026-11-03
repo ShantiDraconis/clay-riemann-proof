@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 603 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (856 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 604 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (857 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -615,6 +615,7 @@ theorem calor_z : deriv (deriv (fun w => H2 a t w)) z = 2              -- ∂²_
 theorem zeros_reais_iff : (∀ z, H2 a t z = 0 → z.im = 0) ↔ -(a ^ 2) / 2 ≤ t
 theorem colisao : (∀ z, H2 (Δ / 2) t z = 0 → z.im = 0) ↔ -(Δ ^ 2) / 8 ≤ t   -- tempo de colisão −Δ²/8
 theorem mais_proximo_sai_depois (h : |Δ₁| < |Δ₂|) : -(Δ₂ ^ 2) / 8 < -(Δ₁ ^ 2) / 8
+theorem raiz_quadrada (ht : t ≤ -(a ^ 2) / 2) : H2 a t (I * √(2(−a²/2 − t))) = 0 ∧ … .im = √(2(−a²/2 − t))
 ```
 
 **O mecanismo** (kernel): no fluxo do calor de de Bruijn, um zero só sai da reta colidindo com o vizinho; um par a
@@ -652,7 +653,7 @@ zeros fora, a maior parte estaria perto da reta, num par de Lehmer forte, numa a
 `Λ ≥ 0` já é teorema. O modelo de dois zeros é exato só para um par isolado. `OPEN_MATH = true`.
 **Origem**: de Bruijn (1950), Newman (1976), Csordas–Smith–Varga (1994), Montgomery (1973), Odlyzko (1987),
 Rodgers–Tao (2018), Mossinghoff–Trudgian–Yang (2022); a lei da colisão no kernel, nova. **Axiomas**:
-`[propext, Classical.choice, Quot.sound]` (7 guardas).
+`[propext, Classical.choice, Quot.sound]` (8 guardas).
 
 ## 17. Unicidade por simetria: verificar zeros na reta sem contar zeros (teorema)
 
@@ -689,6 +690,56 @@ encontram. O lado dos zeros, `Σ_ρ 1/(s − ρ)`, é o produto de Hadamard (se�
 `OPEN_MATH = true`.
 **Origem**: argumento clássico de simetria; formalização nova. **Axiomas**: `[propext, Classical.choice,
 Quot.sound]` (8 guardas).
+
+## 17. A teia: a mesma colisão em todas as áreas e a escala em que um quarteto apareceria
+
+Arquivos: `computations/alturas/alturas.py`, `.github/workflows/alturas.yml` (resultado na branch
+`resultados-alturas`).
+
+**A teia.** Em cada área há uma trava que segura os zeros (ou autovalores) numa reta ou num círculo, e só duas
+saídas quando ela cai:
+
+| área | trava | saída quando a trava cai | no kernel |
+|---|---|---|---|
+| curvas sobre corpos finitos | positividade (Weil, Deligne) | nenhuma: RH provada | — |
+| grafos, química (Ihara) | `λ² ≤ 4q` (Ramanujan) | eixo real (escada `C_n × K₂`, `n = 20`: `s = 0,8286`) | `ihara_ramanujan`, `ihara_fora_real` |
+| Lee–Yang | ferromagnetismo `J ≥ 0` | eixo real (antiferro) | `lee_yang_ferro` |
+| Selberg | `λ ≥ ¼` | eixo real (autovalor excepcional) | `linha_iff_quarto`, `excepcional` |
+| quântica PT, Krein, Hopf | PT não quebrada / assinatura definida | colisão de dois níveis → par complexo (ponto excepcional) | `raiz_quadrada` |
+| fase linear FIR | nenhuma | quarteto `z, 1/z, z̄, 1/z̄` sempre | `quarteto_abstrato` |
+| Davenport–Heilbronn, Epstein `h > 1` | sem produto de Euler | zeros fora da reta (DH: `0,8085 + 85,699i`) | `simetria_nao_basta_abstrata` |
+| `ζ` | ? (é RH) | eixo real fechado (`zeta_sem_saida_real`); sobra a colisão | `colisao`, `quarteto_abstrato` |
+
+Fechada a saída real, um zero de `ζ` só sairia da reta por **colisão de dois zeros vizinhos**, e a colisão tem a
+mesma forma normal em todas as áreas: no limiar os dois se fundem, e depois saem perpendiculares à reta a uma
+distância `√(2(t* − t))` (`raiz_quadrada`). Com a simetria `w ↦ −w` da equação funcional, o par vira o quarteto
+`½ ± b ± iγ`.
+
+**A escala.** O par mais frágil de uma janela de `N` zeros na altura `T` tem, pela repulsão do GUE e pela cota de
+Csordas–Smith–Varga,
+
+    λ ≈ −s_min² / (2ρ²),   ρ = log(T/2π)/2π,   s_min ≈ (9/(π²N))^{1/3}.
+
+Na faixa da seção 13 (`N = 41 393`, `T ≈ 3·10¹²`) a fórmula com o `s_min` observado (0,0342) dá `−3,19·10⁻⁵`, igual
+ao `λ` de Csordas–Smith–Varga do par 12 363 153 465 694. `λ` vai a 0⁻ como `N^{−2/3}(log T)^{−2}`: o tamanho da
+varredura pesa mais que a altura. Previsão para as janelas do workflow:
+
+| altura | `N` | `ρ` | `s_min` (GUE) | `λ` previsto |
+|---|---|---|---|---|
+| 10¹⁴ | 20 000 | 4,838 | 0,0357 | −2,7·10⁻⁵ |
+| 10¹⁶ | 20 000 | 5,571 | 0,0357 | −2,1·10⁻⁵ |
+| 10¹⁸ | 20 000 | 6,304 | 0,0357 | −1,6·10⁻⁵ |
+| 10²⁰ | 10 000 | 7,037 | 0,045 | −2,1·10⁻⁵ |
+| 10²² | 10 000 | 7,770 | 0,045 | −1,7·10⁻⁵ |
+
+**A faixa provável, se existisse um quarteto**: altura além da verificada; no par de menor `s` de uma varredura
+grande (é lá que `λ` chega mais perto de 0); com `β − ½` pequeno, porque logo depois do limiar o afastamento é
+`√(2(t* − t))`. Cada janela do workflow certifica a contagem (`N(T_b) − N(T_a) = N`) e lista os pares mais frágeis.
+
+**O que NÃO é**: a fórmula de escala é heurística (GUE + o termo principal de CSV), não teorema; ela diz onde olhar,
+não que exista algo. `λ < 0` em todos os pares medidos e `Λ ≥ 0` é teorema. `OPEN_MATH = true`.
+**Origem**: Csordas–Smith–Varga (1994), Montgomery (1973), Odlyzko (1987), Rodgers–Tao (2018); a tabela da teia junta
+resultados clássicos de cada área; a lei da raiz quadrada no kernel, nova.
 
 ## Autor
 
