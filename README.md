@@ -875,8 +875,8 @@ O teorema `window_on_line_from_certificates` compõe três insumos finitos:
 2. retângulos nos quais um certificado de `peca_ret` prova uma cota inferior positiva para `|ζ|`;
 3. cobertura racional da janela por bolas ou retângulos.
 
-Da cobertura e da cota positiva, todo zero da janela tem de estar numa bola. A simetria `s ↦ 1 − s̄` e a injetividade então colocam esse zero na reta. O lema `zeroFreeRect_of_peca_ret` encaixa a conclusão do certificado retangular na estrutura consumida pela composição.
+Da cobertura e da cota positiva, todo zero da janela tem de estar numa bola. A simetria `s ↦ 1 − s̄` e a injetividade então colocam esse zero na reta. O lema `zeroFreeRect_of_peca_ret` encaixa a conclusão do certificado retangular na estrutura consumida pela composição. O lema `injOn_of_second_derivative_bound` converte uma cota uniforme certificada de `|ζ''|le M) numa bola de raio `r), com `Mr<|ζ'(c)|`, em injetividade de `ζ) nessa bola.
 
 **Estado:** o contrato e a composição estão no kernel e incluídos na auditoria de axiomas. Ainda não há uma instanciação com as 41.393 bolas Arb da janela publicada: faltam os certificados concretos de injetividade por bola e a cobertura/exclusão do complemento dentro do Lean. Portanto a janela numérica segue fora do kernel e `OPEN_MATH = true`. Esta ponte não usa Hadamard e não prova RH global.
 
-A contagem de guardas do kernel sobe em uma declaração nesta branch; os números anteriores continuam associados aos commits anteriores.
+A contagem de guardas do kernel sobe em duas declarações nesta branch; os números anteriores continuam associados aos commits anteriores.
