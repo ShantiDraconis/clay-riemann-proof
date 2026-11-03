@@ -962,8 +962,8 @@ CI do Lean). O 2º e o 3º pares vêm de 10¹⁶ (−7,79·10⁻⁷, e o par 54 
 | recorde publicado (Saouter–Gourdon–Demichel 2011) | ≈ 10¹³ | −1,14541·10⁻¹¹ |
 
 Com 3,8 vezes mais zeros que a continuação, a 2ª onda não passou dela (−5,54 contra −4,59·10⁻⁷). O mínimo de cada
-varredura flutua muito em torno da lei de escala: na janela de 10¹⁴ ele saiu 6 vezes abaixo da previsão; na de 10¹⁷,
-no deslocamento 10¹², 1,9 vez acima.
+varredura flutua muito em torno da lei de escala: na janela de 10¹⁴ ele ficou 6 vezes mais perto de `0⁻` que a
+previsão; na de 10¹⁷, no deslocamento 10¹², 1,9 vez mais longe.
 
 **O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
 `N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
