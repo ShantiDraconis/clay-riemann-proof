@@ -1474,7 +1474,15 @@ extensão (`−4,59·10⁻⁷`). No kernel: `−3,35·10⁻⁷ ≤ λ ≤ −2,6
 até **3 000 178 702 471,5**, com 12 326 300 zeros, todos na reta, as 24 colagens conferindo e déficit 0 em cada
 faixa. Somando tudo, ficam 3 369 671,5 unidades e 14 422 076 zeros acima do recorde publicado. A faixa 23 trouxe um
 par ainda mais perto da colisão: os zeros 12 363 167 808 945/…946 (`γ ≈ 3 000 178 690 726,1623`), a 0,00061840 um do
-outro, `s = 0,0026`, `λ = −1,912·10⁻⁷`. As faixas 24–35, a partir do mesmo `C0`, estão rodando.
+outro, `s = 0,0026`, `λ = −1,912·10⁻⁷`.
+
+**Faixas 24–35** (run 41690164119; colagem conjunta em `de_3000175822471.5/juntas_0-35/`): as 36 faixas juntas vão
+até **3 000 180 142 471,5**, com 18 489 450 zeros, todos na reta, as 36 colagens conferindo e déficit 0 em cada
+faixa (`N(3 000 180 142 471,5) = 12 363 174 022 364`). Somando tudo, ficam 4 809 671,5 unidades e 20 585 226 zeros
+acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil. No kernel, com a terceira janela como
+hipótese nomeada: `Continuacao.rhAteZ_continuacao3` e `par_mais_fragil_continuacao3`
+(`−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`; branch `continuacao-0-35`, aguardando o CI do Lean). As faixas 36–44, a partir
+do mesmo `C0`, estão rodando.
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
