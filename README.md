@@ -740,6 +740,26 @@ alcance deste método num runner de 6 h (a fronteira, seção 23, varre essas al
 chamada. O workflow roda uma tarefa por altura (10¹⁴, 10¹⁶, 10¹⁷, 10¹⁸) em paralelo e `junta.py` monta o
 `alturas.json`.
 
+**O segundo run (41588835957) certificou 10¹⁴, 10¹⁶ e 10¹⁷.** Em cada uma, 20 000 zeros consecutivos todos na reta.
+O índice do primeiro zero confere com `N(T_a)`, `N(T_b) − N(T_a) = 20 000` pela contagem de Turing intervalar
+(contagem fechando: nenhum zero fora da reta em `T_a < Im s ≤ T_b`), e as bolas são disjuntas. Resultado na branch
+`resultados-alturas` (`alturas.json`, `alturas_1eXX.json`, `zeros_1eXX.csv.gz`):
+
+| altura | `T_a` | `N(T_a)` | `N(T_b)` | maior raio | `s_min` (GUE: 0,0357) | var. de `s` (GUE: 0,1781) | `λ` do par mais frágil | previsto | zeros / contagem (s) |
+|---|---|---|---|---|---|---|---|---|---|
+| 10¹⁴ | 99 999 999 999 999,53 | 467 888 702 914 981 | …934 981 | 7,6·10⁻³ | 0,0323 | 0,1797 | −2,23·10⁻⁵ | −2,7·10⁻⁵ | 731 / 89 |
+| 10¹⁶ | 9 999 999 999 999 999,67 | 54 118 226 280 292 476 | …312 476 | 6,2·10⁻³ | **0,0078** | 0,1761 | **−9,73·10⁻⁷** | −2,1·10⁻⁵ | 1 299 / 1 116 |
+| 10¹⁷ | 99 999 999 999 999 999,67 | 577 829 042 746 896 153 | …916 153 | 8,5·10⁻⁴ | 0,0401 | 0,1783 | −2,28·10⁻⁵ | −1,8·10⁻⁵ | 6 341 / 3 053 |
+| 10¹⁸ | — | — | — | — | — | — | — | −1,6·10⁻⁵ | 10 891 / > 3 580 |
+
+Em 10¹⁶ o par 54 118 226 280 296 885/886 está a 0,0013949 um do outro (`s = 0,0078`, um quinto do mínimo esperado
+pelo GUE em 20 000 zeros). É o mais perto da colisão entre as três janelas e 21 vezes mais perto de `0⁻` que a
+previsão. Mesmo assim fica 2 vezes mais longe que o par da continuação em 3·10¹² (`−4,59·10⁻⁷`, em 2 milhões de
+zeros). As variâncias dos espaçamentos ficam a 1% da de Wigner (GUE) nas três alturas. Em 10¹⁸ a Arb achou os
+20 002 zeros (em 10 891 s), mas a contagem de Turing em `T_b` passou do limite de 3 580 s por chamada; sem ela a
+janela não fecha, e a lista não foi gravada. As faixas de `λ` dos três pares, com as bolas da Arb como hipótese,
+estão em `ClayRiemannProof/Alturas.lean` (branch `alturas-teoremas`, aguardando o CI do Lean).
+
 **A faixa provável, se existisse um quarteto**: altura além da verificada; no par de menor `s` de uma varredura
 grande (é lá que `λ` chega mais perto de 0); com `β − ½` pequeno, porque logo depois do limiar o afastamento é
 `√(2(t* − t))`. Cada janela do workflow certifica a contagem (`N(T_b) − N(T_a) = N`) e lista os pares mais frágeis.
