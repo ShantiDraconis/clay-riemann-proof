@@ -48,11 +48,16 @@ def bola(s):
 
 
 def platt(n, k):
+    """Zeros n, n+1, … (até k). O método local de Platt devolve menos zeros que o pedido quando o pedido é grande
+    (7 503 de 10 000 em 10¹³ no run 41557877448): fica com o que veio, sem os MARGEM da ponta (sem margem)."""
+    tempo = max(60, min(3 * 3600, ORC - (time.time() - INICIO)))
     r = subprocess.run([BIN, "platt", str(n - MARGEM), str(k + 2 * MARGEM), "320"], capture_output=True, text=True,
-                       timeout=3 * 3600)
+                       timeout=tempo)
     if r.returncode:
         raise RuntimeError(r.stderr[-300:])
-    return [bola(z) for z in json.loads(r.stdout)["zeros"]][MARGEM:MARGEM + k]
+    todos = [bola(z) for z in json.loads(r.stdout)["zeros"]]
+    fim = MARGEM + k if len(todos) >= k + 2 * MARGEM else len(todos) - MARGEM
+    return todos[MARGEM:fim] if fim > MARGEM else []
 
 
 def t_colisao(D, Frel):
@@ -128,7 +133,7 @@ while time.time() - INICIO < ORC and seguidas < 5:
     t0 = time.time()
     try:
         zs = platt(n, BLOCO)
-        if len(zs) < BLOCO:
+        if len(zs) < 2 * VIZ + 2:
             raise RuntimeError(f"{len(zs)} de {BLOCO} zeros")
     except Exception as ex:  # noqa: BLE001
         seguidas += 1
@@ -137,11 +142,13 @@ while time.time() - INICIO < ORC and seguidas < 5:
         n += BLOCO - 2 * VIZ
         continue
     seguidas = 0
+    L = len(zs)
     g0 = zs[0][0]
     x = [2 * float(m - g0) for m, _ in zs]
     estado["maior_raio"] = str(max(Decimal(estado["maior_raio"]), max(r for _, r in zs)))
-    # pares do miolo [VIZ, BLOCO − VIZ): cada par aparece no miolo de exatamente um bloco
-    for k in range(VIZ, BLOCO - VIZ):
+    # pares do miolo [VIZ, L − VIZ − 1): cada par aparece no miolo de exatamente um bloco (o próximo começa em
+    # n + L − 2·VIZ − 1); o par k usa os zeros k − VIZ … k + 1 + VIZ, todos dentro do bloco
+    for k in range(VIZ, L - VIZ - 1):
         gap = (x[k + 1] - x[k]) / 2
         s = gap * rho
         estado["hist_s"][min(int(s / 0.1), 39)] += 1
@@ -172,7 +179,7 @@ while time.time() - INICIO < ORC and seguidas < 5:
         topo.sort(key=lambda c: -c["lambda_CSV"])
         del topo[TOPO:]
     try:
-        q = quebras_do_bloco(n, zs, VIZ, BLOCO - VIZ)
+        q = quebras_do_bloco(n, zs, VIZ, L - VIZ - 1)
         estado["gram"] += q["gram"]
         estado["gram_ruins"] += q["ruins"]
         estado["gram_fora_da_lei"] += q["fora_da_lei"]
@@ -184,16 +191,16 @@ while time.time() - INICIO < ORC and seguidas < 5:
             estado["S_min"] = [q["S_min"], q["S_min_indice"]]
     except Exception as ex:  # noqa: BLE001
         estado["falhas"].append({"n": str(n), "erro_gram": str(ex)[:200]})
-    estado["zeros_varridos"] += BLOCO - 2 * VIZ
+    estado["zeros_varridos"] += L - 2 * VIZ - 1
     estado["blocos"] += 1
-    estado["ultimo_indice"] = str(n + BLOCO - VIZ)
-    estado["ultimo_gamma"] = str(zs[BLOCO - VIZ][0])
+    estado["ultimo_indice"] = str(n + L - VIZ - 1)
+    estado["ultimo_gamma"] = str(zs[L - VIZ - 1][0])
     estado["s_min"] = smin
     estado["segundos_por_bloco"] = round(time.time() - t0, 1)
     estado["topo"] = topo
     estado["segundos"] = round(time.time() - INICIO, 1)
     json.dump(estado, open(SAIDA, "w"), ensure_ascii=False, indent=1)
-    n += BLOCO - 2 * VIZ
+    n += L - 2 * VIZ - 1
 estado["topo"] = topo
 estado["segundos"] = round(time.time() - INICIO, 1)
 json.dump(estado, open(SAIDA, "w"), ensure_ascii=False, indent=1)

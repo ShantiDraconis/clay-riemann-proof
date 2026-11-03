@@ -904,6 +904,18 @@ medida até agora é a da continuação contígua (seção 26): 2 054 383 zeros 
 `λ = −4,593·10⁻⁷`. A fórmula prevê `−1,6·10⁻⁶` para esse `N`; o par observado está 3,5 vezes mais perto de `0⁻`, dentro
 da flutuação do mínimo de 2 milhões de espaçamentos.
 
+**Zeros por segundo medidos e a escala escolhida** (um job, método local de Platt; o mérito é `N·ρ³` por hora):
+
+| altura | origem | zeros/s | `ρ` | mérito `N·ρ³`/h |
+|---|---|---|---|---|
+| 3·10¹² | continuação contígua (513 596 zeros por faixa) | 44,0 | 4,280 | 1,24·10⁷ |
+| 10¹⁴ | alturas, run 41554617926 (8 048 zeros numa chamada) | 51,1 | 4,838 | **2,08·10⁷** |
+| 10¹⁶ | idem (8 664 zeros) | 25,8 | 5,571 | 1,61·10⁷ |
+| 10¹⁸ | idem (17 848 zeros) | 3,6 | 6,304 | 3,3·10⁶ |
+
+A escala de maior mérito é 10¹⁴. A onda do ataque (`varre2.py`, com a mesma correção do retorno parcial) varre 16
+janelas ali, com deslocamentos de 3·10¹² a 18·10¹² no índice, sem repetir as da fronteira.
+
 **O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
 `N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
 de alturas — nenhum quarteto escondido no lugar mais provável.
