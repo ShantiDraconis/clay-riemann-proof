@@ -1757,6 +1757,23 @@ Para `ζ` (`t = 0`) uma colisão seria um zero duplo na reta, e nos 14,4 milhõe
 `6,18·10⁻⁴` (bolas disjuntas). Pela lei da cauda, os pares chegam cada vez mais perto conforme `n` cresce (seção 33),
 mas o par mais próximo só tende a 0 no limite; nenhum zero múltiplo de `ζ` é conhecido.
 
+**Nas escalas gigantes** (`computations/gigantes/quase_encontros_gigantes.py` e `.json`; leis e previsão GUE, nenhum
+zero calculável lá — um único valor de `Z(t)` em `10^1000000` pede `10^499 999,6` termos):
+
+| altura `T` | par mais próximo entre todos os zeros até `T`: `s` | `Δγ` | `λ` | pares com `s < 10⁻⁶` | `w` |
+|---|---|---|---|---|---|
+| `10^10000` | `10^−3 334,6` | `10^−3 338,2` | `−10^−6 676,6` | `10^9 985,6` | `1,0·10⁻⁵` |
+| `10^111111` | `10^−37 038,6` | `10^−37 043,2` | `−10^−74 086,7` | `10^111 097,6` | `1,9·10⁻⁶` |
+| `10^1000000` | `10^−333 335,3` | `10^−333 340,8` | `−10^−666 681,9` | `10^999 987,6` | `4,2·10⁻⁷` |
+| `((10^10⁶)^111111)^10000 = 10^(1,11·10¹⁵)` | `10^(−3,70·10¹⁴)` | `10^(−3,70·10¹⁴)` | `−10^(−7,41·10¹⁴)` | `10^(1,11·10¹⁵)` | `2,9·10⁻¹³` |
+| torre `10^10⁶^111111^10000 = 10^10^10^50458,35` | `10^(−⅓·10^10^50458,35)` | idem | `−10^(−⅔·10^10^50458,35)` | `≈ N(T)` | `10^(−⅔·10^50458,35)` |
+
+Em toda escala finita o par mais próximo tem distância positiva: há só `N(T)` zeros até `T`, e `N(T)` os conta com
+multiplicidade; um encontro seria um zero duplo, contado duas vezes, nunca um sumiço. Os quase-encontros ficam
+astronomicamente numerosos e apertados (em `10^1000000`, `10^999 987` pares com `s < 10⁻⁶`), a cauda continua cúbica em
+unidades normalizadas, e um zero fora da reta continuaria permitido em quase toda a faixa (`b < ½ − w`). Na torre,
+`S(T)` típico já é `10^25 228,7`.
+
 **O que NÃO é**: cauda e mínimos são estatística dos dados (fora do kernel). Os teoremas de §6 são sobre o modelo de
 dois zeros, não sobre `ζ`. `OPEN_MATH = true`.
 
