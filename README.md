@@ -1449,6 +1449,22 @@ No kernel, os teoremas desta faixa estão em `ClayRiemannProof/Continuacao.lean`
 **A próxima execução** começa onde esta terminou: `inicio.json` tem `C0 = 3 000 175 822 471,5` e
 `N(C0) = 12 363 155 532 914`, e a faixa 0 recalcula esse `N` para colar. Resultados em `resultados-continuacao/de_<C0>/`.
 
+**A segunda extensão: 16 faixas, até 3 000 177 742 471,5** (runs 41632268598 e 41652868086; branch
+`resultados-continuacao`, pastas `de_3000175822471.5/` e `de_3000175822471.5/faixas_4-15/`; colagem conjunta em
+`de_3000175822471.5/juntas_0-15/`). As faixas 0 a 15, de 120 000 unidades cada, cobrem
+`3 000 175 822 471,5 < Im s ≤ 3 000 177 742 471,5` com **8 217 533 zeros, todos na reta**. `N(T)` é exato nas 17
+pontas (`N(3 000 177 742 471,5) = 12 363 163 750 447`), as 16 colagens conferem (inclusive a 3→4, entre os dois runs)
+e o déficit é 0 em cada faixa. Com Platt–Trudgian, a seção 13 e a primeira extensão, isso é RH conferida até
+**3 000 177 742 471,5**: 2 409 671,5 unidades e 10 313 309 zeros acima do recorde publicado (3 000 175 332 800).
+É cálculo certificado com aritmética intervalar, não verificação publicada. No kernel, com as janelas como
+hipóteses nomeadas: `Continuacao.rhAteZ_continuacao2` e `Continuacao.primeiro_fora_acima_continuacao2` (branch
+`continuacao-0-15`, aguardando o CI do Lean).
+
+O par mais frágil das 16 faixas é o mais perto da colisão em todos os dados: zeros 12 363 161 233 435/…436
+(`γ ≈ 3 000 177 154 379,729`), a 0,00073130 um do outro, `s = 0,0031`, `λ = −2,674·10⁻⁷`. Ele bate o da primeira
+extensão (`−4,59·10⁻⁷`). No kernel: `−3,35·10⁻⁷ ≤ λ ≤ −2,67·10⁻⁷` (`Continuacao.par_mais_fragil_continuacao2`).
+As faixas 16–23 e 24–35, a partir do mesmo `C0`, estão rodando.
+
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
 (teorema de Csordas–Smith–Varga, fora do kernel), mas Rodgers–Tao provaram `Λ ≥ 0`, e por pares de Lehmer já se tinha
