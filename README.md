@@ -965,6 +965,17 @@ Com 3,8 vezes mais zeros que a continuação, a 2ª onda não passou dela (−5,
 varredura flutua muito em torno da lei de escala: na janela de 10¹⁴ ele ficou 6 vezes mais perto de `0⁻` que a
 previsão; na de 10¹⁷, no deslocamento 10¹², 1,9 vez mais longe.
 
+**A onda em 10¹⁴** (run 41594905434, `varre2.py`): 16 janelas com deslocamentos de 3·10¹² a 18·10¹² no índice, 8 661 651
+zeros, todos na reta, contagem sem nenhum zero fora da reta em cada janela. Ela teve 1 109 violações da regra de
+Rosser, 21,6% de pontos de Gram ruins e `S` entre −2,35 e +2,43 (5,8 desvios). O par mais frágil são os zeros
+472 888 703 009 302/…303 (`γ ≈ 1,0103·10¹⁴`): intervalo 0,0012132, `s = 0,0059` (GUE: 0,0121), `λ = −7,36·10⁻⁷`
+contra `−3,13·10⁻⁶` previsto. No kernel, com as bolas da Arb (raio 6,9·10⁻²⁸): `−9,20·10⁻⁷ ≤ λ ≤ −7,35·10⁻⁷`
+(`Continuacao.par_mais_fragil_onda_1e14`, mesma branch, aguardando o CI). Somando a onda e a 2ª onda da fronteira,
+foram 16,5 milhões de zeros em 10¹³–10¹⁸ sem nenhum fora da reta. O par mais perto de `0⁻` continua sendo o da
+continuação (−4,59·10⁻⁷), seguido do de 10¹⁴ da fronteira (−5,54·10⁻⁷) e do desta onda (−7,36·10⁻⁷). O recorde
+publicado, −1,14541·10⁻¹¹, veio de cerca de 10¹³ zeros: pela lei de escala, chegar perto dele pede da ordem de 10⁶
+vezes mais zeros do que os varridos aqui. O ataque local desse run foi cortado pelo tempo (cancelado depois de 5 h).
+
 **O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
 `N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
 de alturas — nenhum quarteto escondido no lugar mais provável.
