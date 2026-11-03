@@ -45,9 +45,21 @@ jobs:
       - name: ataque
         shell: bash
         run: python3 computations/ataque/ataque.py ./zeros entrada resultados 2>&1 | tee ataque.log
+      - name: quebras de tendência (Gram, Rosser, S(t), extremos, λ ≥ 0) em todas as listas completas
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p entrada/listas resultados/quebras
+          git show origin/resultados-zeros:zeros_faixa.csv.gz > entrada/listas/faixa_3e12.csv.gz 2>/dev/null || true
+          for f in $(git ls-tree --name-only origin/resultados-alturas 2>/dev/null | grep -E "^zeros_1e[0-9]+\.csv\.gz$"); do git show origin/resultados-alturas:$f > entrada/listas/$f; done
+          for f in entrada/listas/*.csv.gz; do [ -s "$f" ] && python3 computations/quebras/quebras.py "$f" "resultados/quebras/$(basename $f .csv.gz).json" "$(basename $f .csv.gz)" > /dev/null 2>&1 || true; done
+          python3 computations/quebras/resumo.py resultados/QUEBRAS.md resultados/quebras/*.json entrada/varreduras/*.json 2>&1 | tail -20
       - name: resumo como anotação
         if: always()
-        run: tail -16 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=ataque::/' || true
+        run: |
+          tail -16 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=ataque::/' || true
+          echo
+          head -30 resultados/QUEBRAS.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=quebras::/' || true
       - name: grava na branch resultados-ataque
         if: always()
         run: |
@@ -86,7 +98,7 @@ jobs:
         run: |
           set -- ${{ matrix.alvo }}
           mkdir -p saida
-          python3 computations/fronteira/varre.py ./zeros "saida/varre_$1_$2.json" "$1" "$2" "${{ github.event.inputs.orcamento }}" 10000 2>&1 | tail -5
+          python3 computations/ataque/varre2.py ./zeros "saida/varre_$1_$2.json" "$1" "$2" "${{ github.event.inputs.orcamento }}" 10000 2>&1 | tail -5
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -106,10 +118,15 @@ jobs:
           pattern: onda-*
           path: varreduras
       - name: junta
-        run: python3 computations/fronteira/agrega.py varreduras resultados 2>&1 | tee junta.log
+        run: |
+          python3 computations/fronteira/agrega.py varreduras resultados 2>&1 | tee junta.log
+          python3 computations/quebras/resumo.py resultados/QUEBRAS.md $(find varreduras -name "*.json") 2>&1 | tail -20
       - name: resumo como anotação
         if: always()
-        run: head -12 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=onda::/' || true
+        run: |
+          head -12 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=onda::/' || true
+          echo
+          head -24 resultados/QUEBRAS.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=quebras::/' || true
       - name: grava na branch resultados-onda
         if: always()
         run: |

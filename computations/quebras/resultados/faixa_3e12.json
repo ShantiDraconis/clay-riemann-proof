@@ -1,0 +1,88 @@
+{
+ "rotulo": "faixa T_PT…g_b+5000",
+ "zeros": 41393,
+ "primeiro_indice": 12363153437139,
+ "ultimo_indice": 12363153478531,
+ "faixa": [
+  "3000175332800.28652418241302548",
+  "3000175342471.33927432440709622"
+ ],
+ "altura_media": 3000175337636.0586,
+ "1_contagem": {
+  "zeros_fora_da_reta_na_lista": 0,
+  "nota": "a Arb devolve cada zero com o índice fixado pela contagem de Turing: N(t) = zeros na reta"
+ },
+ "2_lei_de_gram": {
+  "pontos_de_gram": 41392,
+  "pontos_ruins": 8522,
+  "fracao_pontos_ruins": 0.20588519520680323,
+  "intervalos_fora_da_lei": 12266,
+  "fracao_intervalos_fora_da_lei": 0.29634461597931916,
+  "zeros_por_intervalo": {
+   "0": 6172,
+   "1": 29125,
+   "2": 6017,
+   "3": 77
+  },
+  "pontos_ambiguos": []
+ },
+ "3_regra_de_rosser": {
+  "blocos": 32869,
+  "comprimento_dos_blocos": {
+   "1": 26775,
+   "2": 4386,
+   "3": 1191,
+   "5": 132,
+   "4": 354,
+   "6": 26,
+   "7": 3,
+   "8": 1,
+   "9": 1
+  },
+  "violacoes": [
+   {
+    "m_inicio": 12363153449050,
+    "m_fim": 12363153449051,
+    "comprimento": 1,
+    "zeros": 3,
+    "g_inicio": "3000175335583.64425247414288835330202919041459864001759611347",
+    "g_fim": "3000175335583.87789923090477808218374370719165019392351805188"
+   },
+   {
+    "m_inicio": 12363153449051,
+    "m_fim": 12363153449053,
+    "comprimento": 2,
+    "zeros": 0,
+    "g_inicio": "3000175335583.87789923090477808218374370719165019392351805188",
+    "g_fim": "3000175335584.34519274442855551005008306297696543509031124465"
+   }
+  ],
+  "n_violacoes": 2
+ },
+ "4_S_de_t": {
+  "max_S": 2.040888754727864,
+  "em_zero": 12363153449054,
+  "gamma": "3000175335583.86834570597458032",
+  "min_S": -1.9810967910830932,
+  "em_zero_min": 12363153471562,
+  "gamma_min": "3000175340843.49562385290123509",
+  "variancia_selberg": 0.1701147792102945,
+  "desvio_selberg": 0.41244972931291213,
+  "max_em_desvios": 4.948212132731231,
+  "min_em_desvios": -4.80324425084081
+ },
+ "5_espacamentos": {
+  "s_min": 0.03418420436687546,
+  "indice_s_min": 12363153465694,
+  "s_min_esperado_GUE": 0.02803337915129039,
+  "s_max": 2.950429494633553,
+  "indice_s_max": 12363153451778,
+  "gamma_s_max": "3000175336220.52288611347503337",
+  "s_max_esperado_GUE": 2.8895405331129767
+ },
+ "6_lehmer_com_lambda_nao_negativo": {
+  "lambda_mais_perto_de_0": -3.191911317190024e-05,
+  "indice": 12363153465694,
+  "pares_com_lambda_maior_ou_igual_a_0": 0
+ }
+}

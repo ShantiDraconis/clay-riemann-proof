@@ -893,6 +893,45 @@ de alturas — nenhum quarteto escondido no lugar mais provável.
 
 **O que NÃO é**: a fórmula é heurística (GUE + CSV); o ataque é cálculo finito fora do kernel. `OPEN_MATH = true`.
 
+## 24. Todas as quebras de tendência (Gram, Rosser, `S(t)`, extremos, `λ ≥ 0`)
+
+Arquivos: `computations/quebras/quebras.py`, `computations/quebras/resumo.py`, `computations/ataque/varre2.py`,
+`computations/quebras/resultados/` (e `QUEBRAS.md` nas branches `resultados-ataque` e `resultados-onda`).
+
+Uma quebra é qualquer lugar em que os zeros saem do comportamento típico. Com os índices certificados pela Arb
+(`N(t)` exato) e os pontos de Gram `g_m` (`θ(g_m) = mπ`, onde `ζ(½ + ig_m)` é real), `S(g_m) = N(g_m) − m − 1` é
+inteiro e o ponto é "bom" quando ele é par. As seis quebras procuradas:
+
+1. contagem: zeros fora da reta (`N(t)` maior que os zeros na reta) — a quebra que um zero fora da reta causaria;
+2. lei de Gram: intervalos `[g_m, g_{m+1})` com 0, 2 ou 3 zeros;
+3. regra de Rosser: um bloco de Gram de `k` intervalos sem exatamente `k` zeros (a quebra clássica mais rara);
+4. `S(t)` extremo contra Selberg (média 0, variância `log log T / (2π²)`);
+5. espaçamentos extremos contra o GUE (`s_min ≈ (9/(π²N))^{1/3}`, `s_max ≈ √((π/4) ln N)`);
+6. par de Lehmer com `λ ≥ 0` (já colidido em `t = 0`).
+
+**Na faixa certificada** (seção 13: 41 393 zeros, `T_PT < t ≤ g_b + 5000`):
+
+| quebra | resultado |
+|---|---|
+| contagem | 0 zeros fora da reta |
+| lei de Gram | 20,6% dos pontos de Gram ruins; 29,6% dos intervalos fora da lei (6 172 com 0 zeros, 6 017 com 2, **77 com 3**) |
+| regra de Rosser | **1 violação** (2 blocos): o ponto de Gram `m = 12 363 153 449 050` abre um bloco de comprimento 1 com **3 zeros**, seguido de um bloco de comprimento 2 com **0 zeros** |
+| `S(t)` | máximo **2,041** (4,9 σ) no zero 12 363 153 449 054 — no mesmo lugar da violação de Rosser; mínimo −1,981 (−4,8 σ) no zero 12 363 153 471 562 |
+| espaçamentos | `s_min = 0,0342` (GUE: 0,028), `s_max = 2,950` (GUE: 2,890) |
+| `λ ≥ 0` | nenhum; o mais perto de 0 é `−3,19·10⁻⁵` (par 12 363 153 465 694) |
+
+A quebra mais forte da faixa é o aglomerado em `t ≈ 3 000 175 335 583,73 … 583,87`: três zeros (12 363 153 449 052,
+…053, …054, com o par 052/053 a 0,0316 de distância) espremidos num só intervalo de Gram, `S(t)` subindo a 2,04, e
+depois um vazio de 2,2 intervalos até o próximo zero. É onde a regra de Rosser falha e onde a contagem por trocas de
+sinal nos pontos de Gram erraria; a contagem de Turing da Arb fecha ali também: os três zeros estão na reta.
+
+As varreduras novas (`varre2.py`, usado pela onda do ataque) fazem a mesma detecção em cada bloco de 10 000 zeros, e
+o ataque roda `quebras.py` em todas as listas completas (faixa da seção 13 e janelas das alturas).
+
+**O que NÃO é**: violações de Rosser e `S(t)` grande são irregularidades conhecidas e esperadas (a primeira violação
+de Rosser está perto do zero 13 999 525); nenhuma é zero fora da reta, e todas aparecem com a contagem fechando.
+`OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
