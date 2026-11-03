@@ -129,4 +129,42 @@ theorem par_mais_fragil_continuacao2 {γ₁ γ₂ g : ℝ}
     (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
   exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
 
+/-! ## A terceira extensão: faixas 16–35 acima de 3 000 177 742 471,5
+
+Runs 41675244133 (faixas 16–23) e 41690164119 (faixas 24–35), pastas `de_3000175822471.5/faixas_16-23/` e
+`faixas_24-35/`; colagem conjunta das 36 faixas em `de_3000175822471.5/juntas_0-35/`: `3 000 175 822 471,5 < Im s ≤
+3 000 180 142 471,5`, 18 489 450 zeros, todos na reta, as 36 colagens conferindo, déficit 0 em cada faixa,
+`N(3 000 180 142 471,5) = 12 363 174 022 364`. Hipótese nomeada `JanelaContinuacao2026c` (o trecho acima de
+`…742 471`). -/
+
+/-- **Janela da terceira extensão (fora do kernel)**: todos os zeros com `3 000 177 742 471 < Im s ≤ 3 000 180 142 471`
+estão na reta. -/
+def JanelaContinuacao2026c : Prop := JanelaNaReta 3000177742471 3000180142471
+
+/-- RH até `3 000 180 142 471`, condicional a Platt–Trudgian e às quatro janelas da Arb. -/
+theorem rhAteZ_continuacao3 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026)
+    (hC2 : JanelaContinuacao2026b) (hC3 : JanelaContinuacao2026c) : RHateZ 3000180142471 :=
+  rhateZ_estende (rhAteZ_continuacao2 hPT hJ hC hC2) (by exact_mod_cast hC3)
+
+/-- **O primeiro zero fora da reta, se existir, tem `Im > 3 000 180 142 471`** (condicional). -/
+theorem primeiro_fora_acima_continuacao3 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026)
+    (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b) (hC3 : JanelaContinuacao2026c)
+    (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) :
+    ∃ ρ ∈ Z, ρ.re ≠ 1 / 2 ∧ (3000180142471 : ℝ) < ρ.im ∧ ∀ σ ∈ Z, σ.re ≠ 1 / 2 → ρ.im ≤ |σ.im| := by
+  have := primeiro_fora_acima (rhAteZ_continuacao3 hPT hJ hC hC2 hC3) h
+  simpa using this
+
+/-- **O par mais frágil das 36 faixas** (zeros 12 363 167 808 945 e …946, `γ ≈ 3 000 178 690 726,1623`, a 0,00061840 um
+do outro, `s = 0,0026`): `−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`, qualquer que seja `g` com `Δ²g ≤ 4/5` (CSV calculado:
+−1,9121·10⁻⁷). É o par mais perto da colisão em todos os dados. -/
+theorem par_mais_fragil_continuacao3 {γ₁ γ₂ g : ℝ}
+    (h₁ : |γ₁ - 300017869072616233566825147131 / 10 ^ 17| ≤ 313 / 10 ^ 20)
+    (h₂ : |γ₂ - 300017869072616295407189495341 / 10 ^ 17| ≤ 213 / 10 ^ 20)
+    (hg : 0 < g) (hq : (2 * (γ₂ - γ₁)) ^ 2 * g ≤ 4 / 5) :
+    -(240 : ℝ) / 1000000000 ≤ csv (2 * (γ₂ - γ₁)) g ∧ csv (2 * (γ₂ - γ₁)) g ≤ -(191 : ℝ) / 1000000000 := by
+  obtain ⟨hlo, hhi⟩ := dif_bolas h₁ h₂
+  obtain ⟨c1, c2⟩ := csv_por_distancia (lo := 61840 / 100000000) (hi := 61841 / 100000000)
+    (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
+  exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
+
 end ClayRiemannProof.Continuacao
