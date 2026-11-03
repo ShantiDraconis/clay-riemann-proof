@@ -1431,6 +1431,50 @@ corrigir uma guarda duplicada (`Leis.colisao_em_gama` no lugar de `Leis.colisao_
 **O que NÃO é**: as correções não aproximam nem afastam RH; dizem só o que cada número significa. `OPEN_MATH = true`.
 **Axiomas**: `[propext, Classical.choice, Quot.sound]` (20 guardas, mais a de `PrimeiroFora.JanelaArb2026`).
 
+## 33. Como os zeros se comportariam em alturas gigantes: só as leis que dependem de `ln T`
+
+Arquivos: `computations/gigantes/gigantes.py` e `gigantes.json` (`mpmath`, 40 dígitos).
+
+Acima de `8,1·10³⁴` (a maior altura em que já se calculou `Z(t)`, Bober–Hiary) nenhum zero pode ser calculado: em
+`T = 10^100000` um único valor de `Z(t)` pede `10^50000` termos de Riemann–Siegel, ou `10^30769` operações pelo
+algoritmo de Hiary. O que se sabe nessas alturas sai de leis que dependem de `T` só por `L = ln T`:
+
+| altura `T` | `log₁₀ N(T)` | espaçamento médio | cota de `\|S(T)\|` | `S` típico | largura sem zeros `w` | `s` mínimo (GUE) | `λ` do par mais frágil | termos de R–S |
+|---|---|---|---|---|---|---|---|---|
+| 3·10¹² (faixa contígua certificada) | 13.09212933 | 0.233647 | 6.86209 | 0.4124 | 0.006262 | 4.194e-5 | −4.801e-11 | 6.91e5 |
+| 10¹⁸ (Fronteira, 1ª onda) | 18.7885048 | 0.158632 | 8.32942 | 0.4344 | 0.00434 | 5.294e-7 | −3.527e-15 | 3.989e8 |
+| 10²³ (Odlyzko) | 23.90184489 | 0.122907 | 9.64014 | 0.4484 | 0.003397 | 1.046e-8 | −8.258e-19 | 1.262e11 |
+| 8,1·10³⁴ (Bober–Hiary, maior altura calculada) | 35.99984148 | 0.0799979 | 12.7279 | 0.4714 | 0.002238 | 9.698e-13 | −3.01e-27 | 1.135e17 |
+| 10¹⁰⁰ (googol) | 101.55865 | 0.0275071 | 29.3545 | 0.5249 | 0.0007813 | 1.361e-34 | −7.005e-72 | 3.989e49 |
+| 3^100000 | 47716.36813 | 5.7193e-5 | 11414.9 | 0.7668 | 3.486e-6 | 3.393e-15906 | −1.883e-31820 | 4.609e23855 |
+| 10^100000 | 100004.564 | 2.72877e-5 | 23912.4 | 0.7909 | 2.085e-6 | 1.355e-33335 | −6.837e-66680 | 3.989e49999 |
+| 2^1000000 | 301035.0383 | 9.06474e-6 | 71960.5 | 0.8254 | 9.719e-7 | 9.416e-100346 | −3.643e-200701 | 3.97e150514 |
+| 10^(10¹⁴) | 1.0e+14 | 2.72875e-14 | 2.39008e+13 | 1.294 | 1.501e-12 | 1.355e-33333333333338 | −6.837e-66666666666704 | 3.989e49999999999999 |
+| 10^(10¹⁰⁰) (googolplex) | 1.0e+100 | 2.72875e-100 | 2.39008e+99 | 3.422 | 3.645e-70 | 10^(-3.33333e+99) | −10^(-6.66667e+99) | 10^(5.0e+99) |
+| 10↑↑4 = 10^10^10^10 | 1.0e+10000000000 | 2.72875e-10000000000 | 2.39008e+9999999999 | 3.415e+4 | 7.862e-6666666673 | 10^(-3.33333e+9999999999) | −10^(-6.66667e+9999999999) | 10^(5.0e+9999999999) |
+
+- **Contagem**: `N(T) = (T/2π)(ln(T/2π) − 1) + 7/8 + S(T) + O(1/T)`, com `|S(T)| ≤ 0,1038 L + 0,2573 ln L + 8,3675`
+  (Hasanalizade–Shen–Wong 2021). Em `10^(10¹⁴)` isso deixa `N` com incerteza de `±2,4·10¹³` zeros: sem calcular
+  zeros, não há déficit para medir.
+- **Espaçamento**: `⟨δ⟩ = 2π/ln(T/2π)` encolhe como `1/L`. Em unidades normalizadas (`s = Δγ/⟨δ⟩`) a estatística é a
+  mesma (GUE: conjectura de Montgomery–Odlyzko, conferida até `10²³`).
+- **`S(t)` cresce**: o tamanho típico `√(ln L/(2π²))` passa de 0,41 em `3·10¹²` a 3,4 no googolplex, e
+  `|S| = Ω((ln T)^{1/3}(ln ln T)^{−1/3})` sem hipótese (Tsang). A lei de Gram falha cada vez mais e a regra de Rosser
+  falha infinitas vezes (Lehman 1970): o método de Turing continua valendo, os atalhos de Gram e Rosser não.
+- **Onde um zero fora da reta poderia estar**: em `w < β < 1 − w`, com `w` da região sem zeros
+  (Mossinghoff–Trudgian–Yang 2022: `1/(5,558691 L)` clássica, `1/(55,241 L^{2/3}(ln L)^{1/3})` de Korobov–Vinogradov,
+  esta a mais larga para `T > e^52238`). Em `10^100000`, `w = 2,1·10⁻⁶`: nada exclui um zero com `b` até
+  `0,499998`. As estimativas de densidade (`N(σ, T) ≪ T^{1 − (σ − ½)/4} ln T`, Selberg) dizem só que zeros longe da reta
+  seriam uma fração que vai a 0, sem constante explícita.
+- **Os pares ficam cada vez mais frágeis**: o par mais próximo entre os `N(T)` zeros tem `s ≈ (9/(π²N))^{1/3}`
+  (GUE) e colide no fluxo de de Bruijn em `λ ≈ −Δγ²/2`. Em `3·10¹²` isso dá `−4,8·10⁻¹¹` (o recorde publicado por
+  pares de Lehmer é `−1,1·10⁻¹¹`, Saouter–Gourdon–Demichel 2011); em `10^100000`, `−6,8·10⁻⁶⁶⁶⁸⁰`. É o mecanismo do
+  teorema de Rodgers–Tao (`Λ ≥ 0`): se `Λ` fosse negativo, os zeros altos teriam de ser regulares demais. Pares frágeis
+  não indicam zeros fora da reta (`Correcoes.cota_de_lehmer_mais_fraca`).
+
+**O que NÃO é**: nenhum número desta tabela é um zero calculado nem uma verificação; são as leis e cotas conhecidas
+avaliadas em `L = ln T`. A coluna GUE é heurística (modelo de matrizes aleatórias), não teorema. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
