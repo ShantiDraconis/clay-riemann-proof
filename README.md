@@ -949,8 +949,7 @@ todos na reta. A tabela completa está em `RESUMO.md` da branch `resultados-fron
 `historico/run-41557877448/`. O par mais frágil são os zeros 467 888 702 979 044/…045 (`γ ≈ 10¹⁴ + 13 241,144`):
 intervalo 0,0010522, `s = 0,0051` (o GUE espera 0,0123 para os 492 030 espaçamentos da janela),
 `λ = −5,536·10⁻⁷`, contra `−3,22·10⁻⁶` previsto. No kernel, com as bolas da Arb (raio 7,8·10⁻²⁹) como hipótese,
-`−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` (`Continuacao.par_mais_fragil_onda2`, branch `fronteira-onda2-teorema`, aguardando o
-CI do Lean). O 2º e o 3º pares vêm de 10¹⁶ (−7,79·10⁻⁷, e o par 54 118 226 280 296 885/886 da seção 18, −9,73·10⁻⁷).
+`−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` (`Continuacao.par_mais_fragil_onda2`). O 2º e o 3º pares vêm de 10¹⁶ (−7,79·10⁻⁷, e o par 54 118 226 280 296 885/886 da seção 18, −9,73·10⁻⁷).
 
 | conjunto | zeros | `λ` do par mais frágil |
 |---|---|---|
@@ -970,7 +969,7 @@ zeros, todos na reta, contagem sem nenhum zero fora da reta em cada janela. Ela 
 Rosser, 21,6% de pontos de Gram ruins e `S` entre −2,35 e +2,43 (5,8 desvios). O par mais frágil são os zeros
 472 888 703 009 302/…303 (`γ ≈ 1,0103·10¹⁴`): intervalo 0,0012132, `s = 0,0059` (GUE: 0,0121), `λ = −7,36·10⁻⁷`
 contra `−3,13·10⁻⁶` previsto. No kernel, com as bolas da Arb (raio 6,9·10⁻²⁸): `−9,20·10⁻⁷ ≤ λ ≤ −7,35·10⁻⁷`
-(`Continuacao.par_mais_fragil_onda_1e14`, mesma branch, aguardando o CI). Somando a onda e a 2ª onda da fronteira,
+(`Continuacao.par_mais_fragil_onda_1e14`). Somando a onda e a 2ª onda da fronteira,
 foram 16,5 milhões de zeros em 10¹³–10¹⁸ sem nenhum fora da reta. O par mais perto de `0⁻` continua sendo o da
 continuação (−4,59·10⁻⁷), seguido do de 10¹⁴ da fronteira (−5,54·10⁻⁷) e do desta onda (−7,36·10⁻⁷). O recorde
 publicado, −1,14541·10⁻¹¹, veio de cerca de 10¹³ zeros: pela lei de escala, chegar perto dele pede da ordem de 10⁶
