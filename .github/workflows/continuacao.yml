@@ -1,0 +1,76 @@
+name: Continuacao contigua acima da faixa certificada
+# Onde estaria o PRIMEIRO zero fora da reta, se existisse: logo acima de 3 000 175 342 471,5 (seção 13 do README e
+# PrimeiroFora.primeiro_fora_acima_janela). Quatro faixas contíguas de 120 000 unidades de altura (≈ 2 milhões de zeros),
+# cada uma com N(T) exato nas pontas (contagem de Turing) e todos os zeros pelo método local de Platt (FLINT 3 / Arb);
+# a agregação cola as faixas (N na mesma altura calculado por duas faixas) e lista os pares mais frágeis.
+# Cálculo finito fora do kernel: não muda OPEN_MATH. Resultado na branch resultados-continuacao.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "computations/continuacao/**"
+      - ".github/workflows/continuacao.yml"
+permissions:
+  contents: write
+jobs:
+  faixa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        i: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/zeros/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: faixa ${{ matrix.i }}
+        run: python3 computations/continuacao/continua.py ./zeros saida ${{ matrix.i }} 18500 2>&1 | tee saida.log
+      - name: estado como anotação
+        if: always()
+        run: |
+          python3 -c "import json;d=json.load(open('saida/faixa${{ matrix.i }}.json'));print(json.dumps({k:d.get(k) for k in ('a','b','N(a)','N(b)','zeros_esperados','certificado_ate','conclusao','parou_em','erro')},ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=faixa-${{ matrix.i }}::/' || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faixa-${{ matrix.i }}
+          path: saida/
+          retention-days: 14
+  agrega:
+    needs: faixa
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: faixas
+      - name: numpy
+        run: python3 -c "import numpy" 2>/dev/null || pip install -q numpy
+      - name: agrega
+        run: python3 computations/continuacao/agrega.py faixas resultado 2>&1 | tee agrega.log
+      - name: conclusão como anotação
+        if: always()
+        run: |
+          python3 -c "import json;d=json.load(open('resultado/continuacao.json'));print(json.dumps({k:d.get(k) for k in ('conclusao','contiguo','deficits','colagem_ok','onde_examinar')},ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=continuacao::/' || true
+      - name: grava na branch resultados-continuacao
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultado/. /tmp/r/ 2>/dev/null || true
+          for d in faixas/faixa-*; do cp "$d"/* /tmp/r/ 2>/dev/null || true; done
+          cp agrega.log /tmp/r/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-continuacao:refs/remotes/origin/resultados-continuacao || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-continuacao; then git checkout -q -f -B resultados-continuacao origin/resultados-continuacao; else git checkout -q --orphan resultados-continuacao; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "continuação contígua: run ${{ github.run_id }} (${{ github.sha }})" || true
+          git push -q origin resultados-continuacao
