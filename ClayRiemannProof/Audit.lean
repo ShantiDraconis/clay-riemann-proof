@@ -42,6 +42,7 @@ import ClayRiemannProof.Paridade
 import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
 import ClayRiemannProof.Continuacao
+import ClayRiemannProof.Forca
 
 /-!
 # Auditoria de axiomas
@@ -2369,3 +2370,29 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_1e18' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_1e18
+
+/-! ## `ClayRiemannProof/Forca.lean` -/
+
+/-- info: 'ClayRiemannProof.Forca.lombada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.lombada
+
+/-- info: 'ClayRiemannProof.Forca.im_eq_zero_of_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.im_eq_zero_of_sq
+
+/-- info: 'ClayRiemannProof.Forca.lombada_reais_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.lombada_reais_iff
+
+/-- info: 'ClayRiemannProof.Forca.par_fora_da_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.par_fora_da_reta
+
+/-- info: 'ClayRiemannProof.Forca.lombada_do_par' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.lombada_do_par
+
+/-- info: 'ClayRiemannProof.Forca.limiar_do_par' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.limiar_do_par
+
+/-- info: 'ClayRiemannProof.Forca.calor_eh_empurrao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.calor_eh_empurrao
+
+/-- info: 'ClayRiemannProof.Forca.menos_forca' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.menos_forca

@@ -1,0 +1,68 @@
+name: Forca minima nos pares mais frageis
+# A altura certificada (Arb) da lombada de Z entre os dois zeros dos pares mais frágeis de cada altura: a força mínima
+# de empurrão vertical que tiraria o par da reta (README, seção 27). Cálculo finito fora do kernel: não muda
+# OPEN_MATH. Resultado na branch resultados-forca.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "computations/forca/forca.c"
+      - "computations/forca/forca_arb.py"
+      - "computations/forca/pontos.json"
+      - ".github/workflows/forca.yml"
+permissions:
+  contents: write
+jobs:
+  grupo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        g: ["3e12", "1e14", "1e16", "1e18"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o forca computations/forca/forca.c -lflint -lmpfr -lgmp -lm 2>&1 | tee compila.log
+      - name: força nos pares do grupo ${{ matrix.g }}
+        run: |
+          mkdir -p saida
+          python3 computations/forca/forca_arb.py ./forca computations/forca/pontos.json "${{ matrix.g }}" "saida/forca_${{ matrix.g }}.json" 19000 2>&1 | tee "saida/forca_${{ matrix.g }}.log"
+      - name: estado como anotação
+        if: always()
+        run: |
+          python3 -c "import json;d=json.load(open('saida/forca_${{ matrix.g }}.json'));print(json.dumps([{k:p.get(k) for k in ('nome','forca','forca_certificada_entre','Zpp','zeros_conferem','segundos_por_avaliacao','erro')} for p in d['pares']],ensure_ascii=False))" 2>/dev/null | sed -E 's/%/%25/g; s/^/::warning title=forca-${{ matrix.g }}::/' || true
+          { grep -E -B2 -A6 "Traceback|Error|error" "saida/forca_${{ matrix.g }}.log" compila.log 2>/dev/null | tail -30; } | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=forca-erro::/' || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: forca-${{ matrix.g }}
+          path: saida/
+          retention-days: 14
+  grava:
+    needs: grupo
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: grupos
+      - name: grava na branch resultados-forca
+        run: |
+          mkdir -p /tmp/r && for d in grupos/forca-*; do cp "$d"/* /tmp/r/ 2>/dev/null || true; done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-forca:refs/remotes/origin/resultados-forca || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-forca; then git checkout -q -f -B resultados-forca origin/resultados-forca; else git checkout -q --orphan resultados-forca; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "força mínima: run ${{ github.run_id }} (${{ github.sha }})" || true
+          git push -q origin resultados-forca
