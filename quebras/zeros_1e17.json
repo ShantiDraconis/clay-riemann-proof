@@ -1,0 +1,70 @@
+{
+ "rotulo": "zeros_1e17",
+ "zeros": 20000,
+ "primeiro_indice": 577829042746896154,
+ "ultimo_indice": 577829042746916153,
+ "faixa": [
+  "99999999999999999.7369842082159697645955379342400",
+  "100000000000003368.168568170948039112636373857154"
+ ],
+ "altura_media": 1.0000000000000168e+17,
+ "1_contagem": {
+  "zeros_fora_da_reta_na_lista": 0,
+  "nota": "a Arb devolve cada zero com o índice fixado pela contagem de Turing: N(t) = zeros na reta"
+ },
+ "2_lei_de_gram": {
+  "pontos_de_gram": 20000,
+  "pontos_ruins": 4604,
+  "fracao_pontos_ruins": 0.2302,
+  "intervalos_fora_da_lei": 6244,
+  "fracao_intervalos_fora_da_lei": 0.31221561078053905,
+  "zeros_por_intervalo": {
+   "0": 3147,
+   "1": 13755,
+   "2": 3048,
+   "3": 49
+  },
+  "pontos_ambiguos": []
+ },
+ "3_regra_de_rosser": {
+  "blocos": 15395,
+  "comprimento_dos_blocos": {
+   "3": 619,
+   "1": 12298,
+   "2": 2127,
+   "5": 75,
+   "4": 229,
+   "6": 33,
+   "7": 12,
+   "8": 2
+  },
+  "violacoes": [],
+  "n_violacoes": 0
+ },
+ "4_S_de_t": {
+  "max_S": 1.9915018677445213,
+  "em_zero": 577829042746915269,
+  "gamma": "100000000000003218.975439195955638662339683752476",
+  "min_S": -1.9415384350678548,
+  "em_zero_min": 577829042746903773,
+  "gamma_min": "100000000000001283.283194062669571802608211163089",
+  "variancia_selberg": 0.185784842039839,
+  "desvio_selberg": 0.43102765809149535,
+  "max_em_desvios": 4.6203574883396,
+  "min_em_desvios": -4.504440489189489
+ },
+ "5_espacamentos": {
+  "s_min": 0.040100589159420615,
+  "indice_s_min": 577829042746908883,
+  "s_min_esperado_GUE": 0.03572548729053647,
+  "s_max": 3.195739283186679,
+  "indice_s_max": 577829042746904514,
+  "gamma_s_max": "100000000000001407.681591185729780640675889564697",
+  "s_max_esperado_GUE": 2.788931993452227
+ },
+ "6_lehmer_com_lambda_nao_negativo": {
+  "lambda_mais_perto_de_0": -2.2828727539564952e-05,
+  "indice": 577829042746908883,
+  "pares_com_lambda_maior_ou_igual_a_0": 0
+ }
+}
