@@ -31,6 +31,7 @@ import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Colisao
 import ClayRiemannProof.Verification
+import ClayRiemannProof.CertificateBridge
 
 /-!
 # Auditoria de axiomas
@@ -2012,3 +2013,8 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Verification.logDeriv_completada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Verification.logDeriv_completada
+
+/-! ## `ClayRiemannProof/CertificateBridge.lean` -/
+
+/-- info: 'ClayRiemannProof.CertificateBridge.window_on_line_from_certificates' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.window_on_line_from_certificates
