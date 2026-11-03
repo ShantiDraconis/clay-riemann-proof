@@ -2396,3 +2396,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Forca.menos_forca' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Forca.menos_forca
+
+/-- info: 'ClayRiemannProof.Forca.empurrao_simetrico' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.empurrao_simetrico
+
+/-- info: 'ClayRiemannProof.Forca.constante_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.constante_simetrica
+
+/-- info: 'ClayRiemannProof.Forca.zeta_empurrada_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Forca.zeta_empurrada_quarteto

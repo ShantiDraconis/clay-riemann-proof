@@ -1,4 +1,5 @@
 import ClayRiemannProof.Colisao
+import ClayRiemannProof.Analogs
 
 /-!
 # A força mínima que tira um par de zeros da reta
@@ -16,6 +17,10 @@ que preserve a equação funcional (Z continua real na reta) troca a lombada por
   (= `|Z''|Δ²/8`): o limiar é `ε* = cΔ²/4`.
 * `calor_eh_empurrao`: no fluxo de de Bruijn do par isolado (`Colisao.H2`), voltar o tempo de `|t|` é o mesmo que
   empurrar `2|t|`: `H_t = H_0 − 2t`. As duas forças são a mesma, medidas em unidades diferentes.
+* `empurrao_simetrico`, `zeta_empurrada_quarteto`: empurrar `ξ(½ + w)` por `ε·g(w)` com `g` simétrico (`g(−w) = g(w)`,
+  `g(w̄) = conj g(w)`; por exemplo `g = 1`, `constante_simetrica`) preserva as duas simetrias, e os zeros da função
+  empurrada vêm em quartetos `w, −w, w̄, −w̄`: mudar `Z` na escala do próprio `Z` tira zeros da reta, mas sempre aos
+  quatro.
 * `menos_forca`: lombada mais baixa, limiar menor: o ponto mais fácil é o de menor `|Z*|`, que não é
   necessariamente o par mais apertado (o par mais apertado tem o menor tempo do calor `Δ²/8`, mas pode ter `|Z''|`
   grande).
@@ -27,7 +32,7 @@ ponto, de uma função com as mesmas simetrias e um zero fora da reta. `OPEN_MAT
 
 namespace ClayRiemannProof.Forca
 
-open Complex
+open Complex ComplexConjugate
 
 /-- **Lombada empurrada**: `(a − ε) − c·(w − m)²` (altura `a`, curvatura `c`, centro `m`, empurrão `ε`). -/
 def lombada (a c m ε : ℝ) (w : ℂ) : ℂ := ((a - ε : ℝ) : ℂ) - (c : ℂ) * (w - (m : ℂ)) ^ 2
@@ -145,5 +150,25 @@ theorem menos_forca {a₁ a₂ c m ε : ℝ} (hc : 0 < c) (h : a₁ ≤ a₂)
   refine ⟨_, h0, ?_⟩
   simp only [add_im, ofReal_im, mul_im, I_re, I_im, ofReal_re, zero_mul, one_mul, zero_add]
   exact hb.ne'
+
+/-- **Empurrar sem quebrar as simetrias**: com `f` e `g` simétricas e `ε` real, `f − ε·g` é simétrica. -/
+theorem empurrao_simetrico {f g : ℂ → ℂ} (hf : ClayRiemannProof.Analogs.Simetrica f)
+    (hg : ClayRiemannProof.Analogs.Simetrica g) (ε : ℝ) :
+    ClayRiemannProof.Analogs.Simetrica (fun w => f w - (ε : ℂ) * g w) := by
+  refine ⟨fun w => by simp only [hf.1, hg.1], fun w => ?_⟩
+  simp only [hf.2, hg.2, map_sub, map_mul, Complex.conj_ofReal]
+
+/-- A constante `1` é simétrica: `ξ − ε` é um empurrão permitido. -/
+theorem constante_simetrica : ClayRiemannProof.Analogs.Simetrica (fun _ => (1 : ℂ)) :=
+  ⟨fun _ => rfl, fun _ => by simp⟩
+
+/-- **A zeta empurrada**: os zeros de `ξ(½ + w) − ε·g(w)` (`g` simétrico, `ε` real) vêm em quartetos. -/
+theorem zeta_empurrada_quarteto {g : ℂ → ℂ} (hg : ClayRiemannProof.Analogs.Simetrica g) (ε : ℝ) {w : ℂ}
+    (h : ClayRiemannProof.Analogs.xiW w - (ε : ℂ) * g w = 0) :
+    ClayRiemannProof.Analogs.xiW (-w) - (ε : ℂ) * g (-w) = 0 ∧
+      ClayRiemannProof.Analogs.xiW (conj w) - (ε : ℂ) * g (conj w) = 0 ∧
+      ClayRiemannProof.Analogs.xiW (-conj w) - (ε : ℂ) * g (-conj w) = 0 :=
+  ClayRiemannProof.Analogs.quarteto_abstrato (f := fun w => ClayRiemannProof.Analogs.xiW w - (ε : ℂ) * g w)
+    (empurrao_simetrico ClayRiemannProof.Analogs.xi_simetrica hg ε) h
 
 end ClayRiemannProof.Forca
