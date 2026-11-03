@@ -1076,6 +1076,71 @@ gravar as quatro faixas; a colagem e os pares foram refeitos com o mesmo `agrega
 então isto vale. O teorema de Csordas–Smith–Varga (`Λ ≥ λ`) não está no kernel. Nada aqui prova ou refuta RH.
 `OPEN_MATH = true`.
 
+## 27. A força mínima que tira um par de zeros da reta: os pontos mais fáceis
+
+Arquivos: `ClayRiemannProof/Forca.lean`, `computations/forca/forca_rs.py` (estimativa por Riemann–Siegel),
+`computations/forca/forca.c` e `forca_arb.py` (bolas da Arb; workflow `forca.yml`, branch `resultados-forca`),
+`computations/forca/resultados/`.
+
+**A força.** Na reta, `ζ(½ + it) = e^{−iθ(t)} Z(t)` com `Z` real. Entre dois zeros vizinhos, `Z` faz uma lombada de
+altura `|Z*|`. Um empurrão `ε` que preserve as simetrias de `ζ` (equação funcional e conjugação: `Z` continua real)
+só tira os dois zeros da reta quando passa da altura da lombada. No kernel (`Forca.lombada_reais_iff`,
+`Forca.par_fora_da_reta`, `Forca.limiar_do_par`):
+
+    ε ≤ |Z*|  ⟺  os dois zeros ficam na reta;     ε > |Z*|  ⟹  ½ ± b + it*,   b = √(2(ε − |Z*|)/|Z''|),
+
+e com a conjugação, o quarteto `½ ± b ± it*`. No modelo do par, `|Z*| = |Z''|Δ²/8`. A outra força é o tempo do fluxo
+de de Bruijn: voltar o tempo de `|t|` é empurrar `2|t|` (`Forca.calor_eh_empurrao`), e o par isolado colide em
+`Δ_x²/8` (`x = 2γ`, seção 16). O par mais apertado tem o menor tempo do calor, mas o menor empurrão é o de
+`|Z''|Δ²` menor: não é o mesmo ponto.
+
+**Os pontos mais fáceis em 3·10¹²** (Riemann–Siegel com 691 010 termos e fases com 60 dígitos, nos 300 pares mais
+apertados dos 2 095 776 zeros da seção 13 e da continuação; conferência: `|Z|` nos próprios zeros ≤ 1·10⁻⁸, quatro
+ordens abaixo das forças; a força relativa divide pela média quadrática de `Z`, `√log(t/2π) ≈ 5,19`):
+
+| par (índice) | `t` (início) | `Δ` | `s` | força `|Z*|` | relativa | `Z''` | tempo do calor `Δ_x²/8` |
+|---|---|---|---|---|---|---|---|
+| **12 363 153 570 515** | 3 000 175 363 963,243 | 0,002058 | 0,0088 | **5,3·10⁻⁵** | 1,0·10⁻⁵ | −101 | 2,1·10⁻⁶ |
+| 12 363 153 765 891 | 3 000 175 409 612,264 | 0,002854 | 0,0122 | 1,05·10⁻⁴ | 2,0·10⁻⁵ | −103 | 4,1·10⁻⁶ |
+| 12 363 153 756 750 | 3 000 175 407 476,415 | 0,000958 | 0,0041 | 1,23·10⁻⁴ | 2,4·10⁻⁵ | +1 069 | **4,6·10⁻⁷** |
+| 12 363 153 873 626 | 3 000 175 434 784,313 | 0,002166 | 0,0093 | 1,23·10⁻⁴ | 2,4·10⁻⁵ | +210 | 2,3·10⁻⁶ |
+| 12 363 153 976 477 | 3 000 175 458 815,179 | 0,006793 | 0,0291 | 1,30·10⁻⁴ | 2,5·10⁻⁵ | −23 | 2,3·10⁻⁵ |
+| 12 363 155 255 037 | 3 000 175 757 546,373 | 0,002182 | 0,0093 | 1,35·10⁻⁴ | 2,6·10⁻⁵ | −227 | 2,4·10⁻⁶ |
+
+O ponto mais fácil por empurrão é o par 12 363 153 570 515: um empurrão de 5,3·10⁻⁵ (cerca de 10⁻⁵ do tamanho típico
+de `Z`) num trecho de 0,002 junta os dois zeros. Logo acima disso o par sai da reta: com `ε = |Z*| + b²|Z''|/2`, `b =
+0,001` pede `ε ≈ 1,04·10⁻⁴` e `b = 0,01` pede `ε ≈ 5,1·10⁻³`. Um quarteto visível como `0,3/0,7 ± 14i` (`b = 0,2`, da
+ordem do espaçamento) já sai do modelo quadrático: precisaria mudar `Z` na escala do próprio `Z`, e na altura 14 o
+kernel refuta esse quarteto (seção 26). O par 976 477 é largo (`s = 0,029`) e mesmo assim está entre os seis mais
+fáceis, porque ali `Z` é quase plano (`|Z''| ≈ 23`).
+
+**Os nós da seção 25, pela força** (o menor `|Z*|` dentro de cada nó; os 25 atacados):
+
+| nó | tipos | força mínima | par |
+|---|---|---|---|
+| 12363153465693–697 | S extremo / par frágil | **1,03·10⁻³** | 465 694 (`s = 0,0342`) |
+| 12363153463169–172 | Gram triplo / par frágil | 1,85·10⁻³ | 463 170 |
+| 12363153459933–947 | S extremo / aglomeração | 3,11·10⁻³ | 459 936 |
+| 12363153473934–938 | S extremo / par frágil | 6,06·10⁻³ | 473 936 |
+| 12363153449051–061 | Gram triplo / Rosser / S extremo / vazio (o aglomerado) | 7,72·10⁻³ | 449 052 |
+| os 20 restantes | S extremo, vazio, aglomeração | 1,2·10⁻² a 0,45 | |
+
+O nó do aglomerado de Rosser, a quebra mais forte da contagem, precisa de 7,5 vezes mais força que o par frágil
+465 694 e de 145 vezes mais que o ponto mais fácil da continuação. `S(t)` extremo mede excesso ou falta de zeros na
+contagem, não proximidade de dois zeros; os nós que só têm `S` extremo estão entre os mais duros (0,07 a 0,45).
+
+**As alturas** (seção 18; run 41588835957): 10¹⁴ e 10¹⁶ certificadas, 20 000 zeros cada, contagem fechando e índice
+conferindo. Em 10¹⁴: `s_min = 0,0323`, `λ = −2,23·10⁻⁵` (previsto `−2,73·10⁻⁵`). Em 10¹⁶ apareceu um par com
+`s = 0,0078` em só 20 000 zeros (o GUE espera 0,036; acontece com probabilidade de cerca de 1%), `λ = −9,73·10⁻⁷`:
+o par mais perto da colisão por zero varrido em todos os dados. A força certificada desse par, do par da fronteira em
+10¹⁸ e dos seis acima sai do workflow `forca.yml` (Arb, Riemann–Siegel com resto rigoroso).
+
+**O que NÃO é**: `ζ` não muda; as forças medem quão perto `ζ` está, em cada ponto, de uma função com as mesmas
+simetrias e um zero fora da reta ali. Toda força medida é positiva, e é isso que significa todos os zeros estarem na
+reta. Mudar `ζ` de verdade quebra o produto de Euler (é o que faz Davenport–Heilbronn, seção 18). As forças de
+Riemann–Siegel são estimativas em ponto flutuante conferidas nos zeros; as certificadas são as da Arb. Nada aqui
+prova ou refuta RH. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
