@@ -2017,6 +2017,6 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-! ## `ClayRiemannProof/CertificateBridge.lean` -/
 
 /-- info: 'ClayRiemannProof.CertificateBridge.window_on_line_from_certificates' depends on axioms: [propext,
-  Classical.choice,
-  Quot.sound] -/
+   Classical.choice,
+   Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.window_on_line_from_certificates
