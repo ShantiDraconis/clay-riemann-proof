@@ -1470,7 +1470,11 @@ hipóteses nomeadas: `Continuacao.rhAteZ_continuacao2` e `Continuacao.primeiro_f
 O par mais frágil das 16 faixas é o mais perto da colisão em todos os dados: zeros 12 363 161 233 435/…436
 (`γ ≈ 3 000 177 154 379,729`), a 0,00073130 um do outro, `s = 0,0031`, `λ = −2,674·10⁻⁷`. Ele bate o da primeira
 extensão (`−4,59·10⁻⁷`). No kernel: `−3,35·10⁻⁷ ≤ λ ≤ −2,67·10⁻⁷` (`Continuacao.par_mais_fragil_continuacao2`).
-As faixas 16–23 e 24–35, a partir do mesmo `C0`, estão rodando.
+**Faixas 16–23** (run 41675244133; colagem conjunta em `de_3000175822471.5/juntas_0-23/`): as 24 faixas juntas vão
+até **3 000 178 702 471,5**, com 12 326 300 zeros, todos na reta, as 24 colagens conferindo e déficit 0 em cada
+faixa. Somando tudo, ficam 3 369 671,5 unidades e 14 422 076 zeros acima do recorde publicado. A faixa 23 trouxe um
+par ainda mais perto da colisão: os zeros 12 363 167 808 945/…946 (`γ ≈ 3 000 178 690 726,1623`), a 0,00061840 um do
+outro, `s = 0,0026`, `λ = −1,912·10⁻⁷`. As faixas 24–35, a partir do mesmo `C0`, estão rodando.
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
