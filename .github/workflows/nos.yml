@@ -63,13 +63,4 @@ jobs:
         if: always()
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-nos:refs/remotes/origin/resultados-nos || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-nos; then git checkout -q -f -B resultados-nos origin/resultados-nos; else git checkout -q --orphan resultados-nos; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "nos: run ${{ github.run_id }}" || true
-          git push -q origin resultados-nos
+          python3 computations/grava_resultados.py resultados-nos /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "nos"

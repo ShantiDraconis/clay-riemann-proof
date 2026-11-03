@@ -65,16 +65,7 @@ jobs:
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
           cp ataque.log /tmp/r/ 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-ataque:refs/remotes/origin/resultados-ataque || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-ataque; then git checkout -q -f -B resultados-ataque origin/resultados-ataque; else git checkout -q --orphan resultados-ataque; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "ataque: run ${{ github.run_id }}" || true
-          git push -q origin resultados-ataque
+          python3 computations/grava_resultados.py resultados-ataque /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "ataque"
   onda:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.alvos != '[]'
     runs-on: ubuntu-24.04
@@ -132,13 +123,4 @@ jobs:
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
           mkdir -p /tmp/r/varreduras && find varreduras -name "*.json" -exec cp {} /tmp/r/varreduras/ \; 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-onda:refs/remotes/origin/resultados-onda || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-onda; then git checkout -q -f -B resultados-onda origin/resultados-onda; else git checkout -q --orphan resultados-onda; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "onda: run ${{ github.run_id }}" || true
-          git push -q origin resultados-onda
+          python3 computations/grava_resultados.py resultados-onda /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "onda"

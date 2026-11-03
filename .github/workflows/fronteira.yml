@@ -63,13 +63,4 @@ jobs:
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
           mkdir -p /tmp/r/varreduras && find varreduras -name "*.json" -exec cp {} /tmp/r/varreduras/ \; 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-fronteira:refs/remotes/origin/resultados-fronteira || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-fronteira; then git checkout -q -f -B resultados-fronteira origin/resultados-fronteira; else git checkout -q --orphan resultados-fronteira; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "fronteira: run ${{ github.run_id }} (${{ github.sha }})" || true
-          git push -q origin resultados-fronteira
+          python3 computations/grava_resultados.py resultados-fronteira /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "fronteira"

@@ -64,13 +64,4 @@ jobs:
           mkdir -p /tmp/r && cp -r resultado/. /tmp/r/ 2>/dev/null || true
           for d in faixas/faixa-*; do cp "$d"/* /tmp/r/ 2>/dev/null || true; done
           cp agrega.log /tmp/r/ 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-continuacao:refs/remotes/origin/resultados-continuacao || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-continuacao; then git checkout -q -f -B resultados-continuacao origin/resultados-continuacao; else git checkout -q --orphan resultados-continuacao; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "continuação contígua: run ${{ github.run_id }} (${{ github.sha }})" || true
-          git push -q origin resultados-continuacao
+          python3 computations/grava_resultados.py resultados-continuacao /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "continuação contígua"

@@ -45,13 +45,4 @@ jobs:
         run: |
           mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
           cp baixo.json platt_baixo.json hardy_baixo.json compila.log janelas.log /tmp/r/ 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-zeros:refs/remotes/origin/resultados-zeros || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-zeros; then git checkout -q -f -B resultados-zeros origin/resultados-zeros; else git checkout -q --orphan resultados-zeros; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "zeros acima de 3e12: run ${{ github.run_id }} (${{ github.sha }})" || true
-          git push -q origin resultados-zeros
+          python3 computations/grava_resultados.py resultados-zeros /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "zeros acima de 3e12"

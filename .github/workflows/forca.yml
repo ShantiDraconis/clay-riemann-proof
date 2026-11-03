@@ -56,13 +56,4 @@ jobs:
       - name: grava na branch resultados-forca
         run: |
           mkdir -p /tmp/r && for d in grupos/forca-*; do cp "$d"/* /tmp/r/ 2>/dev/null || true; done
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin resultados-forca:refs/remotes/origin/resultados-forca || true
-          git clean -fdxq
-          if git rev-parse --verify -q origin/resultados-forca; then git checkout -q -f -B resultados-forca origin/resultados-forca; else git checkout -q --orphan resultados-forca; git rm -rq . || true; fi
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/r/. .
-          git add -A
-          git commit -q -m "força mínima: run ${{ github.run_id }} (${{ github.sha }})" || true
-          git push -q origin resultados-forca
+          python3 computations/grava_resultados.py resultados-forca /tmp/r --run ${{ github.run_id }} --sha ${{ github.sha }} --titulo "força mínima"
