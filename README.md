@@ -1183,13 +1183,21 @@ contagem, não proximidade de dois zeros; os nós que só têm `S` extremo estã
 **As alturas** (seção 18; run 41588835957): 10¹⁴ e 10¹⁶ certificadas, 20 000 zeros cada, contagem fechando e índice
 conferindo. Em 10¹⁴: `s_min = 0,0323`, `λ = −2,23·10⁻⁵` (previsto `−2,73·10⁻⁵`). Em 10¹⁶ apareceu um par com
 `s = 0,0078` em só 20 000 zeros (o GUE espera 0,036; acontece com probabilidade de cerca de 1%), `λ = −9,73·10⁻⁷`:
-o par mais perto da colisão por zero varrido em todos os dados. A força certificada desse par, do par da fronteira em
-10¹⁸ e dos seis acima sai do workflow `forca.yml` (Arb, Riemann–Siegel com resto rigoroso).
+o par mais perto da colisão por zero varrido em todos os dados.
+
+**A força certificada pela Arb não saiu** (run 41603222260, branch `resultados-forca`). Nos quatro grupos
+(3·10¹², 10¹⁴, 10¹⁶, 10¹⁸), a primeira avaliação de `Z` com três derivadas (`acb_dirichlet_hardy_z`, 256 bits) no
+extremo da lombada passou do limite de 19 000 s por chamada sem terminar. Isso aconteceu inclusive em `3·10¹²`, onde a
+soma de Riemann–Siegel em ponto flutuante leva menos de um segundo. Os outros pares de cada grupo ficaram sem
+orçamento. As forças desta seção continuam sendo estimativas de Riemann–Siegel conferidas nos zeros (`|Z|` nos
+próprios zeros ≤ 10⁻⁸, quatro ordens abaixo das forças). Certificá-las pede outro caminho: por exemplo, cotas de `Z`
+entre os dois zeros a partir das bolas do método de Platt, que já são certificadas.
 
 **O que NÃO é**: `ζ` não muda; as forças medem quão perto `ζ` está, em cada ponto, de uma função com as mesmas
 simetrias e um zero fora da reta ali. Toda força medida é positiva, e é isso que significa todos os zeros estarem na
 reta. Mudar `ζ` de verdade quebra o produto de Euler (é o que faz Davenport–Heilbronn, seção 18). As forças de
-Riemann–Siegel são estimativas em ponto flutuante conferidas nos zeros; as certificadas são as da Arb. Nada aqui
+Riemann–Siegel são estimativas em ponto flutuante conferidas nos zeros; a tentativa de certificá-las pela Arb não
+terminou (acima). Nada aqui
 prova ou refuta RH. `OPEN_MATH = true`.
 
 ## 28. Mudando `Z` na escala do próprio `Z`
