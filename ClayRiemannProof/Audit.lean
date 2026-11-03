@@ -31,6 +31,9 @@ import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Colisao
 import ClayRiemannProof.Verification
+import ClayRiemannProof.BicomplexCoordinates
+import ClayRiemannProof.BicomplexConditional
+import ClayRiemannProof.CenteredStabilityBridge
 
 /-!
 # Auditoria de axiomas
@@ -2012,3 +2015,131 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Verification.logDeriv_completada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Verification.logDeriv_completada
+
+/-! ## `ClayRiemannProof/BicomplexConditional.lean` -/
+
+/-- info: 'ClayRiemannProof.BicomplexConditional.both_components_RH_force_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexConditional.both_components_RH_force_center
+
+/-- info: 'ClayRiemannProof.BicomplexConditional.one_component_does_not_force_b_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexConditional.one_component_does_not_force_b_zero
+
+/-- info: 'ClayRiemannProof.BicomplexConditional.component_coordinates_force_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexConditional.component_coordinates_force_center
+
+/-! ## `ClayRiemannProof/CenteredStabilityBridge.lean` -/
+
+/-- info: 'ClayRiemannProof.CenteredStabilityBridge.re_centered' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CenteredStabilityBridge.re_centered
+
+/-- info: 'ClayRiemannProof.CenteredStabilityBridge.centered_on_axis_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CenteredStabilityBridge.centered_on_axis_iff
+
+/-- info: 'ClayRiemannProof.CenteredStabilityBridge.centered_reflection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CenteredStabilityBridge.centered_reflection
+
+/-- info: 'ClayRiemannProof.CenteredStabilityBridge.riemann_iff_centered_neutral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CenteredStabilityBridge.riemann_iff_centered_neutral
+
+/-- info: 'ClayRiemannProof.CenteredStabilityBridge.hypothetical_rectangle_real_parts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CenteredStabilityBridge.hypothetical_rectangle_real_parts
+
+/-! ## `ClayRiemannProof/BicomplexCoordinates.lean` -/
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.re_verticalPoint' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.re_verticalPoint
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.re_verticalPoint_eq_of_same_sigma' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.re_verticalPoint_eq_of_same_sigma
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.critical_coordinate_eq_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.critical_coordinate_eq_half
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.neg_half_of_critical_coordinate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.neg_half_of_critical_coordinate
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.i_sq' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.i_sq
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_sq' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_sq
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.ij_eq_k' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.ij_eq_k
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.ji_eq_k' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.ji_eq_k
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.k_sq' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.k_sq
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_inverse_left' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_inverse_left
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_inverse_right' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_inverse_right
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_ne_i' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_ne_i
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_ne_neg_i' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_ne_neg_i
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.real_of_negative_one_ne_two' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.real_of_negative_one_ne_two
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.j_coordinate_norm_sq' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.j_coordinate_norm_sq
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.idempotent_zero_divisors' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.idempotent_zero_divisors
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.one_add_k_ne_zero' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.one_add_k_ne_zero
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.one_sub_k_ne_zero' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.one_sub_k_ne_zero
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.i_mul_complex' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.i_mul_complex
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.i_mul_second_plane' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.i_mul_second_plane
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_complex_y' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_complex_y
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_real_y' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_real_y
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_independent_j' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.real_minus_one_plus_i_independent_j
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.complex_y_example_re_two' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.complex_y_example_re_two
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.complex_y_example_zero' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.complex_y_example_zero
+
+/-- info: 'ClayRiemannProof.BicomplexCoordinates.projection_b_zero' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.BicomplexCoordinates.projection_b_zero

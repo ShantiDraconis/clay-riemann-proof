@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 604 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (857 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 638 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (891 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -691,7 +691,7 @@ encontram. O lado dos zeros, `Σ_ρ 1/(s − ρ)`, é o produto de Hadamard (se�
 **Origem**: argumento clássico de simetria; formalização nova. **Axiomas**: `[propext, Classical.choice,
 Quot.sound]` (8 guardas).
 
-## 17. A teia: a mesma colisão em todas as áreas e a escala em que um quarteto apareceria
+## 18. A teia: a mesma colisão em todas as áreas e a escala em que um quarteto apareceria
 
 Arquivos: `computations/alturas/alturas.py`, `.github/workflows/alturas.yml` (resultado na branch
 `resultados-alturas`).
@@ -740,6 +740,40 @@ grande (é lá que `λ` chega mais perto de 0); com `β − ½` pequeno, porque 
 não que exista algo. `λ < 0` em todos os pares medidos e `Λ ≥ 0` é teorema. `OPEN_MATH = true`.
 **Origem**: Csordas–Smith–Varga (1994), Montgomery (1973), Odlyzko (1987), Rodgers–Tao (2018); a tabela da teia junta
 resultados clássicos de cada área; a lei da raiz quadrada no kernel, nova.
+
+## 19. Álgebra bicomplexa de coordenadas, ponte condicional e coordenada centrada (suplementar; não prova RH)
+
+Arquivos: `ClayRiemannProof/BicomplexCoordinates.lean`, `ClayRiemannProof/BicomplexConditional.lean`,
+`ClayRiemannProof/CenteredStabilityBridge.lean`; notas de escopo em `BICOMPLEX_SCOPE.md` e `CROSS_DOMAIN_SCOPE.md`
+(branch `bicomplex-coordinate-algebra`, trazida ao `main`).
+
+O módulo formaliza identidades de coordenadas: `i²=j²=-1`, `ij=ji=k`, `k²=1`,
+`(1+k)(1-k)=0` com fatores não nulos, o inverso de `j`, e as contas de
+`-1+i(a+ib)` versus `-1+i(a+jb)`. Também verifica que as coordenadas reais
+dos componentes idempotentes são `σ+b` e `σ-b`, ambas iguais a `σ` quando `b=0`.
+
+Aqui `a+ib` usa a unidade complexa ordinária: `-1+i(a+ib)=(-1-b)+ia`; isso não requer
+uma extensão bicomplexa. Com uma unidade independente `j`, `i(a+jb)=ia+kb`, e o
+coeficiente escalar real não muda. Zero-divisores são elementos não nulos cujo produto
+pode ser zero; isso não torna um valor de função igual a zero quando apenas um componente
+idempotente se anula.
+
+Esta seção não define `ζ` sobre os bicomplexos e não implica que os zeros da zeta clássica
+estejam ou não na linha crítica. A Hipótese de Riemann continua aberta neste repositório.
+
+Os outros dois módulos da branch:
+- `BicomplexConditional.both_components_RH_force_center`: se as duas componentes `σ ± b + it` são zeros na faixa e
+  RH vale para elas, então `σ = ½` e `b = 0`. Uma componente sozinha não força `b = 0`.
+- `CenteredStabilityBridge.riemann_iff_centered_neutral`: RH ⟺ todo zero não trivial tem `Re(ρ − ½) = 0`. Entra
+  nas equivalências da `Zeta.Symmetry`.
+
+O zero de Epstein citado em `CROSS_DOMAIN_SCOPE.md`, para `m² + 5n²`, foi conferido numericamente (fora do kernel).
+Com `Z_Q(s) = ζ(s)L(s, χ₋₂₀) + L(s, χ₋₄)L(s, χ₅)`, fórmula que confere com a soma direta em `s = 2`, o zero refinado é
+`0,932969697485414 + 15,668249531278472i`, com `|Z_Q| ≈ 10⁻³¹`. O espelho `0,067030302514586 + 15,668…i` também é
+zero.
+
+**Axiomas**: 34 guardas. As identidades por `decide` em `BicomplexCoordinates` não dependem de axioma nenhum ou só
+de `propext`; as demais usam `[propext, Classical.choice, Quot.sound]`.
 
 ## Autor
 

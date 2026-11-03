@@ -11,7 +11,6 @@ import ClayRiemannProof.BaezDuarte.Spectral
 import ClayRiemannProof.BaezDuarte.NecessityFramework
 import ClayRiemannProof.Zeta.Bounds
 import ClayRiemannProof.Zeta.GammaVertical
-import ClayRiemannProof.Zeta.LogBoundRH
 import ClayRiemannProof.Zeta.Ratio
 import ClayRiemannProof.Zeta.PerronSmoothed
 import ClayRiemannProof.BaezDuarte.Necessity
@@ -36,5 +35,8 @@ import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Turing
 import ClayRiemannProof.Colisao
 import ClayRiemannProof.Verification
+import ClayRiemannProof.BicomplexCoordinates
+import ClayRiemannProof.BicomplexConditional
+import ClayRiemannProof.CenteredStabilityBridge
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
