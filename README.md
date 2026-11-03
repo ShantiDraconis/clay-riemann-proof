@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 588 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (841 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 595 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (848 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -603,6 +603,56 @@ acima de `T_PT` nessa faixa estão na reta e são simples, segundo a garantia da
 contagem `N(T)` e os sinais de `Z` provados no Lean. Nenhuma altura finita fecha RH. `OPEN_MATH = true`.
 **Origem**: Turing (1953), Platt (2017), FLINT/Arb; formalização nova. **Axiomas**: `[propext, Classical.choice,
 Quot.sound]` (11 guardas).
+
+## 16. Onde um zero sairia da reta primeiro: a lei da colisão, pares de Lehmer e a faixa permitida
+
+Arquivos: `ClayRiemannProof/Colisao.lean`, `computations/lehmer/analise.py`, `computations/lehmer/analise.json`.
+
+```lean
+def H2 (a t : ℝ) (z : ℂ) : ℂ := z ^ 2 - (a : ℂ) ^ 2 - 2 * (t : ℂ)     -- um par isolado no fluxo de de Bruijn
+theorem calor_t : HasDerivAt (fun s => H2 a s z) (-2) t                -- ∂ₜH = −2
+theorem calor_z : deriv (deriv (fun w => H2 a t w)) z = 2              -- ∂²_z H = 2, logo ∂ₜH = −∂²_z H
+theorem zeros_reais_iff : (∀ z, H2 a t z = 0 → z.im = 0) ↔ -(a ^ 2) / 2 ≤ t
+theorem colisao : (∀ z, H2 (Δ / 2) t z = 0 → z.im = 0) ↔ -(Δ ^ 2) / 8 ≤ t   -- tempo de colisão −Δ²/8
+theorem mais_proximo_sai_depois (h : |Δ₁| < |Δ₂|) : -(Δ₂ ^ 2) / 8 < -(Δ₁ ^ 2) / 8
+```
+
+**O mecanismo** (kernel): no fluxo do calor de de Bruijn, um zero só sai da reta colidindo com o vizinho; um par a
+distância `Δ` colide em `t = −Δ²/8`. Para `ζ`, o critério de Csordas–Smith–Varga acrescenta os vizinhos
+(`g = Σ 1/(x_k − x_j)² + 1/(x_{k+1} − x_j)²`, com `x = 2γ`): um par com `Δ²g < 4/5` (par de Lehmer) dá
+`Λ ≥ λ = ((1 − (5/4)Δ²g)^{4/5} − 1)/(8g)`, cujo termo principal é o `−Δ²/8` do modelo. O par com `λ` mais perto de 0 é o
+mais frágil. Rodgers–Tao (`Λ ≥ 0`) diz que esses `λ` chegam tão perto de 0 quanto se queira ("RH, se for verdade, é
+verdade por pouco").
+
+**Os pares mais frágeis da faixa certificada** (41 393 zeros, seção 13; `g` com os zeros da janela e a cauda pela
+densidade — estimativa fora do kernel):
+
+| índice | `γ_k` | `γ_{k+1} − γ_k` | espaçamento normalizado | `Δ²g` | `λ` (CSV) |
+|---|---|---|---|---|---|
+| 12 363 153 465 694 | 3 000 175 339 472,0499 | 0,007987 | 0,0342 | 0,0057 | −3,19·10⁻⁵ |
+| 12 363 153 454 258 | 3 000 175 336 800,2785 | 0,009027 | 0,0386 | 0,0059 | −4,08·10⁻⁵ |
+| 12 363 153 460 076 | 3 000 175 338 159,6114 | 0,009484 | 0,0406 | 0,0055 | −4,50·10⁻⁵ |
+| 12 363 153 476 424 | 3 000 175 341 979,2703 | 0,010024 | 0,0429 | 0,0077 | −5,03·10⁻⁵ |
+| 12 363 153 445 940 | 3 000 175 334 856,7921 | 0,011684 | 0,0500 | 0,0131 | −6,84·10⁻⁵ |
+
+370 dos 400 menores intervalos são pares de Lehmer. Todos estão na reta (seção 13).
+
+**A mesma lei em outra área** (matrizes aleatórias): os espaçamentos normalizados da faixa têm média 1,0000 e
+variância 0,1756 (Wigner–GUE: 0,1781; Poisson: 1); a repulsão é cúbica (`P(s < 0,1)` observado `9,2·10⁻⁴`, GUE
+`1,1·10⁻³`); o menor espaçamento, 0,0342, está na escala que o GUE prevê para 41 393 níveis (≈ 0,028). É a
+estatística de autovalores de matrizes hermitianas aleatórias (Montgomery–Odlyzko), a mesma de espectros de
+sistemas quânticos caóticos sem simetria de reversão temporal.
+
+**A faixa onde um zero fora da reta ainda poderia estar**, na altura `T ≈ 3·10¹²`: a região sem zeros de
+Mossinghoff–Trudgian–Yang (`σ ≥ 1 − 1/(5,558691 log t)`) dá `0,006262 < β < 0,993738`; abaixo de
+`3 000 175 342 471,5` não há nenhum (seção 13). As estimativas de densidade `N(σ, T)` caem com `σ − ½`: se houvesse
+zeros fora, a maior parte estaria perto da reta, num par de Lehmer forte, numa altura maior que a verificada.
+
+**O que NÃO é**: nenhum desses números diz que existe zero fora da reta, nem onde; `λ < 0` em todos os pares, e
+`Λ ≥ 0` já é teorema. O modelo de dois zeros é exato só para um par isolado. `OPEN_MATH = true`.
+**Origem**: de Bruijn (1950), Newman (1976), Csordas–Smith–Varga (1994), Montgomery (1973), Odlyzko (1987),
+Rodgers–Tao (2018), Mossinghoff–Trudgian–Yang (2022); a lei da colisão no kernel, nova. **Axiomas**:
+`[propext, Classical.choice, Quot.sound]` (7 guardas).
 
 ## Autor
 

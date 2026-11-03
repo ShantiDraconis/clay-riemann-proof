@@ -34,5 +34,6 @@ import ClayRiemannProof.LiFinite
 import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Turing
+import ClayRiemannProof.Colisao
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

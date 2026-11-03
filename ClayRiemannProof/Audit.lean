@@ -29,6 +29,7 @@ import ClayRiemannProof.LiFinite
 import ClayRiemannProof.Turing
 import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
+import ClayRiemannProof.Colisao
 
 /-!
 # Auditoria de axiomas
@@ -1960,3 +1961,26 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Turing.rhNoMundo_estende' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Turing.rhNoMundo_estende
+
+/-! ## `ClayRiemannProof/Colisao.lean` -/
+
+/-- info: 'ClayRiemannProof.Colisao.H2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.H2
+
+/-- info: 'ClayRiemannProof.Colisao.calor_t' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.calor_t
+
+/-- info: 'ClayRiemannProof.Colisao.calor_z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.calor_z
+
+/-- info: 'ClayRiemannProof.Colisao.zeros_reais_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.zeros_reais_iff
+
+/-- info: 'ClayRiemannProof.Colisao.colisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.colisao
+
+/-- info: 'ClayRiemannProof.Colisao.mais_proximo_sai_depois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.mais_proximo_sai_depois
+
+/-- info: 'ClayRiemannProof.Colisao.na_reta_em_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Colisao.na_reta_em_zero
