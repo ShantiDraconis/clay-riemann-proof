@@ -31,8 +31,8 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `lombada_do_par`, `limiar_do_par` | `c(w − γ₁)(γ₂ − w)` é a lombada de altura `c(γ₂ − γ₁)²/4 = |Z''|Δ²/8`; limiar `ε* = cΔ²/4` |
 | | `calor_eh_empurrao` | no par isolado do fluxo de de Bruijn, `H_t = H_0 − 2t`: voltar o tempo `|t|` é empurrar `2|t|` |
 | | `menos_forca` | o empurrão que tira da reta o par de uma lombada tira o de qualquer lombada mais baixa |
-| | `empurrao_simetrico`, `constante_simetrica`, `zeta_empurrada_quarteto` (*) | `ξ(½ + w) − ε·g(w)`, com `g` simétrico (`g(−w) = g(w)`, `g(w̄) = conj g(w)`; por exemplo `g = 1`), tem as duas simetrias de `ξ`, e seus zeros vêm em quartetos `w, −w, w̄, −w̄` |
-| `Empurrao.lean` (*) | `fora`, `fora_mono`, `fora_eq_zero_iff`, `limiar_da_janela`, `fora_total`, `fora_uniao`, `fora_composta`, `minimo_desce` | o operador de contagem `fora(s, h, ε) = 2·#{j : h_j < ε}`: monótono em `ε`; zero ⟺ `ε ≤ min h`; total acima de `max h`; aditivo em janelas disjuntas; `fora(h − ε, δ) = fora(h, ε + δ)` (semigrupo de translações); o mínimo só desce quando a janela cresce |
+| | `empurrao_simetrico`, `constante_simetrica`, `zeta_empurrada_quarteto` | `ξ(½ + w) − ε·g(w)`, com `g` simétrico (`g(−w) = g(w)`, `g(w̄) = conj g(w)`; por exemplo `g = 1`), tem as duas simetrias de `ξ`, e seus zeros vêm em quartetos `w, −w, w̄, −w̄` |
+| `Empurrao.lean` | `fora`, `fora_mono`, `fora_eq_zero_iff`, `limiar_da_janela`, `fora_total`, `fora_uniao`, `fora_composta`, `minimo_desce` | o operador de contagem `fora(s, h, ε) = 2·#{j : h_j < ε}`: monótono em `ε`; zero ⟺ `ε ≤ min h`; total acima de `max h`; aditivo em janelas disjuntas; `fora(h − ε, δ) = fora(h, ε + δ)` (semigrupo de translações); o mínimo só desce quando a janela cresce |
 | | `empurrao_fixo_acaba_tirando` | se a lombada mais baixa das janelas tende a 0, todo empurrão fixo `ε > 0` acaba tirando zeros da reta |
 | `Colisao.lean` | `colisao`, `raiz_quadrada`, `mais_proximo_sai_depois` | par isolado no fluxo do calor colide em `t = −Δ²/8` e sai da reta como `±i√(2(t* − t))` |
 | `Lehmer.lean` | `csv_le_isolado`, `csv_ge`, `csv_neg` | cota de Csordas–Smith–Varga de um par de Lehmer: `−(5/32)Δ² ≤ λ ≤ −Δ²/8 < 0` |
@@ -42,9 +42,6 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Gram.lean` | `S_gram`, `zeros_no_bloco`, `bloco_par` | `S(g_m) = N(g_m) − m − 1 ∈ ℤ`; zeros no bloco = comprimento + variação de `S`; excesso e falta de 2 em 2 entre pontos bons |
 | `QuartetoDesenhado.lean` | `quarteto_desenhado` | `ζ(0,3 ± 14i) ≠ 0` e `ζ(0,7 ± 14i) ≠ 0` (avaliação certificada de `ζ` no kernel, `|ζ| ≥ 1/10`) |
 | `Turing.lean`, `PrimeiroFora.lean` | `turing_logica`, `primeiro_fora`, `primeiro_fora_acima` | lógica de Turing; se existe zero fora da reta, existe um de altura mínima, acima de toda altura verificada |
-
-(*) Na branch `formalizacao-calculos`, aguardando o CI do Lean (a fila do GitHub estava cheia); entram na main quando o
-build passar.
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 

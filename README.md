@@ -1148,7 +1148,10 @@ Arquivos: `computations/forca/lombadas.py`, `escala.py`, `trilha.py`, `computati
 
 **A função empurrada.** `Z − ε` na reta é `ζ_ε(s) = ζ(s) − ε·χ(s)^{1/2}` no plano (`χ(s) = ζ(s)/ζ(1 − s)`, e
 `χ(½ + it)^{1/2} = e^{−iθ(t)}`). `ζ_ε` tem a mesma equação funcional (`ζ_ε(s) = χ(s)ζ_ε(1 − s)`) e a mesma conjugação
-de `ζ`, e não tem produto de Euler. Por isso seus zeros fora da reta vêm em quartetos `½ ± b ± it`. `Z − ε` (ε > 0) só
+de `ζ`, e não tem produto de Euler. Por isso seus zeros fora da reta vêm em quartetos `½ ± b ± it`. No kernel, na
+forma de `ξ`: `Forca.empurrao_simetrico` (com `f` e `g` simétricas e `ε` real, `f − ε·g` é simétrica),
+`Forca.constante_simetrica` (`g = 1` serve) e `Forca.zeta_empurrada_quarteto` (os zeros de `ξ(½ + w) − ε·g(w)` vêm em
+quartetos `w, −w, w̄, −w̄`), só com `propext`, `Classical.choice` e `Quot.sound`. `Z − ε` (ε > 0) só
 perde zeros reais nas lombadas positivas: cada lombada positiva mais baixa que `ε` é engolida e seus dois zeros saem
 da reta. `Z + ε` faz o mesmo com as negativas.
 
@@ -1235,7 +1238,7 @@ Dois testes novos de teoremas clássicos nas 41 392 lombadas da seção 13:
 - **A lombada do par**: `log|Z*| = 2,02·log Δ + c` nos 1 119 pares com `s < 0,3`, a lei `|Z*| = |Z''|Δ²/8`
   (`Forca.limiar_do_par`) nos dados.
 
-E o operador de empurrão (`ClayRiemannProof/Empurrao.lean`, na branch `formalizacao-calculos` aguardando o CI do Lean; entra na main quando o build passar): contagem monótona, limiar da janela, soma em
+E o operador de empurrão (`ClayRiemannProof/Empurrao.lean`, no kernel): contagem monótona, limiar da janela, soma em
 janelas disjuntas, semigrupo de translações, mínimo que só desce com a janela, e o teorema condicional "se a lombada
 mais baixa tende a 0, todo empurrão fixo acaba tirando zeros da reta". Gráfico da fração tirada da reta:
 `computations/forca/resultados/fracao_fora.png`.
