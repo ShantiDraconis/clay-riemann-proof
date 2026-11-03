@@ -1185,6 +1185,14 @@ conferindo. Em 10¹⁴: `s_min = 0,0323`, `λ = −2,23·10⁻⁵` (previsto `�
 `s = 0,0078` em só 20 000 zeros (o GUE espera 0,036; acontece com probabilidade de cerca de 1%), `λ = −9,73·10⁻⁷`:
 o par mais perto da colisão por zero varrido em todos os dados.
 
+**O ponto mais fácil de todos, na segunda extensão (seção 31)**: os zeros 12 363 161 233 435/…436
+(`γ ≈ 3 000 177 154 379,7294` e `…379,7302`, a 0,00073130 um do outro, `s = 0,0031`). A lombada entre eles tem
+`|Z*| = 1,07·10⁻⁵`, com `Z'' = −161` (Riemann–Siegel no extremo, `computations/forca/resultados/vizinhos_12363161233435.json`;
+o modelo do par dá `|Z''|Δ²/8 = 1,07·10⁻⁵`). É 5 vezes mais fácil que o par 570 515 e cerca de 2·10⁻⁶ da média
+quadrática de `Z`. É também o par de menor `λ` (−2,67·10⁻⁷): por empurrão e por calor, é o mesmo ponto. As lombadas
+vizinhas são 10⁵ vezes mais altas: −1,25 à esquerda (zeros 434/435) e −2,07 à direita (436/437), com intervalos de
+0,364 e 0,462.
+
 **A força certificada pela Arb não saiu** (run 41603222260, branch `resultados-forca`). Nos quatro grupos
 (3·10¹², 10¹⁴, 10¹⁶, 10¹⁸), a primeira avaliação de `Z` com três derivadas (`acb_dirichlet_hardy_z`, 256 bits) no
 extremo da lombada passou do limite de 19 000 s por chamada sem terminar. Isso aconteceu inclusive em `3·10¹²`, onde a
