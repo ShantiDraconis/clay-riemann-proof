@@ -100,10 +100,12 @@ theorem injOn_of_second_derivative_bound
       (fun w hw => hf' w hw)
       (fun w hw => hsecond w hw)
       hz hc
-    have hdist : dist z c ≤ r := (mem_ball.mp hz).le
+    have hmv' : ‖deriv f z - deriv f c‖ ≤ M * ‖z - c‖ := by
+      simpa only [norm_sub_rev] using hmv
+    have hdist : ‖z - c‖ ≤ r := by
+      simpa [dist_eq_norm] using (mem_ball.mp hz).le
     calc
-      ‖deriv f z - deriv f c‖ ≤ M * dist z c := by
-        simpa [dist_eq_norm] using hmv
+      ‖deriv f z - deriv f c‖ ≤ M * ‖z - c‖ := hmv'
       _ ≤ M * r := mul_le_mul_of_nonneg_left hdist hM
   exact Verification.injetiva_de_derivada hf hvariation hcenter
 
