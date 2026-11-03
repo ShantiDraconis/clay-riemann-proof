@@ -2217,3 +2217,15 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect' depends on axioms: [] -/
+#guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect.region' depends on axioms: [] -/
+#guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect.region
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect.zeta_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect.zeta_ne_zero
+
+/-- info: 'ClayRiemannProof.CertificateBridge.zeroFreeRect_of_peca_ret' depends on axioms: [] -/
+#guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.zeroFreeRect_of_peca_ret
