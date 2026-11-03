@@ -9,64 +9,64 @@
    "n": "12363153437139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 108.9
+   "segundos": 112.0
   },
   {
    "n": "12363153442139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 109.7
+   "segundos": 108.7
   },
   {
    "n": "12363153447139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 108.0
+   "segundos": 108.7
   },
   {
    "n": "12363153452139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 107.9
+   "segundos": 108.6
   },
   {
    "n": "12363153457139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 108.2
+   "segundos": 110.6
   },
   {
    "n": "12363153462139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 118.9
+   "segundos": 112.7
   },
   {
    "n": "12363153467139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 120.1
+   "segundos": 108.6
   },
   {
    "n": "12363153472139",
    "pedidos": 5000,
    "achados": 5000,
-   "segundos": 120.8
+   "segundos": 109.8
   },
   {
    "n": "12363153477139",
    "pedidos": 1393,
    "achados": 1393,
-   "segundos": 68.4
+   "segundos": 66.8
   }
  ],
  "N(T_PT)": {
   "T": "3000175332800",
   "N": "12363153437138",
   "arb": "12363153437138.0000000000000000",
-  "segundos": 5.9
+  "segundos": 6.0
  },
- "segundos": 983.3,
+ "segundos": 959.0,
  "N(g_b)": {
   "T": "3000175337471.5",
   "N": "12363153457130",
