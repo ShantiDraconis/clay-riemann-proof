@@ -1213,7 +1213,7 @@ Dois testes novos de teoremas clássicos nas 41 392 lombadas da seção 13:
 - **A lombada do par**: `log|Z*| = 2,02·log Δ + c` nos 1 119 pares com `s < 0,3`, a lei `|Z*| = |Z''|Δ²/8`
   (`Forca.limiar_do_par`) nos dados.
 
-E o operador de empurrão no kernel (`ClayRiemannProof/Empurrao.lean`): contagem monótona, limiar da janela, soma em
+E o operador de empurrão (`ClayRiemannProof/Empurrao.lean`, na branch `formalizacao-calculos` aguardando o CI do Lean; entra na main quando o build passar): contagem monótona, limiar da janela, soma em
 janelas disjuntas, semigrupo de translações, mínimo que só desce com a janela, e o teorema condicional "se a lombada
 mais baixa tende a 0, todo empurrão fixo acaba tirando zeros da reta". Gráfico da fração tirada da reta:
 `computations/forca/resultados/fracao_fora.png`.
