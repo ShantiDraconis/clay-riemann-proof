@@ -125,4 +125,4 @@ for p in pontos:
     res.append(reg)
     print(p["nome"], f"|Z*|={a:.3e} Z''={-sig * c2:.1f} Z(zeros)={max(zg1, zg2):.1e} ε para b:",
           {k: f"{v:.3g}" for k, v in alvo.items()}, flush=True)
-json.dump(res, open(SAI, "w"), ensure_ascii=False, indent=1)
+    json.dump(res, open(SAI, "w"), ensure_ascii=False, indent=1)  # a cada ponto: um corte não perde os anteriores

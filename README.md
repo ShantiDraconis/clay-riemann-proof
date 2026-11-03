@@ -1168,7 +1168,7 @@ ponto médio e um passo de Newton até o extremo; média quadrática de `Z`: `�
 | 5,6 | 1,1 | 35 598 (86%) | 35 536 (86%) |
 | 10 | 1,9 | 38 924 (94%) | 38 940 (94%) |
 | 31,6 | 6,1 | 41 152 (99,4%) | 41 180 (99,5%) |
-| 129,5 | 25 | todos | 41 392 − 0 |
+| 129,5 | 25 | todos | todos (a partir de 110,2) |
 
 As alturas das lombadas: mediana 1,43 (0,28 da média quadrática); 1% abaixo de 0,041; a mais baixa é a do par frágil
 465 694 (−1,03·10⁻³), a mais baixa positiva a do par 470 301 (2,97·10⁻³). A mais alta (129,5) fica no maior vazio
@@ -1176,18 +1176,40 @@ da faixa (zeros 448 671/672, intervalo 0,657, `s = 2,81`, `t ≈ 3 000 175 335 4
 só um empurrão de 25 vezes a média quadrática tira os zeros da reta.
 
 **O caminho dos zeros até o quarteto visível** (o zero de `Z(t* + u) − sinal(Z*)·ε` com `u` complexo, seguido em `ε`;
-`b = |Im u|` é a distância à reta):
+`b = |Im u|` é a distância à reta; os 15 pontos: os seis mais fáceis da continuação e os nós mais fortes da faixa;
+`computations/forca/resultados/trilha_3e12.json`):
 
 | par | `|Z*|` | `Z''` | `b = 0,001` | `b = 0,01` | `b = 0,05` | `b = 0,1` | `b = 0,2` |
 |---|---|---|---|---|---|---|---|
-| 570 515 (o mais fácil) | 5,3·10⁻⁵ | −101 | 1,04·10⁻⁴ | 5,1·10⁻³ | 0,134 | 0,64 | **4,63** |
-| 765 891 | 1,05·10⁻⁴ | −103 | 1,6·10⁻⁴ | 5,3·10⁻³ | 0,136 | 0,63 | 4,33 |
-| 756 750 (o mais apertado) | 1,23·10⁻⁴ | +1 069 | 6,6·10⁻⁴ | 0,054 | 1,4 | 6,3 | > 30 |
+| 12 363 153 976 477 | 1,30·10⁻⁴ | −22,6 | 1,4·10⁻⁴ | 1,3·10⁻³ | 0,039 | 0,26 | **2,56** |
+| nó 459 933–947 | 3,11·10⁻³ | +45,6 | 3,1·10⁻³ | 5,5·10⁻³ | 0,065 | 0,32 | 2,65 |
+| nó 461 936–951 | 0,0571 | −51,5 | 0,057 | 0,060 | 0,129 | 0,41 | 2,93 |
+| 12 363 153 765 891 | 1,05·10⁻⁴ | −103 | 1,6·10⁻⁴ | 5,3·10⁻³ | 0,136 | 0,63 | 4,33 |
+| 12 363 153 570 515 (o mais fácil no limiar) | 5,3·10⁻⁵ | −101 | 1,04·10⁻⁴ | 5,1·10⁻³ | 0,134 | 0,64 | 4,63 |
+| nó 463 169–172 (Gram triplo) | 1,85·10⁻³ | +72,3 | 1,9·10⁻³ | 5,5·10⁻³ | 0,106 | 0,57 | 4,82 |
+| aglomerado de Rosser 052/053 | 7,72·10⁻³ | +62,9 | 7,8·10⁻³ | 0,011 | 0,098 | 0,51 | 4,92 |
+| nó 465 693–697 (par frágil 465 694) | 1,03·10⁻³ | +130 | 1,1·10⁻³ | 7,6·10⁻³ | 0,177 | 0,87 | 6,60 |
+| nó 440 983–993 | 0,0124 | −74,6 | 0,0125 | 0,016 | 0,131 | 0,75 | 7,12 |
+| nó 473 934–938 | 6,06·10⁻³ | +183 | 6,2·10⁻³ | 0,016 | 0,254 | 1,22 | 8,79 |
+| 12 363 155 255 037 | 1,35·10⁻⁴ | −227 | 2,5·10⁻⁴ | 0,012 | 0,297 | 1,36 | 8,82 |
+| 12 363 153 873 626 | 1,23·10⁻⁴ | +210 | 2,3·10⁻⁴ | 0,011 | 0,281 | 1,34 | 9,23 |
+| aglomerado de Rosser 053/054 | 0,0984 | −113 | 0,098 | 0,105 | 0,286 | 1,37 | 13,2 |
+| nó 455 300–304 (o mais duro) | 0,455 | +453 | 0,455 | 0,48 | 1,09 | 3,41 | 21,3 |
+| 12 363 153 756 750 (o mais apertado) | 1,23·10⁻⁴ | +1 069 | 6,6·10⁻⁴ | 0,054 | 1,4 | 6,3 | não chega (`b` máx. 0,194 com `ε = 34`) |
 
 Até `b ≈ 0,05` vale o modelo quadrático (`ε = |Z*| + b²|Z''|/2`). Depois disso o par se afasta mais devagar que o
-modelo prevê: no par 570 515, `b = 0,2` pede `ε = 4,63`, contra 2,0 no modelo. Isso é 0,9 da média quadrática de
-`Z`, ou seja, um quarteto visível pede mudar `Z` na escala do próprio `Z`. O par mais apertado, onde `Z` é íngreme,
-resiste mais: com `ε = 30` ainda não chega a `b = 0,2`.
+modelo prevê: em `b = 0,2` o `ε` medido é 1,9 a 5,7 vezes o do modelo (4,63 contra 2,0 no par 570 515). O caminho
+inteiro é monótono nos 15 pontos e os valores de `ε` coincidem, até o terceiro algarismo, em duas execuções com bases
+de fase diferentes. (O campo `convergiu` fica falso em parte dos passos porque o critério `|passo| < 10⁻¹³` está
+abaixo do ruído de ponto flutuante de `Z` em `3·10¹²`, ≈ 10⁻¹⁰.)
+
+**Quem chega primeiro ao quarteto visível não é quem sai primeiro da reta.** Perto do limiar manda a altura da
+lombada `|Z*|`: o par 570 515 sai com `ε = 5,3·10⁻⁵`. Em `b = 0,2` manda a curvatura: a ordem dos 14 pontos que chegam
+lá segue `|Z''|` (correlação de postos de Spearman 0,86; com `|Z*|`, 0,38). O mais fácil é o par 976 477, largo e com a
+lombada mais chata (`Z'' = −22,6`, `ε = 2,56`, metade da média quadrática de `Z`). Logo depois vêm dois nós da faixa
+com `|Z*|` 24 e 440 vezes maior, mas curvatura pequena. Os que resistem são os de `Z` íngreme: o nó 455 300–304 pede
+`ε = 21,3` (4 vezes a média quadrática), e o par mais apertado (`Z'' = +1 069`) não passa de `b = 0,194` com `ε = 34`.
+Um quarteto visível pede sempre mudar `Z` na escala do próprio `Z`.
 
 **A leitura.** Com `ε` da ordem de `Z`, 86% dos zeros saem da reta, sempre em quartetos. A reta só segura todos os
 zeros para `ε` menor que a lombada mais baixa, e a lombada mais baixa desce quando se olham mais zeros: 1,03·10⁻³ em
