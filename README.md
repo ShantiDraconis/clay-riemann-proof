@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 781 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 034 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 783 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 036 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1529,6 +1529,19 @@ algoritmo de Hiary. O que se sabe nessas alturas sai de leis que dependem de `T`
   pares de Lehmer é `−1,1·10⁻¹¹`, Saouter–Gourdon–Demichel 2011); em `10^100000`, `−6,8·10⁻⁶⁶⁶⁸⁰`. É o mecanismo do
   teorema de Rodgers–Tao (`Λ ≥ 0`): se `Λ` fosse negativo, os zeros altos teriam de ser regulares demais. Pares frágeis
   não indicam zeros fora da reta (`Correcoes.cota_de_lehmer_mais_fraca`).
+
+**Só acima do verificado** (`acima.py`, `figura_acima.py`, `acima.png`): de `10¹⁹` ao googolplex, sem repetir nada
+do que já foi conferido.
+
+![acima do verificado](computations/gigantes/acima.png)
+
+- O par mais frágil esperado entre os zeros até `T` (GUE) tem `|λ| ≈ 10^−15,2` em `10¹⁹`, `10^−71` em `10¹⁰⁰` e
+  `10^−66 679` em `10^100000`.
+- Pares mais frágeis que o recorde já visto (`λ < −4,59·10⁻⁷`) aparecem em média a cada `5,3·10⁵` de altura em
+  `10¹⁹`, a cada 600 em `10¹⁰⁰`; acima de `3^100000` o espaçamento médio já é menor que o do recorde e praticamente
+  todo par é mais frágil que ele.
+- A região sem zeros exclui só `w = 0,0041` em `10¹⁹`, `7,8·10⁻⁴` em `10¹⁰⁰`, `2,1·10⁻⁶` em `10^100000`: um zero fora
+  da reta continua permitido em quase toda a faixa.
 
 **O que NÃO é**: nenhum número desta tabela é um zero calculado nem uma verificação; são as leis e cotas conhecidas
 avaliadas em `L = ln T`. A coluna GUE é heurística (modelo de matrizes aleatórias), não teorema. `OPEN_MATH = true`.

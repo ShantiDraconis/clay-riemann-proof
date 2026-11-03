@@ -1,0 +1,145 @@
+[
+ {
+  "altura": "10¹⁹",
+  "log10_N": 19.813662771416944,
+  "espacamento": 0.14991647472331862,
+  "menos_log10_lambda_min": 15.185144611396415,
+  "s_do_recorde": 0.006393134764736698,
+  "fracao_mais_frageis_que_o_recorde": 2.8239499526500457e-07,
+  "altura_media_entre_eles": 530875.1119425268,
+  "w_sem_zeros": 0.0041120480182649955,
+  "b_max": "0.495887951982"
+ },
+ {
+  "altura": "10²⁰",
+  "log10_N": 20.83744283843418,
+  "espacamento": 0.1421090651290439,
+  "menos_log10_lambda_min": 15.91411981372408,
+  "s_do_recorde": 0.006744370779514305,
+  "fracao_mais_frageis_que_o_recorde": 3.3154173146138546e-07,
+  "altura_media_entre_eles": 428631.003713013,
+  "w_sem_zeros": 0.003906445617351746,
+  "b_max": "0.496093554383"
+ },
+ {
+  "altura": "10²²",
+  "log10_N": 22.88142057587121,
+  "espacamento": 0.12870370047198235,
+  "menos_log10_lambda_min": 17.36283313581987,
+  "s_do_recorde": 0.0074468428090695175,
+  "fracao_mais_frageis_que_o_recorde": 4.463002596432007e-07,
+  "altura_media_entre_eles": 288379.17453795753,
+  "w_sem_zeros": 0.003551314197592496,
+  "b_max": "0.496448685802"
+ },
+ {
+  "altura": "10²⁴",
+  "log10_N": 24.921351654862697,
+  "espacamento": 0.11760942426936147,
+  "menos_log10_lambda_min": 18.801085008231826,
+  "s_do_recorde": 0.00814931483862473,
+  "fracao_mais_frageis_que_o_recorde": 5.848846642537166e-07,
+  "altura_media_entre_eles": 201081.39511475342,
+  "w_sem_zeros": 0.003255371347793121,
+  "b_max": "0.496744628652"
+ },
+ {
+  "altura": "10³⁰",
+  "log10_N": 31.022938329333602,
+  "espacamento": 0.09344461048600594,
+  "menos_log10_lambda_min": 23.06858518973962,
+  "s_do_recorde": 0.010256730927290366,
+  "fracao_mais_frageis_que_o_recorde": 1.1660601747949664e-06,
+  "altura_media_entre_eles": 80137.03967073289,
+  "w_sem_zeros": 0.0026042970782344968,
+  "b_max": "0.497395702922"
+ },
+ {
+  "altura": "10⁴⁰",
+  "log10_N": 41.152503903242874,
+  "espacamento": 0.06960780643654758,
+  "menos_log10_lambda_min": 30.077421525840847,
+  "s_do_recorde": 0.013769091075066428,
+  "fracao_mais_frageis_que_o_recorde": 2.8208623605333773e-06,
+  "altura_media_entre_eles": 24676.073320849988,
+  "w_sem_zeros": 0.001953222808675873,
+  "b_max": "0.498046777191"
+ },
+ {
+  "altura": "10¹⁰⁰",
+  "log10_N": 101.55864999418563,
+  "espacamento": 0.02750708307632459,
+  "menos_log10_lambda_min": 71.15461240422344,
+  "s_do_recorde": 0.0348432519617228,
+  "fracao_mais_frageis_que_o_recorde": 4.56753899792616e-05,
+  "altura_media_entre_eles": 602.2298460683944,
+  "w_sem_zeros": 0.0007812891234703491,
+  "b_max": "0.499218710877"
+ },
+ {
+  "altura": "3^100000",
+  "log10_N": 47716.36812533184,
+  "espacamento": 5.719297413332762e-05,
+  "menos_log10_lambda_min": 31819.7251330118,
+  "s_do_recorde": 16.7579364578265,
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": 5.719297413332762e-05,
+  "w_sem_zeros": 3.4855327799722824e-06,
+  "b_max": "0.499996514467"
+ },
+ {
+  "altura": "10^100000",
+  "log10_N": 100004.56403046774,
+  "espacamento": 2.7287744882123005e-05,
+  "menos_log10_lambda_min": 66679.16515317254,
+  "s_do_recorde": 35.12332112824458,
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": 2.7287744882123005e-05,
+  "w_sem_zeros": 2.0848493881175876e-06,
+  "b_max": "0.499997915151"
+ },
+ {
+  "altura": "2^1000000",
+  "log10_N": 301035.03830779577,
+  "espacamento": 9.064744318788863e-06,
+  "menos_log10_lambda_min": 200700.43856223248,
+  "s_do_recorde": 105.73229565602078,
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": 9.064744318788863e-06,
+  "w_sem_zeros": 9.719073245163793e-07,
+  "b_max": "0.499999028093"
+ },
+ {
+  "altura": "10^(10¹⁴)",
+  "log10_N": 100000000000013.56,
+  "espacamento": 2.7287527076837043e-14,
+  "menos_log10_lambda_min": 66666666666703.164,
+  "s_do_recorde": 35123601477.76034,
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": 2.7287527076837043e-14,
+  "w_sem_zeros": 1.5012359802822212e-12,
+  "b_max": "0.499999999998"
+ },
+ {
+  "altura": "googolplex",
+  "log10_N": 1e+100,
+  "espacamento": 2.7287527076836827e-100,
+  "menos_log10_lambda_min": 6.666666666666666e+99,
+  "s_do_recorde": 3.512360147776062e+96,
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": 2.7287527076836827e-100,
+  "w_sem_zeros": 3.6447356323284836e-70,
+  "b_max": "0.5"
+ },
+ {
+  "altura": "10↑↑4",
+  "log10_N": "1.0e+10000000000",
+  "espacamento": "2.72875e-10000000000",
+  "menos_log10_lambda_min": "6.66667e+9999999999",
+  "s_do_recorde": "3.51236e+9999999996",
+  "fracao_mais_frageis_que_o_recorde": 1.0,
+  "altura_media_entre_eles": "2.72875e-10000000000",
+  "w_sem_zeros": "7.86181e-6666666673",
+  "b_max": "0.5"
+ }
+]
