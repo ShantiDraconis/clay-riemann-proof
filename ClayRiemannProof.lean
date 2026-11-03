@@ -36,6 +36,7 @@ import ClayRiemannProof.Turing
 import ClayRiemannProof.Colisao
 import ClayRiemannProof.QuartetoForcado
 import ClayRiemannProof.Verification
+import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.BicomplexCoordinates
 import ClayRiemannProof.BicomplexConditional
 import ClayRiemannProof.CenteredStabilityBridge
