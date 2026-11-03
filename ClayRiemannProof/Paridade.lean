@@ -31,7 +31,7 @@ theorem card_par_aux {α : Type*} [DecidableEq α] (f : α → α) :
     intro S hn hS hinv hfix
     rcases S.eq_empty_or_nonempty with h | ⟨x, hx⟩
     · rw [← hn, h, Finset.card_empty]
-      exact even_zero
+      exact ⟨0, rfl⟩
     · have hfx : f x ∈ S.erase x := Finset.mem_erase.mpr ⟨hfix x hx, hS x hx⟩
       have hc1 : ((S.erase x).erase (f x)).card = (S.erase x).card - 1 := Finset.card_erase_of_mem hfx
       have hc2 : (S.erase x).card = S.card - 1 := Finset.card_erase_of_mem hx
@@ -64,11 +64,7 @@ def Fora (T₁ T₂ : ℝ) : Set ℂ := {s | s ∈ NaJanela T₁ T₂ ∧ s.re �
 theorem naJanela_finita {T₁ T₂ : ℝ} (h : 1 ≤ T₁) : (NaJanela T₁ T₂).Finite := by
   refine (ClayRiemannProof.PrimeiroFora.zeros_finitos T₂).subset ?_
   rintro s ⟨⟨hz, h0, h1⟩, ha, hb⟩
-  first
-    | exact ⟨⟨⟨h0.le, h1.le⟩, ⟨by linarith, hb⟩⟩, hz⟩
-    | (simp only [Set.mem_inter_iff, Complex.mem_reProdIm, Set.mem_Icc, Set.mem_preimage,
-        Set.mem_singleton_iff]
-       exact ⟨⟨⟨h0.le, h1.le⟩, by linarith, hb⟩, hz⟩)
+  exact ⟨⟨⟨h0.le, h1.le⟩, ⟨by linarith, hb⟩⟩, hz⟩
 
 theorem fora_finito {T₁ T₂ : ℝ} (h : 1 ≤ T₁) : (Fora T₁ T₂).Finite :=
   (naJanela_finita h).subset fun _ hs => hs.1

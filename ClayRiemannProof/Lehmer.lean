@@ -117,7 +117,9 @@ theorem csv_limite (Δ : ℝ) : Tendsto (fun g => csv Δ g) (𝓝[>] 0) (𝓝 (-
       | (simp only [mul_zero, sub_zero, Real.one_rpow, mul_one]; ring)
       | (norm_num <;> ring)
   have hs := (hasDerivAt_iff_tendsto_slope.mp hd).mono_left
-    (nhdsWithin_mono _ fun x (hx : 0 < x) => Set.mem_compl_singleton_iff.mpr (ne_of_gt hx))
+    (nhdsWithin_mono _ (by
+      intro x hx
+      exact Set.mem_compl_singleton_iff.mpr (Set.mem_Ioi.mp hx).ne'))
   have h8 := hs.div_const 8
   refine Tendsto.congr' ?_ h8
   filter_upwards [self_mem_nhdsWithin] with g _
