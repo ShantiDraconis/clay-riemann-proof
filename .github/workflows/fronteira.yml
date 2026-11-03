@@ -1,0 +1,73 @@
+name: Fronteira dos pares mais frageis
+# Varreduras paralelas de zeros de ζ em alturas de 10¹³ a 10²² (FLINT 3 / Arb, método local de Platt), atrás dos pares
+# com λ de Csordas–Smith–Varga mais perto de 0⁻: onde a deformação de de Bruijn cria o primeiro quarteto. Cálculo
+# finito fora do kernel: não muda OPEN_MATH. Resultado na branch resultados-fronteira.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "computations/fronteira/**"
+      - ".github/workflows/fronteira.yml"
+permissions:
+  contents: write
+jobs:
+  varre:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        alvo: ["13 0", "14 0", "16 0", "16 1000000000000", "18 0", "18 1000000000000", "20 0", "20 1000000000000",
+               "20 2000000000000", "21 0", "21 1000000000000", "21 2000000000000", "22 0", "22 1000000000000",
+               "22 2000000000000", "22 3000000000000"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: varre
+        shell: bash
+        run: |
+          set -- ${{ matrix.alvo }}
+          mkdir -p saida
+          python3 computations/fronteira/varre.py ./zeros "saida/varre_$1_$2.json" "$1" "$2" 18000 10000 2>&1 | tail -5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: varre-${{ strategy.job-index }}
+          path: saida/
+          if-no-files-found: ignore
+  junta:
+    needs: varre
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: varre-*
+          path: varreduras
+      - name: junta
+        run: python3 computations/fronteira/agrega.py varreduras resultados 2>&1 | tee junta.log
+      - name: resumo como anotação
+        if: always()
+        run: head -12 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=fronteira::/' || true
+      - name: grava na branch resultados-fronteira
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          mkdir -p /tmp/r/varreduras && find varreduras -name "*.json" -exec cp {} /tmp/r/varreduras/ \; 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-fronteira:refs/remotes/origin/resultados-fronteira || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-fronteira; then git checkout -q -f -B resultados-fronteira origin/resultados-fronteira; else git checkout -q --orphan resultados-fronteira; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "fronteira: run ${{ github.run_id }} (${{ github.sha }})" || true
+          git push -q origin resultados-fronteira
