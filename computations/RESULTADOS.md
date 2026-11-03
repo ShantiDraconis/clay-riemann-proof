@@ -15,13 +15,17 @@ Gerado por `python3 computations/indice_resultados.py`.
 
 ## `resultados-alturas`
 
-Arquivos na ponta: 13; versões antigas em `historico/` (run-41554617926).
+Arquivos na ponta: 22; versões antigas em `historico/` (run-41554617926).
 
 | commit | data (UTC) | execução | criados | mudados | apagados |
 |---|---|---|---|---|---|
 | `ae2573778` | 2026-11-03 06:11 | [41554617926](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41554617926) | `alturas.json`, `alturas.log`, `compila.log` | — | — |
 | `97f5caab5` | 2026-11-03 11:34 | [41588835957](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41588835957) | `alturas_1e14.json`, `alturas_1e16.json`, `alturas_1e17.json`, `alturas_1e18.json`, `junta.log`, `resultados-log-14.txt` e mais 6 | `alturas.json` | `alturas.log`, `compila.log` |
 | `94712505a` | 2026-11-03 11:49 | historico/: versões que execuções poster | — | — | — |
+| `caee02ae0` | 2026-11-03 16:32 | [41630806894](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41630806894) | `INDICE.md`, `log-zeros-18.txt`, `zeros_1e18.json`, `zeros_1e18_bruto.csv.gz` | — | — |
+| `83e0bdf8f` | 2026-11-03 16:32 | [41630806894](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41630806894) | `contagem_1e18_b.json`, `log-contagem-18-b.txt` | `INDICE.md` | — |
+| `a0cc9e631` | 2026-11-03 16:32 | [41630806894](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41630806894) | `contagem_1e18_a.json`, `log-contagem-18-a.txt` | `INDICE.md` | — |
+| `9736b222c` | 2026-11-03 16:33 | [41630806894](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41630806894) | `alturas_1e18_tentativa.json` | `INDICE.md`, `alturas.json`, `junta.log` | — |
 
 ## `resultados-ataque`
 
@@ -38,11 +42,12 @@ Arquivos na ponta: 7; versões antigas em `historico/` (run-41588343004, run-415
 
 ## `resultados-continuacao`
 
-Arquivos na ponta: 9.
+Arquivos na ponta: 21.
 
 | commit | data (UTC) | execução | criados | mudados | apagados |
 |---|---|---|---|---|---|
 | `5770e0b92` | 2026-11-03 04:47 | [41559243734](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41559243734) | `agrega.log`, `faixa0.json`, `faixa1.json`, `faixa2.json`, `faixa3.json`, `zeros0.csv.gz` e mais 3 | — | — |
+| `c97c439a4` | 2026-11-03 15:32 | [41632268598](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41632268598) | `INDICE.md`, `de_3000175822471.5/agrega.log`, `de_3000175822471.5/continuacao.json`, `de_3000175822471.5/faixa0.json`, `de_3000175822471.5/faixa1.json`, `de_3000175822471.5/faixa2.json` e mais 6 | — | — |
 
 ## `resultados-forca`
 
@@ -64,13 +69,16 @@ Arquivos na ponta: 18; versões antigas em `historico/` (run-41557877448).
 
 ## `resultados-nos`
 
-Arquivos na ponta: 11.
+Arquivos na ponta: 9; versões antigas em `historico/` (run-41560374464, run-41580135724, run-41588342987, run-41628699123).
 
 | commit | data (UTC) | execução | criados | mudados | apagados |
 |---|---|---|---|---|---|
 | `eb7815737` | 2026-11-03 02:02 | [41560374464](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41560374464) | `NOS.md`, `atacados_faixa_3e12.json`, `atacados_faixa_3e12.log`, `nos_faixa_3e12.json`, `nos_faixa_3e12.log` | — | — |
 | `f9c6e608e` | 2026-11-03 09:36 | [41580135724](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41580135724) | `atacados_continuacao_zeros0.json`, `atacados_continuacao_zeros1.json`, `atacados_continuacao_zeros1.log`, `nos_continuacao_zeros0.json`, `nos_continuacao_zeros0.log`, `nos_continuacao_zeros1.json` e mais 3 | `NOS.md` | `atacados_faixa_3e12.json`, `nos_faixa_3e12.json`, `nos_faixa_3e12.log` |
 | `55e90b717` | 2026-11-03 11:16 | [41588342987](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41588342987) | — | `NOS.md`, `atacados_continuacao_zeros0.json`, `atacados_continuacao_zeros1.json`, `atacados_continuacao_zeros1.log` | — |
+| `0c46cd1fc` | 2026-11-03 16:32 | [41628699123](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41628699123) | `atacados_alturas_zeros_1e14.json`, `atacados_alturas_zeros_1e16.json`, `atacados_alturas_zeros_1e16.log`, `nos_alturas_zeros_1e14.json`, `nos_alturas_zeros_1e14.log`, `nos_alturas_zeros_1e16.json` e mais 1 | — | `NOS.md`, `atacados_continuacao_zeros0.json`, `atacados_continuacao_zeros1.json`, `atacados_continuacao_zeros1.log`, `nos_continuacao_zeros0.json`, `nos_continuacao_zeros0.log` e mais 4 |
+| `1b6b087e3` | 2026-11-03 16:32 | [41665032655](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41665032655) | `INDICE.md` | `atacados_alturas_zeros_1e14.log` | — |
+| `cd3c2f916` | 2026-11-03 17:37 | historico/: versões que execuções poster | — | — | — |
 
 ## `resultados-onda`
 
