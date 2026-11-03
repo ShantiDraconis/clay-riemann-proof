@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 766 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 019 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 781 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 034 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1424,7 +1424,8 @@ par precisaria ser empurrado e onde estaria o fechamento. Cada uma está abaixo,
 - As curvas "P fechar" não têm modelo de probabilidade por trás. O painel de Li não foi calculado.
 - `Λ ≤ 0,1787854` (atribuído a um blog) não foi verificado; o provado é `Λ ≤ 0,2` (seção 12).
 
-**Auditoria do repositório** (3/11/2026): os 66 arquivos `.lean` são alcançados pela raiz; nenhum `sorry`, `admit`,
+**Auditoria do repositório** (3/11/2026, refeita depois do rebase sobre `Alturas`, `Forca` e `Empurrao`): os 68 arquivos
+`.lean` são alcançados pela raiz; nenhum `sorry`, `admit`,
 `axiom` ou `native_decide`; todas as referências `Módulo.nome` do README existem; todo teorema tem guarda, depois de
 corrigir uma guarda duplicada (`Leis.colisao_em_gama` no lugar de `Leis.colisao_em_gama'`).
 
@@ -1474,6 +1475,35 @@ algoritmo de Hiary. O que se sabe nessas alturas sai de leis que dependem de `T`
 
 **O que NÃO é**: nenhum número desta tabela é um zero calculado nem uma verificação; são as leis e cotas conhecidas
 avaliadas em `L = ln T`. A coluna GUE é heurística (modelo de matrizes aleatórias), não teorema. `OPEN_MATH = true`.
+
+## 34. Aglomerações, e onde os zeros fora da reta existem ou chegam mais perto
+
+Arquivos: `computations/aglomeracoes/` (`aglomeracoes.py`, `analogos_fora.py`, `figura.py`, os `.json` e
+`aglomeracoes_e_fora_da_reta.png`).
+
+![aglomerações e zeros fora da reta](computations/aglomeracoes/aglomeracoes_e_fora_da_reta.png)
+
+- **Fora da reta de verdade só sem produto de Euler** (painel a; `mpmath`, malha e `findroot`, `|f| < 10⁻³⁰`):
+  - Davenport–Heilbronn até `Im 170`: 3 zeros, `0,808517 + 85,699348i` (`b = 0,3085`), `0,650830 + 114,163343i`
+    (`b = 0,1508`), `0,574356 + 166,479306i` (`b = 0,0744`), mais os espelhos `1 − β + iγ`;
+  - Epstein `m² + 5n²` até `Im 100`: 12, de `b = 0,0974` a `b = 0,4377` (`0,937667 + 29,983395i`);
+  - `ζ(s) + ζ(s + 1)` até `Im 100`: 28, todos com `0,099 ≤ Re ≤ 0,275` (não tem equação funcional);
+  - `ζ`: os 64 zeros até `Im 170` estão em `Re = ½`.
+- **Onde `ζ` chega mais perto de sair** (painel b): o par mais frágil de cada janela certificada (9,9 milhões de zeros:
+  seção 13, seção 31 e as 16 varreduras da Fronteira de `10¹³` a `10¹⁸`). O mais perto de colidir de todos é o par
+  12 363 153 756 750/751 da seção 31 (`λ = −4,59·10⁻⁷`); depois `10¹⁴` (`−5,54·10⁻⁷`) e `10¹⁶` (`−7,79·10⁻⁷`).
+  Nenhum saiu da reta: déficit 0 em todas as janelas.
+- **A aglomeração mais densa** (painel c): 7 zeros em 3,66 espaçamentos médios a partir de
+  `t = 3000175458815,17891772…`, com o par 12363153976477/478 (`s = 0,029`,
+  `λ = -2,31e-05`), o mais fácil de empurrar até o quarteto `b = 0,2` (seção 28). `S` sobe 1 em
+  cada zero e desce entre eles.
+- **Aglomerações são limitadas** (painel d): numa janela de 4 espaçamentos médios há no máximo 7 zeros (71 janelas
+  em 2 054 383); pontos ao acaso dariam 8 ou mais em 5,1% das janelas. O maior vazio tem `s = 3,44`, e `S`
+  cai de 1,97 a -1,46 nele.
+
+**O que NÃO é**: as funções do painel (a) não são `ζ`; mostram que sem produto de Euler a reta não segura os zeros.
+Os pares do painel (b) são aproximações de uma colisão no fluxo de de Bruijn (`t < 0`), não zeros fora da reta.
+`OPEN_MATH = true`.
 
 ## Autor
 
