@@ -1,0 +1,75 @@
+name: Nos suspeitos
+# Em toda lista certificada de zeros (faixa da seção 13, janelas das alturas, continuação contígua): acha os nós
+# suspeitos (aglomerações, vazios, Gram triplo, Rosser, S(t) extremo, pares frágeis) e ataca cada um com a Arb:
+# zeros recalculados por dois métodos e contagem de Turing local (N(T_b) − N(T_a) = zeros do nó na reta).
+# Cálculo finito fora do kernel: não muda OPEN_MATH. Resultado na branch resultados-nos.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "computations/nos/**"
+      - ".github/workflows/nos.yml"
+  workflow_run:
+    workflows: ["Alturas onde os pares ficam mais frageis", "Continuacao contigua acima da faixa certificada"]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  nos:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: listas certificadas
+        shell: bash
+        run: |
+          mkdir -p listas
+          for b in resultados-zeros resultados-alturas resultados-continuacao; do git fetch -q origin $b:refs/remotes/origin/$b || true; done
+          git show origin/resultados-zeros:zeros_faixa.csv.gz > listas/faixa_3e12.csv.gz 2>/dev/null || true
+          for b in resultados-alturas resultados-continuacao; do
+            for f in $(git ls-tree -r --name-only origin/$b 2>/dev/null | grep -E "\.csv\.gz$"); do
+              git show origin/$b:$f > "listas/${b#resultados-}_$(basename $f)"
+            done
+          done
+          ls -la listas
+      - name: nós e ataque
+        shell: bash
+        run: |
+          mkdir -p resultados
+          INICIO=$(date +%s)
+          for f in listas/*.csv.gz; do
+            [ -s "$f" ] || continue
+            nome=$(basename "$f" .csv.gz)
+            python3 computations/nos/nos.py "$f" "resultados/nos_$nome.json" "$nome" 60 > "resultados/nos_$nome.log" 2>&1 || continue
+            RESTA=$(( 17000 - ($(date +%s) - INICIO) ))
+            [ $RESTA -gt 600 ] || break
+            python3 computations/nos/ataca_nos.py ./zeros "resultados/nos_$nome.json" "$f" "resultados/atacados_$nome.json" 25 6 $RESTA > "resultados/atacados_$nome.log" 2>&1 || true
+          done
+          python3 computations/nos/resumo_nos.py resultados/NOS.md resultados/atacados_*.json 2>&1 | tail -40
+      - name: resumo como anotação
+        if: always()
+        run: head -40 resultados/NOS.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=nos::/' || true
+      - name: grava na branch resultados-nos
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-nos:refs/remotes/origin/resultados-nos || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-nos; then git checkout -q -f -B resultados-nos origin/resultados-nos; else git checkout -q --orphan resultados-nos; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "nos: run ${{ github.run_id }}" || true
+          git push -q origin resultados-nos

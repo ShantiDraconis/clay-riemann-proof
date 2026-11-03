@@ -932,6 +932,42 @@ o ataque roda `quebras.py` em todas as listas completas (faixa da seção 13 e j
 de Rosser está perto do zero 13 999 525); nenhuma é zero fora da reta, e todas aparecem com a contagem fechando.
 `OPEN_MATH = true`.
 
+## 25. Todos os nós onde um zero fora da reta poderia estar, e o ataque em cada um
+
+Arquivos: `computations/nos/nos.py`, `computations/nos/ataca_nos.py`, `computations/nos/resumo_nos.py`,
+`.github/workflows/nos.yml` (resultado na branch `resultados-nos`), `computations/nos/resultados/`.
+
+**Os nós.** Em cada lista certificada, `nos.py` marca os trechos curtos em que os zeros fogem do típico: aglomerações
+e vazios (excesso ou falta de zeros em janelas de 2, 5, 10 e 25 espaçamentos médios, contra a variância de número do
+GUE), intervalos de Gram com 3 zeros, violações de Rosser, `|S(t)|` além de 4 desvios de Selberg e pares com `s < 0,08`;
+nós que se tocam viram um só, ordenados por quantos tipos de anomalia juntam.
+
+Na faixa da seção 13: 17 aglomerações, 19 vazios, 77 intervalos de Gram com 3
+zeros, 1 violação de Rosser, 95 pontos com `S` extremo, 14 pares frágeis. Os dez
+nós mais fortes:
+
+| índices | `t` (início) | tipos | o que é |
+|---|---|---|---|
+| 12363153449051–12363153449061 | 3000175335583.5382404124 | Gram triplo/Rosser/S extremo/vazio | Rosser: bloco de 1 intervalos com 3 zeros (g_12363153449050) |
+| 12363153461936–12363153461951 | 3000175338593.8758254031 | S extremo/aglomeração/vazio | vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620) |
+| 12363153475647–12363153475653 | 3000175341797.5889242977 | S extremo/aglomeração | S extremo: S = -0.692 logo depois do zero (−1.692 antes) |
+| 12363153470346–12363153470354 | 3000175340559.2460942361 | S extremo/aglomeração | aglomeração L=5: 8 zeros onde se esperam 5 (Σ = 0.620) |
+| 12363153453044–12363153453068 | 3000175336516.3577681856 | S extremo/vazio | S extremo: S = 1.935 logo depois do zero (−-0.935 antes) |
+| 12363153440983–12363153440993 | 3000175333698.3233541651 | S extremo/vazio | vazio L=10: 8 zeros onde se esperam 10 (Σ = 0.674) |
+| 12363153457676–12363153457681 | 3000175337598.5655661999 | S extremo/vazio | vazio L=5: 3 zeros onde se esperam 5 (Σ = 0.620) |
+| 12363153441244–12363153441250 | 3000175333759.5644196185 | Gram triplo/S extremo | Gram triplo: 3 zeros em [g_12363153441243, g_12363153441244) |
+| 12363153459933–12363153459947 | 3000175338126.2581073803 | S extremo/aglomeração | S extremo: S = -0.729 logo depois do zero (−1.729 antes) |
+| 12363153451456–12363153451465 | 3000175336145.3595681893 | S extremo/vazio | S extremo: S = 1.783 logo depois do zero (−-0.783 antes) |
+
+**O ataque** (`ataca_nos.py`, no workflow): para cada nó, os zeros de novo pelo método local de Platt com 384 bits
+(têm de cair nas bolas da lista), nos mais fortes também pelo método geral da Arb (Gram/Rosser/Turing), e `N(T)` exato
+nos pontos médios antes e depois do nó. `N(T_a) = a − 1` e `N(T_b) = b` quer dizer que os zeros do nó, todos na reta,
+são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa de alturas: nenhum quarteto no nó. O workflow roda em todas
+as listas certificadas (faixa da seção 13, janelas das alturas, continuação contígua) assim que elas ficam prontas.
+
+**O que NÃO é**: aglomerações, vazios e violações de Rosser são irregularidades esperadas numa sequência do tipo GUE;
+um nó só seria zero fora da reta se a contagem local não fechasse. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
