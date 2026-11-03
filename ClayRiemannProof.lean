@@ -46,6 +46,7 @@ import ClayRiemannProof.Paridade
 import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
 import ClayRiemannProof.Continuacao
+import ClayRiemannProof.Alturas
 import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Audit
