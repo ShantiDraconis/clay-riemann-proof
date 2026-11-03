@@ -79,4 +79,17 @@ theorem par_mais_fragil_onda2 {γ₁ γ₂ g : ℝ}
     (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
   exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
 
+/-- **O par mais frágil da onda em 10¹⁴** (run 41594905434, 8 661 651 zeros em 16 janelas de 10¹⁴ com deslocamentos de
+3·10¹² a 18·10¹² no índice; zeros 472 888 703 009 302 e …303, `γ ≈ 1,0103·10¹⁴`, a 0,0012132 um do outro,
+`s = 0,0059`): `−9,20·10⁻⁷ ≤ λ ≤ −7,35·10⁻⁷`, qualquer que seja `g` com `Δ²g ≤ 4/5` (CSV calculado: −7,3597·10⁻⁷). -/
+theorem par_mais_fragil_onda_1e14 {γ₁ γ₂ g : ℝ}
+    (h₁ : |γ₁ - 101033300946371831397627930412273212002114 / 10 ^ 27| ≤ 694 / 10 ^ 30)
+    (h₂ : |γ₂ - 101033300946371832610851929250784856524800 / 10 ^ 27| ≤ 694 / 10 ^ 30)
+    (hg : 0 < g) (hq : (2 * (γ₂ - γ₁)) ^ 2 * g ≤ 4 / 5) :
+    -(920 : ℝ) / 1000000000 ≤ csv (2 * (γ₂ - γ₁)) g ∧ csv (2 * (γ₂ - γ₁)) g ≤ -(735 : ℝ) / 1000000000 := by
+  obtain ⟨hlo, hhi⟩ := dif_bolas h₁ h₂
+  obtain ⟨c1, c2⟩ := csv_por_distancia (lo := 121322 / 100000000) (hi := 121323 / 100000000)
+    (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
+  exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
+
 end ClayRiemannProof.Continuacao
