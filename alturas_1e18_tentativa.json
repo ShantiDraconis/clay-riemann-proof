@@ -1,0 +1,35 @@
+{
+ "janelas": [
+  {
+   "altura": "1e18",
+   "n0": "6144758226908675407",
+   "N_pedido": 20000,
+   "falhas": [
+    {
+     "n": "6144758226908675406",
+     "pedidos": 20002,
+     "achados_brutos": 17888,
+     "aproveitados": 17808
+    }
+   ],
+   "zeros_obtidos": 17808,
+   "segundos_zeros": 8811.8,
+   "conclusao": "inconclusivo",
+   "contagens": {
+    "a": {
+     "altura": "1e18",
+     "lado": "a",
+     "erro": "'T_a'",
+     "segundos_desta_etapa": 0.0
+    },
+    "b": {
+     "altura": "1e18",
+     "lado": "b",
+     "erro": "'T_b'",
+     "segundos_desta_etapa": 0.0
+    }
+   }
+  }
+ ],
+ "segundos_desta_etapa": 0.0
+}

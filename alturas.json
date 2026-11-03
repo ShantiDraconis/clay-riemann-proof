@@ -492,18 +492,6 @@
    "altura": "1e18",
    "n0": "6144758226908675407",
    "N_pedido": 20000,
-   "blocos": [
-    {
-     "n": "6144758226908675406",
-     "achados": 17808,
-     "segundos": 5542.7
-    },
-    {
-     "n": "6144758226908693214",
-     "achados": 2194,
-     "segundos": 5348.4
-    }
-   ],
    "falhas": [
     {
      "n": "6144758226908675406",
@@ -512,11 +500,23 @@
      "aproveitados": 17808
     }
    ],
-   "zeros_obtidos": 20002,
-   "segundos_zeros": 10891.1,
-   "N": 20000,
-   "erro": "Command '['./zeros', 'nzeros', '1000000000000003172.298586472726', '320']' timed out after 3580.5173099040985 seconds"
+   "zeros_obtidos": 17808,
+   "segundos_zeros": 8811.8,
+   "conclusao": "inconclusivo",
+   "contagens": {
+    "a": {
+     "altura": "1e18",
+     "lado": "a",
+     "erro": "'T_a'",
+     "segundos_desta_etapa": 0.0
+    },
+    "b": {
+     "altura": "1e18",
+     "lado": "b",
+     "erro": "'T_b'",
+     "segundos_desta_etapa": 0.0
+    }
+   }
   }
- ],
- "segundos": 18500.0
+ ]
 }

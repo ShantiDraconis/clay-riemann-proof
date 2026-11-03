@@ -3,20 +3,6 @@
   "altura": "1e14",
   "n0": "467888702914982",
   "N_pedido": 20000,
-  "falhas": [
-   {
-    "n": "467888702914981",
-    "pedidos": 20002,
-    "achados_brutos": 8088,
-    "aproveitados": 8008
-   },
-   {
-    "n": "467888702922989",
-    "pedidos": 11994,
-    "achados_brutos": 8199,
-    "aproveitados": 8119
-   }
-  ],
   "zeros_obtidos": 20002,
   "segundos_zeros": 730.7,
   "N": 20000,
@@ -37,20 +23,6 @@
   "altura": "1e16",
   "n0": "54118226280292477",
   "N_pedido": 20000,
-  "falhas": [
-   {
-    "n": "54118226280292476",
-    "pedidos": 20002,
-    "achados_brutos": 8704,
-    "aproveitados": 8624
-   },
-   {
-    "n": "54118226280301100",
-    "pedidos": 11378,
-    "achados_brutos": 8672,
-    "aproveitados": 8592
-   }
-  ],
   "zeros_obtidos": 20002,
   "segundos_zeros": 1298.7,
   "N": 20000,
@@ -71,14 +43,6 @@
   "altura": "1e17",
   "n0": "577829042746896154",
   "N_pedido": 20000,
-  "falhas": [
-   {
-    "n": "577829042746896153",
-    "pedidos": 20002,
-    "achados_brutos": 16650,
-    "aproveitados": 16570
-   }
-  ],
   "zeros_obtidos": 20002,
   "segundos_zeros": 6341.4,
   "N": 20000,
@@ -99,17 +63,22 @@
   "altura": "1e18",
   "n0": "6144758226908675407",
   "N_pedido": 20000,
-  "falhas": [
-   {
-    "n": "6144758226908675406",
-    "pedidos": 20002,
-    "achados_brutos": 17888,
-    "aproveitados": 17808
+  "zeros_obtidos": 17808,
+  "segundos_zeros": 8811.8,
+  "conclusao": "inconclusivo",
+  "contagens": {
+   "a": {
+    "altura": "1e18",
+    "lado": "a",
+    "erro": "'T_a'",
+    "segundos_desta_etapa": 0.0
+   },
+   "b": {
+    "altura": "1e18",
+    "lado": "b",
+    "erro": "'T_b'",
+    "segundos_desta_etapa": 0.0
    }
-  ],
-  "zeros_obtidos": 20002,
-  "segundos_zeros": 10891.1,
-  "N": 20000,
-  "erro": "Command '['./zeros', 'nzeros', '1000000000000003172.298586472726', '320']' timed out after 3580.5173099040985 seconds"
+  }
  }
 ]
