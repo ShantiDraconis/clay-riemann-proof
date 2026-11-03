@@ -1,0 +1,1 @@
+{"altura": "1e18", "lado": "a", "erro": "'T_a'", "segundos_desta_etapa": 0.0}
