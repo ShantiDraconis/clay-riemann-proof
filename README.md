@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 657 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (910 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 663 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (916 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -864,3 +864,19 @@ kernel, novo. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (7 guardas)
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
 Como citar: `CITATION.cff`.
+
+
+## 23. Composição de certificados Arb com simetria local (ponte formal)
+
+Arquivo: `ClayRiemannProof/CertificateBridge.lean`.
+
+O teorema `window_on_line_from_certificates` compõe três insumos finitos:
+1. bolas centradas em `Re(s)=1/2`, com `ζ` injetiva em cada bola;
+2. retângulos nos quais um certificado de `peca_ret` prova uma cota inferior positiva para `|ζ|`;
+3. cobertura racional da janela por bolas ou retângulos.
+
+Da cobertura e da cota positiva, todo zero da janela tem de estar numa bola. A simetria `s ↦ 1 − s̄` e a injetividade então colocam esse zero na reta. O lema `zeroFreeRect_of_peca_ret` encaixa a conclusão do certificado retangular na estrutura consumida pela composição. O lema `injOn_of_second_derivative_bound` converte uma cota uniforme certificada de `|ζ''|le M) numa bola de raio `r), com `Mr<|ζ'(c)|`, em injetividade de `ζ) nessa bola.
+
+**Estado:** o contrato e a composição estão no kernel e incluídos na auditoria de axiomas. Ainda não há uma instanciação com as 41.393 bolas Arb da janela publicada: faltam os certificados concretos de injetividade por bola e a cobertura/exclusão do complemento dentro do Lean. Portanto a janela numérica segue fora do kernel e `OPEN_MATH = true`. Esta ponte não usa Hadamard e não prova RH global.
+
+A contagem de guardas do kernel sobe em seis declarações nesta branch; os números anteriores continuam associados aos commits anteriores.
