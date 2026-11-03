@@ -97,6 +97,18 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 8. **`S(t)` extremo não é fragilidade**: os nós só com `S` extremo pedem 0,07 a 0,45; os nós com par frágil, 10⁻³.
 9. **Ponto mais rígido da seção 13**: o maior vazio (zeros 448 671/672, `s = 2,81`), lombada de 129,5 = 25 vezes a
    média quadrática.
+10. **O produto de Euler prevê as lombadas** (seção 35): `log|P_X(t*)|` com `X = 10⁴` no extremo da lombada tem
+    correlação 0,89 com `log|Z*|` nas 41 392 lombadas de `3·10¹²`. No 1% com o menor `P_X`, 58% das lombadas ficam
+    abaixo de 0,1, contra 3,4% no total. Para os pares mais apertados a correlação é menor (0,40 a 0,49 com `log s` em
+    `10¹⁴`, `10¹⁶`, `10¹⁷`): o produto enxerga o empurrão, não o calor.
+11. **O CUE de tamanho `N = log(T/2π)` reproduz a distribuição das lombadas** (seção 35): com `N = 27`, a fração
+    abaixo de cada `ε` bate com a medida em `3·10¹²` a menos de um ponto (39,2% contra 39% em `ε = 1`; 85,7% contra 86%
+    em `ε = 5,6`; mediana 1,455 contra 1,43). Na cauda, a lombada mínima prevista é cerca de 2 vezes menor que a medida.
+
+**Lei-modelo (extrapolação pelo CUE, seção 35)**: a lombada mediana fica em ≈ 1,4 em qualquer altura; a variância de
+`log` lombada cresce (1,9 em `3·10¹²`, 4,2 em `10¹⁰⁰⁰`); a fração tirada da reta por um empurrão do tamanho da média
+quadrática vai de 85% a 96%; a lombada mínima em 10⁴ zeros cai de 1,4·10⁻³ para 2,1·10⁻⁴, e o `λ` do par mais
+apertado, de −5,5·10⁻⁵ para −7,6·10⁻⁹. Isso é modelo, não medida: nessas alturas ninguém calcula `ζ`.
 
 ## 6. Operadores, operações e conjuntos
 

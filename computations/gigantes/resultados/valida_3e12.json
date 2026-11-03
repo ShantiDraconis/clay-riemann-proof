@@ -1,0 +1,54 @@
+{
+ "lombadas": 41392,
+ "X": {
+  "10": {
+   "desvio_log_P": 0.7952391487586478,
+   "r_cru": 0.6007616008329875,
+   "r_sem_intervalo": 0.8602786316107809,
+   "mediana_Zestrela_1pc_menor_P": 0.329313010767818,
+   "mediana_Zestrela_1pc_maior_P": 16.54936619563973,
+   "mediana_Zestrela_todas": 1.4422960739415867,
+   "fracao_menor_que_0_1_no_1pc_menor_P": 0.16707021791767554,
+   "fracao_menor_que_0_1_todas": 0.03365384615384615
+  },
+  "100": {
+   "desvio_log_P": 0.9722845192099342,
+   "r_cru": 0.7456682121899226,
+   "r_sem_intervalo": 0.9013586007390971,
+   "mediana_Zestrela_1pc_menor_P": 0.1646764560226245,
+   "mediana_Zestrela_1pc_maior_P": 26.192969704332544,
+   "mediana_Zestrela_todas": 1.4422960739415867,
+   "fracao_menor_que_0_1_no_1pc_menor_P": 0.34624697336561744,
+   "fracao_menor_que_0_1_todas": 0.03365384615384615
+  },
+  "1000": {
+   "desvio_log_P": 1.0733792663421224,
+   "r_cru": 0.8299418347230083,
+   "r_sem_intervalo": 0.8436852594162866,
+   "mediana_Zestrela_1pc_menor_P": 0.10977095273774301,
+   "mediana_Zestrela_1pc_maior_P": 31.879978877119047,
+   "mediana_Zestrela_todas": 1.4422960739415867,
+   "fracao_menor_que_0_1_no_1pc_menor_P": 0.46246973365617433,
+   "fracao_menor_que_0_1_todas": 0.03365384615384615
+  },
+  "10000": {
+   "desvio_log_P": 1.151571308742441,
+   "r_cru": 0.8859530932331371,
+   "r_sem_intervalo": 0.7608488948055141,
+   "mediana_Zestrela_1pc_menor_P": 0.0791748310975421,
+   "mediana_Zestrela_1pc_maior_P": 32.1567717370996,
+   "mediana_Zestrela_todas": 1.4422960739415867,
+   "fracao_menor_que_0_1_no_1pc_menor_P": 0.5835351089588378,
+   "fracao_menor_que_0_1_todas": 0.03365384615384615
+  }
+ },
+ "regressao_log_Zestrela_em_log_intervalo": {
+  "inclinacao": 2.3504344528414713,
+  "r": 0.8388181929190072
+ },
+ "lombada_mais_baixa": {
+  "indice": 12363153465694,
+  "Zestrela": 0.0010337829708693068
+ },
+ "posto_do_P_na_lombada_mais_baixa_pct": 8.177908774642443
+}

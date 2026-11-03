@@ -1505,6 +1505,96 @@ Arquivos: `computations/aglomeracoes/` (`aglomeracoes.py`, `analogos_fora.py`, `
 Os pares do painel (b) são aproximações de uma colisão no fluxo de de Bruijn (`t < 0`), não zeros fora da reta.
 `OPEN_MATH = true`.
 
+## 35. As alturas 10⁵⁰, 10¹⁰⁰, 10²⁵⁷, 10⁵⁵⁷ e 10¹⁰⁰⁰ medidas: o produto de Euler, a matriz aleatória calibrada e onde ζ é mais fraca
+
+Arquivos: `computations/gigantes/` (`euler.py`, `valida.py`, `valida_alturas.py`, `cue.py`, `varre_euler.py`,
+`confere.py`, `resumo.py`; resultados em `computations/gigantes/resultados/`). Complementa a seção 33 (as leis que
+dependem só de `ln T`): aqui entram o que se mede nessas alturas e o modelo calibrado nos dados.
+
+**Nessas alturas ninguém calcula zeros.** Um único valor de `Z(t)` em `10⁵⁰` pede `10^24,6` termos de
+Riemann–Siegel. Pelo algoritmo de Hiary (`T^{1/3}`, o melhor implementado), com a constante calibrada no recorde de
+Bober–Hiary (`t ≈ 8,1·10³⁴`, 22,5 anos-núcleo), um valor custaria `2·10⁶` anos-núcleo em `10⁵⁰`, `10²³` em `10¹⁰⁰`,
+`10⁷⁵` em `10²⁵⁷`, `10¹⁷⁵` em `10⁵⁵⁷` e `10³²³` em `10¹⁰⁰⁰`. O que roda está em três camadas, e cada uma tem o seu nome
+abaixo.
+
+**1. O que é teorema e conta exata** (seção 33 para as outras alturas). Pela cota de Hasanalizade–Shen–Wong
+(Corolário 1.2: `|N(T) − (T/2π)log(T/2πe)| ≤ 0,1038 log T + 0,2573 log log T + 9,3675`), `N(10¹⁰⁰⁰)` tem 1 003
+algarismos (começa por 36 601 613 727 670 769 617…) e fica determinado a menos de ±250. `N(10⁵⁰)` tem 52 algarismos
+(17 871 727 808 979 519 260…), a menos de ±23.
+
+**2. O que se mede: o produto de Euler.** O fator aritmético de `ζ` na reta é
+`P_X(t) = Π_{p ≤ X}(1 − p^{−1/2−it})^{−1}`. As fases `t·log p mod 2π` foram calculadas exatamente, com o expoente mais
+40 algarismos (1 040 em `10¹⁰⁰⁰`). Antes de usar o produto nas alturas gigantes, testei se ele prevê o que medimos:
+
+* Nas 41 392 lombadas de `3·10¹²` (seção 28), `log|P_X|` no extremo tem correlação **0,89** com `log|Z*|`
+  (`X = 10⁴`; 0,60 com `X = 10`, 0,75 com 100, 0,83 com 1 000). No 1% das lombadas com o menor `P_X`, a mediana de
+  `|Z*|` é 0,079, contra 1,44 no total, e 58% delas ficam abaixo de 0,1, contra 3,4% no total (17 vezes mais). As 100
+  lombadas mais baixas têm `P_X` no percentil mediano 2,4%. Resumindo: o produto acha onde estão as lombadas baixas,
+  que são os pares mais fáceis de tirar da reta por empurrão.
+* Para os pares mais apertados ele acerta menos. Nas janelas certificadas de `10¹⁴`, `10¹⁶` e `10¹⁷` (seção 18), a
+  correlação de `log s` com `log|P_X|` é 0,49, 0,43 e 0,40, e os 100 pares mais apertados têm `P_X` no percentil
+  mediano 19, 30 e 25. O par de `10¹⁶` com `s = 0,0078` fica no percentil 41. Isso é a lei empírica 7 de novo: o
+  empurrão e o calor escolhem pontos diferentes, e o produto de Euler enxerga o empurrão.
+
+Nas alturas gigantes, varri `P_X` (`X = 10⁵`, 9 592 primos; `varre_euler.py`) na janela `10^k ≤ t ≤ 10^k + 200`, com malha 0,004 (o
+produto varia na escala `1/log X ≈ 0,09`). Os vales mais fundos são onde a parte aritmética de `ζ` é mais fraca. O
+valor de `log|P_X|` em cada vale foi conferido por outro caminho (`confere.py`: fases calculadas direto em `t*`, sem
+a soma `fase(10^k) + u·log p`), e a diferença ficou abaixo de `10⁻¹³`:
+
+| altura | vale mais fundo (± 0,004) | `log|P_X|` no vale | desvios abaixo da média | 2º vale |
+|---|---|---|---|---|
+| 10⁵⁰ | `10⁵⁰ + 7,388` | −4,04 | 3,4 | `10⁵⁰ + 197,720` (−3,21) |
+| 10¹⁰⁰ | `10¹⁰⁰ + 74,616` | −3,37 | 2,8 | `10¹⁰⁰ + 164,160` (−3,07) |
+| 10²⁵⁷ | `10²⁵⁷ + 176,920` | −4,05 | 3,4 | `10²⁵⁷ + 114,040` (−3,24) |
+| 10⁵⁵⁷ | `10⁵⁵⁷ + 56,696` | −3,49 | 2,9 | `10⁵⁵⁷ + 147,212` (−3,48) |
+| 10¹⁰⁰⁰ | `10¹⁰⁰⁰ + 62,308` | −3,83 | 3,2 | `10¹⁰⁰⁰ + 153,144` (−3,45) |
+
+Em `3·10¹²` o vale a −3,4 desvios estaria no 0,03% mais baixo, onde as lombadas abaixo de 0,1 são a maioria. Nas
+alturas gigantes o produto explica uma parte menor da variação de `log|ζ|`: o desvio de `log|P_X|` fica em 1,19 em
+todas, e a variância de `log|ζ|` cresce como `½ log log T`. A concentração continua, só que mais fraca. São os pontos
+por onde começar, se um dia for possível calcular `ζ` ali. Não dá para conferir se há uma lombada baixa em cada um.
+
+**3. O que o modelo diz: a matriz aleatória do tamanho certo.** Pelo modelo de Keating–Snaith, na altura `T` a função
+`ζ(½ + it)` se comporta como o polinômio característico de uma matriz unitária aleatória (CUE) de tamanho
+`N = log(T/2π)`. O análogo de `Z` é `Z_U(θ) = Π 2 sen((θ − θ_j)/2)`, e as lombadas ficam entre autoângulos
+consecutivos (`cue.py`). **Calibração com os dados**: com `N = 27` (o tamanho de `3·10¹²`, 108 000 lombadas
+simuladas), a fração de lombadas abaixo de cada `ε` é 0,17% (`ε = 0,01`; medido 0,16%), 4,0% (0,1; medido 3,4%), 14,8%
+(0,32; 13,7%), **39,2%** (1; 39%), 56,0% (1,78; 57%), 72,5% (3,16; 73%), **85,7%** (5,6; 86%), 94,0% (10; 94%) e
+99,5% (31,6; 99,4%). A mediana é 1,455, contra 1,43 medida. O modelo lognormal com a variância de Selberg dava 46% e
+90%; o CUE acerta a menos de um ponto. Ele erra na cauda: prevê a lombada mínima cerca de 2 vezes mais baixa que a
+medida (4,9·10⁻⁴ contra 1,03·10⁻³ em 41 393 zeros, 3,1·10⁻⁵ contra 5,3·10⁻⁵ em 2 095 776).
+
+| altura | `N` do CUE | lombada mediana | var. de `log` lombada | tirados da reta com `ε = 1` | com `ε` = média quadrática | lombada mínima em 10⁴ zeros | em 10⁶ | `λ` do par mais apertado em 10⁴ zeros |
+|---|---|---|---|---|---|---|---|---|
+| 3·10¹² | 27 | 1,45 | 1,92 | 39% | 84,6% | 1,4·10⁻³ | 5,4·10⁻⁵ | −5,5·10⁻⁵ |
+| 10⁵⁰ | 113 | 1,40 | 2,66 | 42% | 90,6% | 6,4·10⁻⁴ | 2,0·10⁻⁵ | −3,1·10⁻⁶ |
+| 10¹⁰⁰ | 228 | 1,40 | 3,02 | 42% | 92,6% | 5,4·10⁻⁴ | 1,6·10⁻⁵ | −7,7·10⁻⁷ |
+| 10²⁵⁷ | 590 | 1,38 | 3,41 | 43% | 94,8% | 3,5·10⁻⁴ | 8,8·10⁻⁶ | −1,1·10⁻⁷ |
+| 10⁵⁵⁷ | 1 281 | 1,34 | 3,93 | 44% | 95,5% | 2,7·10⁻⁴ | 6,6·10⁻⁶ | −2,4·10⁻⁸ |
+| 10¹⁰⁰⁰ | 2 301 | 1,37 | 4,24 | 44% | 96,2% | 2,1·10⁻⁴ | 4,7·10⁻⁶ | −7,6·10⁻⁹ |
+
+**A leitura.**
+
+* **A mediana não sai do lugar.** A lombada mediana fica em torno de 1,4 em todas as alturas. O que cresce é a
+  largura: a variância de `log` lombada vai de 1,9 a 4,2.
+* **Empurrão relativo e empurrão fixo.** Um empurrão do tamanho da média quadrática tira da reta 85% dos pares em
+  `3·10¹²` e 96% em `10¹⁰⁰⁰`. Um empurrão fixo `ε = 1` tira de 39% a 44%.
+* **Força mínima.** Para tirar o primeiro par da reta numa janela de 10⁴ zeros, a força necessária cai 7 vezes entre
+  `3·10¹²` e `10¹⁰⁰⁰`.
+* **Tempo do calor.** O `λ` do par mais apertado chega 7 000 vezes mais perto de `0⁻`, porque a densidade cresce como
+  `log T`.
+
+Pelo modelo, quanto mais alto, mais perto da colisão os zeros ficam. É o que Rodgers–Tao provaram (`Λ ≥ 0`): `ζ` está
+na borda. Nada disso põe um zero fora da reta. `OPEN_MATH = true`.
+
+**O que é cada coisa.** A cota de `N(T)` e o ponto de Gram são teoremas mais conta exata. `P_X` é medido e conferido
+nos dados (r = 0,89). A tabela do CUE é modelo, calibrado nos dados de `3·10¹²` (a menos de um ponto no meio da
+distribuição e um fator 2 na cauda). Os vales são onde o modelo híbrido de Gonek–Hughes–Keating põe as lombadas
+baixas, não zeros achados.
+**Origem**: Keating–Snaith (2000), Gonek–Hughes–Keating (2007), Hasanalizade–Shen–Wong (2022), Hiary (2011),
+Bober–Hiary (2018), Rodgers–Tao (2020); a validação do produto de Euler nas lombadas medidas e a calibração do CUE
+contra elas são novas.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
