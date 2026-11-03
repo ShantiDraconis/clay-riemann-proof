@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 595 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (848 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 603 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (856 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -653,6 +653,42 @@ zeros fora, a maior parte estaria perto da reta, num par de Lehmer forte, numa a
 **Origem**: de Bruijn (1950), Newman (1976), Csordas–Smith–Varga (1994), Montgomery (1973), Odlyzko (1987),
 Rodgers–Tao (2018), Mossinghoff–Trudgian–Yang (2022); a lei da colisão no kernel, nova. **Axiomas**:
 `[propext, Classical.choice, Quot.sound]` (7 guardas).
+
+## 17. Unicidade por simetria: verificar zeros na reta sem contar zeros (teorema)
+
+Arquivo: `ClayRiemannProof/Verification.lean`.
+
+```lean
+theorem injetiva_de_derivada (hf : ∀ z ∈ ball c r, DifferentiableAt ℂ f z)
+    (hd : ∀ z ∈ ball c r, ‖deriv f z - deriv f c‖ ≤ ε) (hε : ε < ‖deriv f c‖) : InjOn f (ball c r)
+theorem torcao_mem_ball (hc : c.re = 1 / 2) (hz : z ∈ ball c r) : torcao z ∈ ball c r
+theorem zero_na_bola_simetrica (hc : c.re = 1 / 2) (hinj : InjOn riemannZeta (ball c r))
+    (hρ : ρ ∈ ball c r) (hz : ρ ∈ Z) : ρ.re = 1 / 2
+theorem zero_unico_na_bola (hinj : InjOn riemannZeta (ball c r)) (hab : a ≤ b) (hs : hardyZ a * hardyZ b < 0)
+    (hseg : ∀ t ∈ Icc a b, naReta t ∈ ball c r) :
+    ∃ t ∈ Ioo a b, riemannZeta (naReta t) = 0 ∧ ∀ ρ ∈ ball c r, riemannZeta ρ = 0 → ρ = naReta t
+theorem janelaNaReta_de_bolas (hc : centros na reta) (hinj : ζ injetiva em cada bola)
+    (hcov : ∀ s ∈ Janela T₁ T₂, ∃ p ∈ B, s ∈ ball p.1 p.2) : JanelaNaReta T₁ T₂
+theorem rhAteZ_de_bolas … : FiniteWorlds.RHateZ T
+theorem logDeriv_completada (hs : 1 < s.re) :
+    logDeriv completedRiemannZeta s = -L ↗Λ s - logDeriv (fun z => (Gammaℝ z)⁻¹) s
+```
+
+**O que é**: uma segunda rota para ligar uma janela calculada ao kernel. `Turing.turing_logica` precisa da cota
+`(Janela T₁ T₂).encard ≤ k`, que vem do princípio do argumento para ζ (fora da Mathlib). Aqui a contagem não é
+necessária:
+- a torção `s ↦ 1 − s̄` leva cada bola centrada na reta nela mesma e leva zero em zero;
+- numa bola onde ζ é injetiva, isso força todo zero a estar na reta;
+- uma troca de sinal de `Z` dentro da bola dá a existência.
+
+Os insumos são certificados numéricos finitos: a cota da derivada na bola e `|ζ| > 0` fora das bolas, do mesmo
+tipo dos 930 que fecham a altura 13. `logDeriv_completada` é o lado dos primos da identidade em que as frentes se
+encontram. O lado dos zeros, `Σ_ρ 1/(s − ρ)`, é o produto de Hadamard (seção 12, enunciado).
+
+**O que NÃO é**: nenhuma bola concreta foi certificada no kernel ainda; nenhuma altura finita fecha RH.
+`OPEN_MATH = true`.
+**Origem**: argumento clássico de simetria; formalização nova. **Axiomas**: `[propext, Classical.choice,
+Quot.sound]` (8 guardas).
 
 ## Autor
 

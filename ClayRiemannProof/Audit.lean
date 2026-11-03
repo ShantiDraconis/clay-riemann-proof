@@ -30,6 +30,7 @@ import ClayRiemannProof.Turing
 import ClayRiemannProof.Xi
 import ClayRiemannProof.LiCircle
 import ClayRiemannProof.Colisao
+import ClayRiemannProof.Verification
 
 /-!
 # Auditoria de axiomas
@@ -1984,3 +1985,27 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Colisao.na_reta_em_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Colisao.na_reta_em_zero
+
+/-- info: 'ClayRiemannProof.Verification.injetiva_de_derivada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.injetiva_de_derivada
+
+/-- info: 'ClayRiemannProof.Verification.norm_torcao_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.norm_torcao_sub
+
+/-- info: 'ClayRiemannProof.Verification.torcao_mem_ball' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.torcao_mem_ball
+
+/-- info: 'ClayRiemannProof.Verification.zero_na_bola_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.zero_na_bola_simetrica
+
+/-- info: 'ClayRiemannProof.Verification.zero_unico_na_bola' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.zero_unico_na_bola
+
+/-- info: 'ClayRiemannProof.Verification.janelaNaReta_de_bolas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.janelaNaReta_de_bolas
+
+/-- info: 'ClayRiemannProof.Verification.rhAteZ_de_bolas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.rhAteZ_de_bolas
+
+/-- info: 'ClayRiemannProof.Verification.logDeriv_completada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Verification.logDeriv_completada
