@@ -2214,3 +2214,6 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.CertificateBridge.window_on_line_from_certificates' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.window_on_line_from_certificates
+
+/-- info: 'ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in #print axioms ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound
