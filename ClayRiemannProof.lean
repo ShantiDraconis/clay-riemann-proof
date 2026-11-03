@@ -49,5 +49,6 @@ import ClayRiemannProof.Continuacao
 import ClayRiemannProof.Alturas
 import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
+import ClayRiemannProof.Leis
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

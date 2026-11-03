@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 657 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (910 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 742 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (995 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1264,6 +1264,61 @@ mais baixa tende a 0, todo empurrão fixo acaba tirando zeros da reta". Gráfico
 `computations/forca/resultados/fracao_fora.png`.
 
 **Licença do repositório**: CC0 1.0 (domínio público), arquivo `LICENSE`.
+
+## 29. As leis por trás dos gráficos: `S(t)`, Gram e Rosser; unidades de de Bruijn; matrizes; habitantes (teorema)
+
+Arquivo: `ClayRiemannProof/Leis.lean`.
+
+```lean
+-- S(t) = N(t) − θ(t)/π − 1, N(t) = N₀ + #{γ ≤ t}
+theorem lei_mestra (h : t₁ ≤ t₂) : S t₂ − S t₁ = #zeros(t₁, t₂] − (θ t₂ − θ t₁)/π
+theorem lei_vazio (hθ : StrictMono θ) (h : t₁ < t₂) (hv : entre t₁ t₂ = 0) : … ∧ S t₂ < S t₁   -- o vazio faz S descer
+theorem S_gram (hg : θ g = m·π) : S g = N(g) − m − 1                                         -- inteiro em Gram
+theorem lei_gram : S g_{m+k} − S g_m = #zeros(g_m, g_{m+k}] − k
+theorem vazio_gram (hv : sem zeros) : S g_{m+k} = S g_m − k
+theorem gram_triplo (3 zeros em um intervalo) : S g_{m+1} = S g_m + 2
+theorem rosser_bloco : S g_{m+k} = S g_m ↔ #zeros = k
+theorem aglomerado_e_vazio (3 zeros, depois 2 intervalos vazios) : S g_{m+3} = S g_m
+-- de Bruijn: s = ½ + iz/2
+theorem re_s_de_z (z) : (½ + I z/2).re − ½ = −(Im z)/2
+theorem colisao_em_gama : zeros reais ↔ −Δγ²/2 ≤ t                                   -- Δz = 2Δγ
+theorem colisao_par_mais_fragil : −(0,007987)²/2 = −63 792 169/(2·10¹²) ∈ (−3,2·10⁻⁵, −3,1·10⁻⁵)
+theorem sem_deslocamento_em_2e5 : em t = −2·10⁻⁵ o par mais frágil ainda está na reta
+theorem deslocamento_forcado (ht : t ≤ −Δγ²/2) : ∃ z, … Re s − ½ = −√(−Δγ² − 2t)/2
+-- matrizes no vetor (Re s − ½, Im s)
+theorem vec_tensao : vec (tensao s) = diag(−1, −1) *ᵥ vec s      -- vec_espelho, vec_torcao
+theorem klein : involuções; espelho·tensão = torção; …
+-- produto e habitantes
+theorem produto_quarteto : (w − z)(w + z)(w − z̄)(w + z̄) = w⁴ − 2 Re(z²) w² + |z|⁴
+theorem produto_na_reta (Re z = 0) : … = (w² + (Im z)²)²
+theorem target_iff_fora_vazio : Target ↔ Fora = ∅
+theorem fora_vazio_ou_quatro : Fora = ∅ ∨ 4 ≤ Fora.encard
+theorem classes_orbita : (orbita s).card = 2 ∨ (orbita s).card = 4
+theorem sem_habitantes_ate_13 : {s ∈ Z | |Im s| ≤ 13} = ∅
+theorem fora_ate_janela_vazio (hPT) (hJ) : {s ∈ Fora | |Im s| ≤ 3 000 175 342 471} = ∅
+```
+
+**O que é**: as leis exatas por trás dos gráficos de `S(t)`, Gram, Rosser e dos pares forçados.
+- **Um vazio faz `S` descer**: `S` desce `1` por intervalo de Gram sem zero, e só sobe nos zeros. Depois do aglomerado
+  da violação de Rosser (`S = 2,04`), os 2,2 intervalos vazios trazem `S` de volta para perto de 0
+  (`aglomerado_e_vazio`); `S` não fica parado.
+- **Unidades**: na variável de de Bruijn `z = 2γ`, o par mais frágil (`Δγ = 0,007987`) colide em `−Δγ²/2 = −3,19·10⁻⁵`,
+  que é o próprio `λ` da tabela. Em `t = −2·10⁻⁵` ele ainda está na reta, e depois do limiar o desvio é
+  `√(−Δγ² − 2t)/2`.
+- **Operadores**: as três simetrias são as matrizes de sinal do grupo de Klein.
+- **Produto do quarteto**: é um polinômio par real, e na reta vira um quadrado perfeito (par duplo).
+- **Habitantes**: Clay é `Fora = ∅`; `Fora` vazio ou com pelo menos 4 habitantes; órbitas só das classes 2 e 4.
+
+Conferência independente dos números da seção 24, feita a partir da lista certificada de 41 393 zeros (fora do kernel):
+- intervalos de Gram com 0, 1, 2 e 3 zeros: 6 172, 29 125, 6 017 e 77;
+- 20,59% de pontos de Gram ruins;
+- `S` máximo 2,0409 no zero …449 054 e `S` mínimo −1,981 antes do zero …471 562;
+- uma única quebra da regra de Rosser, em `g_…449 050` (1 intervalo com 3 zeros, depois 2 com 0).
+
+**O que NÃO é**: as leis de `S` e de Gram são identidades de contagem; não dizem onde estão os zeros. O deslocamento
+forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
+**Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
+Classical.choice, Quot.sound]` (29 guardas).
 
 ## Autor
 

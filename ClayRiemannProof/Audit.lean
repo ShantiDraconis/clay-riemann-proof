@@ -45,6 +45,7 @@ import ClayRiemannProof.Continuacao
 import ClayRiemannProof.Alturas
 import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
+import ClayRiemannProof.Leis
 
 /-!
 # Auditoria de axiomas
@@ -2447,3 +2448,91 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Empurrao.empurrao_fixo_acaba_tirando' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Empurrao.empurrao_fixo_acaba_tirando
+/-! ## `ClayRiemannProof/Leis.lean` -/
+
+/-- info: 'ClayRiemannProof.Leis.card_split' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.card_split
+
+/-- info: 'ClayRiemannProof.Leis.lei_mestra' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.lei_mestra
+
+/-- info: 'ClayRiemannProof.Leis.lei_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.lei_vazio
+
+/-- info: 'ClayRiemannProof.Leis.S_gram' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.S_gram
+
+/-- info: 'ClayRiemannProof.Leis.lei_gram' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.lei_gram
+
+/-- info: 'ClayRiemannProof.Leis.vazio_gram' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.vazio_gram
+
+/-- info: 'ClayRiemannProof.Leis.gram_triplo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.gram_triplo
+
+/-- info: 'ClayRiemannProof.Leis.rosser_bloco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.rosser_bloco
+
+/-- info: 'ClayRiemannProof.Leis.aglomerado_e_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.aglomerado_e_vazio
+
+/-- info: 'ClayRiemannProof.Leis.re_s_de_z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.re_s_de_z
+
+/-- info: 'ClayRiemannProof.Leis.im_s_de_z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.im_s_de_z
+
+/-- info: 'ClayRiemannProof.Leis.colisao_em_gama' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_em_gama
+
+/-- info: 'ClayRiemannProof.Leis.colisao_em_gama' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_em_gama
+
+/-- info: 'ClayRiemannProof.Leis.colisao_par_mais_fragil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.colisao_par_mais_fragil
+
+/-- info: 'ClayRiemannProof.Leis.sem_deslocamento' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.sem_deslocamento
+
+/-- info: 'ClayRiemannProof.Leis.sem_deslocamento_em_2e5' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.sem_deslocamento_em_2e5
+
+/-- info: 'ClayRiemannProof.Leis.deslocamento_forcado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.deslocamento_forcado
+
+/-- info: 'ClayRiemannProof.Leis.vec_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.vec_tensao
+
+/-- info: 'ClayRiemannProof.Leis.vec_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.vec_espelho
+
+/-- info: 'ClayRiemannProof.Leis.vec_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.vec_torcao
+
+/-- info: 'ClayRiemannProof.Leis.klein' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.klein
+
+/-- info: 'ClayRiemannProof.Leis.produto_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.produto_quarteto
+
+/-- info: 'ClayRiemannProof.Leis.produto_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.produto_na_reta
+
+/-- info: 'ClayRiemannProof.Leis.target_iff_fora_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.target_iff_fora_vazio
+
+/-- info: 'ClayRiemannProof.Leis.orbita_sub_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.orbita_sub_fora
+
+/-- info: 'ClayRiemannProof.Leis.fora_vazio_ou_quatro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.fora_vazio_ou_quatro
+
+/-- info: 'ClayRiemannProof.Leis.classes_orbita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.classes_orbita
+
+/-- info: 'ClayRiemannProof.Leis.sem_habitantes_ate_13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.sem_habitantes_ate_13
+
+/-- info: 'ClayRiemannProof.Leis.fora_ate_janela_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Leis.fora_ate_janela_vazio
