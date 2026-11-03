@@ -1,33 +1,20 @@
 [
 {
-"indice_inicio": 12363153449051,
+"indice_inicio": 12363153756749,
+"tipos": [
+"par frágil"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153899398,
 "tipos": [
 "Gram triplo",
 "Rosser",
 "S extremo",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"hardy_concorda": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153461936,
-"tipos": [
-"S extremo",
-"aglomeração",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"hardy_concorda": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153475647,
-"tipos": [
-"S extremo",
 "aglomeração"
 ],
 "platt_concorda_com_a_lista": true,
@@ -36,10 +23,10 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153470346,
+"indice_inicio": 12363153873621,
 "tipos": [
 "S extremo",
-"aglomeração"
+"par frágil"
 ],
 "platt_concorda_com_a_lista": true,
 "contagem_fecha": true,
@@ -47,41 +34,46 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153453044,
-"tipos": [
-"S extremo",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"hardy_concorda": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153440983,
-"tipos": [
-"S extremo",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"hardy_concorda": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153457676,
-"tipos": [
-"S extremo",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153441244,
+"indice_inicio": 12363153498083,
 "tipos": [
 "Gram triplo",
+"Rosser",
+"S extremo"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153534959,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153603657,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"hardy_concorda": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153735520,
+"tipos": [
+"Gram triplo",
+"Rosser",
 "S extremo"
 ],
 "platt_concorda_com_a_lista": true,
@@ -89,29 +81,10 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153459933,
-"tipos": [
-"S extremo",
-"aglomeração"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153451456,
-"tipos": [
-"S extremo",
-"vazio"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153438773,
+"indice_inicio": 12363153798332,
 "tipos": [
 "Gram triplo",
+"Rosser",
 "S extremo"
 ],
 "platt_concorda_com_a_lista": true,
@@ -119,8 +92,31 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153443168,
+"indice_inicio": 12363153835342,
 "tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153886820,
+"tipos": [
+"Gram triplo",
+"Rosser",
+"S extremo"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153983687,
+"tipos": [
+"Rosser",
 "S extremo",
 "aglomeração"
 ],
@@ -129,41 +125,45 @@
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153455300,
+"indice_inicio": 12363153985487,
 "tipos": [
-"S extremo",
-"vazio"
+"Gram triplo",
+"Rosser",
+"S extremo"
 ],
 "platt_concorda_com_a_lista": true,
 "contagem_fecha": true,
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153465693,
+"indice_inicio": 12363153991175,
 "tipos": [
-"S extremo",
-"par frágil"
+"Gram triplo",
+"Rosser",
+"S extremo"
 ],
 "platt_concorda_com_a_lista": true,
 "contagem_fecha": true,
 "veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
 },
 {
-"indice_inicio": 12363153473934,
+"indice_inicio": 12363153679658,
 "tipos": [
-"S extremo",
-"par frágil"
-],
-"platt_concorda_com_a_lista": true,
-"contagem_fecha": true,
-"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
-},
-{
-"indice_inicio": 12363153471331,
-"tipos": [
+"Gram triplo",
 "S extremo",
 "aglomeração"
 ],
 "platt_concorda_com_a_lista": true,
 "contagem_fecha": true,
-"v
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de alturas"
+},
+{
+"indice_inicio": 12363153689343,
+"tipos": [
+"Gram triplo",
+"S extremo",
+"aglomeração"
+],
+"platt_concorda_com_a_lista": true,
+"contagem_fecha": true,
+"veredito": "os zeros do nó estão todos na reta e são os únicos de ζ em 0 < Re s < 1 nessa faixa de altura
