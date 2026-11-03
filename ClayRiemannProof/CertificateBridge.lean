@@ -79,4 +79,32 @@ def zeroFreeRect_of_peca_ret
         (delta : ℝ) ≤ ‖riemannZeta z‖) :
     ZeroFreeRect := ⟨s0, s1, a, b, delta, hdelta, hpiece⟩
 
+
+/-- Uma cota de segunda derivada produz a quase constância de f' e, portanto, a injetividade local.
+
+A hipótese hsecond é o dado que pode ser alimentado por uma extensão intervalar certificada de f''.
+O raio deve ser positivo e M*r menor que |f'(c)|.
+-/
+theorem injOn_of_second_derivative_bound
+    {f : ℂ → ℂ} {c : ℂ} {r M : ℝ}
+    (hf : ∀ z ∈ ball c r, DifferentiableAt ℂ f z)
+    (hf' : ∀ z ∈ ball c r, DifferentiableAt ℂ (deriv f) z)
+    (hr : 0 < r) (hM : 0 ≤ M)
+    (hsecond : ∀ z ∈ ball c r, ‖deriv (deriv f) z‖ ≤ M)
+    (hcenter : M * r < ‖deriv f c‖) :
+    InjOn f (ball c r) := by
+  have hc : c ∈ ball c r := by simpa using hr
+  have hvariation : ∀ z ∈ ball c r, ‖deriv f z - deriv f c‖ ≤ M * r := by
+    intro z hz
+    have hmv := (convex_ball c r).norm_image_sub_le_of_norm_deriv_le
+      (fun w hw => hf' w hw)
+      (fun w hw => hsecond w hw)
+      hz hc
+    have hdist : dist z c ≤ r := (mem_ball.mp hz).le
+    calc
+      ‖deriv f z - deriv f c‖ ≤ M * dist z c := by
+        simpa [dist_eq_norm] using hmv
+      _ ≤ M * r := mul_le_mul_of_nonneg_left hdist hM
+  exact Verification.injetiva_de_derivada hf hvariation hcenter
+
 end ClayRiemannProof.CertificateBridge
