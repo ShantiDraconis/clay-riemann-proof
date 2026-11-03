@@ -1757,6 +1757,13 @@ Para `ζ` (`t = 0`) uma colisão seria um zero duplo na reta, e nos 14,4 milhõe
 `6,18·10⁻⁴` (bolas disjuntas). Pela lei da cauda, os pares chegam cada vez mais perto conforme `n` cresce (seção 33),
 mas o par mais próximo só tende a 0 no limite; nenhum zero múltiplo de `ζ` é conhecido.
 
+**Os locais exatos** (`locais_exatos.py`, `locais_exatos.json`, `locais_exatos.csv`): cada zero como a bola da Arb
+`[t ± r]`, `r ≤ 5,01·10⁻¹⁸`, em `Re s = ½`; os 20 pares mais próximos, as 15 aglomerações mais densas e os 10 maiores
+vazios dos 14 380 683 zeros. A contagem máxima numa janela de 4 espaçamentos médios é 7 (476 janelas; nenhuma com 8).
+A aglomeração mais densa são os zeros 12 363 164 991 051 a …057, em `t = 3 000 178 032 334,6179272064` a
+`…335,4324039540`: 7 zeros em 3,49 espaçamentos médios. O maior vazio é entre 12 363 164 396 008 e …009
+(`Δγ = 0,8612`, 3,69 espaçamentos).
+
 **Nas escalas gigantes** (`computations/gigantes/quase_encontros_gigantes.py` e `.json`; leis e previsão GUE, nenhum
 zero calculável lá — um único valor de `Z(t)` em `10^1000000` pede `10^499 999,6` termos):
 
