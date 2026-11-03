@@ -2301,6 +2301,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Paridade.contagem_fecha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Paridade.contagem_fecha
 
+/-- info: 'ClayRiemannProof.Paridade.fecha_de_contagens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.fecha_de_contagens
+
+/-- info: 'ClayRiemannProof.Paridade.no_aglomerado_sem_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Paridade.no_aglomerado_sem_fora
+
 /-! ## `ClayRiemannProof/Gram.lean` -/
 
 /-- info: 'ClayRiemannProof.Gram.S' depends on axioms: [propext, Classical.choice, Quot.sound] -/

@@ -965,6 +965,14 @@ nos pontos médios antes e depois do nó. `N(T_a) = a − 1` e `N(T_b) = b` quer
 são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa de alturas: nenhum quarteto no nó. O workflow roda em todas
 as listas certificadas (faixa da seção 13, janelas das alturas, continuação contígua) assim que elas ficam prontas.
 
+**Resultado** (run 41560374464, branch `resultados-nos`): 25 nós atacados na faixa da seção 13, **contagem local
+fechando nos 25**. Em todos, os zeros recalculados pelo método local de Platt com 384 bits caem nas bolas da lista
+(raios até 5·10⁻³⁶); nos 6 mais fortes o método geral da Arb (Gram/Rosser/Turing) dá os mesmos zeros. No
+aglomerado: `N(T_a) = 12 363 153 449 050` e `N(T_b) = 12 363 153 449 061` com `T_a = …583,3969` e `T_b = …586,1004`,
+os 11 zeros do nó na reta. Pela paridade no kernel (seção 26, `Paridade.fecha_de_contagens`,
+`Paridade.no_aglomerado_sem_fora`), essas duas contagens implicam que não há zero fora da reta nessa janela; um furo
+teria aparecido como diferença de pelo menos 2 (`Paridade.furo_de_dois`).
+
 **O que NÃO é**: aglomerações, vazios e violações de Rosser são irregularidades esperadas numa sequência do tipo GUE;
 um nó só seria zero fora da reta se a contagem local não fechasse. `OPEN_MATH = true`.
 
@@ -980,7 +988,8 @@ Gram, a condição de Lehmer `Δ²g ≤ 4/5`) e o kernel confere a aritmética.
 | cálculo | lei | no kernel |
 |---|---|---|
 | contagem de Turing numa janela | zeros fora da reta vêm aos pares `ρ`, `1 − ρ̄` na mesma altura: são em número par | `Paridade.fora_par` |
-| contagem que fecha | zeros na janela = zeros na reta ⟹ nenhum fora da reta | `Paridade.contagem_fecha` |
+| contagem que fecha | zeros na janela = zeros na reta ⟹ nenhum fora da reta | `Paridade.contagem_fecha`, `Paridade.fecha_de_contagens` |
+| o nó do aglomerado (seção 25) | `N(T_b) − N(T_a) = 11` e 11 zeros na reta ⟹ nenhum fora | `Paridade.no_aglomerado_sem_fora` |
 | contagem que não fecha | a diferença é **pelo menos 2**, nunca 1 | `Paridade.furo_de_dois` |
 | lei de Gram | `S(g_m) = N(g_m) − m − 1` é inteiro; zeros no bloco = comprimento + variação de `S` | `Gram.S_gram`, `Gram.zeros_no_bloco` |
 | regra de Rosser | entre dois pontos de Gram bons, excesso e falta só de 2 em 2 | `Gram.bloco_par` |

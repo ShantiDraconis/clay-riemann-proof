@@ -135,4 +135,19 @@ theorem contagem_fecha {T₁ T₂ : ℝ} (h : 1 ≤ T₁) (heq : (NaJanela T₁ 
   have hs := contagem_soma (T₂ := T₂) h
   exact (Set.ncard_eq_zero (fora_finito h)).mp (by omega)
 
+/-- **Fechamento a partir das duas contagens**: `k` zeros na janela (contagem de Turing) e pelo menos `k` deles
+achados na reta (trocas de sinal de `Z`) ⟹ nenhum zero fora da reta na janela. -/
+theorem fecha_de_contagens {T₁ T₂ : ℝ} {k : ℕ} (h : 1 ≤ T₁) (hN : (NaJanela T₁ T₂).ncard = k)
+    (hL : k ≤ (NaReta T₁ T₂).ncard) : Fora T₁ T₂ = ∅ := by
+  have hs := contagem_soma (T₂ := T₂) h
+  exact (Set.ncard_eq_zero (fora_finito h)).mp (by omega)
+
+/-- **O nó mais forte da faixa (o aglomerado), seção 25**: a Arb deu `N(T_a) = 12363153449050` e
+`N(T_b) = 12363153449061` (11 zeros na janela) e achou os 11 na reta (hipóteses). -/
+theorem no_aglomerado_sem_fora
+    (hN : (NaJanela 3000175335583.396935101093095 3000175335586.100401896311926).ncard = 11)
+    (hL : 11 ≤ (NaReta 3000175335583.396935101093095 3000175335586.100401896311926).ncard) :
+    Fora 3000175335583.396935101093095 3000175335586.100401896311926 = ∅ :=
+  fecha_de_contagens (by norm_num) hN hL
+
 end ClayRiemannProof.Paridade
