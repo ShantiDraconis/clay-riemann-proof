@@ -45,5 +45,6 @@ import ClayRiemannProof.Lehmer
 import ClayRiemannProof.Paridade
 import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
+import ClayRiemannProof.Continuacao
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

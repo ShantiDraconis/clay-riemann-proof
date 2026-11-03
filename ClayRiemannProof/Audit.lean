@@ -41,6 +41,7 @@ import ClayRiemannProof.Lehmer
 import ClayRiemannProof.Paridade
 import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
+import ClayRiemannProof.Continuacao
 
 /-!
 # Auditoria de axiomas
@@ -2349,3 +2350,17 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.QuartetoDesenhado.quarteto_desenhado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.QuartetoDesenhado.quarteto_desenhado
+
+/-! ## `ClayRiemannProof/Continuacao.lean` -/
+
+/-- info: 'ClayRiemannProof.Continuacao.JanelaContinuacao2026' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.JanelaContinuacao2026
+
+/-- info: 'ClayRiemannProof.Continuacao.rhAteZ_continuacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.rhAteZ_continuacao
+
+/-- info: 'ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao
+
+/-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao

@@ -999,6 +999,7 @@ Gram, a condição de Lehmer `Δ²g ≤ 4/5`) e o kernel confere a aritmética.
 | unidades | em `x = c·γ`, `λ` vezes `c²`; de `γ` para `x = 2γ` (o tempo de de Bruijn), vezes 4 | `Lehmer.csv_escala`, `Lehmer.csv_x_de_gamma` |
 | par 052/053 do aglomerado | `−6,23·10⁻⁴ ≤ λ ≤ −4,98·10⁻⁴` para todo `g` | `Lehmer.aglomerado_052_053` |
 | par mais frágil (694/695) | `−3,99·10⁻⁵ ≤ λ ≤ −3,18·10⁻⁵` para todo `g` | `Lehmer.par_mais_fragil` |
+| continuação contígua até `…822 471,5` | RH até 3 000 175 822 471 (condicional às janelas); par mais frágil `λ ∈ [−5,75·10⁻⁷, −4,59·10⁻⁷]` | `Continuacao.rhAteZ_continuacao`, `Continuacao.par_mais_fragil_continuacao` |
 | quarteto desenhado em `0,3 ± 14i`, `0,7 ± 14i` | `|ζ| ≥ 1/10` nos quatro pontos (avaliação certificada no kernel) | `QuartetoDesenhado.quarteto_desenhado` |
 
 **O aglomerado, conferido na lista certificada** (`t − 3 000 175 335 000`):
@@ -1020,6 +1021,18 @@ intervalo do kernel. Em coordenadas `γ` o mesmo número é `−1,286·10⁻⁴`
 é o de `x`.
 
 Na faixa há 202 nós distintos. A soma 17 + 19 + 77 + 1 + 95 + 14 = 223 conta duas vezes um nó com dois tipos.
+
+**A continuação contígua** (run 41559243734, branch `resultados-continuacao`; `ClayRiemannProof/Continuacao.lean`):
+quatro faixas de 120 000 unidades acima da seção 13, `3 000 175 342 471,5 < Im s ≤ 3 000 175 822 471,5`, com
+2 054 383 zeros, todos na reta. Em cada faixa `N(b) − N(a)` = zeros na reta (déficit 0), as faixas colam (o `N`
+na mesma altura é igual pelas duas) e o maior raio é 5,01·10⁻¹⁸. No kernel: com Platt–Trudgian e as duas janelas
+como hipóteses nomeadas, RH até 3 000 175 822 471 (`Continuacao.rhAteZ_continuacao`), e o primeiro zero fora da
+reta, se existir, está acima disso (`Continuacao.primeiro_fora_acima_continuacao`). O par mais próximo dos 2 milhões
+de zeros (12 363 153 756 750/…751, `t ≈ 3 000 175 407 476,415`, a 0,000958 um do outro, `s = 0,0041`) tem
+`−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` (`Continuacao.par_mais_fragil_continuacao`; CSV calculado: −4,593·10⁻⁷). É o par
+mais perto da colisão em todos os dados, cerca de 70 vezes mais perto de `0⁻` que o da seção 13, e ainda negativo,
+como a cota exige. A agregação do workflow parou num erro de serialização (booleano do numpy no JSON) depois de
+gravar as quatro faixas; a colagem e os pares foram refeitos com o mesmo `agrega.py` fora do CI.
 
 **O que NÃO é**: os teoremas com hipóteses de dados não provam os dados. Eles dizem: se as bolas da Arb estão certas,
 então isto vale. O teorema de Csordas–Smith–Varga (`Λ ≥ λ`) não está no kernel. Nada aqui prova ou refuta RH.
