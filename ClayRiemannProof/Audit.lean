@@ -42,6 +42,7 @@ import ClayRiemannProof.Paridade
 import ClayRiemannProof.Gram
 import ClayRiemannProof.QuartetoDesenhado
 import ClayRiemannProof.Continuacao
+import ClayRiemannProof.Alturas
 import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
 
@@ -2371,6 +2372,17 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_1e18' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_1e18
+
+/-! ## `ClayRiemannProof/Alturas.lean` -/
+
+/-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Alturas.par_mais_fragil_1e14
+
+/-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e16' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Alturas.par_mais_fragil_1e16
+
+/-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e17' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Alturas.par_mais_fragil_1e17
 
 /-! ## `ClayRiemannProof/Forca.lean` -/
 
