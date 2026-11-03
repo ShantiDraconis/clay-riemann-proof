@@ -7,6 +7,10 @@ name: Continuacao contigua acima da faixa certificada
 # Cálculo finito fora do kernel: não muda OPEN_MATH. Resultado na branch resultados-continuacao, pasta de_<C0>.
 on:
   workflow_dispatch:
+    inputs:
+      faixas:
+        description: 'faixas de 120 000 unidades acima de C0, lista JSON (ex.: [4,5,6,7]); outras faixas que não 0–3 vão para de_<C0>/faixas_<primeira>-<última>/'
+        default: '[0,1,2,3]'
   push:
     branches: [main]
     paths:
@@ -21,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        i: [0, 1, 2, 3]
+        i: ${{ fromJSON(github.event.inputs.faixas || '[0,1,2,3]') }}
     steps:
       - uses: actions/checkout@v4
       - name: FLINT 3 (com o Arb)
@@ -66,7 +70,9 @@ jobs:
         if: always()
         run: |
           C0=$(python3 -c "import json;print(json.load(open('computations/continuacao/inicio.json'))['C0'])")
-          D="/tmp/r/de_$C0"
+          F='${{ github.event.inputs.faixas || '[0,1,2,3]' }}'
+          SUB=$(python3 -c "import json,sys;f=json.loads(sys.argv[1]);print('' if f==[0,1,2,3] else '/faixas_%d-%d'%(min(f),max(f)))" "$F")
+          D="/tmp/r/de_$C0$SUB"
           mkdir -p "$D" && cp -r resultado/. "$D"/ 2>/dev/null || true
           for d in faixas/faixa-*; do cp "$d"/* "$D"/ 2>/dev/null || true; done
           cp agrega.log "$D"/ 2>/dev/null || true

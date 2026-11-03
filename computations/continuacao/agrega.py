@@ -26,7 +26,12 @@ for p in sorted(ENT.rglob("faixa*.json")):
     d = json.loads(p.read_text())
     faixas[int(d["faixa"])] = (d, p.parent)
 out = {"faixas": {}, "colagem": [], "pares_mais_frageis": []}
-contiguo_ate, contiguo_ok = C0, True
+contiguo_ok = True
+# faixas extras (workflow_dispatch com faixas ≥ 4): a contiguidade conta a partir da primeira faixa presente; a colagem
+# com as faixas de baixo (outra execução) é feita depois, juntando as pastas
+I0 = min(faixas) if faixas else 0
+contiguo_ate = C0 + I0 * Decimal(120000)
+DE = contiguo_ate
 if 0 in faixas:  # colagem com a execução anterior: N(C0) calculado de novo pela faixa 0
     out["colagem"].append({"altura": str(C0), "N_pela_faixa": faixas[0][0].get("N(a)"),
                            "N_pela_execucao_anterior": str(INICIO["N(C0)"]),
@@ -88,7 +93,7 @@ out["pares_mais_frageis"] = todos_pares[:20]
 out["deficits"] = {I: faixas[I][0].get("conferencia", {}).get("deficit_(zeros_fora_da_reta)") for I in faixas}
 out["falhas"] = {I: faixas[I][0].get("falhas") for I in faixas if faixas[I][0].get("falhas")}
 out["colagem_ok"] = all(c["confere"] for c in out["colagem"])
-out["contiguo"] = {"de": str(C0), "ate": str(contiguo_ate), "zeros_na_reta": total_zeros}
+out["contiguo"] = {"de": str(DE), "ate": str(contiguo_ate), "zeros_na_reta": total_zeros}
 alguma_fora = any((v or 0) > 0 for v in out["deficits"].values())
 paradas = {I: faixas[I][0]["parou_em"] for I in faixas if faixas[I][0].get("parou_em")}
 if paradas:
@@ -98,9 +103,10 @@ if paradas:
 out["conclusao"] = (
     "ACHADO: déficit > 0 — zeros fora da reta indicados; isolar com caixas e o princípio do argumento"
     if alguma_fora else
-    f"nenhum zero fora da reta em 0 < Re s < 1, {C0} < Im s ≤ {contiguo_ate} "
-    f"({total_zeros} zeros, todos na reta); com as execuções anteriores, a seção 13 e Platt–Trudgian: "
-    f"RH conferida até {contiguo_ate}"
-    if out["colagem_ok"] and contiguo_ate > C0 else "inconclusivo: ver faixas")
+    f"nenhum zero fora da reta em 0 < Re s < 1, {DE} < Im s ≤ {contiguo_ate} "
+    f"({total_zeros} zeros, todos na reta)"
+    + (f"; com as execuções anteriores, a seção 13 e Platt–Trudgian: RH conferida até {contiguo_ate}" if I0 == 0 else
+       f"; falta colar com as faixas 0–{I0 - 1} (de {C0} a {DE}), calculadas em outra execução")
+    if out["colagem_ok"] and contiguo_ate > DE else "inconclusivo: ver faixas")
 (SAI / "continuacao.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
 print(json.dumps({k: v for k, v in out.items() if k not in ("faixas",)}, ensure_ascii=False, indent=1)[:6000])
