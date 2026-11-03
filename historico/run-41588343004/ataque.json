@@ -1,0 +1,19 @@
+{
+ "pontos": [
+  {
+   "origem": "faixa T_PT…g_b+5000",
+   "T": 3000175300000.0,
+   "N": 41393,
+   "s_min": 0.0341842,
+   "lambda": -3.1919e-05,
+   "zeros_por_s": 43.73269941891178,
+   "rho": 4.279965249327456,
+   "lambda_previsto": -2.1450302726799574e-05,
+   "razao_obs_prev": 1.4880442670919065
+  }
+ ],
+ "ajuste_taxa": null,
+ "onde_atacar": [],
+ "ataques": [],
+ "leitura": "λ_min segue −½(9/(π²N))^{2/3}/ρ²: vai a 0⁻ com N·ρ³ e não cruza 0 em N finito. Um zero fora da reta apareceria como quebra (λ ≥ 0 ou contagem que não fecha), não como continuação da curva."
+}
