@@ -68,7 +68,7 @@ theorem window_on_line_from_certificates
   intro s hs
   rcases hcover s hs with ⟨p, hp, hball⟩ | ⟨Q, hQ, hrect⟩
   · exact ⟨p, hp, hball⟩
-  · exact False.elim (Q.zeta_ne_zero hrect hs.1.1.1)
+  · exact False.elim (Q.zeta_ne_zero hrect hs.1.1)
 
 /-- Forma para um certificado de peca_ret: sua conclusão alimenta diretamente ZeroFreeRect. -/
 def zeroFreeRect_of_peca_ret
