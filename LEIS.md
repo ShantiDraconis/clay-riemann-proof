@@ -51,6 +51,9 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Continuacao.primeiro_fora_acima_continuacao` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 175 822 471` |
 | `Continuacao.par_mais_fragil_continuacao` | bolas da Arb do par 12 363 153 756 750/751 e `Δ²g ≤ 4/5` | `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` |
 | `Continuacao.par_mais_fragil_1e18` | bolas do par 6 144 758 226 908 699 989/990 | `−1,013·10⁻⁵ ≤ λ ≤ −8,09·10⁻⁶` |
+| `Alturas.par_mais_fragil_1e14` | bolas do par 467 888 702 924 344/345 (janela certificada de 10¹⁴) | `−2,79·10⁻⁵ ≤ λ ≤ −2,23·10⁻⁵` |
+| `Alturas.par_mais_fragil_1e16` | bolas do par 54 118 226 280 296 885/886 (janela de 10¹⁶, `s = 0,0078`) | `−1,22·10⁻⁶ ≤ λ ≤ −9,72·10⁻⁷` |
+| `Alturas.par_mais_fragil_1e17` | bolas do par 577 829 042 746 908 883/884 (janela de 10¹⁷) | `−2,86·10⁻⁵ ≤ λ ≤ −2,28·10⁻⁵` |
 | `Lehmer.aglomerado_052_053`, `Lehmer.par_mais_fragil` | bolas da seção 13 | `λ ∈ [−6,23·10⁻⁴, −4,98·10⁻⁴]`, `[−3,99·10⁻⁵, −3,18·10⁻⁵]` |
 | `Gram.aglomerado_rosser` | `N` nos três pontos de Gram | a exceção de Rosser do aglomerado (blocos 3/1 e 0/2) |
 | `Paridade.no_aglomerado_sem_fora` | `N(T_b) − N(T_a) = 11` e 11 zeros na reta | nenhum zero fora da reta no nó do aglomerado |

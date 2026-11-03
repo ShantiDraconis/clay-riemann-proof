@@ -758,7 +758,7 @@ previsão. Mesmo assim fica 2 vezes mais longe que o par da continuação em 3·
 zeros). As variâncias dos espaçamentos ficam a 1% da de Wigner (GUE) nas três alturas. Em 10¹⁸ a Arb achou os
 20 002 zeros (em 10 891 s), mas a contagem de Turing em `T_b` passou do limite de 3 580 s por chamada; sem ela a
 janela não fecha, e a lista não foi gravada. As faixas de `λ` dos três pares, com as bolas da Arb como hipótese,
-estão em `ClayRiemannProof/Alturas.lean` (branch `alturas-teoremas`, aguardando o CI do Lean).
+estão em `ClayRiemannProof/Alturas.lean` (no kernel, com as bolas como hipótese).
 
 **A faixa provável, se existisse um quarteto**: altura além da verificada; no par de menor `s` de uma varredura
 grande (é lá que `λ` chega mais perto de 0); com `β − ½` pequeno, porque logo depois do limiar o afastamento é
