@@ -25,12 +25,16 @@ Arquivos na ponta: 13; versões antigas em `historico/` (run-41554617926).
 
 ## `resultados-ataque`
 
-Arquivos na ponta: 5.
+Arquivos na ponta: 7; versões antigas em `historico/` (run-41588343004, run-41593562501, run-41594905434, run-41630112693).
 
 | commit | data (UTC) | execução | criados | mudados | apagados |
 |---|---|---|---|---|---|
 | `6a385b635` | 2026-11-03 06:12 | [41588343004](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41588343004) | `QUEBRAS.md`, `RESUMO.md`, `ataque.json`, `ataque.log`, `quebras/faixa_3e12.json` | — | — |
 | `16ec61219` | 2026-11-03 11:48 | [41593562501](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41593562501) | — | `RESUMO.md`, `ataque.json`, `ataque.log` | — |
+| `2947c6c44` | 2026-11-03 12:14 | [41594905434](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41594905434) | — | `ataque.log` | `RESUMO.md`, `ataque.json` |
+| `6a1921f11` | 2026-11-03 14:23 | [41630112693](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41630112693) | `ataque.json`, `quebras/zeros_1e14.json`, `quebras/zeros_1e16.json`, `quebras/zeros_1e17.json` | `QUEBRAS.md` | — |
+| `5c9773b49` | 2026-11-03 14:23 | [41628698921](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41628698921) | — | `ataque.json` | — |
+| `c3908b3e6` | 2026-11-03 15:22 | historico/: versões que execuções poster | — | — | — |
 
 ## `resultados-continuacao`
 
@@ -39,6 +43,14 @@ Arquivos na ponta: 9.
 | commit | data (UTC) | execução | criados | mudados | apagados |
 |---|---|---|---|---|---|
 | `5770e0b92` | 2026-11-03 04:47 | [41559243734](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41559243734) | `agrega.log`, `faixa0.json`, `faixa1.json`, `faixa2.json`, `faixa3.json`, `zeros0.csv.gz` e mais 3 | — | — |
+
+## `resultados-forca`
+
+Arquivos na ponta: 8.
+
+| commit | data (UTC) | execução | criados | mudados | apagados |
+|---|---|---|---|---|---|
+| `88d54fdf7` | 2026-11-03 14:55 | [41603222260](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41603222260) | `forca_1e14.json`, `forca_1e14.log`, `forca_1e16.json`, `forca_1e16.log`, `forca_1e18.json`, `forca_1e18.log` e mais 2 | — | — |
 
 ## `resultados-fronteira`
 
@@ -59,6 +71,14 @@ Arquivos na ponta: 11.
 | `eb7815737` | 2026-11-03 02:02 | [41560374464](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41560374464) | `NOS.md`, `atacados_faixa_3e12.json`, `atacados_faixa_3e12.log`, `nos_faixa_3e12.json`, `nos_faixa_3e12.log` | — | — |
 | `f9c6e608e` | 2026-11-03 09:36 | [41580135724](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41580135724) | `atacados_continuacao_zeros0.json`, `atacados_continuacao_zeros1.json`, `atacados_continuacao_zeros1.log`, `nos_continuacao_zeros0.json`, `nos_continuacao_zeros0.log`, `nos_continuacao_zeros1.json` e mais 3 | `NOS.md` | `atacados_faixa_3e12.json`, `nos_faixa_3e12.json`, `nos_faixa_3e12.log` |
 | `55e90b717` | 2026-11-03 11:16 | [41588342987](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41588342987) | — | `NOS.md`, `atacados_continuacao_zeros0.json`, `atacados_continuacao_zeros1.json`, `atacados_continuacao_zeros1.log` | — |
+
+## `resultados-onda`
+
+Arquivos na ponta: 19.
+
+| commit | data (UTC) | execução | criados | mudados | apagados |
+|---|---|---|---|---|---|
+| `6d4662bf9` | 2026-11-03 12:14 | [41594905434](https://github.com/ShantiDraconis/clay-riemann-proof/actions/runs/41594905434) | `QUEBRAS.md`, `RESUMO.md`, `fronteira.json`, `varreduras/varre_14_10000000000000.json`, `varreduras/varre_14_11000000000000.json`, `varreduras/varre_14_12000000000000.json` e mais 13 | — | — |
 
 ## `resultados-zeros`
 
