@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 638 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (891 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 650 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (903 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -765,7 +765,7 @@ Os outros dois módulos da branch:
 - `BicomplexConditional.both_components_RH_force_center`: se as duas componentes `σ ± b + it` são zeros na faixa e
   RH vale para elas, então `σ = ½` e `b = 0`. Uma componente sozinha não força `b = 0`.
 - `CenteredStabilityBridge.riemann_iff_centered_neutral`: RH ⟺ todo zero não trivial tem `Re(ρ − ½) = 0`. Entra
-  nas equivalências da `Zeta.Symmetry`.
+  na ponte total da seção 21.
 
 O zero de Epstein citado em `CROSS_DOMAIN_SCOPE.md`, para `m² + 5n²`, foi conferido numericamente (fora do kernel).
 Com `Z_Q(s) = ζ(s)L(s, χ₋₂₀) + L(s, χ₋₄)L(s, χ₅)`, fórmula que confere com a soma direta em `s = 2`, o zero refinado é
@@ -774,6 +774,56 @@ zero.
 
 **Axiomas**: 34 guardas. As identidades por `decide` em `BicomplexCoordinates` não dependem de axioma nenhum ou só
 de `propext`; as demais usam `[propext, Classical.choice, Quot.sound]`.
+
+## 20. Se existir zero fora da reta, existe um de altura mínima (teorema condicional)
+
+Arquivo: `ClayRiemannProof/PrimeiroFora.lean`.
+
+```lean
+theorem zeros_isolados (hz : z ≠ 1) : ∀ᶠ w in 𝓝[≠] z, riemannZeta w ≠ 0
+theorem zeros_finitos (T : ℝ) : ((Icc 0 1 ×ℂ Icc 1 T) ∩ riemannZeta ⁻¹' {0}).Finite
+theorem primeiro_fora (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) :
+    ∃ ρ ∈ Z, ρ.re ≠ 1 / 2 ∧ 0 < ρ.im ∧ ∀ σ ∈ Z, σ.re ≠ 1 / 2 → ρ.im ≤ |σ.im|
+theorem primeiro_fora_acima (hW : RHateZ W) (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) : … (W : ℝ) < ρ.im …
+theorem primeiro_fora_acima_13 (h : …) : … 13 < ρ.im …                                   -- sem hipótese
+def JanelaArb2026 : Prop := Turing.JanelaNaReta 3000175332800 3000175342471             -- seção 13, hipótese nomeada
+theorem rhAteZ_janela (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) : RHateZ 3000175342471
+theorem primeiro_fora_acima_janela (hPT) (hJ) (h : …) : … 3000175342471 < ρ.im …
+```
+
+**O que é**: o enunciado **condicional**. Se existe um zero não trivial fora da reta, existe um de altura mínima. A
+prova:
+- ζ é analítica em `ℂ ∖ {1}`, que é conexo, e não é identicamente nula; pelo princípio da identidade, seus zeros
+  são isolados;
+- num retângulo compacto, zeros isolados são finitos;
+- até a altura de um zero fora da reta só há um número finito deles, logo o mínimo existe.
+
+Com RH verificada até `W`, esse primeiro zero tem `Im > W`. Isso vale para `W = 13` sem hipótese, para
+`W = 3 000 175 332 800` com Platt–Trudgian e para `W = 3 000 175 342 471` com a janela da seção 13.
+
+**O que NÃO é**: não afirma que exista zero fora da reta. Isolamento e finitude não implicam existência; o teorema só
+diz onde estaria o primeiro, se existir. `OPEN_MATH = true`.
+**Origem**: argumento clássico (zeros isolados de funções analíticas); formalização nova. **Axiomas**:
+`[propext, Classical.choice, Quot.sound]` (11 guardas).
+
+## 21. A ponte total: as 22 formulações são a mesma proposição (teorema)
+
+Arquivo: `ClayRiemannProof/PontesTotal.lean`.
+
+```lean
+theorem pontes_total : List.TFAE
+  [Target, Gap, D_N → 0, D_ω infinitesimal, ∀ M, RHnoMundo M, RHbc, b = 0, sem zeros em ½ < Re s < 1,
+   fins fechados livres, inícios fechados livres, torção fixa os zeros, compressão preserva Re,
+   colares arbitrariamente finos, energia 0, nós desfeitos, λ real, γ real, coordenada centrada neutra,
+   zeros de ξ na reta, 1 − 1/ρ no círculo, Li por quartetos, Ramanujan]
+```
+
+**O que é**: junta num único `List.TFAE` toda equivalência com o enunciado do Clay que existe no repositório:
+`Bridges.pontes` (13), `LiCircle.encontro` (5), Báez-Duarte na forma `D_N → 0`, os inícios fechados, a compressão,
+os colares e a coordenada centrada da seção 19.
+
+**O que NÃO é**: as 22 são a mesma proposição; provar qualquer uma é provar RH, e nenhuma é mais fraca.
+`OPEN_MATH = true`. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (1 guarda).
 
 ## Autor
 

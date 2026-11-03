@@ -34,6 +34,8 @@ import ClayRiemannProof.Verification
 import ClayRiemannProof.BicomplexCoordinates
 import ClayRiemannProof.BicomplexConditional
 import ClayRiemannProof.CenteredStabilityBridge
+import ClayRiemannProof.PrimeiroFora
+import ClayRiemannProof.PontesTotal
 
 /-!
 # Auditoria de axiomas
@@ -2015,6 +2017,46 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Verification.logDeriv_completada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Verification.logDeriv_completada
+
+/-! ## `ClayRiemannProof/PrimeiroFora.lean` -/
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.preconexo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.preconexo
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.analitica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.analitica
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.zeros_isolados' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.zeros_isolados
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.zeros_finitos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.zeros_finitos
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.im_gt_13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.im_gt_13
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.representante' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.representante
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.primeiro_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.primeiro_fora
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.primeiro_fora_acima' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.primeiro_fora_acima
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.primeiro_fora_acima_13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.primeiro_fora_acima_13
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.rhAteZ_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.rhAteZ_janela
+
+/-- info: 'ClayRiemannProof.PrimeiroFora.primeiro_fora_acima_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PrimeiroFora.primeiro_fora_acima_janela
+
+/-! ## `ClayRiemannProof/PontesTotal.lean` -/
+
+/-- info: 'ClayRiemannProof.PontesTotal.pontes_total' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PontesTotal.pontes_total
 
 /-! ## `ClayRiemannProof/BicomplexConditional.lean` -/
 

@@ -38,5 +38,7 @@ import ClayRiemannProof.Verification
 import ClayRiemannProof.BicomplexCoordinates
 import ClayRiemannProof.BicomplexConditional
 import ClayRiemannProof.CenteredStabilityBridge
+import ClayRiemannProof.PrimeiroFora
+import ClayRiemannProof.PontesTotal
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
