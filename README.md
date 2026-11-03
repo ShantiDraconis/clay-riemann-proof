@@ -1481,7 +1481,7 @@ até **3 000 180 142 471,5**, com 18 489 450 zeros, todos na reta, as 36 colagen
 faixa (`N(3 000 180 142 471,5) = 12 363 174 022 364`). Somando tudo, ficam 4 809 671,5 unidades e 20 585 226 zeros
 acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil. No kernel, com a terceira janela como
 hipótese nomeada: `Continuacao.rhAteZ_continuacao3` e `par_mais_fragil_continuacao3`
-(`−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`; branch `continuacao-0-35`, aguardando o CI do Lean). As faixas 36–44, a partir
+(`−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`). As faixas 36–44, a partir
 do mesmo `C0`, estão rodando.
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:

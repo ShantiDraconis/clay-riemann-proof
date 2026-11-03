@@ -19,7 +19,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 - **Lombada**: entre dois zeros vizinhos `γ₁ < γ₂`, `Z` tem um extremo de altura `|Z*|` em `t*`. Num par apertado,
   `Z ≈ a − c(t − m)²` com `a = |Z*|`, `c = |Z''|/2`.
 - Dados certificados pela Arb (FLINT 3): 41 393 zeros em `3 000 175 332 800 < t ≤ 3 000 175 342 471,5` (seção 13);
-  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 8 217 533 até `3 000 177 742 471,5` (segunda extensão); 20 000 zeros em 10¹⁴ e 20 000 em 10¹⁶ (alturas);
+  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 18 489 450 até `3 000 180 142 471,5` (segunda e terceira extensões); 20 000 zeros em 10¹⁴ e 20 000 em 10¹⁶ (alturas);
   65 800 em 10¹⁸ (fronteira, 1ª onda). Todos na reta, contagens de Turing fechando.
 
 ## 2. Teoremas no kernel
@@ -52,6 +52,9 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Continuacao.rhAteZ_continuacao2` | Platt–Trudgian 2021 + `JanelaArb2026` + `JanelaContinuacao2026` + `JanelaContinuacao2026b` (16 faixas, 8 217 533 zeros) | RH até 3 000 177 742 471 |
 | `Continuacao.primeiro_fora_acima_continuacao2` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 177 742 471` |
 | `Continuacao.par_mais_fragil_continuacao2` | bolas do par 12 363 161 233 435/436 (`s = 0,0031`) | `−3,35·10⁻⁷ ≤ λ ≤ −2,67·10⁻⁷` (o par mais perto da colisão em todos os dados) |
+| `Continuacao.rhAteZ_continuacao3` | as anteriores + `JanelaContinuacao2026c` (faixas 16–35; 36 faixas, 18 489 450 zeros desde 3 000 175 822 471,5) | RH até 3 000 180 142 471 |
+| `Continuacao.primeiro_fora_acima_continuacao3` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 180 142 471` |
+| `Continuacao.par_mais_fragil_continuacao3` | bolas do par 12 363 167 808 945/946 (`s = 0,0026`) | `−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷` (o par mais perto da colisão em todos os dados) |
 | `Continuacao.par_mais_fragil_continuacao` | bolas da Arb do par 12 363 153 756 750/751 e `Δ²g ≤ 4/5` | `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` |
 | `Continuacao.par_mais_fragil_1e18` | bolas do par 6 144 758 226 908 699 989/990 | `−1,013·10⁻⁵ ≤ λ ≤ −8,09·10⁻⁶` |
 | `Continuacao.par_mais_fragil_onda2` | bolas do par 467 888 702 979 044/045 (2ª onda da fronteira, 7 791 406 zeros) | `−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` |
