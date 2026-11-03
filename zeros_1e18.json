@@ -1,0 +1,23 @@
+{
+ "altura": "1e18",
+ "n0": "6144758226908675407",
+ "N_pedido": 20000,
+ "blocos": [
+  {
+   "n": "6144758226908675406",
+   "achados": 17808,
+   "segundos": 8811.8
+  }
+ ],
+ "falhas": [
+  {
+   "n": "6144758226908675406",
+   "pedidos": 20002,
+   "achados_brutos": 17888,
+   "aproveitados": 17808
+  }
+ ],
+ "zeros_obtidos": 17808,
+ "segundos_desta_etapa": 8812.0,
+ "segundos_zeros": 8811.8
+}
