@@ -895,6 +895,15 @@ altura e calcula onde concentrar a próxima onda. Zeros necessários para o par 
 
 (O recorde de Saouter–Gourdon–Demichel veio de uma computação da ordem de 10¹³ zeros, na escala que a fórmula dá.)
 
+**A primeira onda da fronteira (run 41557877448) quase não varreu.** O `varre.py` exigia exatamente 10 000 zeros
+por chamada. O método local de Platt devolve menos que isso quando o pedido é grande (7 503 em 10¹³), a chamada contava
+como falha e, depois de cinco falhas seguidas, a varredura parava. Em 10¹⁸ as chamadas vieram cheias: 28 200 pares em
+5 h. Em 10²⁰ a 10²² uma chamada passa de 4 h (seção 18). O `varre.py` agora fica com os zeros que vieram e recomeça
+dali. A matriz trocou 10²⁰ a 10²² por mais janelas em 10¹³ a 10¹⁸, onde o mérito `N·ρ³` por hora é maior. A melhor
+medida até agora é a da continuação contígua (seção 26): 2 054 383 zeros em `T ≈ 3·10¹²`, par mais frágil com
+`λ = −4,593·10⁻⁷`. A fórmula prevê `−1,6·10⁻⁶` para esse `N`; o par observado está 3,5 vezes mais perto de `0⁻`, dentro
+da flutuação do mínimo de 2 milhões de espaçamentos.
+
 **O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
 `N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
 de alturas — nenhum quarteto escondido no lugar mais provável.
