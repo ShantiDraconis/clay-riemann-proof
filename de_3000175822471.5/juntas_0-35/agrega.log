@@ -1,0 +1,254 @@
+{
+ "colagem": [
+  {
+   "altura": "3000175822471.5",
+   "N_pela_faixa": "12363155532914",
+   "N_pela_execucao_anterior": "12363155532914",
+   "confere": true
+  },
+  {
+   "altura": "3000175942471.5",
+   "N_pela_faixa": "12363156046510",
+   "N_pela_seguinte": "12363156046510",
+   "confere": true
+  },
+  {
+   "altura": "3000176062471.5",
+   "N_pela_faixa": "12363156560106",
+   "N_pela_seguinte": "12363156560106",
+   "confere": true
+  },
+  {
+   "altura": "3000176182471.5",
+   "N_pela_faixa": "12363157073702",
+   "N_pela_seguinte": "12363157073702",
+   "confere": true
+  },
+  {
+   "altura": "3000176302471.5",
+   "N_pela_faixa": "12363157587298",
+   "N_pela_seguinte": "12363157587298",
+   "confere": true
+  },
+  {
+   "altura": "3000176422471.5",
+   "N_pela_faixa": "12363158100893",
+   "N_pela_seguinte": "12363158100893",
+   "confere": true
+  },
+  {
+   "altura": "3000176542471.5",
+   "N_pela_faixa": "12363158614489",
+   "N_pela_seguinte": "12363158614489",
+   "confere": true
+  },
+  {
+   "altura": "3000176662471.5",
+   "N_pela_faixa": "12363159128084",
+   "N_pela_seguinte": "12363159128084",
+   "confere": true
+  },
+  {
+   "altura": "3000176782471.5",
+   "N_pela_faixa": "12363159641680",
+   "N_pela_seguinte": "12363159641680",
+   "confere": true
+  },
+  {
+   "altura": "3000176902471.5",
+   "N_pela_faixa": "12363160155276",
+   "N_pela_seguinte": "12363160155276",
+   "confere": true
+  },
+  {
+   "altura": "3000177022471.5",
+   "N_pela_faixa": "12363160668872",
+   "N_pela_seguinte": "12363160668872",
+   "confere": true
+  },
+  {
+   "altura": "3000177142471.5",
+   "N_pela_faixa": "12363161182468",
+   "N_pela_seguinte": "12363161182468",
+   "confere": true
+  },
+  {
+   "altura": "3000177262471.5",
+   "N_pela_faixa": "12363161696064",
+   "N_pela_seguinte": "12363161696064",
+   "confere": true
+  },
+  {
+   "altura": "3000177382471.5",
+   "N_pela_faixa": "12363162209660",
+   "N_pela_seguinte": "12363162209660",
+   "confere": true
+  },
+  {
+   "altura": "3000177502471.5",
+   "N_pela_faixa": "12363162723255",
+   "N_pela_seguinte": "12363162723255",
+   "confere": true
+  },
+  {
+   "altura": "3000177622471.5",
+   "N_pela_faixa": "12363163236852",
+   "N_pela_seguinte": "12363163236852",
+   "confere": true
+  },
+  {
+   "altura": "3000177742471.5",
+   "N_pela_faixa": "12363163750447",
+   "N_pela_seguinte": "12363163750447",
+   "confere": true
+  },
+  {
+   "altura": "3000177862471.5",
+   "N_pela_faixa": "12363164264044",
+   "N_pela_seguinte": "12363164264044",
+   "confere": true
+  },
+  {
+   "altura": "3000177982471.5",
+   "N_pela_faixa": "12363164777639",
+   "N_pela_seguinte": "12363164777639",
+   "confere": true
+  },
+  {
+   "altura": "3000178102471.5",
+   "N_pela_faixa": "12363165291235",
+   "N_pela_seguinte": "12363165291235",
+   "confere": true
+  },
+  {
+   "altura": "3000178222471.5",
+   "N_pela_faixa": "12363165804831",
+   "N_pela_seguinte": "12363165804831",
+   "confere": true
+  },
+  {
+   "altura": "3000178342471.5",
+   "N_pela_faixa": "12363166318426",
+   "N_pela_seguinte": "12363166318426",
+   "confere": true
+  },
+  {
+   "altura": "3000178462471.5",
+   "N_pela_faixa": "12363166832022",
+   "N_pela_seguinte": "12363166832022",
+   "confere": true
+  },
+  {
+   "altura": "3000178582471.5",
+   "N_pela_faixa": "12363167345619",
+   "N_pela_seguinte": "12363167345619",
+   "confere": true
+  },
+  {
+   "altura": "3000178702471.5",
+   "N_pela_faixa": "12363167859214",
+   "N_pela_seguinte": "12363167859214",
+   "confere": true
+  },
+  {
+   "altura": "3000178822471.5",
+   "N_pela_faixa": "12363168372811",
+   "N_pela_seguinte": "12363168372811",
+   "confere": true
+  },
+  {
+   "altura": "3000178942471.5",
+   "N_pela_faixa": "12363168886406",
+   "N_pela_seguinte": "12363168886406",
+   "confere": true
+  },
+  {
+   "altura": "3000179062471.5",
+   "N_pela_faixa": "12363169400002",
+   "N_pela_seguinte": "12363169400002",
+   "confere": true
+  },
+  {
+   "altura": "3000179182471.5",
+   "N_pela_faixa": "12363169913597",
+   "N_pela_seguinte": "12363169913597",
+   "confere": true
+  },
+  {
+   "altura": "3000179302471.5",
+   "N_pela_faixa": "12363170427193",
+   "N_pela_seguinte": "12363170427193",
+   "confere": true
+  },
+  {
+   "altura": "3000179422471.5",
+   "N_pela_faixa": "12363170940789",
+   "N_pela_seguinte": "12363170940789",
+   "confere": true
+  },
+  {
+   "altura": "3000179542471.5",
+   "N_pela_faixa": "12363171454385",
+   "N_pela_seguinte": "12363171454385",
+   "confere": true
+  },
+  {
+   "altura": "3000179662471.5",
+   "N_pela_faixa": "12363171967981",
+   "N_pela_seguinte": "12363171967981",
+   "confere": true
+  },
+  {
+   "altura": "3000179782471.5",
+   "N_pela_faixa": "12363172481576",
+   "N_pela_seguinte": "12363172481576",
+   "confere": true
+  },
+  {
+   "altura": "3000179902471.5",
+   "N_pela_faixa": "12363172995173",
+   "N_pela_seguinte": "12363172995173",
+   "confere": true
+  },
+  {
+   "altura": "3000180022471.5",
+   "N_pela_faixa": "12363173508769",
+   "N_pela_seguinte": "12363173508769",
+   "confere": true
+  }
+ ],
+ "pares_mais_frageis": [
+  {
+   "faixa": 23,
+   "k": "12363167808945",
+   "gamma_k": "3000178690726.16233566825147131",
+   "gamma_k1": "3000178690726.16295407189495341",
+   "intervalo": 0.0006184036319609731,
+   "espacamento_normalizado": 0.002646746162533639,
+   "Delta2_g": 2.448317203012524e-05,
+   "lehmer": true,
+   "lambda_CSV": -1.9121211120146262e-07
+  },
+  {
+   "faixa": 11,
+   "k": "12363161233435",
+   "gamma_k": "3000177154379.72941998805856576",
+   "gamma_k1": "3000177154379.73015128376648229",
+   "intervalo": 0.0007312957077374449,
+   "espacamento_normalizado": 0.003129920287575734,
+   "Delta2_g": 3.59506759899126e-05,
+   "lehmer": true,
+   "lambda_CSV": -2.673979077361518e-07
+  },
+  {
+   "faixa": 21,
+   "k": "12363166508687",
+   "gamma_k": "3000178386925.29240780538249185",
+   "gamma_k1": "3000178386925.29345157481383689",
+   "intervalo": 0.0010437694363645278,
+   "espacamento_normalizado": 0.004467297084413228,
+   "Delta2_g": 9.007468099369457e-05,
+   "lehmer": true,
+   "lambda_CSV": -5.447334516884343e-07
+  },
+ 
