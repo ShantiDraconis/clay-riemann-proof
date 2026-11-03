@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/runner/work/clay-riemann-proof/clay-riemann-proof/computations/zeros/janelas.py", line 82, in <module>
+    N = int(bola(r["N"])[0])
+        ^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '12362403019661.0000000000000000'
