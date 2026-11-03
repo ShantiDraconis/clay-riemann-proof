@@ -1457,8 +1457,7 @@ pontas (`N(3 000 177 742 471,5) = 12 363 163 750 447`), as 16 colagens conferem 
 e o déficit é 0 em cada faixa. Com Platt–Trudgian, a seção 13 e a primeira extensão, isso é RH conferida até
 **3 000 177 742 471,5**: 2 409 671,5 unidades e 10 313 309 zeros acima do recorde publicado (3 000 175 332 800).
 É cálculo certificado com aritmética intervalar, não verificação publicada. No kernel, com as janelas como
-hipóteses nomeadas: `Continuacao.rhAteZ_continuacao2` e `Continuacao.primeiro_fora_acima_continuacao2` (branch
-`continuacao-0-15`, aguardando o CI do Lean).
+hipóteses nomeadas: `Continuacao.rhAteZ_continuacao2` e `Continuacao.primeiro_fora_acima_continuacao2`.
 
 O par mais frágil das 16 faixas é o mais perto da colisão em todos os dados: zeros 12 363 161 233 435/…436
 (`γ ≈ 3 000 177 154 379,729`), a 0,00073130 um do outro, `s = 0,0031`, `λ = −2,674·10⁻⁷`. Ele bate o da primeira
