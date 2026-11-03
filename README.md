@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 783 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 036 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 791 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 044 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1522,7 +1522,7 @@ par precisaria ser empurrado e onde estaria o fechamento. Cada uma está abaixo,
 corrigir uma guarda duplicada (`Leis.colisao_em_gama` no lugar de `Leis.colisao_em_gama'`).
 
 **O que NÃO é**: as correções não aproximam nem afastam RH; dizem só o que cada número significa. `OPEN_MATH = true`.
-**Axiomas**: `[propext, Classical.choice, Quot.sound]` (20 guardas, mais a de `PrimeiroFora.JanelaArb2026`).
+**Axiomas**: `[propext, Classical.choice, Quot.sound]` (24 guardas, mais a de `PrimeiroFora.JanelaArb2026`).
 
 ## 33. Como os zeros se comportariam em alturas gigantes: só as leis que dependem de `ln T`
 
@@ -1699,6 +1699,66 @@ baixas, não zeros achados.
 **Origem**: Keating–Snaith (2000), Gonek–Hughes–Keating (2007), Hasanalizade–Shen–Wong (2022), Hiary (2011),
 Bober–Hiary (2018), Rodgers–Tao (2020); a validação do produto de Euler nas lombadas medidas e a calibração do CUE
 contra elas são novas.
+
+## 36. Onde os zeros quase se juntam: a cauda dos quase-encontros e por que não há aniquilação
+
+Arquivos: `computations/aproximacoes/` (`aproximacoes.py`, `aproximacoes.json`, `pares_mais_proximos.csv`,
+`figura.py`, `quase_encontros.png`); no kernel, `Correcoes` §6.
+
+Só análises completas: os 14 380 683 zeros contíguos das duas extensões (de `3 000 175 342 471,5` a
+`3 000 178 702 471,5`, todos na reta, déficit 0, bolas da Arb ≤ `5,01·10⁻¹⁸`). Nada de faixas em execução.
+
+![quase-encontros](computations/aproximacoes/quase_encontros.png)
+
+**A cauda** (fração de espaçamentos normalizados `s < x`):
+
+| `x` | pares | ζ | GUE | GOE | Poisson |
+|---|---|---|---|---|---|
+| 0,00316 | 2 | 1,391e-07 | 3,418e-08 | 8,22e-06 | 3,16e-03 |
+| 0,01 | 23 | 1,599e-06 | 1,081e-06 | 8,22e-05 | 9,95e-03 |
+| 0,0316 | 463 | 3,220e-05 | 3,415e-05 | 8,22e-04 | 3,11e-02 |
+| 0,1 | 15 189 | 1,056e-03 | 1,073e-03 | 8,22e-03 | 9,52e-02 |
+| 0,316 | 450 245 | 3,131e-02 | 3,168e-02 | 8,22e-02 | 2,71e-01 |
+| 1 | 7 650 570 | 5,320e-01 | 5,331e-01 | 8,22e-01 | 6,32e-01 |
+
+O expoente ajustado em `0,01 ≤ x ≤ 0,1` é 2,89 (o da curva GUE no mesmo trecho é 3,00): a repulsão é
+cúbica, `P(s < x) ≈ 1,08 x³`. Ao acaso (Poisson) haveria 14 400 pares com `s < 0,001`; há 0. Abaixo de `0,005` o GUE
+espera 2 pares e há 5, dentro da flutuação de contagens tão pequenas.
+
+**O par mais próximo em `n` zeros** (mediana sobre blocos): n = 1 000: 0,0872 (GUE 0,0858); n = 10 000: 0,0403 (GUE 0,0398); n = 100 000: 0,0180 (GUE 0,0185); n = 1 000 000: 0,0082 (GUE 0,0086); n = 10 000 000: 0,0031 (GUE 0,0040). Segue `(9 ln 2 / (π² n))^(1/3)`: para o par mais
+próximo ter `s = 10⁻⁶` é preciso olhar `~6·10¹⁷` zeros seguidos; para `10⁻¹⁰`, `~6·10²⁹`. Encolhe sem chegar a 0.
+
+**Os pares mais próximos** (de 14,4 milhões; `λ ≈ −Δγ²/2` é o tempo de colisão no fluxo de de Bruijn):
+
+| zeros | `t` | `Δγ` | `s` | `λ` | vizinhos `s` | `S` depois |
+|---|---|---|---|---|---|---|
+| 12 363 167 808 945/946 | 3 000 178 690 726,162 | 6,184e-04 | 0,00265 | −1,912e−07 | 1,71 / 1,47 | 1,31 |
+| 12 363 161 233 435/436 | 3 000 177 154 379,729 | 7,313e-04 | 0,00313 | −2,674e−07 | 1,56 / 1,98 | 0,87 |
+| 12 363 153 756 750/751 | 3 000 175 407 476,414 | 9,585e-04 | 0,00410 | −4,593e−07 | 1,69 / 2,01 | 1,44 |
+| 12 363 166 508 687/688 | 3 000 178 386 925,292 | 1,044e-03 | 0,00447 | −5,447e−07 | 1,59 / 1,04 | 0,52 |
+| 12 363 161 130 541/542 | 3 000 177 130 338,922 | 1,082e-03 | 0,00463 | −5,855e−07 | 1,70 / 1,31 | 0,69 |
+| 12 363 166 215 960/961 | 3 000 178 318 530,379 | 1,588e-03 | 0,00680 | −1,261e−06 | 1,54 / 1,68 | 1,38 |
+| 12 363 164 641 706/707 | 3 000 177 950 710,966 | 1,688e-03 | 0,00722 | −1,424e−06 | 1,40 / 1,58 | 1,75 |
+| 12 363 158 506 153/154 | 3 000 176 517 159,054 | 1,714e-03 | 0,00734 | −1,470e−06 | 1,67 / 1,30 | 1,26 |
+
+**O que acontece em volta de um quase-encontro**: os vizinhos se afastam. Com `s < 0,02`, o espaçamento médio dos dois
+vizinhos é 1,39 (contra 0,99 para `s ≈ 1`), e vizinho + par + vizinho mede 2,79
+espaçamentos médios, quase o mesmo que em qualquer trio (2,97): o par apertado age como um zero só de carga 2, que
+empurra os vizinhos. `S` logo depois do par mais próximo de todos é 1,31.
+
+**Existe escala em que o par (ou o quarteto) se aniquila? Não.** Zeros não somem: na colisão eles viram um zero duplo e
+depois saem da reta juntos, como par. No kernel, no modelo de colisão `H₂(z) = z² − a² − 2t`:
+- `Correcoes.h2_fatora`: `H₂(z) = (z − w)(z + w)` com `w² = a² + 2t`; sempre dois zeros, contados com multiplicidade;
+- `Correcoes.zeros_nunca_somem`: para todo `t` existem os dois;
+- `Correcoes.colisao_zero_duplo`: em `t = −a²/2`, `H₂(z) = z²`, um zero duplo;
+- `Correcoes.depois_da_colisao`: para `t < −a²/2`, o par está em `z = ±i r`, `r > 0`, fora da reta.
+
+Para `ζ` (`t = 0`) uma colisão seria um zero duplo na reta, e nos 14,4 milhões de zeros a menor distância é
+`6,18·10⁻⁴` (bolas disjuntas). Pela lei da cauda, os pares chegam cada vez mais perto conforme `n` cresce (seção 33),
+mas o par mais próximo só tende a 0 no limite; nenhum zero múltiplo de `ζ` é conhecido.
+
+**O que NÃO é**: cauda e mínimos são estatística dos dados (fora do kernel). Os teoremas de §6 são sobre o modelo de
+dois zeros, não sobre `ζ`. `OPEN_MATH = true`.
 
 ## Autor
 

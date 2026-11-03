@@ -232,4 +232,39 @@ theorem rhAteZ_de_contagens (hPT : PlattTrudgian2021) (hJ : PrimeiroFora.JanelaA
   Continuacao.rhAteZ_continuacao hPT hJ
     (janelaContinuacao_de_contagens h13 h0N h0L h1N h1L h2N h2L h3N h3L)
 
+/-! ## 6. Não há aniquilação: na colisão o par vira um zero duplo e depois sai da reta junto
+
+No modelo de colisão `H₂(z) = z² − a² − 2t` (a distância do par é `2a`; `Colisao.H2`), os zeros nunca somem nem se
+anulam um com o outro: são sempre `±w` com `w² = a² + 2t`. Para `t > −a²/2` são reais (dois zeros na reta); em
+`t = −a²/2` coincidem (zero duplo); para `t < −a²/2` são `±i r` (o par saiu da reta, em `s = ½ ∓ r/2`). -/
+
+/-- **Os zeros do modelo são sempre o par `±w`**, com `w² = a² + 2t`. -/
+theorem h2_fatora (a t : ℝ) {w : ℂ} (hw : w ^ 2 = (a : ℂ) ^ 2 + 2 * (t : ℂ)) (z : ℂ) :
+    Colisao.H2 a t z = (z - w) * (z + w) := by
+  unfold Colisao.H2
+  linear_combination hw
+
+/-- **Os zeros nunca somem**: para todo `t` há `w` com `H₂(w) = H₂(−w) = 0`. -/
+theorem zeros_nunca_somem (a t : ℝ) : ∃ w : ℂ, Colisao.H2 a t w = 0 ∧ Colisao.H2 a t (-w) = 0 := by
+  obtain ⟨w, hw⟩ : ∃ w : ℂ, w ^ 2 = (a : ℂ) ^ 2 + 2 * (t : ℂ) :=
+    ⟨_, Complex.cpow_nat_inv_pow _ two_ne_zero⟩
+  exact ⟨w, by rw [h2_fatora a t hw]; ring, by rw [h2_fatora a t hw]; ring⟩
+
+/-- **Na colisão (`t = −a²/2`) os dois zeros coincidem**: `H₂(z) = z²`, um zero duplo em `z = 0`. -/
+theorem colisao_zero_duplo (a : ℝ) (z : ℂ) : Colisao.H2 a (-(a ^ 2) / 2) z = z ^ 2 := by
+  unfold Colisao.H2
+  push_cast
+  ring
+
+/-- **Depois da colisão o par sai da reta junto**, em `z = ±i r` com `r = √(2(−a²/2 − t)) > 0`. -/
+theorem depois_da_colisao (a t : ℝ) (ht : t < -(a ^ 2) / 2) :
+    ∃ r : ℝ, 0 < r ∧ Colisao.H2 a t (I * r) = 0 ∧ Colisao.H2 a t (-(I * r)) = 0 := by
+  have h1 := (Colisao.raiz_quadrada a t ht.le).1
+  refine ⟨Real.sqrt (2 * (-(a ^ 2) / 2 - t)), Real.sqrt_pos.mpr (by linarith), h1, ?_⟩
+  have e : Colisao.H2 a t (-(I * (Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℂ))) =
+      Colisao.H2 a t (I * (Real.sqrt (2 * (-(a ^ 2) / 2 - t)) : ℂ)) := by
+    unfold Colisao.H2
+    ring
+  rw [e, h1]
+
 end ClayRiemannProof.Correcoes

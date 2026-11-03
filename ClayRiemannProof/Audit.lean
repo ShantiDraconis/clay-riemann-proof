@@ -2631,3 +2631,15 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Correcoes.rhAteZ_de_contagens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Correcoes.rhAteZ_de_contagens
+
+/-- info: 'ClayRiemannProof.Correcoes.h2_fatora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.h2_fatora
+
+/-- info: 'ClayRiemannProof.Correcoes.zeros_nunca_somem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.zeros_nunca_somem
+
+/-- info: 'ClayRiemannProof.Correcoes.colisao_zero_duplo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.colisao_zero_duplo
+
+/-- info: 'ClayRiemannProof.Correcoes.depois_da_colisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Correcoes.depois_da_colisao
