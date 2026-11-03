@@ -860,6 +860,39 @@ os números da tabela são a dinâmica dos zeros com os vizinhos congelados (est
 **Origem**: de Bruijn (1950), Newman (1976), Csordas–Smith–Varga (1994), Rodgers–Tao (2018); o quarteto forçado no
 kernel, novo. **Axiomas**: `[propext, Classical.choice, Quot.sound]` (7 guardas).
 
+## 23. Onde o zero fora da reta estaria: a tendência de todas as varreduras e o ataque na escala escolhida
+
+Arquivos: `computations/fronteira/varre.py`, `computations/fronteira/agrega.py`, `computations/ataque/ataque.py`,
+`.github/workflows/fronteira.yml`, `.github/workflows/ataque.yml` (resultados nas branches `resultados-fronteira`,
+`resultados-ataque` e `resultados-onda`).
+
+**Comparar todos os números.** Cada varredura dá um ponto (altura `T`, zeros `N`, `s_min`, `λ` do par mais frágil,
+zeros por segundo). Pela repulsão do GUE e pelo termo principal de Csordas–Smith–Varga,
+
+    λ_min ≈ −½·(9/(π²N))^{2/3} / ρ²,   ρ = log(T/2π)/2π.
+
+A curva vai a `0⁻` quando `N·ρ³` cresce e **não cruza 0 em nenhum `N` finito**. Por isso não existe uma altura em
+que a tendência "aponte" o zero: se ele existir, aparece como quebra da tendência — um par com `λ ≥ 0` (já colidido
+em `t = 0`) ou uma contagem de Turing que não fecha —, não como continuação da curva.
+
+**A escala a atacar** é a que dá o maior `N·ρ³` por hora de cálculo; `ataque.py` mede os zeros por segundo em cada
+altura e calcula onde concentrar a próxima onda. Zeros necessários para o par mais frágil chegar a cada `λ`:
+
+| altura | `λ = −10⁻⁷` | `λ = −10⁻⁹` | recorde `−1,14541·10⁻¹¹` |
+|---|---|---|---|
+| 10¹³ | 1,1·10⁸ | 1,1·10¹¹ | 9,3·10¹³ |
+| 10¹⁶ | 5,9·10⁷ | 5,9·10¹⁰ | 4,8·10¹³ |
+| 10²⁰ | 2,9·10⁷ | 2,9·10¹⁰ | 2,4·10¹³ |
+| 10²² | 2,2·10⁷ | 2,2·10¹⁰ | 1,8·10¹³ |
+
+(O recorde de Saouter–Gourdon–Demichel veio de uma computação da ordem de 10¹³ zeros, na escala que a fórmula dá.)
+
+**O ataque local**: para cada par mais frágil, `N(T)` exato nos pontos médios antes e depois do par;
+`N(T_b) − N(T_a) = 2` quer dizer que os dois zeros da reta são os únicos zeros de `ζ` em `0 < Re s < 1` naquela faixa
+de alturas — nenhum quarteto escondido no lugar mais provável.
+
+**O que NÃO é**: a fórmula é heurística (GUE + CSV); o ataque é cálculo finito fora do kernel. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).

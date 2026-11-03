@@ -1,0 +1,127 @@
+name: Ataque nos pares mais frageis
+# Depois da fronteira: compara todas as varreduras (tendência de λ, zeros por segundo por altura, a altura que dá mais
+# N·ρ³ por hora) e faz a contagem de Turing no intervalo de cada um dos pares mais frágeis (N(T_b) − N(T_a) = 2: os
+# dois zeros são os únicos ali, nenhum quarteto escondido). Com `alvos`, roda também uma nova onda de varreduras na
+# escala escolhida. Cálculo finito fora do kernel: não muda OPEN_MATH.
+on:
+  workflow_run:
+    workflows: ["Fronteira dos pares mais frageis", "Alturas onde os pares ficam mais frageis"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      alvos:
+        description: 'nova onda: lista JSON de "expoente deslocamento" (vazio = só o ataque local)'
+        default: "[]"
+      orcamento:
+        description: "segundos por varredura da onda"
+        default: "18000"
+permissions:
+  contents: write
+jobs:
+  ataque:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: entradas (resultados das outras execuções)
+        shell: bash
+        run: |
+          mkdir -p entrada/varreduras
+          for b in resultados-fronteira resultados-alturas resultados-zeros; do git fetch -q origin $b:refs/remotes/origin/$b || true; done
+          git show origin/resultados-fronteira:fronteira.json > entrada/fronteira.json 2>/dev/null || true
+          for f in $(git ls-tree --name-only origin/resultados-fronteira varreduras/ 2>/dev/null); do git show origin/resultados-fronteira:$f > entrada/varreduras/$(basename $f); done
+          git show origin/resultados-alturas:alturas.json > entrada/alturas.json 2>/dev/null || true
+          git show origin/resultados-zeros:zeros.json > entrada/zeros.json 2>/dev/null || true
+          ls -la entrada entrada/varreduras
+      - name: ataque
+        shell: bash
+        run: python3 computations/ataque/ataque.py ./zeros entrada resultados 2>&1 | tee ataque.log
+      - name: resumo como anotação
+        if: always()
+        run: tail -16 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=ataque::/' || true
+      - name: grava na branch resultados-ataque
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          cp ataque.log /tmp/r/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-ataque:refs/remotes/origin/resultados-ataque || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-ataque; then git checkout -q -f -B resultados-ataque origin/resultados-ataque; else git checkout -q --orphan resultados-ataque; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "ataque: run ${{ github.run_id }}" || true
+          git push -q origin resultados-ataque
+  onda:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.alvos != '[]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        alvo: ${{ fromJSON(github.event.inputs.alvos || '["13 0"]') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: FLINT 3 (com o Arb)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libflint-dev
+      - name: compila
+        run: gcc -O2 -o zeros computations/alturas/zeros.c -lflint -lmpfr -lgmp -lm
+      - name: varre
+        shell: bash
+        run: |
+          set -- ${{ matrix.alvo }}
+          mkdir -p saida
+          python3 computations/fronteira/varre.py ./zeros "saida/varre_$1_$2.json" "$1" "$2" "${{ github.event.inputs.orcamento }}" 10000 2>&1 | tail -5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: onda-${{ strategy.job-index }}
+          path: saida/
+          if-no-files-found: ignore
+  junta-onda:
+    needs: onda
+    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.alvos != '[]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: onda-*
+          path: varreduras
+      - name: junta
+        run: python3 computations/fronteira/agrega.py varreduras resultados 2>&1 | tee junta.log
+      - name: resumo como anotação
+        if: always()
+        run: head -12 resultados/RESUMO.md 2>/dev/null | tr '\n' ' ' | sed -E 's/%/%25/g; s/^/::warning title=onda::/' || true
+      - name: grava na branch resultados-onda
+        if: always()
+        run: |
+          mkdir -p /tmp/r && cp -r resultados/. /tmp/r/ 2>/dev/null || true
+          mkdir -p /tmp/r/varreduras && find varreduras -name "*.json" -exec cp {} /tmp/r/varreduras/ \; 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin resultados-onda:refs/remotes/origin/resultados-onda || true
+          git clean -fdxq
+          if git rev-parse --verify -q origin/resultados-onda; then git checkout -q -f -B resultados-onda origin/resultados-onda; else git checkout -q --orphan resultados-onda; git rm -rq . || true; fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/r/. .
+          git add -A
+          git commit -q -m "onda: run ${{ github.run_id }}" || true
+          git push -q origin resultados-onda
