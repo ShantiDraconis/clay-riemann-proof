@@ -1141,6 +1141,62 @@ reta. Mudar `ζ` de verdade quebra o produto de Euler (é o que faz Davenport–
 Riemann–Siegel são estimativas em ponto flutuante conferidas nos zeros; as certificadas são as da Arb. Nada aqui
 prova ou refuta RH. `OPEN_MATH = true`.
 
+## 28. Mudando `Z` na escala do próprio `Z`
+
+Arquivos: `computations/forca/lombadas.py`, `escala.py`, `trilha.py`, `computations/forca/resultados/`
+(`lombadas_faixa_3e12.json.gz`, `escala_faixa_3e12.json`).
+
+**A função empurrada.** `Z − ε` na reta é `ζ_ε(s) = ζ(s) − ε·χ(s)^{1/2}` no plano (`χ(s) = ζ(s)/ζ(1 − s)`, e
+`χ(½ + it)^{1/2} = e^{−iθ(t)}`). `ζ_ε` tem a mesma equação funcional (`ζ_ε(s) = χ(s)ζ_ε(1 − s)`) e a mesma conjugação
+de `ζ`, e não tem produto de Euler. Por isso seus zeros fora da reta vêm em quartetos `½ ± b ± it`. `Z − ε` (ε > 0) só
+perde zeros reais nas lombadas positivas: cada lombada positiva mais baixa que `ε` é engolida e seus dois zeros saem
+da reta. `Z + ε` faz o mesmo com as negativas.
+
+**Todas as lombadas da faixa da seção 13** (41 393 zeros, 41 392 lombadas; `Z`, `Z'`, `Z''` por Riemann–Siegel no
+ponto médio e um passo de Newton até o extremo; média quadrática de `Z`: `√log(t/2π) = 5,19`):
+
+| `ε` | `ε`/média quadrática | zeros fora da reta, `Z − ε` | `Z + ε` |
+|---|---|---|---|
+| 1·10⁻³ | 2·10⁻⁴ | 0 | 0 |
+| 3,2·10⁻³ | 6·10⁻⁴ | 2 (0,005%) | 12 (0,03%) |
+| 1·10⁻² | 2·10⁻³ | 64 (0,16%) | 64 (0,16%) |
+| 0,1 | 0,02 | 1 404 (3,4%) | 1 382 (3,3%) |
+| 0,32 | 0,06 | 5 668 (13,7%) | 5 472 (13,2%) |
+| 1 | 0,19 | 16 314 (39%) | 16 020 (39%) |
+| 1,78 | 0,34 | 23 474 (57%) | 23 224 (56%) |
+| 3,16 | 0,61 | 30 208 (73%) | 30 234 (73%) |
+| 5,6 | 1,1 | 35 598 (86%) | 35 536 (86%) |
+| 10 | 1,9 | 38 924 (94%) | 38 940 (94%) |
+| 31,6 | 6,1 | 41 152 (99,4%) | 41 180 (99,5%) |
+| 129,5 | 25 | todos | 41 392 − 0 |
+
+As alturas das lombadas: mediana 1,43 (0,28 da média quadrática); 1% abaixo de 0,041; a mais baixa é a do par frágil
+465 694 (−1,03·10⁻³), a mais baixa positiva a do par 470 301 (2,97·10⁻³). A mais alta (129,5) fica no maior vazio
+da faixa (zeros 448 671/672, intervalo 0,657, `s = 2,81`, `t ≈ 3 000 175 335 494,90`): é o ponto mais rígido, onde
+só um empurrão de 25 vezes a média quadrática tira os zeros da reta.
+
+**O caminho dos zeros até o quarteto visível** (o zero de `Z(t* + u) − sinal(Z*)·ε` com `u` complexo, seguido em `ε`;
+`b = |Im u|` é a distância à reta):
+
+| par | `|Z*|` | `Z''` | `b = 0,001` | `b = 0,01` | `b = 0,05` | `b = 0,1` | `b = 0,2` |
+|---|---|---|---|---|---|---|---|
+| 570 515 (o mais fácil) | 5,3·10⁻⁵ | −101 | 1,04·10⁻⁴ | 5,1·10⁻³ | 0,134 | 0,64 | **4,63** |
+| 765 891 | 1,05·10⁻⁴ | −103 | 1,6·10⁻⁴ | 5,3·10⁻³ | 0,136 | 0,63 | 4,33 |
+| 756 750 (o mais apertado) | 1,23·10⁻⁴ | +1 069 | 6,6·10⁻⁴ | 0,054 | 1,4 | 6,3 | > 30 |
+
+Até `b ≈ 0,05` vale o modelo quadrático (`ε = |Z*| + b²|Z''|/2`). Depois disso o par se afasta mais devagar que o
+modelo prevê: no par 570 515, `b = 0,2` pede `ε = 4,63`, contra 2,0 no modelo. Isso é 0,9 da média quadrática de
+`Z`, ou seja, um quarteto visível pede mudar `Z` na escala do próprio `Z`. O par mais apertado, onde `Z` é íngreme,
+resiste mais: com `ε = 30` ainda não chega a `b = 0,2`.
+
+**A leitura.** Com `ε` da ordem de `Z`, 86% dos zeros saem da reta, sempre em quartetos. A reta só segura todos os
+zeros para `ε` menor que a lombada mais baixa, e a lombada mais baixa desce quando se olham mais zeros: 1,03·10⁻³ em
+41 393 zeros e 5,3·10⁻⁵ em 2 095 776 (51 vezes mais zeros, lombada 19 vezes mais baixa). Pela repulsão do GUE,
+`|Z*|_min ≈ |Z''|Δ_min²/8` desce como `N^{−2/3}`, logo qualquer empurrão fixo `ε > 0` acaba tirando zeros da reta em
+algum lugar mais alto. É a versão por empurrão do que Rodgers–Tao provaram para o fluxo do calor (`Λ ≥ 0`: qualquer
+tempo `t < 0` cria zeros fora da reta). Aqui é observação nos dados, não teorema. A reta é propriedade de `ζ`
+exatamente, não de uma vizinhança de `ζ`. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
