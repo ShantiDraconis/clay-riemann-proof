@@ -1197,7 +1197,30 @@ algum lugar mais alto. É a versão por empurrão do que Rodgers–Tao provaram 
 tempo `t < 0` cria zeros fora da reta). Aqui é observação nos dados, não teorema. A reta é propriedade de `ζ`
 exatamente, não de uma vizinhança de `ζ`. `OPEN_MATH = true`.
 
+## 29. Leis, operadores e teoremas: o documento em domínio público
+
+Arquivo: [`LEIS.md`](LEIS.md) (CC0 1.0, ORCID 0009-0006-6874-3910). Junta tudo o que saiu das seções 13 a 28: os
+teoremas no kernel com o nome exato, os teoremas com hipótese nomeada (dados da Arb), os teoremas clássicos ligados
+aos dados com o teste que os dados permitem, as leis empíricas, os operadores e conjuntos e as linhas de pesquisa
+abertas, cada uma classificada (ferramenta, consequência, reformulação ou candidata a novo, que só vira novo com uma
+Proposta R1xx aceita).
+
+Dois testes novos de teoremas clássicos nas 41 392 lombadas da seção 13:
+
+- **Conrey–Ghosh e Hughes–Lugmayer–Pearce-Crump (2024)**, sob RH: média de `Z*²` medida 34,91 ± 1,13; previsto 34,90
+  com os termos de ordem menor (`aL + 2a + α₋₁`, `a = (e² − 5)/2`, `α₋₁ = 5 − e² − 10γ₀ + 2e²γ₀`), 32,12 só com o
+  termo principal.
+- **A lombada do par**: `log|Z*| = 2,02·log Δ + c` nos 1 119 pares com `s < 0,3`, a lei `|Z*| = |Z''|Δ²/8`
+  (`Forca.limiar_do_par`) nos dados.
+
+E o operador de empurrão no kernel (`ClayRiemannProof/Empurrao.lean`): contagem monótona, limiar da janela, soma em
+janelas disjuntas, semigrupo de translações, mínimo que só desce com a janela, e o teorema condicional "se a lombada
+mais baixa tende a 0, todo empurrão fixo acaba tirando zeros da reta". Gráfico da fração tirada da reta:
+`computations/forca/resultados/fracao_fora.png`.
+
+**Licença do repositório**: CC0 1.0 (domínio público), arquivo `LICENSE`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
-Como citar: `CITATION.cff`.
+Como citar: `CITATION.cff`. Licença: CC0 1.0 (domínio público), `LICENSE`.

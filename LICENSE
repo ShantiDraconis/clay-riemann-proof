@@ -1,0 +1,23 @@
+CC0 1.0 Universal (domínio público)
+
+Autor: Tiago Paschoalatto Fagliari (ShantiDraconis)
+ORCID: https://orcid.org/0009-0006-6874-3910
+
+Na medida do possível pela lei, o autor dedica ao domínio público, no mundo todo, todos os direitos autorais e
+conexos sobre o conteúdo deste repositório (as formalizações em Lean, os programas e os dados em computations/, o
+README e LEIS.md), nos termos da CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Qualquer pessoa pode copiar, modificar, distribuir e usar este conteúdo, inclusive para fins comerciais, sem pedir
+permissão. A citação (CITATION.cff) é pedida como cortesia, não exigida.
+
+Dependências que não fazem parte deste repositório (o enunciado em ShantiDraconis/clay-riemann-statement, a Mathlib,
+a FLINT/Arb) seguem as próprias licenças.
+
+---
+
+CC0 1.0 Universal (public domain dedication)
+
+To the extent possible under law, the author has waived all copyright and related or neighboring rights to the
+content of this repository, worldwide, under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode

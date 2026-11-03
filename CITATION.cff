@@ -6,6 +6,7 @@ authors:
   - family-names: "Fagliari"
     given-names: "Tiago Paschoalatto"
     orcid: "https://orcid.org/0009-0006-6874-3910"
+license: CC0-1.0
 repository-code: "https://github.com/ShantiDraconis/clay-riemann-proof"
 keywords:
   - Riemann hypothesis
@@ -14,3 +15,6 @@ keywords:
   - formal verification
   - Báez-Duarte criterion
   - Nyman-Beurling criterion
+  - de Bruijn-Newman constant
+  - Lehmer pairs
+  - Conrey-Ghosh extrema
