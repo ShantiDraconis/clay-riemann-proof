@@ -105,6 +105,12 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
     abaixo de cada `ε` bate com a medida em `3·10¹²` a menos de um ponto (39,2% contra 39% em `ε = 1`; 85,7% contra 86%
     em `ε = 5,6`; mediana 1,455 contra 1,43). Na cauda, a lombada mínima prevista é cerca de 2 vezes menor que a medida.
 
+12. **A largura das lombadas cresce como `½ log log T`** (seção 28): var `log|Z*|` = 1,804 ± 0,014 em `3·10¹²` e
+    1,896 ± 0,063 em `10¹⁴` (aumento previsto 0,061). No CUE, `var = 0,516·log N + 0,21` de `N = 27` a `2 301`, com a
+    mediana parada em ≈ 1,4: um empurrão fixo tira uma fração que tende a ½, e um empurrão do tamanho da média
+    quadrática tira todos os pares, menos uma fração que vai a 0 (`10^(−2,67·10^7000000)` na torre
+    `10^(10^(11·10^7000000))`; extrapolação condicional).
+
 **Lei-modelo (extrapolação pelo CUE, seção 35)**: a lombada mediana fica em ≈ 1,4 em qualquer altura; a variância de
 `log` lombada cresce (1,9 em `3·10¹²`, 4,2 em `10¹⁰⁰⁰`); a fração tirada da reta por um empurrão do tamanho da média
 quadrática vai de 85% a 96%; a lombada mínima em 10⁴ zeros cai de 1,4·10⁻³ para 2,1·10⁻⁴, e o `λ` do par mais

@@ -1242,6 +1242,32 @@ algum lugar mais alto. É a versão por empurrão do que Rodgers–Tao provaram 
 tempo `t < 0` cria zeros fora da reta). Aqui é observação nos dados, não teorema. A reta é propriedade de `ζ`
 exatamente, não de uma vizinhança de `ζ`. `OPEN_MATH = true`.
 
+**A largura das lombadas cresce como `½ log log T`** (`computations/forca/loglog.py`, `resultados/loglog.json`).
+A variância de `log|Z*|` é 1,804 ± 0,014 nas 41 392 lombadas de `3·10¹²` e 1,896 ± 0,063 numa amostra de 2 000
+lombadas da janela certificada de `10¹⁴` (`resultados/lombadas_1e14_amostra.json.gz`). Selberg e o CUE preveem um
+aumento de 0,061; o medido é 0,09 ± 0,06. Com só essas duas alturas (`Δ log L = 0,12`) a inclinação fica mal
+determinada (`0,75 ± 0,52`). Nos sete tamanhos do CUE da seção 35 (`N = 27` a `2 301`), o ajuste
+`var = A·log N + B` dá `A = 0,516` e `B = 0,21`, com resíduo máximo de 0,10; Selberg prevê `A = ½`. A mediana fica em
+1,40 ± 0,04 em todos os tamanhos. Um modelo lognormal com essa mediana e essa variância bate com o próprio CUE em
+`N = 2 301` a menos de um ponto (43,5% contra 44,1% com `ε = 1`; 95,8% contra 96,2% com `ε` = média quadrática). Na
+amostra de `10¹⁴` o CUE também acerta: 40,2% medido contra 39,5% com `ε = 1`, e 85,3% contra 84,9% com
+`ε = √log(T/2π)`.
+
+Extrapolando (é extrapolação condicional: o CUE é modelo, e a lei de Selberg é teorema para `t` aleatório, não para
+lombadas):
+
+| altura | var. de `log` lombada | tirados com `ε = 1` | com `ε` = 0,1 da média quadrática | com `ε` = média quadrática |
+|---|---|---|---|---|
+| 3·10¹² (medido) | 1,80 | 39% | 22% | 84% |
+| 10¹⁰⁰⁰ | 4,2 | 44% | 73% | 96% |
+| 10^(10⁹) | 11,3 | 46% | 99,2% | 99,90% |
+| 10^(10²⁴) | 29,1 | 48% | 99,9999% | 1 − 1,4·10⁻⁷ |
+| 10^(10^(11·10^7000000)) | 13,1·10^7000000 | → ½ | → 1 | 1 − 10^(−2,67·10^7000000) |
+
+Com a mediana parada perto de 1,4 e a largura crescendo sem limite, um empurrão fixo tira da reta uma fração que
+tende a ½. Um empurrão proporcional à média quadrática tira todos os pares, menos uma fração que vai a zero. Isso
+corrige os números da conta rápida feita antes (lognormal com `A = ½` exato e sem calibração).
+
 ## 29. Leis, operadores e teoremas: o documento em domínio público
 
 Arquivo: [`LEIS.md`](LEIS.md) (CC0 1.0, ORCID 0009-0006-6874-3910). Junta tudo o que saiu das seções 13 a 28: os
