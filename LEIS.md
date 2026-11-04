@@ -62,6 +62,10 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `Q_kappa_zero` | o terceiro estado `κ = 0`: `Q = (w − iγ₀)²(w + iγ₀)²`, zero duplo na reta |
 | | `positividade_iff`, `ponte_hodge`, `positividade_iff_hasse`, `positividade_F13` | `m² − λmn + qn² ≥ 0` ∀ `m, n` ⟺ `λ² ≤ 4q` ⟺ RH do fator (a ponte de Weil/Hodge); todas as curvas sobre `𝔽₁₃` |
 | | `hasse_E0_97`, `hasse_E1_97`, `E0_supersingular_97` | RH local dos fatores de `L(E, s)` para `y² = x³ − x` e `y² = x³ − 2`, `5 ≤ p ≤ 97`; `a_p = 0` para `p ≡ 3 (mod 4)` |
+| `Nos.lean` | `no_discriminante`, `frobenius_iff_circulo`, `reta_iff_circulo`, `todo_u_eh_potencia` | TFAE: `λ² ≤ 4q` ⟺ positividade ⟺ círculo `|u|² = 1/q` ⟺ Frobenius `|α|² = q` ⟺ reta `Re s = ½` (`q > 1`) |
+| | `equacao_funcional_local`, `simetria_eh_conjugacao` | `P(1/(qu)) = P(u)/(qu²)`; `|u|² = 1/q ⟺ ū = 1/(qu)` (o parceiro funcional é o conjugado) |
+| | `quartica_fatora`, `quartica_par_fora`, `saturacao_superior`, `saturacao_inferior` | lombada quártica: o par fora com `b²` exato e a saturação da lei da raiz quadrada (L5) |
+| | `calor4_t`, `calor4_x`, `calor4_xx`, `calor4_equacao`, `calor4_inicio`, `calor4_centro` | calor exato na lombada quártica e o empurrão efetivo (L6) |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 
@@ -172,8 +176,8 @@ apertado, de −5,5·10⁻⁵ para −7,6·10⁻⁹. Isso é modelo, não medida
 | L2. A constante de empurrão `E_∞ = inf_T E(T)` e a família `ξ − εg` | candidata a novo (Proposta R1xx, aguardando decisão) | análogo por empurrão de `Λ ≥ 0` (Rodgers–Tao): conjectura `E_∞ = 0`, ou seja, `ζ` está na borda também para empurrões. Conferir se o método de Rodgers–Tao (fluxo + correlação de pares) se adapta |
 | L3. A distribuição das alturas das lombadas (espectro de rigidez) | candidata a novo (Proposta R1xx) | cauda `ε^{3/2}`, média de Conrey–Ghosh, corpo próximo do log-normal de Selberg; comparar com os extremos do polinômio característico do CUE (literatura a conferir) |
 | L4. Forças certificadas em todas as lombadas | ferramenta | `forca.yml` (Arb) nos pares escolhidos já está na fila; `lombadas.py` em todos os 2,1 milhões leva umas 21 h em 2 núcleos (cabe numa matriz do CI) |
-| L5. A lei de saturação além do quadrático | consequência | o termo `Z''''b⁴/24` e o deslocamento `δ` vêm do produto local de Hadamard (vizinhos); formalizar o modelo quártico como em `Forca.lean` |
-| L6. Empurrão ⟷ calor fora do par isolado | reformulação | em geral `H_t ≈ H_0 − tH_0''`: o empurrão efetivo é `|t||Z''|`, e isso explica a ordem diferente (lei 7) |
+| L5. A lei de saturação além do quadrático | **fechada no modelo** (`Nos.lean`) | `quartica_par_fora`: `b² = (√(c² + 4d(ε − A)) − c)/(2d)`; `saturacao_superior`/`saturacao_inferior`: `(ε − A)/c − d(ε − A)²/c³ ≤ b² ≤ (ε − A)/c`; nos zeros de DH e Epstein o termo quártico leva 10 de 13 pares a erro ≤ 2 % (README §44) |
+| L6. Empurrão ⟷ calor fora do par isolado | **fechada no modelo** (`Nos.lean`) | `calor4`: `H_t = f − t f'' + (t²/2) f''''` é solução exata de `∂ₜH = −∂²ₓH` na lombada quártica; `calor4_centro`: o empurrão efetivo é `|t||f''(0)| − (t²/2) f''''(0)` |
 | L7. Os pares de Lehmer depois de Rodgers–Tao | reformulação | as cotas `Λ ≥ λ` já são superadas por `Λ ≥ 0`; o valor dos pares frágeis está na estatística (L3) |
 | L8. `Z − ε` exatamente, no kernel | ferramenta | o `g` que corresponde a `Z − ε` é `(π^{−1/2}Γ(s/2)Γ((1 − s)/2))^{1/2}` (simétrico, mas o ramo da raiz tem de ser fixado na faixa); hoje o kernel tem o caso geral com `g` simétrico e a instância `g = 1` |
 

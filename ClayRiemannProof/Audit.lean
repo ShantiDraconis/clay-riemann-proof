@@ -53,6 +53,7 @@ import ClayRiemannProof.Parametro
 import ClayRiemannProof.Geometrias
 import ClayRiemannProof.Identidades
 import ClayRiemannProof.Maquina
+import ClayRiemannProof.Nos
 
 /-!
 # Auditoria de axiomas
@@ -3231,3 +3232,57 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Maquina.primos97' does not depend on any axioms -/
 #guard_msgs in #print axioms ClayRiemannProof.Maquina.primos97
+
+/-- info: 'ClayRiemannProof.Nos.frobenius_iff_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.frobenius_iff_circulo
+
+/-- info: 'ClayRiemannProof.Nos.todo_u_eh_potencia' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.todo_u_eh_potencia
+
+/-- info: 'ClayRiemannProof.Nos.reta_iff_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.reta_iff_circulo
+
+/-- info: 'ClayRiemannProof.Nos.no_discriminante' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.no_discriminante
+
+/-- info: 'ClayRiemannProof.Nos.equacao_funcional_local' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.equacao_funcional_local
+
+/-- info: 'ClayRiemannProof.Nos.simetria_eh_conjugacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.simetria_eh_conjugacao
+
+/-- info: 'ClayRiemannProof.Nos.quartica_fatora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.quartica_fatora
+
+/-- info: 'ClayRiemannProof.Nos.quartica_par_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.quartica_par_fora
+
+/-- info: 'ClayRiemannProof.Nos.saturacao_superior' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.saturacao_superior
+
+/-- info: 'ClayRiemannProof.Nos.saturacao_inferior' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.saturacao_inferior
+
+/-- info: 'ClayRiemannProof.Nos.calor4_inicio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_inicio
+
+/-- info: 'ClayRiemannProof.Nos.calor4_t' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_t
+
+/-- info: 'ClayRiemannProof.Nos.calor4_x' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_x
+
+/-- info: 'ClayRiemannProof.Nos.calor4_xx' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_xx
+
+/-- info: 'ClayRiemannProof.Nos.calor4_equacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_equacao
+
+/-- info: 'ClayRiemannProof.Nos.calor4_centro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4_centro
+
+/-- info: 'ClayRiemannProof.Nos.lombada4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.lombada4
+
+/-- info: 'ClayRiemannProof.Nos.calor4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Nos.calor4

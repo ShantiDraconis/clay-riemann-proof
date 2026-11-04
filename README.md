@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 981 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 234 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 999 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 252 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2375,6 +2375,99 @@ Ao lado: `Biblioteca/Lagarias` (outra sessão) tem o critério de Lagarias na fo
 **O que NÃO é**: nada aqui prova ou refuta a RH, P vs NP, Hodge, BSD ou Yang–Mills. `LagariasPi1` é um enunciado
 nomeado (teorema publicado), nunca `axiom`. A máquina em ponto flutuante não é certificada. As pontes com Yang–Mills e
 Poincaré são analogias. `OPEN_MATH = true`.
+
+## 44. Os nós onde as pontes se encontram; as lacunas L5 e L6 fechadas no modelo
+
+Arquivo: `ClayRiemannProof/Nos.lean` (16 teoremas e 2 definições, só `[propext, Classical.choice, Quot.sound]`). Dados:
+`computations/parametro/quartica_dados.py` e `.json`.
+
+As pontes das §36–§43 passam por poucos nós. Em cada nó há **um** enunciado, e cada família de zeta só troca o nome
+das letras:
+
+```mermaid
+graph TD
+  D["Nó do discriminante: λ² ≤ 4q<br/>Nos.no_discriminante"]
+  P["positividade m² − λmn + qn² ≥ 0<br/>(Hodge, Castelnuovo, Weil)"]
+  C["círculo |u|² = 1/q<br/>(zeta de Ihara, zeta de curva)"]
+  F["Frobenius |α|² = q<br/>(Weil)"]
+  R["reta Re s = ½"]
+  P --- D
+  C --- D
+  F --- D
+  R --- D
+  S["Nó simetria = conjugação<br/>Nos.simetria_eh_conjugacao<br/>Zeta.Symmetry.torcao_fixo_iff"] --- R
+  E["Nó espectral: autoadjunto ⇒ autovalor real<br/>Biblioteca.rh_de_hilbertPolya<br/>Geometrias.selberg_reta, Ramanujan"] --- R
+  K["Nó do parâmetro κ (κ = 0: transição)<br/>Parametro.pontes_parametro, Maquina.Q_kappa_zero"] --- R
+  Q["Nó Π₁: refutação finita<br/>Maquina.refutacao_finita, rh_pi1"] --- R
+  H["Hodge"] -.-> P
+  B["BSD (RH local de L(E,s))"] -.-> C
+  Y["Yang–Mills (gap)"] -.-> E
+  N["P vs NP (só lógica: Π₂)"] -.-> Q
+```
+
+**1. O nó do discriminante** (`no_discriminante`, `frobenius_iff_circulo`, `reta_iff_circulo`,
+`todo_u_eh_potencia`). Para `q > 1` e `λ` real, são equivalentes (TFAE no kernel):
+
+1. `λ² ≤ 4q`;
+2. `m² − λmn + qn² ≥ 0` para todos `m, n`;
+3. as raízes de `1 − λu + qu²` têm `|u|² = 1/q`;
+4. as raízes de `α² − λα + q` têm `|α|² = q`;
+5. os zeros de `1 − λq^{−s} + q·q^{−2s}` têm `Re s = ½`.
+
+Hasse (curvas), Ramanujan (grafos), a positividade de Weil e a reta crítica são o **mesmo nó**.
+
+**2. O nó simetria = conjugação** (`equacao_funcional_local`, `simetria_eh_conjugacao`). A equação funcional leva
+`u` em `1/(qu)`, como `s ↦ 1 − s`, e a conjugação leva `u` em `ū`, como `s ↦ s̄`. Estar no círculo é exatamente o
+parceiro da equação funcional ser o conjugado: `|u|² = 1/q ⟺ ū = 1/(qu)`. Para ζ é `torcao_fixo_iff`
+(`1 − ρ̄ = ρ ⟺ Re ρ = ½`). Em todas as famílias, a RH diz que os dois parceiros coincidem.
+
+**3. Os outros nós** já estavam no kernel:
+
+- o espectral (autoadjunto ⟹ autovalor real ⟹ reta): `rh_de_hilbertPolya`, `selberg_reta`, `Ramanujan`;
+- o do parâmetro (`κ = 0` é a transição): `pontes_parametro`, `Q_kappa_zero`;
+- o Π₁ (refutação finita): `refutacao_finita`.
+
+As setas tracejadas no diagrama são pontes de analogia ou de nível lógico, não implicações.
+
+**4. Lacuna L5 fechada no modelo: a saturação além do quadrático** (`lombada4`, `quartica_fatora`,
+`quartica_par_fora`, `saturacao_superior`, `saturacao_inferior`). Na lombada `(A − ε) − cx² + dx⁴` (`c, d > 0`),
+passado o limiar `ε > A` o par sai da reta em `±i·b`, com
+
+    b² = (√(c² + 4d(ε − A)) − c)/(2d),     (ε − A)/c − d(ε − A)²/c³ ≤ b² ≤ (ε − A)/c.
+
+O termo quártico **satura** a lei da raiz quadrada, com correção de ordem `d(ε − A)²/c³`. Nos zeros fora da reta de
+verdade (`quartica_dados.py`: `Z''''` medido no mínimo de `|Z|`, sempre com o sinal que satura):
+
+| função | `γ₀` | `b` | `b` quadrático | erro | `b` quártico | erro |
+|---|---|---|---|---|---|---|
+| DH | 85,70 | 0,3085 | 0,3153 | +2,2 % | 0,3091 | +0,2 % |
+| DH | 114,16 | 0,1508 | 0,1518 | +0,6 % | 0,1510 | +0,1 % |
+| DH | 166,48 | 0,0744 | 0,0745 | +0,2 % | 0,0744 | +0,0 % |
+| Epstein | 15,67 | 0,4330 | 0,4553 | +5,2 % | 0,4340 | +0,2 % |
+| Epstein | 36,37 | 0,1969 | 0,2006 | +1,9 % | 0,1972 | +0,2 % |
+| Epstein | 44,00 | 0,3232 | 0,5145 | +59 % | 0,4396 | +36 % |
+| Epstein | 46,76 | 0,1349 | 0,1372 | +1,7 % | 0,1361 | +0,9 % |
+| Epstein | 52,74 | 0,0974 | 0,0981 | +0,7 % | 0,0975 | +0,1 % |
+| Epstein | 58,51 | 0,3112 | 0,3342 | +7,4 % | 0,3175 | +2,0 % |
+| Epstein | 61,14 | 0,2998 | 0,3359 | +12,1 % | 0,3022 | +0,8 % |
+| Epstein | 64,99 | 0,2249 | 0,6656 | +196 % | — | (sem raiz) |
+| Epstein | 79,42 | 0,3077 | 0,3975 | +29 % | 0,3662 | +19 % |
+| Epstein | 89,56 | 0,4080 | 0,4750 | +16 % | 0,4126 | +1,1 % |
+
+Com o termo quártico, 10 dos 13 pares com lombada ficam com erro ≤ 2 % (com o quadrático eram 6). Os três que restam
+têm um vizinho na reta dentro do vão, e aí o modelo de um par só deixa de valer.
+
+**5. Lacuna L6 fechada no modelo: empurrão ⟷ calor fora do par isolado** (`calor4`, `calor4_inicio`, `calor4_t`,
+`calor4_x`, `calor4_xx`, `calor4_equacao`, `calor4_centro`). Para `f = A − cx² + dx⁴`,
+
+    H_t(x) = f(x) − t f''(x) + (t²/2) f''''(x)
+
+é solução **exata** de `∂ₜH = −∂²ₓH` (o fluxo de de Bruijn), com `H_0 = f`. No centro, `H_t(0) = A + 2ct + 12dt²`:
+voltar o tempo `|t|` é empurrar `|t|·|f''(0)| − (t²/2)·f''''(0)`.
+
+**O que fica aberto**: a RH e os outros problemas do Clay. Das lacunas da `LEIS.md` §7, L5 e L6 estão fechadas no
+modelo. L1–L3 são perguntas estatísticas, L4 é cálculo (Arb em todas as lombadas) e L7–L8 são reformulações e
+ferramentas. Nada aqui prova ou refuta a RH. `OPEN_MATH = true`.
 
 ## Autor
 
