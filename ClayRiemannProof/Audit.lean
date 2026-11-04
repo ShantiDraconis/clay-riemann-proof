@@ -47,6 +47,7 @@ import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Leis
 import ClayRiemannProof.Correcoes
+import ClayRiemannProof.Absorcao
 
 /-!
 # Auditoria de axiomas
@@ -2419,6 +2420,53 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao4
+
+/-! ## `ClayRiemannProof/Absorcao.lean` -/
+
+/-- info: 'ClayRiemannProof.Absorcao.media_reAbs' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.media_reAbs
+
+/-- info: 'ClayRiemannProof.Absorcao.media_normalizada_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.media_normalizada_um
+
+/-- info: 'ClayRiemannProof.Absorcao.reAbs_eq_meio_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.reAbs_eq_meio_iff
+
+/-- info: 'ClayRiemannProof.Absorcao.media_meio_sem_ponto_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.media_meio_sem_ponto_meio
+
+/-- info: 'ClayRiemannProof.Absorcao.fracoes_do_texto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.fracoes_do_texto
+
+/-- info: 'ClayRiemannProof.Absorcao.cauda_longa_b_pequeno' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.cauda_longa_b_pequeno
+
+/-- info: 'ClayRiemannProof.Absorcao.theta_media_contraexemplo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.theta_media_contraexemplo
+
+/-- info: 'ClayRiemannProof.Absorcao.theta_le_tangente' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.theta_le_tangente
+
+/-- info: 'ClayRiemannProof.Absorcao.theta_lt_tangente' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.theta_lt_tangente
+
+/-- info: 'ClayRiemannProof.Absorcao.media_theta_negativa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.media_theta_negativa
+
+/-- info: 'ClayRiemannProof.Absorcao.soma_primos_sse' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.soma_primos_sse
+
+/-- info: 'ClayRiemannProof.Absorcao.soma_quadrados_primos_sse' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.soma_quadrados_primos_sse
+
+/-- info: 'ClayRiemannProof.Absorcao.tcol_coordenadas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.tcol_coordenadas
+
+/-- info: 'ClayRiemannProof.Absorcao.tcol_do_texto_fora_do_intervalo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.tcol_do_texto_fora_do_intervalo
+
+/-- info: 'ClayRiemannProof.Absorcao.gbar_nao_exato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.gbar_nao_exato
 
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 

@@ -1485,7 +1485,7 @@ hipótese nomeada: `Continuacao.rhAteZ_continuacao3` e `par_mais_fragil_continua
 
 **Faixas 36–44** (run 41709096981; colagem conjunta em `de_3000175822471.5/juntas_0-44/`): as 45 faixas juntas vão
 até **3 000 181 222 471,5**, com 23 111 813 zeros, todos na reta, as 45 colagens conferindo e déficit 0 em cada
-faixa (`N(3 000 181 222 471,5) = 12 363 178 644 727`). Somando tudo, ficam 5 889 671,5 unidades e 25 207 589 zeros
+faixa (`N(3 000 181 222 471,5) = 12 363 178 644 727`; lacuna média `5 400 000/23 111 813 ≈ 0,2336468`). Somando tudo, ficam 5 889 671,5 unidades e 25 207 589 zeros
 acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil; o das faixas 36–44 é o 12 363 175 635
 090/…091 (`γ ≈ 3 000 180 519 279,4651`, a 0,0016675 um do outro, `s = 0,0071`, `λ = −1,390·10⁻⁶`). No kernel, com
 a quarta janela como hipótese nomeada: `Continuacao.rhAteZ_continuacao4`, `primeiro_fora_acima_continuacao4` e
@@ -1864,6 +1864,35 @@ cauda longa engorda: `s > 3` passa de 1 em 26 194 para 1 em 380 em `t = −10⁻
 
 **O que NÃO é**: as frações das caudas são contagens dos dados; as frações dos zeros são aproximações racionais
 certificadas (o zero em si deve ser irracional). O puxão é o modelo de dois zeros, não `ζ`. `OPEN_MATH = true`.
+
+## 38. A "absorção de ½": o que cada afirmação diz, decidido no kernel
+
+Arquivo: `ClayRiemannProof/Absorcao.lean` (15 teoremas, só axiomas padrão). Dados: as 45 faixas contíguas da §31
+(23 111 813 zeros, 23 111 812 espaçamentos).
+
+A proposta troca a reta por `Re_abs = ½ + (s − 1)·b`, com `s` o espaçamento normalizado e `b = 3/5 000` (ou `14/625`).
+Isso é uma função de `s` escolhida à mão: não diz nada sobre onde estão os zeros de ζ.
+
+| afirmação | o que é verdade | teorema |
+|---|---|---|
+| a reta se dissolve: `Re` não é fixo | `Re_abs = ½` exatamente quando `s = 1` (com `b ≠ 0`); é a definição, não um fato de ζ | `reAbs_eq_meio_iff` |
+| a média ½ se preserva; as caudas se compensam | vale para **qualquer** lista de lacunas, porque a média de `s` é 1 por construção; Poisson e GUE dão o mesmo | `media_reAbs`, `media_normalizada_um` |
+| média ½ | não põe nenhum ponto em ½ (`s = ½, 3/2`: média ½, nenhum em ½) | `media_meio_sem_ponto_meio` |
+| `s < 1/100` dá 2 497/5 000; `s > 3` dá 653/1 250 | 2 497/5 000 é o limite `s → 0` (em `s = 1/100`: 249 703/500 000); com `b = 3/5 000`, `s = 3` dá 1 253/2 500 e a cauda `3 < s < 4` fica abaixo de 653/1 250, que sai de `b = 14/625` com `s = 2` | `fracoes_do_texto`, `cauda_longa_b_pequeno` |
+| "`s < 1/100 = 23/14 380 682`" | 23/14 380 682 é a **frequência** (quantos espaçamentos ficam abaixo de 1/100), não o valor de `s`; nas 45 faixas são 29 abaixo de 1/100 e 846 acima de 3 | — |
+| toro, esfera em graus etc. preservam a média; `θ = 360°·(s − 1)/(s + 1)` tem média 180° | falso: θ é côncava em `s > 0`, então com média de `s` igual a 1 a média de θ é **negativa** (Jensen estrito); nos dados, −16,17° | `theta_media_contraexemplo`, `media_theta_negativa` |
+| ½ é onde o produto de Euler para de convergir | o produto converge absolutamente só para `σ > 1` (`Σ p^{−σ}` converge sse `σ > 1`); o ½ é a fronteira de `Σ p^{−2σ}` (a soma dos quadrados, a variância de `log ζ`), e não força `σ = ½` | `soma_primos_sse`, `soma_quadrados_primos_sse` |
+| `t_col = −d²/8` com `d = s·ḡ` | em `H_t` os zeros de `H_0` estão em `x = 2γ`: um par a `Δγ` colide em `t ≈ −Δγ²/2`, quatro vezes mais; o `t_col` do texto para o par 635 090/091 (≈ −3,44·10⁻⁷) cai fora do intervalo certificado `[−1,74·10⁻⁶, −1,39·10⁻⁶]` | `tcol_coordenadas`, `tcol_do_texto_fora_do_intervalo` |
+| `ḡ = 1 350 000/5 777 953` com mdc 1 | a lacuna média exata da janela é `5 400 000/23 111 813` (mdc 1); a da janela antiga é `1 120 000/4 793 561`, não 1 680 000/7 190 341 | `gbar_nao_exato` |
+| "isso é RH até 3 000 181 222 471,5; é teorema" | é teorema **condicional**: as janelas da Arb entram como hipóteses nomeadas (`Continuacao.rhAteZ_continuacao4`); o kernel não refaz o cálculo | §31 |
+
+O método da Arb usado na continuação é o local de Platt (`acb_dirichlet_platt_local_hardy_z_zeros`, amostras de `Z`
+interpoladas) com a contagem de Turing (`acb_dirichlet_zeta_nzeros`), não Riemann–Siegel com Euler–Maclaurin.
+
+**O que fecharia RH** continua sendo o que estava em aberto: `Λ ≤ 0` (com Rodgers–Tao, `Λ = 0`), ou uma prova de que
+todo zero tem `σ = ½` para toda altura. Os pares de Lehmer dão cotas `λ < 0`, que são mais fracas que `Λ ≥ 0`
+(`Correcoes.cota_de_lehmer_mais_fraca`) e não se aproximam de `Λ ≤ 0`. Nenhuma computação finita fecha o infinito.
+`OPEN_MATH = true`.
 
 ## Autor
 
