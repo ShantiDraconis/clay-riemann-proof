@@ -1867,7 +1867,7 @@ certificadas (o zero em si deve ser irracional). O puxão é o modelo de dois ze
 
 ## 38. A "absorção de ½": o que cada afirmação diz, decidido no kernel
 
-Arquivo: `ClayRiemannProof/Absorcao.lean` (15 teoremas, só axiomas padrão). Dados: as 45 faixas contíguas da §31
+Arquivo: `ClayRiemannProof/Absorcao.lean` (23 teoremas, só axiomas padrão). Dados: as 45 faixas contíguas da §31
 (23 111 813 zeros, 23 111 812 espaçamentos).
 
 A proposta troca a reta por `Re_abs = ½ + (s − 1)·b`, com `s` o espaçamento normalizado e `b = 3/5 000` (ou `14/625`).
@@ -1885,6 +1885,18 @@ Isso é uma função de `s` escolhida à mão: não diz nada sobre onde estão o
 | `t_col = −d²/8` com `d = s·ḡ` | em `H_t` os zeros de `H_0` estão em `x = 2γ`: um par a `Δγ` colide em `t ≈ −Δγ²/2`, quatro vezes mais; o `t_col` do texto para o par 635 090/091 (≈ −3,44·10⁻⁷) cai fora do intervalo certificado `[−1,74·10⁻⁶, −1,39·10⁻⁶]` | `tcol_coordenadas`, `tcol_do_texto_fora_do_intervalo` |
 | `ḡ = 1 350 000/5 777 953` com mdc 1 | a lacuna média exata da janela é `5 400 000/23 111 813` (mdc 1); a da janela antiga é `1 120 000/4 793 561`, não 1 680 000/7 190 341 | `gbar_nao_exato` |
 | "isso é RH até 3 000 181 222 471,5; é teorema" | é teorema **condicional**: as janelas da Arb entram como hipóteses nomeadas (`Continuacao.rhAteZ_continuacao4`); o kernel não refaz o cálculo | §31 |
+
+**Segunda leva** (mesmo arquivo, mais 8 teoremas): o erro de uma lacuna pela soma dos raios (≤ 10⁻¹⁷) é ~1,6·10⁻¹⁴
+da lacuna mais curta, não 1,6% (`erro_bola_relativo`); θ é estritamente crescente, `θ' = 720/(s + 1)²`, e preserva a
+ordem (`theta_estrita_crescente`); `Σ_p p^{−1/2}` diverge (`euler_em_meio_diverge`); `1/√p` é irracional para todo
+primo, então 707 106 781/10⁹ é aproximação de `1/√2`, não igual a ela (`inv_raiz_primo_irracional`,
+`inv_raiz_dois_sem_fracao`) — as frações exatas são os centros e raios das bolas, não os `γ`; o "desvio
+±29 787/50 000 000" é o que a própria fórmula põe em `s = 71/10 000` (`desvio_eh_da_formula`); e com `s` arredondado
+para 71/10 000 a lacuna vira 38 340/23 111 813 e `−Δγ²/2 ≈ −1,376·10⁻⁶` sai do intervalo certificado, enquanto a
+lacuna medida fica dentro (`tcol_s_arredondado_fora`, `tcol_lacuna_medida_dentro`). O ½ sem hipótese já está no
+kernel: a reflexão da equação funcional é `1 − s̄` (sem ½ na definição), seus pontos fixos são exatamente `Re s = ½`
+(`Zeta.Symmetry.torcao_fixo_iff`) e os zeros são fechados por ela (`Zeta.Symmetry.torcao_mem_Z`). Isso localiza o
+espelho; não põe os zeros nele.
 
 O método da Arb usado na continuação é o local de Platt (`acb_dirichlet_platt_local_hardy_z_zeros`, amostras de `Z`
 interpoladas) com a contagem de Turing (`acb_dirichlet_zeta_nzeros`), não Riemann–Siegel com Euler–Maclaurin.

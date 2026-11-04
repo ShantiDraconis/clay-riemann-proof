@@ -2468,6 +2468,30 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Absorcao.gbar_nao_exato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Absorcao.gbar_nao_exato
 
+/-- info: 'ClayRiemannProof.Absorcao.erro_bola_relativo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.erro_bola_relativo
+
+/-- info: 'ClayRiemannProof.Absorcao.theta_estrita_crescente' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.theta_estrita_crescente
+
+/-- info: 'ClayRiemannProof.Absorcao.euler_em_meio_diverge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.euler_em_meio_diverge
+
+/-- info: 'ClayRiemannProof.Absorcao.inv_raiz_primo_irracional' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.inv_raiz_primo_irracional
+
+/-- info: 'ClayRiemannProof.Absorcao.inv_raiz_dois_sem_fracao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.inv_raiz_dois_sem_fracao
+
+/-- info: 'ClayRiemannProof.Absorcao.desvio_eh_da_formula' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.desvio_eh_da_formula
+
+/-- info: 'ClayRiemannProof.Absorcao.tcol_s_arredondado_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.tcol_s_arredondado_fora
+
+/-- info: 'ClayRiemannProof.Absorcao.tcol_lacuna_medida_dentro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Absorcao.tcol_lacuna_medida_dentro
+
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
 /-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
