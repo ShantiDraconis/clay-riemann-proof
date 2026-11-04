@@ -49,6 +49,10 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `lombada_minimo`, `b_da_lombada`, `S_reta_cai_dois` | `b = √(2|Z_min|/|Z''|)`; `S_reta = S − 2k` |
 | | `media_absorvida`, `media_do_espelho`, `eixo_unico`, `espelho_conta` | a média de `½ + b(s − 1)` é ½ para quaisquer gaps; `(Re ρ + Re(1 − ρ̄))/2 = ½` para todo `ρ`; ½ é o único eixo de `s ↦ 1 − s̄`; conjunto simétrico tem tantos `s < x` quanto `s > 2 − x` |
 | | `euler_meio_diverge`, `meio_nao_eh_inv_raiz`, `triviais_fora_de_xi` | `Σ p^{−1/2}` diverge; `1/√p ≠ ½`; `ξ(−2(n + 1)) ≠ 0` |
+| `Geometrias.lean` | `circulo_iff`, `circulo_eh_reta` | raízes de `1 − λu + qu²` no círculo `|u|² = 1/q` ⟺ `λ² ≤ 4q`; `|q^{−s}|² = 1/q` ⟺ `Re s = ½` |
+| | `hasse_F5`, `hasse_F7`, `hasse_F11`, `hasse_F13`, `hasse_justo`, `rh_curva`, `rh_curva_reta`, `rh_todas_F13` | toda curva `y² = x³ + ax + b` sobre `𝔽₅ … 𝔽₁₃` tem `a_p² ≤ 4p` (contagem no kernel): RH da curva |
+| | `petersen_ramanujan`, `prisma_nao_ramanujan`, `prisma_zeros_fora` | Petersen é Ramanujan (RH de Ihara); `K₇ □ K₂` não é: zeros `s = log 2/log 6`, `log 3/log 6` fora da reta |
+| | `selberg_reta`, `desvio_de_lambda`, `selberg_316`, `kim_sarnak` | `s(1 − s) = λ` na reta ⟺ `λ ≥ ¼`; desvio `≤ ¼` com `3/16`, `≤ 7/64` com `975/4096` |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 

@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 858 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 111 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 899 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 152 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2050,6 +2050,95 @@ foram conferidos. Os zeros triviais não são zeros de `ξ` (`triviais_fora_de_x
 `OPEN_MATH = true`.
 Dados: `computations/parametro/` (`padrao_fora.py`, `argumento.py`, `lombadas.py`, `absorcao.py`, `figura.py` e os
 `.json`); frações dos gaps em `computations/aproximacoes/gaps_em_fracoes.{py,json,csv}`.
+
+## 40. As pontes que provam ou refutam a RH: onde ela é provada, onde falha, e a lei única do discriminante
+
+Arquivo: `ClayRiemannProof/Geometrias.lean` (23 teoremas e 9 definições; axiomas só entre `propext`,
+`Classical.choice`, `Quot.sound`; as contagens finitas por `decide +kernel`, que é redução do próprio kernel, não
+`native_decide`).
+
+Em toda família de funções zeta em que a pergunta "os zeros estão na reta?" tem resposta, ela vira uma cota de
+discriminante num fator de grau 2:
+
+| geometria | fator local | RH ⟺ | situação | no kernel |
+|---|---|---|---|---|
+| curva elíptica `E/𝔽_q` | `1 − a·u + q·u²`, `u = q^{−s}` | `a² ≤ 4q` (Hasse) | **provada** (Hasse 1933; Weil 1948 para curvas; Deligne 1974 para variedades) | todas as curvas sobre `𝔽₅, 𝔽₇, 𝔽₁₁, 𝔽₁₃` |
+| grafo `(q+1)`-regular (zeta de Ihara) | `1 − λ·u + q·u²` por autovalor não trivial | `λ² ≤ 4q` (Ramanujan) | vale em alguns grafos, falha em outros | Petersen vale; `K₇ □ K₂` falha |
+| superfície hiperbólica (zeta de Selberg) | `s(1 − s) = λ` | `λ ≥ ¼` | falha se há autovalor `λ < ¼`; aberta para grupos de congruência | a álgebra e as cotas `3/16`, `975/4096` |
+| modelo local de ζ | `(w − iγ₀)² + κ` | `κ ≥ 0` | **aberta** (é a própria RH) | `Parametro.pontes_parametro` |
+| só a equação funcional | — | — | **falha** (Davenport–Heilbronn, Epstein) | `Analogs.simetria_nao_basta_abstrata`, §34, §39 |
+
+**A ponte** (`circulo_iff`, `circulo_eh_reta`). As raízes de `1 − λu + qu²` (`q > 0`) estão todas no círculo
+`|u|² = 1/q` se e só se `λ² ≤ 4q`. E, para `q > 1`, `|q^{−s}|² = 1/q` ⟺ `Re s = ½`: o círculo de raio `q^{−1/2}`
+**é** a reta crítica. `LiCircle.target_iff_ramanujan` é o caso de ζ com `q = 1` e `u = 1 − 1/ρ`.
+
+**Curvas elípticas: a RH provada curva por curva** (`hasse_F5`, `hasse_F7`, `hasse_F11`, `hasse_F13`,
+`hasse_justo`, `rh_curva`, `rh_curva_reta`, `rh_todas_F13`). O kernel conta os pontos de **todas** as curvas
+não singulares `y² = x³ + ax + b`:
+
+| `p` | curvas | traços `a_p` | maior `a_p²` | `4p` |
+|---|---|---|---|---|
+| 5 | 20 | −4 a 4 | 16 | 20 |
+| 7 | 42 | −5 a 5 | 25 | 28 |
+| 11 | 110 | −6 a 6 | 36 | 44 |
+| 13 | 156 | −7 a 7 | 49 | 52 |
+
+Daí os zeros de `1 − a_p p^{−s} + p·p^{−2s}` estão em `Re s = ½` para cada uma delas. Que esse polinômio seja o
+numerador de `Z(E, u)` é o teorema de Hasse–Weil, citado, não formalizado. Aqui a RH sai de um **operador**: o
+Frobenius tem autovalores de módulo `√q`. Para ζ esse operador não é conhecido (Hilbert–Pólya).
+
+**Grafos: uma geometria que prova e uma que refuta** (`Ramanujan`, `ramanujan_iff_circulo`, `petersen_regular`,
+`petersen_quadrado`, `petersen_ramanujan`, `prisma_regular`, `prisma_autovalor`, `prisma_nao_ramanujan`,
+`prisma_zeros_fora`).
+
+- **Petersen (3-regular, `q = 2`).** Vale `A² + A − 2I = J` (conferido entrada por entrada), então todo autovalor
+  não trivial satisfaz `λ² + λ − 2 = 0`, isto é `λ ∈ {1, −2}`, com `λ² ≤ 8`: Ramanujan, e os zeros de Ihara estão no
+  círculo.
+- **Prisma `K₇ □ K₂` (7-regular, `q = 6`).** O vetor `+1` numa camada e `−1` na outra é autovetor com `λ = 5`, e
+  `25 > 24`. O fator `1 − 5u + 6u² = (1 − 2u)(1 − 3u)` tem zeros `u = ½` e `u = ⅓`, fora de `|u|² = 1/6`. Em
+  `u = 6^{−s}` eles são `s = log 2/log 6 = 0,386 85…` e `log 3/log 6 = 0,613 15…`. Somam 1: é o par `½ ± b`, com
+  `b = 0,113 15…`, fora da reta. A ligação com a zeta de Ihara é a fórmula de Ihara–Bass (Ihara 1966, Bass 1992),
+  citada.
+
+**Selberg: o parâmetro é `λ − ¼`** (`selberg_eh_kappa`, `selberg_reta`, `desvio_de_lambda`, `selberg_316`,
+`kim_sarnak`).
+
+- `s(1 − s) = λ` ⟺ `(s − ½)² + (λ − ¼) = 0`: é a forma do `QuartetoForcado.Q` com `κ = λ − ¼`.
+- Na reta exatamente para `λ ≥ ¼`. Um autovalor excepcional `λ < ¼` dá o zero `½ + √(¼ − λ)` fora da reta. Existem
+  superfícies assim (Randol 1974: coberturas com `λ₁` arbitrariamente pequeno); para elas a "RH de Selberg" é falsa.
+- Com `λ ≥ ¼ − b²`, o desvio é `≤ b`. A cota de Selberg (`3/16`) dá desvio `≤ ¼`; a de Kim–Sarnak (`975/4096`) dá
+  `≤ 7/64`. As cotas são teoremas publicados; aqui só a álgebra.
+
+**Para ζ, as pontes que provariam a RH** (cada uma equivale à RH; provar qualquer uma é provar a RH):
+
+- as 22 de `PontesTotal.pontes_total`;
+- `Parametro.pontes_parametro` (`κ ≥ 0` em todo par);
+- `Λ = 0` (`Parametro.target_lambda_zero`; e `Λ ≤ 2·b_sup²`);
+- o critério de Li (`Fronteira.Li`);
+- Báez-Duarte / Nyman–Beurling (`BaezDuarte`).
+
+Fora do kernel, como enunciados da literatura não formalizados aqui:
+
+- Robin: `σ(n) < e^γ n log log n` para `n > 5040`;
+- Lagarias: `σ(n) ≤ H_n + e^{H_n} log H_n`;
+- Mertens: `M(x) = O(x^{½+ε})`, igual ao determinante de Redheffer;
+- a positividade de Weil na fórmula explícita.
+
+**O que refutaria a RH:**
+
+- um único zero com `Re ρ ≠ ½`. Ele teria altura `> 3 000 181 222 471` (`Continuacao.primeiro_fora_acima_continuacao4`,
+  condicional às janelas da Arb);
+- ou `Λ > 0`;
+- ou um coeficiente de Li negativo;
+- ou um `n > 5040` que viole Robin.
+
+Nenhum foi achado. **O que já está refutado** são as versões fracas: só a simetria não segura a reta (DH, Epstein, a
+`G(s)` de `Locks.simetria_nao_basta`), e a zeta de um grafo não Ramanujan ou de uma superfície com autovalor pequeno
+tem zeros fora.
+
+**O que NÃO é**: nenhuma dessas geometrias é ζ. Nas curvas a RH é teorema porque existe o Frobenius e a positividade
+de Weil (Castelnuovo); a ponte que falta para ζ é exatamente um análogo disso. Nada aqui prova ou refuta a RH.
+`OPEN_MATH = true`.
 
 ## Autor
 

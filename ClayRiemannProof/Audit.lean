@@ -49,6 +49,7 @@ import ClayRiemannProof.Leis
 import ClayRiemannProof.Correcoes
 import ClayRiemannProof.Absorcao
 import ClayRiemannProof.Parametro
+import ClayRiemannProof.Geometrias
 
 /-!
 # Auditoria de axiomas
@@ -2878,3 +2879,102 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Parametro.bola_relativa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Parametro.bola_relativa
+
+/-- info: 'ClayRiemannProof.Parametro.DeBruijnFaixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.DeBruijnFaixa
+
+/-- info: 'ClayRiemannProof.Geometrias.circulo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.circulo_iff
+
+/-- info: 'ClayRiemannProof.Geometrias.circulo_eh_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.circulo_eh_reta
+
+/-- info: 'ClayRiemannProof.Geometrias.hasse_F5' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.hasse_F5
+
+/-- info: 'ClayRiemannProof.Geometrias.hasse_F7' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.hasse_F7
+
+/-- info: 'ClayRiemannProof.Geometrias.hasse_F11' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.hasse_F11
+
+/-- info: 'ClayRiemannProof.Geometrias.hasse_F13' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.hasse_F13
+
+/-- info: 'ClayRiemannProof.Geometrias.hasse_justo' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.hasse_justo
+
+/-- info: 'ClayRiemannProof.Geometrias.rh_curva' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.rh_curva
+
+/-- info: 'ClayRiemannProof.Geometrias.rh_curva_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.rh_curva_reta
+
+/-- info: 'ClayRiemannProof.Geometrias.rh_todas_F13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.rh_todas_F13
+
+/-- info: 'ClayRiemannProof.Geometrias.ramanujan_iff_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.ramanujan_iff_circulo
+
+/-- info: 'ClayRiemannProof.Geometrias.petersen_regular' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersen_regular
+
+/-- info: 'ClayRiemannProof.Geometrias.petersen_quadrado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersen_quadrado
+
+/-- info: 'ClayRiemannProof.Geometrias.petersen_ramanujan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersen_ramanujan
+
+/-- info: 'ClayRiemannProof.Geometrias.prisma_regular' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma_regular
+
+/-- info: 'ClayRiemannProof.Geometrias.prisma_autovalor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma_autovalor
+
+/-- info: 'ClayRiemannProof.Geometrias.prisma_nao_ramanujan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma_nao_ramanujan
+
+/-- info: 'ClayRiemannProof.Geometrias.prisma_zeros_fora' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma_zeros_fora
+
+/-- info: 'ClayRiemannProof.Geometrias.selberg_eh_kappa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.selberg_eh_kappa
+
+/-- info: 'ClayRiemannProof.Geometrias.selberg_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.selberg_reta
+
+/-- info: 'ClayRiemannProof.Geometrias.desvio_de_lambda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.desvio_de_lambda
+
+/-- info: 'ClayRiemannProof.Geometrias.selberg_316' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.selberg_316
+
+/-- info: 'ClayRiemannProof.Geometrias.kim_sarnak' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.kim_sarnak
+
+/-- info: 'ClayRiemannProof.Geometrias.pontosAfins' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.pontosAfins
+
+/-- info: 'ClayRiemannProof.Geometrias.traco' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.traco
+
+/-- info: 'ClayRiemannProof.Geometrias.Ramanujan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.Ramanujan
+
+/-- info: 'ClayRiemannProof.Geometrias.petersenPar' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersenPar
+
+/-- info: 'ClayRiemannProof.Geometrias.petersenAdj' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersenAdj
+
+/-- info: 'ClayRiemannProof.Geometrias.petersen' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.petersen
+
+/-- info: 'ClayRiemannProof.Geometrias.prismaAdj' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prismaAdj
+
+/-- info: 'ClayRiemannProof.Geometrias.prismaVetorZ' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prismaVetorZ
+
+/-- info: 'ClayRiemannProof.Geometrias.prisma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma
