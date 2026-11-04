@@ -58,5 +58,7 @@ import ClayRiemannProof.Geometrias
 import ClayRiemannProof.Identidades
 import ClayRiemannProof.Maquina
 import ClayRiemannProof.Nos
+import ClayRiemannProof.Fracoes
+import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

@@ -16,8 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 999 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 252 guardas no total). Todas dependem apenas de
+de `#print axioms` de 1 035 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+`ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 252 da cadeia certificada até a altura 13 (1 287 guardas no
+total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -570,7 +571,7 @@ theorem encontro : List.TFAE [Target, ξ, círculo, Li por quartetos, Ramanujan]
   tornando algum `λ_n` negativo; `li_detecta_fora_da_reta` mostra isso para `{¼, ¾}`.
 - `li_no_mundo` liga o critério aos mundos finitos: RH até a altura `Z` ⟺ positividade de Li dos zeros até `Z`.
 - `encontro` liga Li, o círculo de Ihara–Ramanujan e Lee–Yang, e `ξ`.
-- `Xi.xi` é a mesma definição de `Fronteira.Hadamard.xi`, em outro espaço de nomes.
+- `Xi.xi` é a mesma definição de `Fronteira.xi` (arquivo `Fronteira/Hadamard.lean`), em outro espaço de nomes.
 
 **O que NÃO é**: o critério de Li verdadeiro soma sobre **todos** os zeros de ζ; ligar essa soma aos `λ_n` por
 derivadas exige o produto de Hadamard (`HadamardXi`), ainda não provado. Não prova RH. `OPEN_MATH = true`.
@@ -1119,7 +1120,7 @@ como hipóteses nomeadas, RH até 3 000 175 822 471 (`Continuacao.rhAteZ_continu
 reta, se existir, está acima disso (`Continuacao.primeiro_fora_acima_continuacao`). O par mais próximo dos 2 milhões
 de zeros (12 363 153 756 750/…751, `t ≈ 3 000 175 407 476,415`, a 0,000958 um do outro, `s = 0,0041`) tem
 `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` (`Continuacao.par_mais_fragil_continuacao`; CSV calculado: −4,593·10⁻⁷). É o par
-mais perto da colisão em todos os dados, cerca de 70 vezes mais perto de `0⁻` que o da seção 13, e ainda negativo,
+mais perto da colisão em todos os dados até então (a §31 achou pares mais perto depois), cerca de 70 vezes mais perto de `0⁻` que o da seção 13, e ainda negativo,
 como a cota exige. A agregação do workflow parou num erro de serialização (booleano do numpy no JSON) depois de
 gravar as quatro faixas; a colagem e os pares foram refeitos com o mesmo `agrega.py` fora do CI.
 
@@ -1180,7 +1181,7 @@ O nó do aglomerado de Rosser, a quebra mais forte da contagem, precisa de 7,5 v
 465 694 e de 145 vezes mais que o ponto mais fácil da continuação. `S(t)` extremo mede excesso ou falta de zeros na
 contagem, não proximidade de dois zeros; os nós que só têm `S` extremo estão entre os mais duros (0,07 a 0,45).
 
-**As alturas** (seção 18; run 41588835957): 10¹⁴ e 10¹⁶ certificadas, 20 000 zeros cada, contagem fechando e índice
+**As alturas** (seção 18; run 41588835957): 10¹⁴, 10¹⁶ e 10¹⁷ certificadas, 20 000 zeros cada, contagem fechando e índice
 conferindo. Em 10¹⁴: `s_min = 0,0323`, `λ = −2,23·10⁻⁵` (previsto `−2,73·10⁻⁵`). Em 10¹⁶ apareceu um par com
 `s = 0,0078` em só 20 000 zeros (o GUE espera 0,036; acontece com probabilidade de cerca de 1%), `λ = −9,73·10⁻⁷`:
 o par mais perto da colisão por zero varrido em todos os dados.
@@ -1317,7 +1318,7 @@ corrige os números da conta rápida feita antes (lognormal com `A = ½` exato e
 
 ## 29. Leis, operadores e teoremas: o documento em domínio público
 
-Arquivo: [`LEIS.md`](LEIS.md) (CC0 1.0, ORCID 0009-0006-6874-3910). Junta tudo o que saiu das seções 13 a 28: os
+Arquivo: [`LEIS.md`](LEIS.md) (CC0 1.0, ORCID 0009-0006-6874-3910). Junta tudo o que saiu das seções 13 em diante: os
 teoremas no kernel com o nome exato, os teoremas com hipótese nomeada (dados da Arb), os teoremas clássicos ligados
 aos dados com o teste que os dados permitem, as leis empíricas, os operadores e conjuntos e as linhas de pesquisa
 abertas, cada uma classificada (ferramenta, consequência, reformulação ou candidata a novo, que só vira novo com uma
@@ -1497,7 +1498,8 @@ começa em `N(C0) = 12 363 178 644 727`, o fim da quarta extensão, e as 6 faixa
 ficam 6 609 671,5 unidades e 28 289 165 zeros acima do recorde publicado. O par mais frágil destas faixas é o
 12 363 179 255 965/…966 (`s = 0,0078`, `λ = −1,673·10⁻⁶`); o de todos os dados continua o 808 945/946. No kernel:
 `Continuacao.rhAteZ_continuacao5`, `primeiro_fora_acima_continuacao5` e `par_mais_fragil_continuacao5`
-(`−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`). As faixas 6–11 do mesmo `C0` estão rodando (run 41777848348).
+(`−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`). A execução 41777848348 (faixas 6–11 do mesmo `C0`) terminou, mas o resultado gravado na branch
+`resultados-continuacao` não tem a faixa 8 (e `falhas` está vazio); essas faixas só entram aqui quando a 8 for refeita.
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
@@ -1805,7 +1807,7 @@ astronomicamente numerosos e apertados (em `10^1000000`, `10^999 987` pares com 
 unidades normalizadas, e um zero fora da reta continuaria permitido em quase toda a faixa (`b < ½ − w`). Na torre,
 `S(T)` típico já é `10^25 228,7`.
 
-**O que NÃO é**: cauda e mínimos são estatística dos dados (fora do kernel). Os teoremas de §6 são sobre o modelo de
+**O que NÃO é**: cauda e mínimos são estatística dos dados (fora do kernel). Os teoremas de `Correcoes` §6 são sobre o modelo de
 dois zeros, não sobre `ζ`. `OPEN_MATH = true`.
 
 ## 37. As caudas em frações e como zeros fora da reta puxariam as caudas
@@ -2454,7 +2456,7 @@ verdade (`quartica_dados.py`: `Z''''` medido no mínimo de `|Z|`, sempre com o s
 | Epstein | 79,42 | 0,3077 | 0,3975 | +29 % | 0,3662 | +19 % |
 | Epstein | 89,56 | 0,4080 | 0,4750 | +16 % | 0,4126 | +1,1 % |
 
-Com o termo quártico, 10 dos 13 pares com lombada ficam com erro ≤ 2 % (com o quadrático eram 6). Os três que restam
+Com o termo quártico, 10 dos 13 pares com lombada ficam com erro ≤ 2 % (com o quadrático eram 5). Os três que restam
 têm um vizinho na reta dentro do vão, e aí o modelo de um par só deixa de valer.
 
 **5. Lacuna L6 fechada no modelo: empurrão ⟷ calor fora do par isolado** (`calor4`, `calor4_inicio`, `calor4_t`,
@@ -2468,6 +2470,127 @@ voltar o tempo `|t|` é empurrar `|t|·|f''(0)| − (t²/2)·f''''(0)`.
 **O que fica aberto**: a RH e os outros problemas do Clay. Das lacunas da `LEIS.md` §7, L5 e L6 estão fechadas no
 modelo. L1–L3 são perguntas estatísticas, L4 é cálculo (Arb em todas as lombadas) e L7–L8 são reformulações e
 ferramentas. Nada aqui prova ou refuta a RH. `OPEN_MATH = true`.
+
+## 45. As caudas em frações e as frações de quebra de cada problema: no kernel, nos dados e no cotidiano
+
+Arquivo: `ClayRiemannProof/Fracoes.lean` (28 teoremas e 3 definições; axiomas no máximo `[propext, Classical.choice,
+Quot.sound]`; contagens por `decide +kernel`). Dados: `computations/fracoes/` (`caudas_gama.py`, `sat3.py`,
+`sato_tate.py`, `figura.py` e os `.json`).
+
+**1. As partes imaginárias em frações.** Cada zero certificado é uma bola de raio `≤ 5·10⁻¹⁸` em torno de um centro
+com 17 casas. Então a cauda `{γ}` (a parte depois da vírgula) é a fração exata `p/10¹⁷`, e a fração mais simples
+dentro da bola tem denominador mediano `10^8,79` (a previsão `1/√largura` dá `10^8,65`). Nos 14 380 683 zeros da §37:
+
+- **A cauda é uniforme.** Em 100 caixas, `χ² = 109` com 99 graus de liberdade (`p ≈ 0,23`) e `KS·√N = 0,64`
+  (`p ≈ 0,8`). É o teorema de Hlawka (1975): `{αγₙ}` é equidistribuída para todo `α ≠ 0`.
+- **Os quocientes de fração contínua seguem Gauss–Kuzmin** `P(a = k) = log₂(1 + 1/(k(k + 2)))`. Contei só os
+  quocientes que a bola certifica, entre 2 e 31 por zero (média 16,4), num milhão de zeros:
+
+  | `k` | 1 | 2 | 3 | 4 | 5 | 10 |
+  |---|---|---|---|---|---|---|
+  | observado | 0,4219 | 0,1700 | 0,0926 | 0,0583 | 0,0401 | 0,0117 |
+  | Gauss–Kuzmin | 0,4150 | 0,1699 | 0,0931 | 0,0589 | 0,0406 | 0,0120 |
+
+  A média geométrica dá 2,63 (Khinchin: 2,685) e a taxa dos denominadores 2,99 (Lévy: 3,276). O desvio vem do corte:
+  a expansão para quando o denominador chega a `~10^8,6`, onde a bola deixa de decidir.
+- **O que isso diz:** as caudas compartilham os parâmetros de quase todo número real (Gauss–Kuzmin, Khinchin, Lévy),
+  e não um parâmetro especial com outro problema. O kernel tem a lei: a soma telescopa,
+  `Σ_{k≤n} log₂(1 + 1/(k(k + 2))) = log₂(2(n + 1)/(n + 2)) < 1` (`gauss_kuzmin_produto`, `gauss_kuzmin_soma`,
+  `gauss_kuzmin_menor_que_um`).
+
+**2. As frações de quebra.** O que os problemas compartilham de verdade não está nas caudas, mas num número que separa
+o lado provado do lado aberto. Em cada linha, o kernel confere a parte exata, e as citações são teoremas publicados
+não formalizados aqui.
+
+| problema | fração de quebra | lado provado | lado aberto | no kernel |
+|---|---|---|---|---|
+| RH | `Re s = ½`: `κ = 0`, `b = 0` (§39, §44) | zeros na reta até `3·10¹²` (e a continuação, §31); `0 ≤ Λ ≤ 0,2` | um zero com `b > 0` em qualquer altura | `defeito_no_alto` (`< 3·10⁻²⁸`), `li_indice_no_alto` (`1,35·10²⁸`) |
+| P vs NP | `α` = cláusulas/variáveis: 2-SAT em `α = 1` (Chvátal–Reed, Goerdt); 3-SAT em `≈ 4,267` (física estatística; provado para `k` grande, Ding–Sly–Sun 2015) | 2-SAT ∈ P; o primeiro momento dá `α ≤ 5,19` | um algoritmo polinomial para 3-SAT | `primeiro_momento_3sat` (`32·7²⁶ < 8²⁶`), `primeiro_momento_justo` (`8²⁵⁹ < 2⁵⁰·7²⁵⁹`, inteiros de 234 dígitos) |
+| Navier–Stokes | `2/p + 3/q`: `≤ 1` é regular (Prodi–Serrin–Ladyzhenskaya; `L^∞_t L³_x` por ESS 2003); a energia dá `3/2` | regularidade nas classes críticas | o intervalo entre 1 e 3/2 | `serrin_criticos`, `energia_supercritica`, `kolmogorov` (`a = 2/3`, `b = −5/3` por análise dimensional) |
+| Yang–Mills | `β₀ = 11N/3 − 2n_f/3`: liberdade assintótica ⟺ `n_f < 11N/2`; QCD `β₀ = 7`, quebra em `n_f = 33/2` | liberdade assintótica (Gross–Wilczek–Politzer 1973) | o gap de massa | `liberdade_assintotica_iff`, `qcd_beta0`, `qcd_quebra` |
+| Hodge | `λ² ≤ 4q` (positividade, índice de Hodge) | RH das curvas (Weil) | a conjectura de Hodge | `Nos.no_discriminante` |
+| BSD | `x_p = a_p/(2√p) ∈ [−1, 1]`; com multiplicação complexa, metade dos `a_p` é zero | Hasse; Sato–Tate (2011); posto ≤ 1 (Gross–Zagier, Kolyvagin) | ordem em `s = 1` = posto | `E0_ordinario_97`, `E0_metade_97` (12 de 23); `Maquina.hasse_E0_97` |
+| Beal | `χ = 1/x + 1/y + 1/z`: `> 1` esférico, `= 1` euclidiano, `< 1` hiperbólico (finitas soluções primitivas, Darmon–Granville 1995) | Fermat (Wiles); os casos `χ ≥ 1` | Beal: `x, y, z ≥ 3` com bases coprimas | `chi_euclidianos`, `hiperbolico_maximo` (maior `χ < 1` é `41/42`), `beal_chi`, `beal_folga` (`≤ 11/12`), `fermat_generalizado_gigantes`, `beal_ate_6` |
+
+Sobre Beal, os pontos exatos:
+
+- A quebra é exata e tem folga mínima: o maior `χ < 1` é `41/42`, em `(2, 3, 7)`. É o triângulo hiperbólico de menor
+  área, o mesmo `1/42` da cota de Hurwitz `84(g − 1)`.
+- Com os três expoentes `≥ 3`, `χ ≤ 1`, com igualdade só em `(3, 3, 3)`, e fora dele `χ ≤ 11/12`.
+- As 10 soluções primitivas conhecidas com `χ < 1`, de `1⁷ + 2³ = 3²` a `43⁸ + 96 222³ = 30 042 907²`, foram
+  conferidas no kernel. Todas têm um expoente 2, logo nenhuma é de Beal.
+- No mundo das bases até 6 com expoentes 3 a 5, toda solução tem fator comum (`beal_ate_6`).
+
+**3. Os experimentos.**
+
+- **3-SAT aleatório** (`sat3.py`, DPLL próprio, 200 fórmulas por `α` com `n = 25` e `50`, 100 com `n = 100`):
+  - a fração satisfatível passa por ½ em `α ≈ 4,58` (`n = 25`), `4,40` (`n = 50`) e `4,31` (`n = 100`), e se aproxima
+    de `4,27`;
+  - o esforço mediano tem pico na quebra: com `n = 100`, 41 decisões em `α = 3`, 1 343 em `α = 4,5` e 306 em `α = 6`.
+  - As instâncias difíceis do cotidiano ficam perto dessa fração.
+- **Sato–Tate** (`sato_tate.py`, 17 982 primos até `2·10⁵`):
+  - para `y² = x³ + x + 1` (sem multiplicação complexa), `E[x²] = 0,2504` e `E[x⁴] = 0,1253` (teoria: `1/4` e `1/8`);
+  - para `y² = x³ − x` e `y² = x³ − 2` (com multiplicação complexa), `a_p = 0` em 50,08 % e 50,02 % dos primos (→ ½),
+    com `E[x⁴] = 0,186` (teoria: `3/16`);
+  - nenhuma violação de Hasse.
+
+![as frações](computations/fracoes/fracoes.png)
+
+**4. Onde cada problema aparece no cotidiano e como a engenharia lida com ele** (o problema continua aberto; a
+engenharia contorna):
+
+| problema | onde aparece | como a engenharia lida |
+|---|---|---|
+| RH | criptografia: chaves RSA usam primos grandes, e a distribuição dos primos é o assunto da RH | testes de primalidade (Miller–Rabin probabilístico; AKS determinístico, 2002); com a RH generalizada, Miller fica determinístico |
+| P vs NP | escalas de turno, rotas de entrega (GPS), alocação de salas, sudoku | solvers SAT (verificação de chips), heurísticas e algoritmos aproximados; as instâncias perto da fração de quebra são as caras |
+| Navier–Stokes | água da torneira (laminar até `Re ≈ 2 300`, depois turbulenta), asas de avião, previsão do tempo | CFD com modelos de turbulência (RANS, LES); em cada passo, a projeção de Leray, que é a decomposição de Hodge do campo de velocidades |
+| Yang–Mills | quase toda a massa do próton vem da energia dos quarks e glúons presos, não da massa dos quarks | QCD na rede (supercomputadores) calcula massas de hádrons e de glueballs, um gap numérico |
+| Hodge | não há uso direto da conjectura; as ferramentas (formas harmônicas) aparecem em eletromagnetismo e computação gráfica | decomposição de Helmholtz–Hodge em simulação de fluidos e em malhas |
+| BSD | criptografia de curvas elípticas (TLS, assinaturas de Bitcoin com secp256k1) | contagem de pontos `#E(𝔽_p) = p + 1 − a_p` (Schoof) para escolher curvas de ordem prima; a cota de Hasse dá o tamanho do grupo |
+| Beal | nenhum uso cotidiano direto | buscas computacionais; a ligação teórica é a conjectura abc |
+
+**O que NÃO é**: nada aqui resolve nenhum problema aberto.
+
+- As frações de quebra mostram onde cada problema está, não como fechá-lo.
+- As caudas não ligam a RH aos outros problemas: são estatísticas de número genérico.
+- Os experimentos são numéricos e sem certificação.
+
+`OPEN_MATH = true`.
+
+## 46. Ponte de certificados retangulares (trazida da branch `certificate-bridge-mainline`, corrigida)
+
+Arquivo: `ClayRiemannProof/CertificateBridge.lean` (6 declarações). Estava só na branch `certificate-bridge-mainline`,
+84 commits atrás da `main` e com o CI vermelho: três guardas esperavam `depends on axioms: []`, mas o Lean imprime
+`[propext, Classical.choice, Quot.sound]`.
+
+- O arquivo entra aqui sem mudança. As guardas foram geradas da saída real do `#print axioms`, e a seção tem número
+  novo (na branch era §23, número que já existe).
+- `window_on_line_from_certificates` compõe três insumos finitos: bolas centradas em `Re s = ½` com ζ injetiva em
+  cada uma; retângulos em que um certificado `peca_ret` dá cota inferior positiva para `|ζ|`
+  (`zeroFreeRect_of_peca_ret`, `ZeroFreeRect.zeta_ne_zero`); e uma cobertura da janela.
+- Com isso, todo zero da janela está numa bola, e a simetria `s ↦ 1 − s̄` com a injetividade põe o zero na reta.
+  `injOn_of_second_derivative_bound` converte uma cota `|ζ''| ≤ M` numa bola de raio `r`, com `Mr < |ζ'(c)|`, em
+  injetividade.
+- Falta a instância com as bolas da Arb (os certificados de injetividade por bola e a cobertura dentro do Lean).
+  A janela numérica segue fora do kernel. `OPEN_MATH = true`.
+
+**Erros corrigidos nesta etapa** (auditoria das 27 branches):
+
+- **Contagem de guardas no cabeçalho:** contava uma linha de docstring; agora conta só as linhas que começam com
+  `#guard_msgs` (1 035 + 252).
+- **Nome inexistente:** `Fronteira.Hadamard.xi` (§9) passou a `Fronteira.xi`.
+- **`LEIS.md`:** o resumo dos dados vai até `3 000 181 942 471,5` (com 10¹⁷); um "par mais perto em todos os dados"
+  já superado saiu.
+- **§18:** a seção cita agora 10¹⁷ certificada.
+- **§26:** "em todos os dados" passou a "até então".
+- **§31:** a execução 41777848348 terminou sem a faixa 8.
+- **§36:** a referência a "§6" passou a "`Correcoes` §6".
+- **§44:** "eram 6" passou a "eram 5".
+- **Branches obsoletas:** seis branches de Lean (`alturas-teoremas`, `continuacao-0-15`, `continuacao-0-35`,
+  `fronteira-onda2-teorema`, `formalizacao-calculos`, `nyman-beurling-theta`) já estão inteiras na `main`;
+  `certified-window-bridge` é um subconjunto da `certificate-bridge-mainline`.
+- **Nas branches de dados,** os JSON abrem. Há cinco `gram.json` que só registram um erro de lista não contígua (sem
+  resultado de Gram), e a faixa 8 que falta em `de_3000181222471.5/faixas_6-11`.
 
 ## Autor
 

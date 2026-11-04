@@ -1,4 +1,4 @@
-# Leis, operadores e teoremas da análise dos zeros (seções 13 a 28)
+# Leis, operadores e teoremas da análise dos zeros (seções 13 em diante)
 
 **Autor:** Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910)
 **Licença:** domínio público, [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/legalcode)
@@ -19,7 +19,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 - **Lombada**: entre dois zeros vizinhos `γ₁ < γ₂`, `Z` tem um extremo de altura `|Z*|` em `t*`. Num par apertado,
   `Z ≈ a − c(t − m)²` com `a = |Z*|`, `c = |Z''|/2`.
 - Dados certificados pela Arb (FLINT 3): 41 393 zeros em `3 000 175 332 800 < t ≤ 3 000 175 342 471,5` (seção 13);
-  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 18 489 450 até `3 000 180 142 471,5` (segunda e terceira extensões); 20 000 zeros em 10¹⁴ e 20 000 em 10¹⁶ (alturas);
+  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 26 193 389 até `3 000 181 942 471,5` (segunda a quinta extensões); 20 000 zeros em 10¹⁴, 10¹⁶ e 10¹⁷ (alturas);
   65 800 em 10¹⁸ (fronteira, 1ª onda). Todos na reta, contagens de Turing fechando.
 
 ## 2. Teoremas no kernel
@@ -66,6 +66,14 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `equacao_funcional_local`, `simetria_eh_conjugacao` | `P(1/(qu)) = P(u)/(qu²)`; `|u|² = 1/q ⟺ ū = 1/(qu)` (o parceiro funcional é o conjugado) |
 | | `quartica_fatora`, `quartica_par_fora`, `saturacao_superior`, `saturacao_inferior` | lombada quártica: o par fora com `b²` exato e a saturação da lei da raiz quadrada (L5) |
 | | `calor4_t`, `calor4_x`, `calor4_xx`, `calor4_equacao`, `calor4_inicio`, `calor4_centro` | calor exato na lombada quártica e o empurrão efetivo (L6) |
+| `Fracoes.lean` | `gauss_kuzmin_produto`, `gauss_kuzmin_soma`, `gauss_kuzmin_menor_que_um` | `Σ_{k≤n} log₂(1 + 1/(k(k+2))) = log₂(2(n+1)/(n+2)) < 1`: a lei das caudas em frações |
+| | `chi_euclidianos`, `chi_esferico_235`, `beal_chi`, `beal_folga`, `hiperbolico_maximo` | `χ = 1/x + 1/y + 1/z`: euclidianos `= 1`; maior `χ < 1` é `41/42`; Beal `≤ 1`, `≤ 11/12` fora de `(3,3,3)` |
+| | `fermat_generalizado_gigantes`, `chi_das_gigantes`, `beal_com_fator`, `beal_mundo_6`, `beal_cota_C`, `beal_ate_6` | as 10 soluções primitivas conhecidas com `χ < 1`; Beal sem contraexemplo nas bases `≤ 6`, expoentes 3–5 |
+| | `serrin_criticos`, `energia_supercritica`, `kolmogorov` | `2/p + 3/q`: críticos `= 1`, energia `3/2`; o expoente de Kolmogorov `−5/3` por análise dimensional |
+| | `liberdade_assintotica_iff`, `qcd_beta0`, `qcd_quebra` | `β₀ > 0 ⟺ n_f < 11N/2`; QCD `β₀ = 7`; quebra em `n_f = 33/2` |
+| | `primeiro_momento_3sat`, `primeiro_momento_justo` | primeiro momento do 3-SAT: o limiar `ln 2/ln(8/7)` está entre `5,18` e `5,2` (inteiros de 234 dígitos) |
+| | `E0_ordinario_97`, `E0_metade_97`, `defeito_no_alto`, `li_indice_no_alto` | `y² = x³ − x`: `a_p = 0 ⟺ p ≡ 3 (mod 4)` até 97 (12 de 23); números minúsculos e gigantes da RH |
+| `CertificateBridge.lean` | `window_on_line_from_certificates`, `zeroFreeRect_of_peca_ret`, `injOn_of_second_derivative_bound` | bolas injetivas + retângulos sem zeros + cobertura ⟹ zeros da janela na reta (trazido da branch, README §46) |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 
@@ -75,7 +83,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Continuacao.primeiro_fora_acima_continuacao` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 175 822 471` |
 | `Continuacao.rhAteZ_continuacao2` | Platt–Trudgian 2021 + `JanelaArb2026` + `JanelaContinuacao2026` + `JanelaContinuacao2026b` (16 faixas, 8 217 533 zeros) | RH até 3 000 177 742 471 |
 | `Continuacao.primeiro_fora_acima_continuacao2` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 177 742 471` |
-| `Continuacao.par_mais_fragil_continuacao2` | bolas do par 12 363 161 233 435/436 (`s = 0,0031`) | `−3,35·10⁻⁷ ≤ λ ≤ −2,67·10⁻⁷` (o par mais perto da colisão em todos os dados) |
+| `Continuacao.par_mais_fragil_continuacao2` | bolas do par 12 363 161 233 435/436 (`s = 0,0031`) | `−3,35·10⁻⁷ ≤ λ ≤ −2,67·10⁻⁷` |
 | `Continuacao.rhAteZ_continuacao3` | as anteriores + `JanelaContinuacao2026c` (faixas 16–35; 36 faixas, 18 489 450 zeros desde 3 000 175 822 471,5) | RH até 3 000 180 142 471 |
 | `Continuacao.primeiro_fora_acima_continuacao3` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 180 142 471` |
 | `Continuacao.par_mais_fragil_continuacao3` | bolas do par 12 363 167 808 945/946 (`s = 0,0026`) | `−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷` (o par mais perto da colisão em todos os dados) |

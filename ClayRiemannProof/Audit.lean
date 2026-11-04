@@ -54,6 +54,8 @@ import ClayRiemannProof.Geometrias
 import ClayRiemannProof.Identidades
 import ClayRiemannProof.Maquina
 import ClayRiemannProof.Nos
+import ClayRiemannProof.Fracoes
+import ClayRiemannProof.CertificateBridge
 
 /-!
 # Auditoria de axiomas
@@ -3286,3 +3288,120 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Nos.calor4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Nos.calor4
+
+/-- info: 'ClayRiemannProof.Fracoes.gauss_kuzmin_produto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.gauss_kuzmin_produto
+
+/-- info: 'ClayRiemannProof.Fracoes.gauss_kuzmin_soma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.gauss_kuzmin_soma
+
+/-- info: 'ClayRiemannProof.Fracoes.gauss_kuzmin_menor_que_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.gauss_kuzmin_menor_que_um
+
+/-- info: 'ClayRiemannProof.Fracoes.gauss_kuzmin_primeiro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.gauss_kuzmin_primeiro
+
+/-- info: 'ClayRiemannProof.Fracoes.chi_euclidianos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.chi_euclidianos
+
+/-- info: 'ClayRiemannProof.Fracoes.chi_esferico_235' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.chi_esferico_235
+
+/-- info: 'ClayRiemannProof.Fracoes.inv_le_terco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.inv_le_terco
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_chi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_chi
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_folga' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_folga
+
+/-- info: 'ClayRiemannProof.Fracoes.hiperbolico_maximo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.hiperbolico_maximo
+
+/-- info: 'ClayRiemannProof.Fracoes.fermat_generalizado_gigantes' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.fermat_generalizado_gigantes
+
+/-- info: 'ClayRiemannProof.Fracoes.chi_das_gigantes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.chi_das_gigantes
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_com_fator' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_com_fator
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_mundo_6' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_mundo_6
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_cota_C' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_cota_C
+
+/-- info: 'ClayRiemannProof.Fracoes.beal_ate_6' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beal_ate_6
+
+/-- info: 'ClayRiemannProof.Fracoes.serrin_criticos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.serrin_criticos
+
+/-- info: 'ClayRiemannProof.Fracoes.energia_supercritica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.energia_supercritica
+
+/-- info: 'ClayRiemannProof.Fracoes.kolmogorov' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.kolmogorov
+
+/-- info: 'ClayRiemannProof.Fracoes.liberdade_assintotica_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.liberdade_assintotica_iff
+
+/-- info: 'ClayRiemannProof.Fracoes.qcd_beta0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.qcd_beta0
+
+/-- info: 'ClayRiemannProof.Fracoes.qcd_quebra' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.qcd_quebra
+
+/-- info: 'ClayRiemannProof.Fracoes.primeiro_momento_3sat' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.primeiro_momento_3sat
+
+/-- info: 'ClayRiemannProof.Fracoes.primeiro_momento_justo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.primeiro_momento_justo
+
+/-- info: 'ClayRiemannProof.Fracoes.E0_ordinario_97' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.E0_ordinario_97
+
+/-- info: 'ClayRiemannProof.Fracoes.E0_metade_97' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.E0_metade_97
+
+/-- info: 'ClayRiemannProof.Fracoes.defeito_no_alto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.defeito_no_alto
+
+/-- info: 'ClayRiemannProof.Fracoes.li_indice_no_alto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.li_indice_no_alto
+
+/-- info: 'ClayRiemannProof.Fracoes.chi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.chi
+
+/-- info: 'ClayRiemannProof.Fracoes.serrin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.serrin
+
+/-- info: 'ClayRiemannProof.Fracoes.beta0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Fracoes.beta0
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect.region' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect.region
+
+/-- info: 'ClayRiemannProof.CertificateBridge.ZeroFreeRect.zeta_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.ZeroFreeRect.zeta_ne_zero
+
+/-- info: 'ClayRiemannProof.CertificateBridge.window_on_line_from_certificates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.window_on_line_from_certificates
+
+/-- info: 'ClayRiemannProof.CertificateBridge.zeroFreeRect_of_peca_ret' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.zeroFreeRect_of_peca_ret
+
+/-- info: 'ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound
