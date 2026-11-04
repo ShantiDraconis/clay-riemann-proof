@@ -17,8 +17,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
 de `#print axioms` de 1 047 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
-`ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 252 da cadeia certificada até a altura 13 (1 299 guardas no
-total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+`ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 322 da cadeia certificada até a altura 13 e do primeiro zero
+na reta (§47) (1 369 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -203,8 +203,8 @@ Daí `zeros_acima_13` (todo zero não trivial, no sentido do enunciado da Mathli
 O primeiro zero não trivial conhecido tem altura ≈ 14,1347, logo a altura 13 está abaixo dele.
 
 **O que NÃO é**: não é prova de RH. O mundo `Z = 13` está certificado **vacuamente**: não há zero não trivial com
-`|Im s| ≤ 13`, então nenhum zero é testado contra a reta crítica. Nenhum zero na reta é localizado aqui (o zero
-perto de `½ + 14,1347i` do kernel ATK não foi portado), e o mundo `Z = 3 000 175 332 800` continua condicional a
+`|Im s| ≤ 13`, então nenhum zero é testado contra a reta crítica. O zero perto de `½ + 14,1347i` está na §47
+(certificado na reta pelo kernel), e o mundo `Z = 3 000 175 332 800` continua condicional a
 `PlattTrudgian2021`. RH é `∀ Z, RHnoMundo Z`; um mundo finito isolado não a implica. `OPEN_MATH = true`.
 
 **Origem** (ATK kernel, espelho público do M-Core `390e378`, `imports/M-Core/atk-kernel/ATK/`):
@@ -221,7 +221,8 @@ perto de `½ + 14,1347i` do kernel ATK não foi portado), e o mundo `Z = 3 000 1
 | `CertifiedZeros/Rectangle.lean` | `ZeroClasses/FaixaGeral.lean` + `certificado_malha`, `certificado_derivada` de `ZeroClasses/Regions.lean` + `difOn_zeta` de `ZeroCritico.lean` + `cobre` de `ZeroClasses/QuartoGeral.lean` |
 | `CertifiedZeros/Pieces1.lean`, `Pieces2.lean`, `Pieces3.lean` | `ZeroClasses/FaixaPecas1.lean`, `FaixaPecas2.lean`, `FaixaPecas3.lean` (parâmetros numéricos intactos) |
 | `LowStrip/Disc.lean` | `zeta_ne_zero_disco`, `zeta_ne_zero_baixo` de `ZetaRetangulo.lean` |
-| `HeightThirteen.lean` | `ZeroClasses/Faixa.lean` (`faixa_ate_13`, `cota_metade`, `im_torcao`, `sem_zeros_pos`, `faixa_sem_zeros`) |
+| `HeightThirteen.lean` | `ZeroClasses/Faixa.lean` (`faixa_ate_13`, `cota_metade`, `im_torcao`, `sem_zeros_pos`, `faixa_sem_zeros`, `primeiro_zero_entre`) |
+| `CertifiedZeros/FirstZero.lean` (§47) | `ZeroCritico.lean` (a avaliação em `σ = ½` usa `Evaluation.zetaIG`, não `ZeroCertificado.zetaI`) |
 
 Mudanças na portagem: espaços de nomes `ATK.*` → `ClayRiemannProof.<Pasta>.<Arquivo>`; `import Mathlib` → módulos
 específicos (inclusive `Mathlib.Analysis.Complex.Liouville`, para a cota de Cauchy);
@@ -229,13 +230,12 @@ específicos (inclusive `Mathlib.Analysis.Complex.Liouville`, para a cota de Cau
 argumento não usado → `simp`. Reusados sem duplicar: `Zeta/Strip.lean` (`H`, `H_eq_zeta`), `Zeta/Bounds.lean`
 (`Hr`, `norm_H_le`, `Hr_le`), `Zeta/Symmetry.lean` (`torcao`, `Z`, `torcao_mem_Z`, `zero_trivial_de_re_nao_pos`).
 `zeros_acima_13` foi reenunciado na forma do enunciado da Mathlib (no ATK: `∀ ρ ∈ Z, 13 < |ρ.im|`);
-`rhNoMundo_13` é novo. Não portados, por estarem fora do fecho mínimo: `verificado_13` (usa
-`ZeroClasses/Escalas.lean`), `primeiro_zero_entre` (usa o zero certificado de `ZeroCritico.lean`), `m_pos_ate_13` e
-`novo_primeiro_ponto_14` (usam os mínimos `m_n` de `ZeroClasses/Regions.lean`); nem `ZeroClasses/FinalAudit.lean`,
+`rhNoMundo_13` é novo; `primeiro_zero_entre` veio com o zero certificado (§47). Não portados, por estarem fora do
+fecho mínimo: `verificado_13` (usa `ZeroClasses/Escalas.lean`), `m_pos_ate_13` e `novo_primeiro_ponto_14` (usam os mínimos `m_n` de `ZeroClasses/Regions.lean`); nem `ZeroClasses/FinalAudit.lean`,
 `Hipotetico.lean`, `RHTerminal.lean` ou os arquivos de "estados" do ATK, que alguns desses arquivos importavam sem usar.
 
 **Axiomas**: `faixa_sem_zeros`, `zeros_acima_13` e `rhNoMundo_13` dependem de `[propext, Classical.choice, Quot.sound]`.
-Das 252 declarações novas, 244 usam esses três; `IR`, `IC`, `IR.pt`, `IR.neg` e `IC.pt` não dependem de nenhum;
+Das 322 declarações novas (252 da faixa e 70 do primeiro zero, §47), 314 usam esses três; `IR`, `IC`, `IR.pt`, `IR.neg` e `IC.pt` não dependem de nenhum;
 `irootAux` e `iroot` usam `[propext]`; `dz` usa `[propext, Quot.sound]`. `decide +kernel` não acrescenta axioma
 (não há `Lean.ofReduceBool`). Todas estão fixadas em `ClayRiemannProof/AuditThirteen.lean`.
 
@@ -2617,6 +2617,68 @@ Arquivo: `ClayRiemannProof/CertificateBridge.lean` (6 declarações). Estava só
   `certified-window-bridge` é um subconjunto da `certificate-bridge-mainline`.
 - **Nas branches de dados,** os JSON abrem. Há cinco `gram.json` que só registram um erro de lista não contígua (sem
   resultado de Gram), e a faixa 8 que falta em `de_3000181222471.5/faixas_6-11`.
+
+## 47. O primeiro zero de `ζ` certificado na reta pelo kernel
+
+Arquivos: `ClayRiemannProof/CertifiedZeros/FirstZero.lean` (68 declarações) e dois teoremas novos em
+`ClayRiemannProof/HeightThirteen.lean`.
+
+```lean
+theorem FirstZero.cert_ok : cert = true                          -- decide +kernel
+theorem FirstZero.zero_na_linha : ∃ ρ ∈ Z, ρ.re = 1/2 ∧ ρ ∈ closedBall z0 (10⁻⁶) ∧
+    ∀ w ∈ closedBall z0 (10⁻⁶), riemannZeta w = 0 → w = ρ       -- z0 = ½ + 14,1347251417 i
+theorem FirstZero.primeiro_zero : ∃ γ : ℝ, riemannZeta (1/2 + γ i) = 0 ∧ |γ − 14,1347251417| ≤ 10⁻⁶
+theorem FirstZero.zero_simples : ∃ ρ ∈ Z, ρ.re = 1/2 ∧ ρ ∈ closedBall z0 (10⁻⁶) ∧ deriv riemannZeta ρ ≠ 0
+theorem FirstZero.Z_nao_vazio : ∃ ρ, ρ ∈ Z
+theorem HeightThirteen.altura_do_primeiro_zero :
+    (∃ ρ ∈ Z, ρ.re = 1/2 ∧ 13 < ρ.im ∧ ρ.im ≤ 14,1347261417) ∧ ∀ ρ ∈ Z, 13 < |ρ.im|
+```
+
+**A hipótese que saiu.** Até aqui, "existe um zero não trivial, e o primeiro conhecido está na reta perto de
+`14,1347`" era um dado de fora (tabelas, Arb). Agora é teorema sem hipótese: o kernel faz as contas.
+
+**Como funciona, em cinco passos:**
+
+1. **Duas avaliações certificadas.** `J₀ ∋ ζ(z₀)` e `J₁ ∋ ζ(z₀ + 10⁻⁵ i)` saem de `Evaluation.mem_zetaIG` com
+   `σ = ½`: Euler–Maclaurin com `N = 30`, `M = 10` e 44 bits. Os retângulos têm raio de cerca de `1,1·10⁻⁸`.
+2. **A derivada.** `c = (centro J₁ − centro J₀)/(10⁻⁵ i) ≈ 0,7833 + 0,1247 i` aproxima `ζ′(z₀)`, com `|c| ≈ 0,793`.
+3. **Cotas.** `‖ζ‖ ≤ 240` no disco de raio `2/5`, por Euler–Maclaurin de ordem 1. Por Cauchy,
+   `‖ζ″‖ ≤ 240/0,19² ≈ 6 648` no disco de raio `1/50`.
+4. **Contração.** `g(z) = z − ζ(z)/c` é contração de constante `½` da bola de raio `r = 10⁻⁶`, e leva a bola nela
+   mesma. O certificado pede duas desigualdades em `ℚ`, e o kernel confere ambas (`cert_ok`):
+   - `(r₀ + r₁)/δ + F₂(δ + r) ≤ Re c/2`;
+   - `|ζ(z₀)| ≤ r·Re c/2`.
+
+   Pelo teorema de Banach, há um único ponto fixo, isto é, um único zero na bola.
+5. **Simetria.** `s ↦ 1 − s̄` leva zeros em zeros e leva a bola nela mesma, porque o centro está na reta. Pela
+   unicidade, `torcao ρ = ρ`, então **`Re ρ = ½` exatamente**. Além disso, `‖1 − ζ′/c‖ ≤ ½` em toda a bola, logo
+   `ζ′ ≠ 0` e o zero é simples.
+
+O arquivo inteiro compila em cerca de 13 s; `cert_ok` é verificado pelo kernel, sem `native_decide`. Com a §4
+(nenhum zero com `|Im s| ≤ 13`), a altura do zero mais baixo fica em `(13; 14,1347261417]`.
+
+**O que NÃO é:**
+
+- Não é RH: é um zero, e o enunciado do Clay pede todos.
+- Não prova que `ρ₁` é o zero mais baixo, porque não há certificado de ausência de zeros entre `13` e a bola.
+  Perto da bola `|ζ| ≈ 0,8·dist`, e com a cota grosseira a malha de retângulos precisaria de passo da ordem de
+  `10⁻⁹`.
+- O caminho para isso é contar zeros (método de Turing ou princípio do argumento) ou alargar a bola de unicidade com
+  uma cota melhor de `ζ″`.
+- `OPEN_MATH = true`.
+
+**Origem:** ATK kernel, espelho público `ShantiDraconis/atk-math-core-public` (commit `d7a84eb`),
+`imports/M-Core/atk-kernel/ATK/ZeroCritico.lean`.
+
+- A avaliação em `σ = ½` do ATK (`ZeroCertificado.lean`: `zetaI`, `okAll`, `mem_zetaI`) não foi copiada. Ela foi
+  trocada pela avaliação geral já portada, `zetaIG`/`okAllG`/`mem_zetaIG` com `σ = ½`, com os mesmos parâmetros, e
+  o certificado continua passando.
+- `deriv_ne_zero_bola`, `zero_simples` e `altura_do_primeiro_zero` são novos.
+- `import Mathlib.Topology.MetricSpace.Contracting` foi acrescentado, para o teorema de Banach.
+
+**Axiomas:** as 70 declarações (68 do arquivo e 2 de `HeightThirteen`) dependem de
+`[propext, Classical.choice, Quot.sound]`; não há `Lean.ofReduceBool`. Estão fixadas em
+`ClayRiemannProof/AuditThirteen.lean`.
 
 ## Autor
 

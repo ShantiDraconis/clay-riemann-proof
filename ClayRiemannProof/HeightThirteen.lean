@@ -3,6 +3,7 @@ import ClayRiemannProof.CertifiedZeros.Pieces2
 import ClayRiemannProof.CertifiedZeros.Pieces3
 import ClayRiemannProof.LowStrip.Disc
 import ClayRiemannProof.FiniteWorlds
+import ClayRiemannProof.CertifiedZeros.FirstZero
 
 /-!
 # Nenhum zero de `ζ` na faixa crítica até a altura 13; o mundo finito `Z = 13`
@@ -16,21 +17,25 @@ import ClayRiemannProof.FiniteWorlds
   `ClayRiemannProof.LowStrip.Disc.zeta_ne_zero_baixo`; `Im s < 0` pela conjugação);
 * **`zeros_acima_13`**: todo zero não trivial (no sentido do enunciado da Mathlib) tem `|Im s| > 13`;
 * **`rhNoMundo_13`**: o mundo finito `Z = 13` de `ClayRiemannProof.FiniteWorlds` está certificado —
-  vacuamente: não há zero não trivial com `|Im s| ≤ 13`.
+  vacuamente: não há zero não trivial com `|Im s| ≤ 13`;
+* **`primeiro_zero_entre`**, **`altura_do_primeiro_zero`**: com o zero certificado de
+  `ClayRiemannProof.CertifiedZeros.FirstZero` (contração + `decide +kernel`), existe um zero não trivial `ρ₁`
+  **na reta**, simples, com `13 < Im ρ₁ ≤ 14,1347261417`, e nenhum zero tem `|Im s| ≤ 13`: a altura do zero mais
+  baixo está em `(13; 14,1347261417]`, tudo no kernel.
 
 **O que isto não é**: não é RH nem prova de RH. É um caso finito (`RHnoMundo 13`); o enunciado do Clay é
 `∀ Z, RHnoMundo Z` (`FiniteWorlds.target_iff_todos_os_mundos`), e a passagem de cada `Z` para todo `Z` é o
 problema em aberto. `OPEN_MATH = true`.
 
 Origem: ATK kernel (espelho público, M-Core `390e378`), `ATK/ZeroClasses/Faixa.lean` (`faixa_ate_13`,
-`cota_metade`, `im_torcao`, `sem_zeros_pos`, `faixa_sem_zeros`), portado para Mathlib `8fe7ce4`, nomes
-`ATK.ZeroClasses.Faixa.*` → `ClayRiemannProof.HeightThirteen.*`, `ATK.ZetaSimetria` →
+`cota_metade`, `im_torcao`, `sem_zeros_pos`, `faixa_sem_zeros`, `primeiro_zero_entre`), portado para Mathlib
+`8fe7ce4`, nomes `ATK.ZeroClasses.Faixa.*` → `ClayRiemannProof.HeightThirteen.*`, `ATK.ZetaSimetria` →
 `ClayRiemannProof.Zeta.Symmetry`, `ATK.ZetaRetangulo` → `ClayRiemannProof.LowStrip.Disc`. `zeros_acima_13`
-foi reescrito com a forma do enunciado da Mathlib (no ATK: `∀ ρ ∈ Z, 13 < |ρ.im|`) e `rhNoMundo_13` é novo.
-Não portados, por dependerem de arquivos fora do fecho mínimo (`ATK/ZeroClasses/Escalas.lean`,
-`ATK/ZeroClasses/Regions.lean`, o zero certificado de `ATK/ZeroCritico.lean`): `verificado_13`,
-`primeiro_zero_entre`, `m_pos_ate_13`, `novo_primeiro_ponto_14`. Os axiomas estão fixados em
-`ClayRiemannProof/AuditThirteen.lean`.
+foi reescrito com a forma do enunciado da Mathlib (no ATK: `∀ ρ ∈ Z, 13 < |ρ.im|`); `rhNoMundo_13` e
+`altura_do_primeiro_zero` são novos, e `primeiro_zero_entre` ganhou a simplicidade (`ζ′(ρ₁) ≠ 0`). Não
+portados, por dependerem de arquivos fora do fecho mínimo (`ATK/ZeroClasses/Escalas.lean`,
+`ATK/ZeroClasses/Regions.lean`): `verificado_13`, `m_pos_ate_13`, `novo_primeiro_ponto_14`. Os axiomas estão
+fixados em `ClayRiemannProof/AuditThirteen.lean`.
 -/
 
 open Complex ComplexConjugate Set
@@ -112,5 +117,28 @@ theorem rhNoMundo_13 : ClayRiemannProof.FiniteWorlds.RHnoMundo 13 := by
   intro s hz ht hs1 him
   have him' : |s.im| ≤ 13 := by exact_mod_cast him
   exact absurd him' (not_le.mpr (zeros_acima_13 s hz ht hs1))
+
+/-- **O primeiro zero**: existe `ρ₁` não trivial na reta, a menos de `10⁻⁶` de `½ + 14,1347251417 i` e simples
+(`FirstZero.zero_simples`, certificado pelo kernel), e todo zero não trivial tem `|Im ρ| > 13`. -/
+theorem primeiro_zero_entre :
+    (∃ ρ ∈ Z, ρ.re = 1 / 2 ∧
+        ρ ∈ Metric.closedBall ClayRiemannProof.CertifiedZeros.FirstZero.z0
+          ((ClayRiemannProof.CertifiedZeros.FirstZero.rr : ℚ) : ℝ) ∧ deriv riemannZeta ρ ≠ 0) ∧
+      ∀ ρ ∈ Z, 13 < |ρ.im| := by
+  refine ⟨ClayRiemannProof.CertifiedZeros.FirstZero.zero_simples, fun ρ hρ => ?_⟩
+  by_contra h
+  exact faixa_sem_zeros hρ.2.1 hρ.2.2 (le_of_not_gt h) hρ.1
+
+/-- **A altura do zero mais baixo está em `(13; 14,1347261417]`**: há um zero não trivial `ρ₁` na reta com
+`13 < Im ρ₁ ≤ 14,1347261417`, e nenhum zero não trivial tem `|Im ρ| ≤ 13`. -/
+theorem altura_do_primeiro_zero :
+    (∃ ρ ∈ Z, ρ.re = 1 / 2 ∧ 13 < ρ.im ∧ ρ.im ≤ 141347261417 / 10 ^ 10) ∧ ∀ ρ ∈ Z, 13 < |ρ.im| := by
+  obtain ⟨⟨ρ, hρ, hre, hB, -⟩, h13⟩ := primeiro_zero_entre
+  have him := (ClayRiemannProof.CertifiedZeros.FirstZero.re_im_prox hB).2
+  rw [ClayRiemannProof.CertifiedZeros.FirstZero.t0_val, abs_le] at him
+  have hr : ((ClayRiemannProof.CertifiedZeros.FirstZero.rr : ℚ) : ℝ) = 1 / 10 ^ 6 := by
+    simp [ClayRiemannProof.CertifiedZeros.FirstZero.rr]
+  rw [hr] at him
+  exact ⟨⟨ρ, hρ, hre, by linarith [him.1], by linarith [him.2]⟩, h13⟩
 
 end ClayRiemannProof.HeightThirteen

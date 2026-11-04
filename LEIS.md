@@ -74,6 +74,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `primeiro_momento_3sat`, `primeiro_momento_justo` | primeiro momento do 3-SAT: o limiar `ln 2/ln(8/7)` está entre `5,18` e `5,2` (inteiros de 234 dígitos) |
 | | `E0_ordinario_97`, `E0_metade_97`, `defeito_no_alto`, `li_indice_no_alto` | `y² = x³ − x`: `a_p = 0 ⟺ p ≡ 3 (mod 4)` até 97 (12 de 23); números minúsculos e gigantes da RH |
 | `CertificateBridge.lean` | `window_on_line_from_certificates`, `zeroFreeRect_of_peca_ret`, `injOn_of_second_derivative_bound` | bolas injetivas + retângulos sem zeros + cobertura ⟹ zeros da janela na reta (trazido da branch, README §46) |
+| `CertifiedZeros/FirstZero.lean`, `HeightThirteen.lean` | `cert_ok`, `zero_na_linha`, `primeiro_zero`, `zero_simples`, `Z_nao_vazio`, `altura_do_primeiro_zero` | o primeiro zero certificado pelo kernel: `ζ(½ + iγ) = 0` com `|γ − 14,1347251417| ≤ 10⁻⁶`, `Re ρ₁ = ½` exato (contração + simetria), único na bola e simples; com a faixa até 13, o zero mais baixo tem altura em `(13; 14,1347261417]` |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 

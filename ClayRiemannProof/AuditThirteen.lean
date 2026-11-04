@@ -9,17 +9,18 @@ import ClayRiemannProof.CertifiedZeros.Rectangle
 import ClayRiemannProof.CertifiedZeros.Pieces1
 import ClayRiemannProof.CertifiedZeros.Pieces2
 import ClayRiemannProof.CertifiedZeros.Pieces3
+import ClayRiemannProof.CertifiedZeros.FirstZero
 import ClayRiemannProof.LowStrip.Disc
 import ClayRiemannProof.HeightThirteen
 
 /-!
-# Auditoria de axiomas: a faixa sem zeros até a altura 13 e o mundo `Z = 13`
+# Auditoria de axiomas: a faixa sem zeros até a altura 13, o mundo `Z = 13` e o primeiro zero na reta
 
-Um `#guard_msgs in #print axioms X` para cada uma das 252 declarações públicas acrescentadas por
-`ClayRiemannProof/HeightThirteen.lean` e pelos módulos que ele importa (saída real do Lean). Se aparecer
-qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.sound` (inclusive `sorryAx`), a compilação falha.
+Um `#guard_msgs in #print axioms X` para cada uma das 322 declarações públicas acrescentadas por
+`ClayRiemannProof/HeightThirteen.lean` e pelos módulos que ele importa, inclusive o primeiro zero certificado
+(`ClayRiemannProof/CertifiedZeros/FirstZero.lean`), com a saída real do Lean. Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.sound` (inclusive `sorryAx`), a compilação falha.
 
-Os certificados numéricos (`CertifiedZeros/Pieces1`–`3`) usam `decide +kernel`, que não acrescenta axioma: a
+Os certificados numéricos (`CertifiedZeros/Pieces1`–`3` e `FirstZero.cert_ok`) usam `decide +kernel`, que não acrescenta axioma: a
 verificação é feita pelo próprio kernel, sem `native_decide` (que acrescentaria `Lean.ofReduceBool`).
 
 `Classical.choice` vem do Mathlib: `#print axioms Real` já dá `[propext, Classical.choice, Quot.sound]`.
@@ -798,6 +799,215 @@ verificação é feita pelo próprio kernel, sem `native_decide` (que acrescenta
 #guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.Pieces3.faixa_8
 
 
+/-! ## `ClayRiemannProof/CertifiedZeros/FirstZero.lean` -/
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.t0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.t0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dl' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dl
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.rr' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.rr
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.F2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.F2
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z1
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z0_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z0_re
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z0_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z0_im
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z1_sub_z0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z1_sub_z0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.t0_val' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.t0_val
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cen' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cen
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.rad' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.rad
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.radC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.radC
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cenC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cenC
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.abs_sub_cen' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.abs_sub_cen
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.norm_sub_cenC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.norm_sub_cenC
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.norm_cenC_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.norm_cenC_le
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.J0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.J0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.J1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.J1
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cQ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cQ
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cert' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cert
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cert_ok' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cert_ok
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cert_parts' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cert_parts
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.mem_J0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.mem_J0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.mem_J1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.mem_J1
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.re_im_prox' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.re_im_prox
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.ne_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.ne_um
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.bola_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.bola_sub
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.sub_bola' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.sub_bola
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.EM_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.EM_um
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.Cb_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.Cb_um
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cota_grosseira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cota_grosseira
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.difOn_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.difOn_zeta
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.difOn_dzeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.difOn_dzeta
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cota_deriv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cota_deriv
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cota_deriv2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cota_deriv2
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dif_at' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dif_at
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dif_at'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dif_at'
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.lip_deriv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.lip_deriv
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dl_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dl_pos
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.norm_z1_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.norm_z1_sub
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.z1_mem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.z1_mem
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dl_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dl_le
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.dq_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.dq_le
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cC
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cC_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cC_mul
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cC_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cC_re
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cC_norm_ge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cC_norm_ge
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cQ1_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cQ1_pos
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.cC_ne' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.cC_ne
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.deriv_menos_c' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.deriv_menos_c
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.g' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.g
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.rr_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.rr_le
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.rr_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.rr_pos
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.B_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.B_sub
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.hasDerivAt_g' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.hasDerivAt_g
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.norm_deriv_g' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.norm_deriv_g
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.lip_g' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.lip_g
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.g_z0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.g_z0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.g_maps' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.g_maps
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.fixo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.fixo_iff
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.torcao_z0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.torcao_z0
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.torcao_bola' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.torcao_bola
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.zero_na_linha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.zero_na_linha
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.Z_nao_vazio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.Z_nao_vazio
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.primeiro_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.primeiro_zero
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.deriv_ne_zero_bola' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.deriv_ne_zero_bola
+
+/-- info: 'ClayRiemannProof.CertifiedZeros.FirstZero.zero_simples' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.CertifiedZeros.FirstZero.zero_simples
+
+
 /-! ## `ClayRiemannProof/LowStrip/Disc.lean` -/
 
 /-- info: 'ClayRiemannProof.LowStrip.Disc.zeta_ne_zero_disco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -829,3 +1039,9 @@ verificação é feita pelo próprio kernel, sem `native_decide` (que acrescenta
 
 /-- info: 'ClayRiemannProof.HeightThirteen.rhNoMundo_13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.HeightThirteen.rhNoMundo_13
+
+/-- info: 'ClayRiemannProof.HeightThirteen.primeiro_zero_entre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HeightThirteen.primeiro_zero_entre
+
+/-- info: 'ClayRiemannProof.HeightThirteen.altura_do_primeiro_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.HeightThirteen.altura_do_primeiro_zero
