@@ -48,6 +48,7 @@ import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Leis
 import ClayRiemannProof.Correcoes
 import ClayRiemannProof.Absorcao
+import ClayRiemannProof.Biblioteca
 import ClayRiemannProof.Parametro
 
 /-!
@@ -2492,6 +2493,41 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Absorcao.tcol_lacuna_medida_dentro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Absorcao.tcol_lacuna_medida_dentro
+
+/-! ## `ClayRiemannProof/Biblioteca` -/
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_de_hilbertPolya' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_de_hilbertPolya
+
+/-- info: 'ClayRiemannProof.Biblioteca.re_de_autovalor_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.re_de_autovalor_real
+
+/-- info: 'ClayRiemannProof.Biblioteca.im_div_I' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.im_div_I
+
+/-- info: 'ClayRiemannProof.Biblioteca.produto_de_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.produto_de_euler
+
+/-- info: 'ClayRiemannProof.Biblioteca.sem_zeros_re_ge_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.sem_zeros_re_ge_um
+
+/-- info: 'ClayRiemannProof.Biblioteca.fronteiras_de_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.fronteiras_de_euler
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_de_metade' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_de_metade
+
+/-- info: 'ClayRiemannProof.Biblioteca.rotas_para_rh' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rotas_para_rh
+
+/-- info: 'ClayRiemannProof.Biblioteca.equivalencias_sem_hipotese' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.equivalencias_sem_hipotese
+
+/-- info: 'ClayRiemannProof.Biblioteca.verificacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.verificacao
+
+/-- info: 'ClayRiemannProof.Biblioteca.lambda_com_rodgers_tao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.lambda_com_rodgers_tao
 
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
