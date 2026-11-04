@@ -2541,6 +2541,27 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Biblioteca.lambda_com_rodgers_tao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Biblioteca.lambda_com_rodgers_tao
 
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_re_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_re_Z
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_acima' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_acima
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_quarto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_quarto
+
+/-- info: 'ClayRiemannProof.Biblioteca.re_de_rhateZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.re_de_rhateZ
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_reduzida' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_reduzida
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_caixas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_caixas
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_faixa_estreita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_faixa_estreita
+
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
 /-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
