@@ -1400,7 +1400,7 @@ forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
 Classical.choice, Quot.sound]` (32 guardas).
 
-## 31. Continuação contígua: RH conferida até 3 000 175 822 471,5 (cálculo certificado fora do kernel)
+## 31. Continuação contígua: RH conferida até 3 000 181 222 471,5 (cálculo certificado fora do kernel)
 
 Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
 `.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
@@ -1481,8 +1481,15 @@ até **3 000 180 142 471,5**, com 18 489 450 zeros, todos na reta, as 36 colagen
 faixa (`N(3 000 180 142 471,5) = 12 363 174 022 364`). Somando tudo, ficam 4 809 671,5 unidades e 20 585 226 zeros
 acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil. No kernel, com a terceira janela como
 hipótese nomeada: `Continuacao.rhAteZ_continuacao3` e `par_mais_fragil_continuacao3`
-(`−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`). As faixas 36–44, a partir
-do mesmo `C0`, estão rodando.
+(`−2,40·10⁻⁷ ≤ λ ≤ −1,91·10⁻⁷`).
+
+**Faixas 36–44** (run 41709096981; colagem conjunta em `de_3000175822471.5/juntas_0-44/`): as 45 faixas juntas vão
+até **3 000 181 222 471,5**, com 23 111 813 zeros, todos na reta, as 45 colagens conferindo e déficit 0 em cada
+faixa (`N(3 000 181 222 471,5) = 12 363 178 644 727`). Somando tudo, ficam 5 889 671,5 unidades e 25 207 589 zeros
+acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil; o das faixas 36–44 é o 12 363 175 635
+090/…091 (`γ ≈ 3 000 180 519 279,4651`, a 0,0016675 um do outro, `s = 0,0071`, `λ = −1,390·10⁻⁶`). No kernel, com
+a quarta janela como hipótese nomeada: `Continuacao.rhAteZ_continuacao4`, `primeiro_fora_acima_continuacao4` e
+`par_mais_fragil_continuacao4` (`−1,74·10⁻⁶ ≤ λ ≤ −1,39·10⁻⁶`). O próximo lote começa em `C0 = 3 000 181 222 471,5`.
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`

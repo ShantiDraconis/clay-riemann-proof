@@ -2409,6 +2409,17 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao3
 
+/-- info: 'ClayRiemannProof.Continuacao.rhAteZ_continuacao4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.rhAteZ_continuacao4
+
+/-- info: 'ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao4
+
+/-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao4
+
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
 /-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
