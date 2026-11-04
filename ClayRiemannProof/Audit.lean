@@ -48,6 +48,7 @@ import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Leis
 import ClayRiemannProof.Correcoes
 import ClayRiemannProof.Absorcao
+import ClayRiemannProof.Parametro
 
 /-!
 # Auditoria de axiomas
@@ -2716,3 +2717,140 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Correcoes.depois_da_colisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Correcoes.depois_da_colisao
+
+/-- info: 'ClayRiemannProof.Parametro.Q_na_reta_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.Q_na_reta_real
+
+/-- info: 'ClayRiemannProof.Parametro.residuo_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.residuo_na_reta
+
+/-- info: 'ClayRiemannProof.Parametro.residuo_minimo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.residuo_minimo
+
+/-- info: 'ClayRiemannProof.Parametro.residuo_atingido' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.residuo_atingido
+
+/-- info: 'ClayRiemannProof.Parametro.residuo_cota' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.residuo_cota
+
+/-- info: 'ClayRiemannProof.Parametro.b_do_residuo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.b_do_residuo
+
+/-- info: 'ClayRiemannProof.Parametro.reta_ve_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.reta_ve_zero_iff
+
+/-- info: 'ClayRiemannProof.Parametro.pontes_parametro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.pontes_parametro
+
+/-- info: 'ClayRiemannProof.Parametro.tempo_de_colisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.tempo_de_colisao
+
+/-- info: 'ClayRiemannProof.Parametro.par_na_reta_kappa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.par_na_reta_kappa
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_kappa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_kappa
+
+/-- info: 'ClayRiemannProof.Parametro.quarteto_satura_de_bruijn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.quarteto_satura_de_bruijn
+
+/-- info: 'ClayRiemannProof.Parametro.lambda_le_de_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.lambda_le_de_faixa
+
+/-- info: 'ClayRiemannProof.Parametro.faixa_de_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.faixa_de_xi
+
+/-- info: 'ClayRiemannProof.Parametro.lambda_le_dois_b2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.lambda_le_dois_b2
+
+/-- info: 'ClayRiemannProof.Parametro.xi_igual' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.xi_igual
+
+/-- info: 'ClayRiemannProof.Parametro.zeros_na_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.zeros_na_faixa
+
+/-- info: 'ClayRiemannProof.Parametro.de_bruijn_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.de_bruijn_meio
+
+/-- info: 'ClayRiemannProof.Parametro.sem_residuo_lambda_le_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.sem_residuo_lambda_le_zero
+
+/-- info: 'ClayRiemannProof.Parametro.target_lambda_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.target_lambda_zero
+
+/-- info: 'ClayRiemannProof.Parametro.residuo_de_lambda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.residuo_de_lambda
+
+/-- info: 'ClayRiemannProof.Parametro.sanduiche' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.sanduiche
+
+/-- info: 'ClayRiemannProof.Parametro.lombada_sem_troca' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.lombada_sem_troca
+
+/-- info: 'ClayRiemannProof.Parametro.lombada_minimo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.lombada_minimo
+
+/-- info: 'ClayRiemannProof.Parametro.b_da_lombada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.b_da_lombada
+
+/-- info: 'ClayRiemannProof.Parametro.S_reta_cai_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.S_reta_cai_dois
+
+
+/-- info: 'ClayRiemannProof.Parametro.media_absorvida' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.media_absorvida
+
+/-- info: 'ClayRiemannProof.Parametro.media_s_sobre_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.media_s_sobre_dois
+
+
+/-- info: 'ClayRiemannProof.Parametro.media_com_janela' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.media_com_janela
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_gap' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_gap
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_media' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_media
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_s_bloco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_s_bloco
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_lambda_exato' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_lambda_exato
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_b_t6' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_b_t6
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_fracao_na_bola' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_fracao_na_bola
+
+/-- info: 'ClayRiemannProof.Parametro.eixo_unico' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.eixo_unico
+
+/-- info: 'ClayRiemannProof.Parametro.zeros_espelhados' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.zeros_espelhados
+
+/-- info: 'ClayRiemannProof.Parametro.media_do_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.media_do_espelho
+
+/-- info: 'ClayRiemannProof.Parametro.espelho_absorvida' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.espelho_absorvida
+
+/-- info: 'ClayRiemannProof.Parametro.espelho_conta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.espelho_conta
+
+/-- info: 'ClayRiemannProof.Parametro.triviais_fora_de_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.triviais_fora_de_xi
+
+/-- info: 'ClayRiemannProof.Parametro.euler_meio_diverge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.euler_meio_diverge
+
+/-- info: 'ClayRiemannProof.Parametro.meio_nao_eh_inv_raiz' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.meio_nao_eh_inv_raiz
+
+/-- info: 'ClayRiemannProof.Parametro.recorde_b_t5_t3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.recorde_b_t5_t3
+
+/-- info: 'ClayRiemannProof.Parametro.bola_relativa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Parametro.bola_relativa

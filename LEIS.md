@@ -42,6 +42,13 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Gram.lean` | `S_gram`, `zeros_no_bloco`, `bloco_par` | `S(g_m) = N(g_m) − m − 1 ∈ ℤ`; zeros no bloco = comprimento + variação de `S`; excesso e falta de 2 em 2 entre pontos bons |
 | `QuartetoDesenhado.lean` | `quarteto_desenhado` | `ζ(0,3 ± 14i) ≠ 0` e `ζ(0,7 ± 14i) ≠ 0` (avaliação certificada de `ζ` no kernel, `|ζ| ≥ 1/10`) |
 | `Turing.lean`, `PrimeiroFora.lean` | `turing_logica`, `primeiro_fora`, `primeiro_fora_acima` | lógica de Turing; se existe zero fora da reta, existe um de altura mínima, acima de toda altura verificada |
+| `Parametro.lean` | `Q_na_reta_real`, `residuo_na_reta`, `residuo_minimo`, `residuo_cota`, `b_do_residuo` | o quarteto `½ ± b ± iγ₀` vale `(γ₀² − b² − t²)² + (2bγ₀)²` na reta: resíduo `m = (2bγ₀)²`, `≥ b⁴`, e `b = √m/(2γ₀)` |
+| | `pontes_parametro`, `reta_ve_zero_iff` | `κ ≥ 0` ⟺ zeros do modelo na reta ⟺ a reta vê um zero ⟺ resíduo 0 ⟺ `−2κ ≤ 0` |
+| | `tempo_de_colisao`, `par_na_reta_kappa`, `quarteto_satura_de_bruijn` | no fluxo `κ(t) = κ + t/2`: na reta exatamente para `t ≥ −2κ`; par na reta `−Δγ²/2`, quarteto fora `2b² = Δ²/2` (cota de de Bruijn com igualdade) |
+| | `lambda_le_dois_b2`, `de_bruijn_meio`, `sem_residuo_lambda_le_zero`, `target_lambda_zero`, `residuo_de_lambda` | com `DeBruijnFaixa` e `H0_eh_xi` (nomeados): `Λ ≤ 2·b_sup²`, `Λ ≤ ½`, meta ⟹ `Λ = 0` (com Rodgers–Tao), `Λ > 0` ⟹ zero com `|Re ρ − ½| > b` se `2b² < Λ` |
+| | `lombada_minimo`, `b_da_lombada`, `S_reta_cai_dois` | `b = √(2|Z_min|/|Z''|)`; `S_reta = S − 2k` |
+| | `media_absorvida`, `media_do_espelho`, `eixo_unico`, `espelho_conta` | a média de `½ + b(s − 1)` é ½ para quaisquer gaps; `(Re ρ + Re(1 − ρ̄))/2 = ½` para todo `ρ`; ½ é o único eixo de `s ↦ 1 − s̄`; conjunto simétrico tem tantos `s < x` quanto `s > 2 − x` |
+| | `euler_meio_diverge`, `meio_nao_eh_inv_raiz`, `triviais_fora_de_xi` | `Σ p^{−1/2}` diverge; `1/√p ≠ ½`; `ξ(−2(n + 1)) ≠ 0` |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 
@@ -166,6 +173,16 @@ apertado, de −5,5·10⁻⁵ para −7,6·10⁻⁹. Isso é modelo, não medida
   `forca.yml`. A contagem "17 teoremas fechados" misturava teoremas e estimativas.
 - `Λ ≥ −4,59·10⁻⁷` (de CSV) é verdadeira, mas mais fraca que `Λ ≥ 0`, já provado por Rodgers–Tao.
 - Os zeros em 3·10¹² e 10¹⁸ já são certificados (bolas da Arb); o que ainda espera a Arb são os **valores de força**.
+- "Absorver o ½ nas caudas" (`Re = ½ + b(s − 1)` ou `s/2`) não é lei: a média ½ vem da normalização de `s`
+  (`Absorcao.media_reAbs`, `media_absorvida`) e vale para qualquer configuração, com zeros fora ou não
+  (`media_do_espelho`). O número absorvido
+  quebra a simetria `s ↦ 1 − s̄` (no bloco, 23 gaps com `s < 1/100` contra 247 382 com `s > 199/100`).
+- O "fator 4 pelos vizinhos" entre `−d²/8` e `−d²/2` é a coordenada `z = 2γ` (`recorde_lambda_exato`); os vizinhos
+  mudam a cota de CSV em no máximo 25 %. A média dos gaps é `(γ_último − γ_primeiro)/(N − 1)` (`recorde_media`), não
+  `L/N` nem `L/(N − 1)`. `b(t)` é raiz de racional: `b(−10⁻⁶) = 0,000 635 9…`, não `3/5 000`.
+- O erro da bola no gap recorde é `8,5·10⁻¹⁵` do gap (`bola_relativa`), não 1,6 %. `s < 1/300` são 2 pares, não 1.
+- Epstein `m² + 5n²` até `Im 100` tem 13 zeros fora da reta (o 13º, `0,81117 + 58,50774i`, achado pela contagem na
+  reta; README §39), não 12.
 
 ## 9. Como reproduzir
 

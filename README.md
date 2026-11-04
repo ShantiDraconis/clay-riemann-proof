@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 791 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 044 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 858 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 111 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1606,7 +1606,8 @@ Arquivos: `computations/aglomeracoes/` (`aglomeracoes.py`, `analogos_fora.py`, `
 - **Fora da reta de verdade só sem produto de Euler** (painel a; `mpmath`, malha e `findroot`, `|f| < 10⁻³⁰`):
   - Davenport–Heilbronn até `Im 170`: 3 zeros, `0,808517 + 85,699348i` (`b = 0,3085`), `0,650830 + 114,163343i`
     (`b = 0,1508`), `0,574356 + 166,479306i` (`b = 0,0744`), mais os espelhos `1 − β + iγ`;
-  - Epstein `m² + 5n²` até `Im 100`: 12, de `b = 0,0974` a `b = 0,4377` (`0,937667 + 29,983395i`);
+  - Epstein `m² + 5n²` até `Im 100`: 12, de `b = 0,0974` a `b = 0,4377` (`0,937667 + 29,983395i`); a malha pulou um
+    13º, `0,81117 + 58,50774i`, achado depois pela contagem na reta (§39);
   - `ζ(s) + ζ(s + 1)` até `Im 100`: 28, todos com `0,099 ≤ Re ≤ 0,275` (não tem equação funcional);
   - `ζ`: os 64 zeros até `Im 170` estão em `Re = ½`.
 - **Onde `ζ` chega mais perto de sair** (painel b): o par mais frágil de cada janela certificada (9,9 milhões de zeros:
@@ -1893,6 +1894,150 @@ interpoladas) com a contagem de Turing (`acb_dirichlet_zeta_nzeros`), não Riema
 todo zero tem `σ = ½` para toda altura. Os pares de Lehmer dão cotas `λ < 0`, que são mais fracas que `Λ ≥ 0`
 (`Correcoes.cota_de_lehmer_mais_fraca`) e não se aproximam de `Λ ≤ 0`. Nenhuma computação finita fecha o infinito.
 `OPEN_MATH = true`.
+
+## 39. O resíduo como parâmetro: onde o padrão se repete nos zeros fora da reta, as leis no kernel, e as perguntas antes de publicar
+
+Perto de um par de zeros, a função real da reta (`Z(t)`) tem a forma local `K·((t − t₀)² − κ)`. O mesmo número `κ`
+descreve os dois lados:
+
+- `κ > 0`: dois zeros na reta a distância `2√κ` (nos quase-encontros de ζ, `κ = (Δγ/2)²`);
+- `κ = 0`: zero duplo na reta;
+- `κ < 0`: o par sai da reta como o quarteto `½ ± b ± iγ₀`, `b = √(−κ)`; a reta vê só uma **lombada sem troca de
+  sinal**, de altura `K·b²`, e perde dois zeros.
+
+**Onde o padrão se repete.** Nas funções com zeros fora da reta de verdade (mesma equação funcional simétrica,
+coeficientes reais, sem produto de Euler), `Z_f(t) = e^{iθ(t)} f(½ + it)` foi calculada na reta (parte imaginária
+relativa ≤ 3,5·10⁻¹⁹). Os zeros fora da reta foram contados pelo princípio do argumento em `½ + 0,005 < Re s < 3`,
+faixas de altura 2: 3 para Davenport–Heilbronn até `Im 170` e **13** para Epstein `m² + 5n²` até `Im 100`.
+
+| função | até | zeros na reta | pares fora | `N` total = reta + 2·pares | `S` com os pares: média (mín; máx) | vão na reta em volta do par |
+|---|---|---|---|---|---|---|
+| Davenport–Heilbronn | 170 | 100 | 3 | 106 | 0,003 (−0,94; 0,88) | 3,05 a 3,24 espaçamentos (média 3,14) |
+| Epstein `m² + 5n²` | 100 | 79 | 13 | 105 | −0,007 (−1,23; 1,36) | 1,95 a 3,77 espaçamentos (média 2,95) |
+
+A conta só da reta, `S_reta = N_reta − θ/π − c`, cai 2 em cada par fora (`c = 0` para DH, sem polo; `c = 1` para
+Epstein); somando 2 por par volta a oscilar em torno de 0. Foi essa conta que achou um zero que a malha da §34 tinha
+pulado: em Epstein `S_reta` caiu 2 perto de `T = 58` sem par na lista, e o princípio do argumento e o `findroot`
+deram **`0,8111720812060284 + 58,5077373277319i`** (`|f| < 10⁻²⁵`). A lista de Epstein até `Im 100` tem 13 zeros,
+não 12.
+
+| função | zero fora `ρ` | `b` | `κ = −b²` | `κ` em espaçamentos² | tempo de volta à reta `2b²` | vão na reta (espaçamentos) | `b` lido da lombada `√(2|Z_min|/|Z''|)` | erro |
+|---|---|---|---|---|---|---|---|---|
+| DH | `0,808517 + 85,6993i` | 0,3085 | −0,09518 | −0,0430 | 0,1904 | 3,05 | 0,3153 | 2,2 % |
+| DH | `0,650830 + 114,1633i` | 0,1508 | −0,02275 | −0,0117 | 0,0455 | 3,12 | 0,1518 | 0,6 % |
+| DH | `0,574356 + 166,4793i` | 0,0744 | −0,00553 | −0,0033 | 0,0111 | 3,24 | 0,0745 | 0,2 % |
+| Epstein | `0,932970 + 15,6682i` | 0,4330 | −0,18746 | −0,1105 | 0,3749 | 3,45 | 0,4553 | 5,2 % |
+| Epstein | `0,937667 + 29,9834i` | 0,4377 | −0,19155 | −0,1818 | 0,3831 | 3,09 | sem mínimo no vão | — |
+| Epstein | `0,696927 + 36,3741i` | 0,1969 | −0,03878 | −0,0416 | 0,0776 | 3,54 | 0,2006 | 1,9 % |
+| Epstein | `0,823187 + 44,0001i` | 0,3232 | −0,10445 | −0,1255 | 0,2089 | 2,71 | 0,5145 | 59,2 % |
+| Epstein | `0,634908 + 46,7584i` | 0,1349 | −0,01820 | −0,0227 | 0,0364 | 3,61 | 0,1372 | 1,7 % |
+| Epstein | `0,597437 + 52,7433i` | 0,0974 | −0,00949 | −0,0126 | 0,0190 | 3,06 | 0,0981 | 0,7 % |
+| Epstein | `0,811172 + 58,5077i` | 0,3112 | −0,09683 | −0,1364 | 0,1937 | 3,77 | 0,3342 | 7,4 % |
+| Epstein | `0,799778 + 61,1403i` | 0,2998 | −0,08987 | −0,1296 | 0,1797 | 1,95 | 0,3359 | 12,1 % |
+| Epstein | `0,724850 + 64,9919i` | 0,2249 | −0,05056 | −0,0753 | 0,1011 | 2,58 | 0,6656 | 196,0 % |
+| Epstein | `0,845467 + 75,3400i` | 0,3455 | −0,11935 | −0,1917 | 0,2387 | 2,68 | sem mínimo no vão | — |
+| Epstein | `0,807718 + 79,4195i` | 0,3077 | −0,09469 | −0,1562 | 0,1894 | 2,80 | 0,3975 | 29,2 % |
+| Epstein | `0,907993 + 89,5598i` | 0,4080 | −0,16646 | −0,2912 | 0,3329 | 3,06 | 0,4750 | 16,4 % |
+| Epstein | `0,850281 + 96,1072i` | 0,3503 | −0,12270 | −0,2220 | 0,2454 | 2,05 | sem mínimo no vão | — |
+
+![o mesmo padrão dos dois lados](computations/parametro/padrao_fora.png)
+
+Com `|κ| ≤ 0,045` espaçamentos² (os seis pares com `b ≲ 0,2`), `b` sai da lombada com erro ≤ 2,2 %; com `|κ|`
+maior, ou com o vão apertado por vizinhos, a forma quadrática deixa de valer (erro de 5 % a 196 %, ou nenhum mínimo
+de `|Z|` no vão). Do lado de ζ, os 14 380 683 zeros contíguos (§36–§37) têm todos `κ > 0`; o menor é
+`κ = (Δγ/2)² = 9,56·10⁻⁸` (`1,75·10⁻⁶` espaçamentos²), o par 12 363 167 808 945/946. ζ chega perto de `κ = 0` pelo
+lado positivo e nunca atravessa nos dados.
+
+**As leis que o parâmetro dá, no kernel** (`ClayRiemannProof/Parametro.lean`, 45 teoremas, só
+`[propext, Classical.choice, Quot.sound]`; o modelo é `QuartetoForcado.Q`, um par em `±iγ₀` com o parâmetro `κ`):
+
+1. **O resíduo na reta** (`Q_na_reta_real`, `residuo_na_reta`, `residuo_minimo`, `residuo_atingido`, `residuo_cota`,
+   `b_do_residuo`): com `κ = −b²`, `Q(it) = (γ₀² − b² − t²)² + (2bγ₀)²`. Na reta o valor nunca desce abaixo de
+   `m = (2bγ₀)²` (atingido em `t² = γ₀² − b²`) nem de `b⁴`; do resíduo volta `b = √m/(2γ₀)`. "Remover o resíduo"
+   (`m = 0`) é exatamente `b = 0`.
+2. **As pontes** (`reta_ve_zero_iff`, `pontes_parametro`): equivalentes `κ ≥ 0`; todos os zeros do modelo na reta;
+   a reta vê um zero; o resíduo na reta é 0; tempo de colisão `−2κ ≤ 0`.
+3. **Tempo de colisão, a mesma fórmula dos dois lados** (`tempo_de_colisao`, `par_na_reta_kappa`, `recorde_kappa`,
+   `quarteto_satura_de_bruijn`): no fluxo de de Bruijn `κ(t) = κ + t/2`, e o modelo está na reta exatamente para
+   `t ≥ −2κ`. Par na reta: `−2κ = −Δγ²/2` (o par recorde: `−1,9121·10⁻⁷`). Quarteto fora: `−2κ = 2b² = Δ²/2` com
+   `Δ = 2b` em `z = 2γ`, que é a cota de de Bruijn com igualdade; a faixa encolhe como `(2b(t))² = Δ² − 2t`.
+4. **de Bruijn com o resíduo** (`DeBruijnFaixa` — enunciado nomeado de de Bruijn 1950: se os zeros de `H₀` têm
+   `|Im z| ≤ Δ`, os de `H_t` têm `(Im z)² ≤ max(Δ² − 2t, 0)`; `lambda_le_de_faixa`, `faixa_de_xi`,
+   `lambda_le_dois_b2`, `zeros_na_faixa`, `de_bruijn_meio`, `sem_residuo_lambda_le_zero`, `target_lambda_zero`,
+   `residuo_de_lambda`, `sanduiche`): se todo zero de `ξ` tem `|Re ρ − ½| ≤ b`, então `Λ ≤ 2b²`. Como `ζ ≠ 0` em
+   `Re ≥ 1` (Mathlib), `Λ ≤ ½` (o teorema de 1950, agora derivado). Sem resíduo (`b = 0`), `Λ ≤ 0`; com Rodgers–Tao,
+   a meta implica `Λ = 0` sem usar `RH_iff_Lambda`. Se `Λ > 0`, existe zero com `|Re ρ − ½| > b` para todo `b` com
+   `2b² < Λ`. Em suma, `0 ≤ Λ ≤ 2·b_sup²`.
+5. **Ler `b` da lombada** (`lombada_sem_troca`, `lombada_minimo`, `b_da_lombada`): `K((t − t₀)² − κ)` com `K > 0`,
+   `κ < 0` é positiva, tem mínimo `−Kκ` e segunda derivada `2K`, e `√(2·mínimo/Z'') = √(−κ) = b` (a coluna "`b`
+   lido da lombada" acima).
+6. **A reta perde dois por par** (`S_reta_cai_dois`): `N = N_reta + 2k ⟹ S_reta = S − 2k` (a figura (b)).
+
+**Absorver o ½: o que falta na §38** (`media_absorvida`, `media_s_sobre_dois`, `media_com_janela`,
+`espelho_absorvida`, `espelho_conta`, `media_do_espelho`, `eixo_unico`, `zeros_espelhados`). A §38 mostra que a
+média ½ de `½ + b(s − 1)` é a normalização de `s`. Há mais: para qualquer `ρ`, `(Re ρ + Re(1 − ρ̄))/2 = ½`, então a
+média das partes reais dos zeros é ½ **mesmo com quartetos fora da reta**. Média ½ não decide nada; quem decide é o
+resíduo `b`. E o número absorvido não é `ζ` nem `H_t`: `H_t` é par e real na reta para todo `t` (inclusive `t < 0`),
+então os zeros de `H_t` são sempre simétricos por `s ↦ 1 − s̄`. O espelho de `½ + b(s − 1)` é o número de `2 − s`, e
+um conjunto simétrico teria tantos `s < x` quanto `s > 2 − x`. No bloco de 14 380 682 gaps (§37):
+
+| `x` | `s < x` | `s > 2 − x` |
+|---|---|---|
+| 1/100 | 23 | 247 382 |
+| 1/50 | 122 | 259 212 |
+| 1/20 | 1 923 | 297 853 |
+| 1/10 | 15 189 | 373 232 |
+| 1/5 | 118 827 | 575 499 |
+
+Com `Re = s/2`, os 235 812 gaps com `s ≥ 2` dariam `Re ≥ 1`, onde `ξ` não se anula (`zeros_na_faixa`). O ½ sem citar
+½: a única reta vertical que a reflexão `s ↦ 1 − s̄` preserva é `Re s = ½` (`eixo_unico`), e os zeros de `ξ` são
+levados uns nos outros por essa reflexão (`zeros_espelhados`, de `ξ(1 − s) = ξ(s)` e `ξ(s̄) = conj ξ(s)`, provados
+sem RH). Definir `c` pela simetria dá `c = ½` sem pôr ½ na definição, e isso não prova RH, porque a simetria vale
+igual para um quarteto fora.
+
+**As sete perguntas, respondidas com os dados e o kernel**
+
+1. *Fração e bola.* Os raios do par recorde são `3,13·10⁻¹⁸` e `2,13·10⁻¹⁸`; o erro do gap é ≤ `5,26·10⁻¹⁸`, que é
+   `8,5·10⁻¹⁵` do gap (`bola_relativa`: `< 10⁻¹⁴`), **não 1,6 %**. A fração mais simples dentro da bola do gap é
+   `285 021/460 897 996` (`recorde_fracao_na_bola`). Nenhum dígito publicado de `s` muda.
+2. *Média global ou local.* Nem `L/(N − 1) = 3 360 000/14 380 682 = 1 680 000/7 190 341` nem
+   `L/N = 1 120 000/4 793 561` (a da §38) é a média dos gaps: as duas usam o comprimento `L` da janela. A média
+   exata dos 14 380 682 gaps é `(γ_último − γ_primeiro)/14 380 682 =
+   335 999 974 185 419 717 845 531/1 438 068 200 000 000 000 000 000 = 0,233 646 759 0…` (`recorde_media`), contra
+   `0,233 646 760 7…` (`L/N`) e `0,233 646 777 0…` (`L/(N − 1)`). A local `2π/log(T/2π)` difere em `3·10⁻⁸`
+   relativo; §36–§37 usam a local. As contagens das caudas são as mesmas com a média exata e com a local
+   (`absorcao.json`). `s` do recorde com `L/(N − 1)`:
+   `6 352 190 103 255 323 423/2 400 000 000 000 000 000 000 < 1/300` (`recorde_s_bloco`).
+3. *A absorção preserva `s ↔ 1 − s`?* Não, e quebra a simetria por um fator de 10⁴ (tabela acima). É uma
+   reetiquetagem visual do gap, nem `ζ` nem `H_t`.
+4. *As 45 colagens: Float ou intervalo?* Nenhum dos dois no Lean. A Arb (aritmética de bolas, rigorosa) roda fora do
+   kernel e entra como hipótese nomeada (`JanelaContinuacao2026d` etc.). O kernel confere a lógica
+   (`rhAteZ_continuacao4`) e as desigualdades racionais (`norm_num`, racionais exatos, sem Float). Trocar a hipótese
+   por conta que o próprio kernel confere continua aberto.
+5. *`λ = −1,39·10⁻⁶`.* O par das faixas 36–44 tem `Δγ = 0,00166747` (das bolas), não `9 585/5 777 953 = 0,0016589`.
+   O valor isolado `−Δγ²/2 = −1,3903·10⁻⁶` é o limite de CSV sem vizinhos. Com o termo dos vizinhos (`Δ²g ≤ 4/5`), a
+   cota vai no máximo a `−1,74·10⁻⁶`. O intervalo é rigoroso dadas as bolas (`par_mais_fragil_continuacao4`). Os
+   vizinhos alargam no máximo 25 %, nunca "4 vezes". O fator 4 é a coordenada `z = 2γ` (§38, `tcol_coordenadas`;
+   aqui `recorde_lambda_exato` para o par recorde). E todo `λ < 0` é mais fraco que `Λ ≥ 0`.
+6. *Euler em ½.* `Σ_p p^{−1/2}` diverge (`euler_meio_diverge`; a §38 dá a fronteira exata), e `1/√p ≠ ½` para todo
+   primo (`meio_nao_eh_inv_raiz`). "½ = 1/√p" não tem conteúdo.
+7. *O toro.* `θ = 360(s − 1)/(s + 1)` é crescente em `s` (`θ' = 720/(s + 1)² > 0`): preserva a ordem dos gaps **por
+   tamanho**, não a ordem dos zeros. Vizinhos em `γ` vão para ângulos sem relação, e a média de `θ` é negativa
+   (§38, Jensen). `23 111 812` gaps é o bloco das 45 faixas (§31, §38), não os 14 380 682 deste.
+
+**Outras correções do texto colado.** `s < 1/300` são **2** pares (`2/14 380 682`, que reduz a `1/7 190 341`), não
+1. `b` não é fração: `b(t)² = (λ − t)/2` é racional e `b` é a raiz. `b(−10⁻⁶) = 0,000 635 9…` (não `3/5 000`;
+`recorde_b_t6`), `b(−10⁻⁵) ∈ (0,0022145; 0,0022146)` e `b(−10⁻³) ∈ (0,0223585; 0,0223586)` (`recorde_b_t5_t3`).
+"`t_col` é sempre negativo, logo é impossível" só vale para pares na reta (`κ > 0`): um quarteto fora tem
+`t* = 2b² > 0` (`quarteto_satura_de_bruijn`). Isso não é impossível no modelo; é o que os dados excluem até onde
+foram conferidos. Os zeros triviais não são zeros de `ξ` (`triviais_fora_de_xi`): nenhum fluxo de `H_t` "chega" em
+`−2`, e o "`|t| = 25/2`" não tem sentido.
+
+**O que NÃO é**: `DeBruijnFaixa`, `H0_eh_xi` e `RodgersTao` são enunciados de teoremas publicados, nomeados, nunca
+`axiom`. Os zeros de DH e Epstein são `mpmath` (dps 20, fora do kernel). Nada aqui prova ou refuta RH.
+`OPEN_MATH = true`.
+Dados: `computations/parametro/` (`padrao_fora.py`, `argumento.py`, `lombadas.py`, `absorcao.py`, `figura.py` e os
+`.json`); frações dos gaps em `computations/aproximacoes/gaps_em_fracoes.{py,json,csv}`.
 
 ## Autor
 
