@@ -17,8 +17,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
 de `#print axioms` de 1 047 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
-`ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 322 da cadeia certificada até a altura 13 e do primeiro zero
-na reta (§47) (1 369 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+`ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
+na reta (§47) e da bola alargada (§48) (1 432 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -235,7 +235,8 @@ fecho mínimo: `verificado_13` (usa `ZeroClasses/Escalas.lean`), `m_pos_ate_13` 
 `Hipotetico.lean`, `RHTerminal.lean` ou os arquivos de "estados" do ATK, que alguns desses arquivos importavam sem usar.
 
 **Axiomas**: `faixa_sem_zeros`, `zeros_acima_13` e `rhNoMundo_13` dependem de `[propext, Classical.choice, Quot.sound]`.
-Das 322 declarações novas (252 da faixa e 70 do primeiro zero, §47), 314 usam esses três; `IR`, `IC`, `IR.pt`, `IR.neg` e `IC.pt` não dependem de nenhum;
+Das 385 declarações novas (252 da faixa, 70 do primeiro zero na §47 e 63 da bola alargada na §48), 377 usam esses
+três; `IR`, `IC`, `IR.pt`, `IR.neg` e `IC.pt` não dependem de nenhum;
 `irootAux` e `iroot` usam `[propext]`; `dz` usa `[propext, Quot.sound]`. `decide +kernel` não acrescenta axioma
 (não há `Lean.ofReduceBool`). Todas estão fixadas em `ClayRiemannProof/AuditThirteen.lean`.
 
@@ -2664,7 +2665,7 @@ O arquivo inteiro compila em cerca de 13 s; `cert_ok` é verificado pelo kernel,
   Perto da bola `|ζ| ≈ 0,8·dist`, e com a cota grosseira a malha de retângulos precisaria de passo da ordem de
   `10⁻⁹`.
 - O caminho para isso é contar zeros (método de Turing ou princípio do argumento) ou alargar a bola de unicidade com
-  uma cota melhor de `ζ″`.
+  uma cota melhor de `ζ″`. A bola já foi alargada de `10⁻⁶` para `0,0144` (§48).
 - `OPEN_MATH = true`.
 
 **Origem:** ATK kernel, espelho público `ShantiDraconis/atk-math-core-public` (commit `d7a84eb`),
@@ -2679,6 +2680,93 @@ O arquivo inteiro compila em cerca de 13 s; `cert_ok` é verificado pelo kernel,
 **Axiomas:** as 70 declarações (68 do arquivo e 2 de `HeightThirteen`) dependem de
 `[propext, Classical.choice, Quot.sound]`; não há `Lean.ofReduceBool`. Estão fixadas em
 `ClayRiemannProof/AuditThirteen.lean`.
+
+## 48. O primeiro zero medido no círculo e no quadrado; a bola de unicidade de `10⁻⁶` para `0,0144`
+
+Arquivos: `ClayRiemannProof/CertifiedZeros/UpperBound.lean`, `SquarePieces1.lean`–`SquarePieces3.lean` (26 peças, 150
+avaliações de `ζ` pelo kernel) e `LargerBall.lean`. As medidas em ponto flutuante estão em `computations/contorno/`
+(`contornos.py`, `contornos.json`, figura `contornos.png`).
+
+**A pergunta.** A bola de unicidade da §47 tem raio `10⁻⁶` porque a cota usada no disco `|s − z₀| ≤ 2/5` é `240`.
+Medimos `|ζ|` no círculo `|s − z₀| = 2/5` e no quadrado de meio-lado `2/5`, levamos cada medida para o certificado e
+comparamos as distâncias que saem.
+
+**As medidas (ponto flutuante, `computations/contorno/contornos.py`):**
+
+| | círculo | quadrado | kernel antes |
+|---|---|---|---|
+| máx `\|ζ\|` no contorno de raio 0,4 | 0,376 | 0,548 (no canto) | cota 240 |
+| perímetro | 2,51 | 3,20 | — |
+| cota com 25% de folga | 0,471 | 0,686 | 240 |
+| `F₂` (cota de `\|ζ″\|`, Cauchy encaixado) | 11,8 | 17,1 | 6 648 |
+| raio da bola de unicidade | 0,0285 | 0,0204 | `10⁻⁶` (máx. `5,8·10⁻⁵`) |
+| retângulos para o anel até 0,2 sem zeros | 130 | 200 | ≈ `5·10⁷` |
+
+- Perto de um zero simples, `|ζ| ≈ |ζ′(ρ₁)|·dist`, com `ζ′(ρ₁) = 0,78330 + 0,12470 i` e `|ζ′(ρ₁)| = 0,79316`. O
+  máximo no círculo de raio `r` é `≈ 0,79·r`; no quadrado ele fica no canto, a `r√2`, e a razão medida é 1,46.
+- **Ideal:** `|ζ′ − c| ≤ |c|/2` vale até `R = 0,485`.
+- **Distâncias de `ρ₁`:** 1,1347 até a altura 13; 6,887 até `ρ₂`; 14,144 até o polo; `3,5·10⁻¹¹` até `z₀`.
+- **No próprio certificado:** o retângulo de `ζ(z₀)` é um quadrado de meio-lado `5,52·10⁻⁹`. O kernel o mede pela
+  norma ℓ¹ (`1,10·10⁻⁸`); o círculo que o contém tem raio `7,81·10⁻⁹`, um fator `√2` a menos.
+
+**O que o kernel prova agora:**
+
+```lean
+theorem UpperBound.peca_sup     -- ‖ζ(c)‖ + (B/r)h ≤ U nos centros ⟹ ‖ζ‖ ≤ U no retângulo (espelho de peca_ret)
+theorem UpperBound.maximo_ret   -- princípio do máximo num retângulo: cota nas 4 arestas ⟹ cota dentro
+theorem LargerBall.cota_disco_cotaQ : w ∈ closedBall z0 (2/5) → ‖ζ w‖ ≤ 7,64      -- sem avaliação nova
+theorem LargerBall.cota_quadrado : ∀ z ∈ [1/10, 9/10] × [13,73; 14,54], ‖ζ z‖ ≤ 1  -- 150 avaliações + máximo
+theorem LargerBall.zero_na_bola_geral   -- a contração da §47 com a cota B como parâmetro
+theorem LargerBall.zero_na_bola_cotaQ   : ∃! zero na bola de raio 1/500, na reta, simples
+theorem LargerBall.zero_na_bola_quadrado : ∃! zero na bola de raio 9/625 = 0,0144, na reta, simples
+theorem LargerBall.unico_ate_0_0144 : o zero da §47 é o único zero de ζ a menos de 0,0144 de z₀
+theorem LargerBall.rho1_no_circulo_de_Li : ‖1 − 1/ρ₁‖ = 1
+```
+
+| cota no disco `\|s − z₀\| ≤ 2/5` | `F₂` | bola de unicidade | avaliações novas |
+|---|---|---|---|
+| 240 (§47, Euler–Maclaurin de ordem 1) | 6 648 | `10⁻⁶` | 2 |
+| `cotaQ` = 7,64 (a cota geral que o kernel já tinha) | 193 | `2·10⁻³` | 0 |
+| 1 (bordo do quadrado + princípio do máximo) | 26,9 | **`0,0144`** | 150 |
+| 0,47 (círculo, só ponto flutuante) | 11,8 | 0,0285 | — |
+
+**Como.**
+
+1. Cada aresta do quadrado `[1/10, 9/10] × [1373/100, 727/50]` (que contém o disco) é coberta por retângulos
+   finos. Em cada um, o kernel confere `‖ζ(c)‖ + (B/r)h ≤ 1` nos centros (`chkS`, `decide +kernel`). Aqui `B` é a
+   `cotaQ` na região de Cauchy, e `r < 1/10` na aresta esquerda, porque `cota_geral` pede `Re w > 0`.
+2. `maximo_ret` (Mathlib `Complex.norm_le_of_forall_mem_frontier_norm_le`, com a fronteira do retângulo calculada
+   por `frontier_reProdIm`) leva `‖ζ‖ ≤ 1` do bordo para o quadrado inteiro.
+3. Cauchy duas vezes, com raios `r₁ = r₂ = 0,1928`, dá `‖ζ″‖ ≤ 1/0,1928² = 26,9` em `|s − z₀| ≤ 0,0144`. A
+   contração `g(z) = z − ζ(z)/c` fecha nessa bola. A unicidade e a simetria `s ↦ 1 − s̄` dão `Re ρ₁ = ½` exato, e
+   `‖1 − ζ′/c‖ ≤ ½` dá `ζ′ ≠ 0` na bola inteira.
+
+**Por que o quadrado e não o círculo no kernel.**
+
+- O bordo do quadrado é feito de arestas retas, que `ret` cobre. O círculo pediria cobrir uma curva.
+- O custo de uma avaliação no kernel depende do denominador de `σ`: denominador 10 custa 0,55 s, 200 custa 2,2 s e
+  400 custa 6,6 s, com cerca de 0,6 GB a mais.
+- Com cota 0,8, os cantos do quadrado pediam centros com denominador 400, e a compilação estourou a memória.
+  Com cota 1, basta denominador ≤ 200.
+
+**No círculo de Li.** `w = 1 − 1/s` leva a reta crítica no círculo unitário, e `rho1_no_circulo_de_Li` dá
+`|w₁| = 1`.
+
+- `ρ₁` cai no ângulo 0,07072.
+- A altura 13 cai no ângulo 0,07689; o arco entre os dois mede 0,00617 rad.
+- A bola de 0,0144 vira um disco de raio `≈ 0,0144/|ρ₁|² = 7,2·10⁻⁵` em volta de `w₁`.
+
+**O que NÃO é:**
+
+- Não é RH: é um zero.
+- Ainda não prova que `ρ₁` é o zero mais baixo. Falta cobrir `[½, 1] × [13, Im ρ₁]` fora da bola de 0,0144 com
+  retângulos sem zeros.
+- Com a cota do quadrado, o anel até 0,2 em volta de `ρ₁` pede cerca de 376 retângulos (ponto flutuante,
+  `contornos.cobertura`). Com 240 pediria cerca de `5·10⁷`.
+- `OPEN_MATH = true`.
+
+**Axiomas:** as 63 declarações novas dependem de `[propext, Classical.choice, Quot.sound]`. Não há
+`Lean.ofReduceBool`. Estão fixadas em `ClayRiemannProof/AuditThirteen.lean`.
 
 ## Autor
 

@@ -75,6 +75,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `E0_ordinario_97`, `E0_metade_97`, `defeito_no_alto`, `li_indice_no_alto` | `y² = x³ − x`: `a_p = 0 ⟺ p ≡ 3 (mod 4)` até 97 (12 de 23); números minúsculos e gigantes da RH |
 | `CertificateBridge.lean` | `window_on_line_from_certificates`, `zeroFreeRect_of_peca_ret`, `injOn_of_second_derivative_bound` | bolas injetivas + retângulos sem zeros + cobertura ⟹ zeros da janela na reta (trazido da branch, README §46) |
 | `CertifiedZeros/FirstZero.lean`, `HeightThirteen.lean` | `cert_ok`, `zero_na_linha`, `primeiro_zero`, `zero_simples`, `Z_nao_vazio`, `altura_do_primeiro_zero` | o primeiro zero certificado pelo kernel: `ζ(½ + iγ) = 0` com `|γ − 14,1347251417| ≤ 10⁻⁶`, `Re ρ₁ = ½` exato (contração + simetria), único na bola e simples; com a faixa até 13, o zero mais baixo tem altura em `(13; 14,1347261417]` |
+| `CertifiedZeros/UpperBound.lean`, `LargerBall.lean` | `maximo_ret`, `cota_quadrado`, `zero_na_bola_geral`, `zero_na_bola_quadrado`, `unico_ate_0_0144`, `rho1_no_circulo_de_Li` | `‖ζ‖ ≤ 1` no quadrado `[1/10, 9/10] × [13,73; 14,54]` (150 avaliações nas arestas + princípio do máximo); com ela a bola de unicidade de `ρ₁` passa de `10⁻⁶` para `0,0144` (com a `cotaQ`, `2·10⁻³`); `|1 − 1/ρ₁| = 1` |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 
