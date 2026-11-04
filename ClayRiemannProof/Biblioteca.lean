@@ -2,6 +2,8 @@ import ClayRiemannProof.Biblioteca.HilbertPolya
 import ClayRiemannProof.Biblioteca.Euler
 import ClayRiemannProof.Biblioteca.Entradas
 import ClayRiemannProof.Biblioteca.Reducao
+import ClayRiemannProof.Biblioteca.Lagarias
+import ClayRiemannProof.Biblioteca.Infinito
 
 /-!
 # Biblioteca RH: o que um ataque à Hipótese de Riemann precisa ter à mão no Lean
@@ -16,6 +18,9 @@ Organizada como o Mathlib, um arquivo por área. O alvo é sempre o `RiemannHypo
   verificada, incondicional acima de 13 (`rh_iff_quarto`), o `Resto` acima de 3 000 181 942 471 com as janelas da Arb
   (`rh_reduzida`), caixas de largura `w` (`rh_iff_caixas`) e a faixa estreita com a região livre clássica
   (`rh_iff_faixa_estreita`).
+* `Biblioteca/Lagarias.lean` e `Biblioteca/Infinito.lean` — reduzir o infinito: do contínuo às caixas enumeráveis,
+  do analítico às desigualdades de Lagarias entre inteiros (critério nomeado), o contraexemplo finito e o corte
+  finito que só existe classicamente (`corte_existe`, `corte_em_altura`).
 * `Biblioteca/Entradas.lean` — o mapa: para cada rota, a entrada aberta e a ponte provada (`rotas_para_rh`), as
   equivalências sem hipótese (`equivalencias_sem_hipotese`), a verificação finita (`verificacao`), de Bruijn–Newman
   com Rodgers–Tao (`lambda_com_rodgers_tao`) e `rh_de_metade`.
