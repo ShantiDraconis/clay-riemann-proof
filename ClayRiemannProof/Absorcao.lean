@@ -161,4 +161,60 @@ theorem gbar_nao_exato :
       (3360000 : ℚ) / 14380683 = 1120000 / 4793561 ∧ Nat.gcd 5400000 23111813 = 1 ∧ Nat.gcd 1120000 4793561 = 1 := by
   refine ⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num⟩
 
+/-! ## Segunda leva (4/11/2026, 01:12)
+
+Afirmações do segundo texto, decididas:
+
+* `erro_bola_relativo`: o erro de uma lacuna pela soma dos raios (≤ 10⁻¹⁷) é ~1,6·10⁻¹⁴ da lacuna mais curta
+  (0,00061840), não 1,6%.
+* `theta_estrita_crescente`: `θ' = 720/(s + 1)² > 0`, θ preserva a ordem dos espaçamentos (o texto acerta); a
+  concavidade é o que faz a média ficar negativa (`media_theta_negativa`).
+* `euler_em_meio_diverge`: `Σ_p p^{−1/2}` diverge, então o produto de Euler em `σ = ½` não converge e não prova nada
+  sobre `Re = ½` (o texto acerta).
+* `inv_raiz_primo_irracional`, `inv_raiz_dois_sem_fracao`: `1/√p` é irracional para todo primo `p`; 707 106 781/10⁹
+  é aproximação de `1/√2`, não "fração com mdc 1" igual a ela. O mesmo vale para os zeros: as frações exatas são os
+  centros e raios das bolas da Arb, não os `γ` (nem se sabe se algum `γ` é irracional).
+* `desvio_eh_da_formula`: o "desvio ±29 787/50 000 000" é `(1 − 71/10 000)·3/5 000`, o que a fórmula `Re_abs` põe; os
+  zeros da janela estão todos certificados na reta.
+* `tcol_s_arredondado_fora`, `tcol_lacuna_medida_dentro`: com `s = 71/10 000` (arredondado) a lacuna seria
+  38 340/23 111 813 e `−Δγ²/2 ≈ −1,376·10⁻⁶` fica FORA do intervalo certificado (acima de −1,39·10⁻⁶); com a lacuna
+  medida (≥ 0,00166747) fica dentro. A diferença é o arredondamento de `s` (0,0071367 → 0,0071), não a bola.
+
+O ½ sem hipótese: a reflexão da equação funcional é `torcao s = 1 − s̄` (sem ½ na definição), e o conjunto dos seus
+pontos fixos é exatamente `Re s = ½` (`Zeta.Symmetry.torcao_fixo_iff`); os zeros são fechados por ela
+(`Zeta.Symmetry.torcao_mem_Z`, pela equação funcional do Mathlib). Isso diz onde está o espelho, não que os zeros
+estão nele.
+-/
+
+theorem erro_bola_relativo : (1 : ℝ) / 10 ^ 17 / (61840 / 10 ^ 8) < 2 / 10 ^ 14 := by
+  norm_num
+
+theorem theta_estrita_crescente {s t : ℝ} (hs : 0 < s) (hst : s < t) : theta s < theta t := by
+  unfold theta
+  rw [div_lt_div_iff₀ (by linarith) (by linarith)]
+  nlinarith
+
+theorem euler_em_meio_diverge : ¬ Summable (fun p : Nat.Primes => (p : ℝ) ^ (-(1 / 2 : ℝ))) := by
+  rw [soma_primos_sse]
+  norm_num
+
+theorem inv_raiz_primo_irracional {p : ℕ} (hp : p.Prime) : Irrational (1 / Real.sqrt p) := by
+  rw [one_div]
+  exact hp.irrational_sqrt.inv
+
+theorem inv_raiz_dois_sem_fracao (q : ℚ) : (1 / Real.sqrt 2 : ℝ) ≠ q := by
+  have h := inv_raiz_primo_irracional Nat.prime_two
+  push_cast at h
+  exact h.ne_rat q
+
+theorem desvio_eh_da_formula : 1 / 2 - reAbs (3 / 5000) (71 / 10000) = 29787 / 50000000 := by
+  unfold reAbs
+  norm_num
+
+theorem tcol_s_arredondado_fora : -(139 : ℝ) / 100000000 < -((38340 / 23111813 : ℝ) ^ 2) / 2 := by
+  norm_num
+
+theorem tcol_lacuna_medida_dentro {Δγ : ℝ} (h : 166747 / 100000000 ≤ Δγ) : -(Δγ ^ 2) / 2 ≤ -(139 : ℝ) / 100000000 := by
+  nlinarith
+
 end ClayRiemannProof.Absorcao
