@@ -1,7 +1,7 @@
 {
- "C0": "3000184822471.5",
- "N(C0)": 12363194052604,
- "fonte": "colagem das faixas 0–11 a partir de 3000183382471.5 (runs 41842620648, 41842633223): N(b) da faixa 11 = 12363194052604, as 12 colagens conferindo, déficit 0",
+ "C0": "3000186262471.5",
+ "N(C0)": 12363200215754,
+ "fonte": "colagem das faixas 0–11 a partir de 3000184822471.5 (runs 41889064559, 41889069781): N(b) da faixa 11 = 12363200215754, as 12 colagens conferindo, déficit 0",
  "anteriores": [
   {
    "de": "3000175342471.5",
@@ -48,6 +48,17 @@
     41842633223
    ],
    "resultado": "faixas 0–11 em de_3000183382471.5/ (faixas_0-5, faixas_6-11) da branch resultados-continuacao; colagem conjunta em de_3000183382471.5/juntas_0-11"
+  },
+  {
+   "de": "3000184822471.5",
+   "ate": "3000186262471.5",
+   "zeros_na_reta": 6163150,
+   "deficit": 0,
+   "execucao": [
+    41889064559,
+    41889069781
+   ],
+   "resultado": "faixas 0–11 em de_3000184822471.5/ (faixas_0-5, faixas_6-11) da branch resultados-continuacao; colagem conjunta em de_3000184822471.5/juntas_0-11"
   }
  ]
 }
