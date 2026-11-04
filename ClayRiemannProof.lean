@@ -56,5 +56,6 @@ import ClayRiemannProof.Biblioteca
 import ClayRiemannProof.Parametro
 import ClayRiemannProof.Geometrias
 import ClayRiemannProof.Identidades
+import ClayRiemannProof.Maquina
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

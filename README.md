@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 934 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 187 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 981 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 234 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2303,6 +2303,78 @@ cotas explícitas para `x` até a ordem de `(T/log T)²` (Büthe 2016), e nada p
 
 **O que NÃO é**: nada aqui prova ou refuta a RH. A família `Z_t` é numérica (mpmath), e a RH para a zeta de Dedekind
 de `Q(√−5)` também é conjectura. `OPEN_MATH = true`.
+
+## 43. O ponto exato que prova ou refuta a RH, reduzido a uma máquina; o terceiro estado; e as pontes com os outros problemas do Clay
+
+Arquivo: `ClayRiemannProof/Maquina.lean` (19 teoremas e 9 definições; axiomas entre `propext`, `Classical.choice`,
+`Quot.sound`; as contagens por `decide +kernel`). Dados: `computations/maquina/` (`maquina_rh.py`, `bsd_produto.py`,
+`figura.py` e os `.json`).
+
+**O ponto exato, reduzido** (`hpar`, `harm`, `harm_eq_sum`, `delta`, `Lag`, `lag_iff`, `teste`, `maquina`,
+`maquina_iff`, `LagariasPi1`, `rh_iff_lag`, `rh_iff_maquina_nunca_para`, `refutacao_finita`, `rh_pi1`, `lag_ate_6`,
+`maquina_6`, `delta_valores`). Pelo critério de Lagarias na forma Π₁ usada por Yedidia–Aaronson (2016):
+
+    RH  ⟺  para todo n ≥ 1:  (H_{δ(n)} − n²/2)² < 36 n³,    δ(n) = ∏_{m<n} lcm(1, …, m),   H_N = Σ_{k≤N} 1/k.
+
+Cada `n` é uma conta em inteiros, `(2A − n²B)² < 144 n³ B²` com `H_{δ(n)} = A/B` (`lag_iff`; `harm_eq_sum` prova que
+`A/B` é a soma harmônica). A máquina testa `n = 1, 2, 3, …`.
+
+- **Provar a RH** é provar que a máquina **nunca para**: uma afirmação sobre infinitos `n`.
+- **Refutar a RH** é a máquina **parar** num `N` finito: um certificado que o kernel confere por conta
+  (`refutacao_finita`).
+- A RH é Π₁ (`rh_pi1`).
+- **No kernel:** a máquina rodou até `n = 6` (`δ(6) = 8 640`) e não parou.
+- **Em ponto flutuante (não certificado), até `n = 10⁷`:** a razão `r(n) = (H_{δ(n)} − n²/2)²/(36n³)` tem máximo
+  0,0107 (em `n = 5`) e fica abaixo de `1,4·10⁻⁴` para `n > 1 000`. A máquina só pararia com `r ≥ 1`.
+- Isso não acrescenta nada à verificação dos zeros até `3·10¹²`, que já implica essas desigualdades muito além.
+
+Yedidia e Aaronson escreveram essa máquina como uma máquina de Turing de 5 372 estados. "O infinito além do
+infinito": se uma máquina de `k` estados para, ela para em no máximo `BB(k)` passos (o castor ocupado). Então a RH
+equivale a "não parou em `BB(5 372)` passos", um número finito mas não computável.
+
+**O terceiro estado.**
+
+- **Na análise** é `κ = 0` (`Q_kappa_zero`): o zero duplo sobre a reta, entre "dois zeros na reta" (`κ > 0`) e "o
+  quarteto fora" (`κ < 0`). É por ele que um lado passa ao outro (§39, §42).
+- **Na lógica:** a RH é Π₁. Se fosse falsa, a máquina pararia, e essa parada seria demonstrável em qualquer teoria
+  que faça aritmética. Então, se a RH fosse independente de ZFC, ela seria verdadeira: o terceiro estado colapsa no
+  "verdadeira". Isso é um metateorema (precisa de um predicado de demonstrabilidade) e está comentado, não
+  formalizado.
+
+**RH e P vs NP.** Não existe redução conhecida entre as duas, em nenhum sentido. O que se pode dizer com precisão:
+
+- **No nível lógico,** P ≠ NP é Π₂ ("para toda máquina e todo polinômio existe uma entrada em que ela falha"). Para Π₂,
+  a independência não colapsa num valor de verdade.
+- **A ponte provada entre RH e complexidade é outra.** Com a RH generalizada, o teste de Miller com bases
+  `a ≤ 2 ln² n` decide primalidade em tempo polinomial (Miller 1976, Bach 1990). AKS (2002) tirou a hipótese. Isso diz
+  que PRIMES ∈ P, nada sobre P vs NP.
+
+**As pontes da RH com os outros problemas do Clay:**
+
+| problema | ponte | o que é teorema | no kernel |
+|---|---|---|---|
+| P vs NP | só lógica: RH é Π₁, P ≠ NP é Π₂; GRH ⟹ Miller determinístico | nenhuma implicação entre os dois | `rh_pi1`, `refutacao_finita` |
+| Hodge | **positividade ⟺ RH**: `m² − λmn + qn² ≥ 0` para todos `m, n` ⟺ `λ² ≤ 4q`; para uma curva a forma é `deg(m − nφ)` (φ = Frobenius), um grau, logo `≥ 0`: é a prova de Weil (Castelnuovo–Severi, índice de Hodge). Para ζ, o análogo é a positividade de Weil, equivalente à RH | RH das curvas (Weil 1948) | `positividade_iff`, `ponte_hodge`, `positividade_iff_hasse`, `positividade_F13` |
+| BSD | `L(E, s)` é uma zeta: cada fator local `1 − a_p p^{−s} + p^{1−2s}` satisfaz a RH local (Hasse). BSD fala da ordem em `s = 1`; a RH generalizada de `L(E, s)` está aberta | Hasse; posto ≤ 1 (Gross–Zagier, Kolyvagin) | `hasse_E0_97`, `hasse_E1_97`, `E0_supersingular_97` |
+| Yang–Mills | gap espectral: nos análogos, RH ⟺ gap (Selberg `λ₁ ≥ ¼`, Ramanujan `λ² ≤ 4q`) | analogia de forma, não implicação | `Geometrias.selberg_reta`, `Geometrias.Ramanujan` |
+| Navier–Stokes | nenhuma conhecida | — | — |
+| Poincaré | resolvido (Perelman, fluxo de Ricci); o fluxo do calor de de Bruijn é da mesma família de equações, analogia | — | — |
+
+BSD em números (`bsd_produto.py`), nos 9 590 primos de boa redução até `10⁵`:
+
+- A cota de Hasse vale em todos: `a_p²/(4p) ≤ 0,99998`, sem violação.
+- O produto parcial `Π_{p≤X} N_p/p` fica limitado para `E₀: y² = x³ − x` (posto 0): 1,53 em `X = 10⁵`.
+- Para `E₁: y² = x³ − 2` (posto 1) ele cresce como `C·log X`: 10,96 em `10⁵`, com razão produto/`log X` entre 0,84
+  e 0,94. É a observação original de Birch e Swinnerton-Dyer.
+
+![a máquina de teste e BSD](computations/maquina/maquina_e_bsd.png)
+
+Ao lado: `Biblioteca/Lagarias` (outra sessão) tem o critério de Lagarias na forma `σ(n) ≤ H_n + e^{H_n} log H_n`, e
+`Biblioteca/Reducao` reduz a RH a "nenhum zero com `Re s > ½` acima da altura verificada".
+
+**O que NÃO é**: nada aqui prova ou refuta a RH, P vs NP, Hodge, BSD ou Yang–Mills. `LagariasPi1` é um enunciado
+nomeado (teorema publicado), nunca `axiom`. A máquina em ponto flutuante não é certificada. As pontes com Yang–Mills e
+Poincaré são analogias. `OPEN_MATH = true`.
 
 ## Autor
 

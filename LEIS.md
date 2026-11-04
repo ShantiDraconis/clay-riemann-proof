@@ -57,6 +57,11 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `li_aparece`, `li_aparece_para_zero` | `|w|² ≥ 1 + δ` ⟹ `|wⁿ| ≥ 2` para `n ≥ 3/δ`; um zero fora aparece no critério de Li em `n ≈ 1,5γ²/b` |
 | | `defeito_tende_a_zero`, `defeito_some_na_altura`, `familia_simetrica`, `colisao_no_circulo` | defeito `2b/|ρ|² → 0` com `b → 0`, `≤ 2b/γ²`; `A + tB` simétrica; transição = zero duplo |
 | | `robin_refuta`, `lagarias_refuta`, `vonKoch_refuta`, `mertens_refuta`, `lambda_positivo_refuta` | com os enunciados nomeados: um `n` refuta (Robin, Lagarias); `ψ` e `M` pedem violações sem cota; `Λ > 0` refuta |
+| `Maquina.lean` | `harm_eq_sum`, `lag_iff`, `maquina_iff`, `rh_iff_maquina_nunca_para`, `refutacao_finita`, `rh_pi1` | com `LagariasPi1` (nomeado): RH ⟺ a máquina que testa `(H_{δ(n)} − n²/2)² < 36n³` nunca para; refutar = ela parar num `N` finito; RH é Π₁ |
+| | `lag_ate_6`, `maquina_6`, `delta_valores` | o kernel rodou a máquina até `n = 6` (`δ(6) = 8 640`): não parou |
+| | `Q_kappa_zero` | o terceiro estado `κ = 0`: `Q = (w − iγ₀)²(w + iγ₀)²`, zero duplo na reta |
+| | `positividade_iff`, `ponte_hodge`, `positividade_iff_hasse`, `positividade_F13` | `m² − λmn + qn² ≥ 0` ∀ `m, n` ⟺ `λ² ≤ 4q` ⟺ RH do fator (a ponte de Weil/Hodge); todas as curvas sobre `𝔽₁₃` |
+| | `hasse_E0_97`, `hasse_E1_97`, `E0_supersingular_97` | RH local dos fatores de `L(E, s)` para `y² = x³ − x` e `y² = x³ − 2`, `5 ≤ p ≤ 97`; `a_p = 0` para `p ≡ 3 (mod 4)` |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 

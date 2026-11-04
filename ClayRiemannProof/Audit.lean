@@ -52,6 +52,7 @@ import ClayRiemannProof.Biblioteca
 import ClayRiemannProof.Parametro
 import ClayRiemannProof.Geometrias
 import ClayRiemannProof.Identidades
+import ClayRiemannProof.Maquina
 
 /-!
 # Auditoria de axiomas
@@ -3146,3 +3147,87 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Identidades.MertensRH' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Identidades.MertensRH
+
+/-- info: 'ClayRiemannProof.Maquina.hpar_den_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.hpar_den_pos
+
+/-- info: 'ClayRiemannProof.Maquina.harm_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.harm_eq_sum
+
+/-- info: 'ClayRiemannProof.Maquina.lag_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.lag_iff
+
+/-- info: 'ClayRiemannProof.Maquina.maquina_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.maquina_iff
+
+/-- info: 'ClayRiemannProof.Maquina.rh_iff_lag' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.rh_iff_lag
+
+/-- info: 'ClayRiemannProof.Maquina.rh_iff_maquina_nunca_para' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.rh_iff_maquina_nunca_para
+
+/-- info: 'ClayRiemannProof.Maquina.refutacao_finita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.refutacao_finita
+
+/-- info: 'ClayRiemannProof.Maquina.rh_pi1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.rh_pi1
+
+/-- info: 'ClayRiemannProof.Maquina.lag_ate_6' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.lag_ate_6
+
+/-- info: 'ClayRiemannProof.Maquina.maquina_6' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.maquina_6
+
+/-- info: 'ClayRiemannProof.Maquina.delta_valores' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.delta_valores
+
+/-- info: 'ClayRiemannProof.Maquina.Q_kappa_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.Q_kappa_zero
+
+/-- info: 'ClayRiemannProof.Maquina.positividade_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.positividade_iff
+
+/-- info: 'ClayRiemannProof.Maquina.ponte_hodge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.ponte_hodge
+
+/-- info: 'ClayRiemannProof.Maquina.positividade_iff_hasse' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.positividade_iff_hasse
+
+/-- info: 'ClayRiemannProof.Maquina.positividade_F13' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.positividade_F13
+
+/-- info: 'ClayRiemannProof.Maquina.hasse_E0_97' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.hasse_E0_97
+
+/-- info: 'ClayRiemannProof.Maquina.hasse_E1_97' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.hasse_E1_97
+
+/-- info: 'ClayRiemannProof.Maquina.E0_supersingular_97' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.E0_supersingular_97
+
+/-- info: 'ClayRiemannProof.Maquina.mmc' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.mmc
+
+/-- info: 'ClayRiemannProof.Maquina.delta' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.delta
+
+/-- info: 'ClayRiemannProof.Maquina.hpar' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.hpar
+
+/-- info: 'ClayRiemannProof.Maquina.harm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.harm
+
+/-- info: 'ClayRiemannProof.Maquina.Lag' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.Lag
+
+/-- info: 'ClayRiemannProof.Maquina.teste' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.teste
+
+/-- info: 'ClayRiemannProof.Maquina.maquina' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.maquina
+
+/-- info: 'ClayRiemannProof.Maquina.LagariasPi1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.LagariasPi1
+
+/-- info: 'ClayRiemannProof.Maquina.primos97' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Maquina.primos97
