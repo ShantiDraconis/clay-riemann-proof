@@ -69,6 +69,9 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Continuacao.rhAteZ_continuacao4` | as anteriores + `JanelaContinuacao2026d` (faixas 36–44; 45 faixas, 23 111 813 zeros desde 3 000 175 822 471,5) | RH até 3 000 181 222 471 |
 | `Continuacao.primeiro_fora_acima_continuacao4` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 181 222 471` |
 | `Continuacao.par_mais_fragil_continuacao4` | bolas do par 12 363 175 635 090/091 (`s = 0,0071`) | `−1,74·10⁻⁶ ≤ λ ≤ −1,39·10⁻⁶` |
+| `Continuacao.rhAteZ_continuacao5` | as anteriores + `JanelaContinuacao2026e` (faixas 0–5 do C0 3 000 181 222 471,5; 3 081 576 zeros) | RH até 3 000 181 942 471 |
+| `Continuacao.primeiro_fora_acima_continuacao5` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 181 942 471` |
+| `Continuacao.par_mais_fragil_continuacao5` | bolas do par 12 363 179 255 965/966 (`s = 0,0078`) | `−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶` |
 | `Continuacao.par_mais_fragil_continuacao` | bolas da Arb do par 12 363 153 756 750/751 e `Δ²g ≤ 4/5` | `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` |
 | `Continuacao.par_mais_fragil_1e18` | bolas do par 6 144 758 226 908 699 989/990 | `−1,013·10⁻⁵ ≤ λ ≤ −8,09·10⁻⁶` |
 | `Continuacao.par_mais_fragil_onda2` | bolas do par 467 888 702 979 044/045 (2ª onda da fronteira, 7 791 406 zeros) | `−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` |
