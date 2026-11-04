@@ -2563,6 +2563,27 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Biblioteca.rh_iff_faixa_estreita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_faixa_estreita
 
+/-- info: 'ClayRiemannProof.Biblioteca.lagarias_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.lagarias_um
+
+/-- info: 'ClayRiemannProof.Biblioteca.nao_rh_iff_inteiro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.nao_rh_iff_inteiro
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_iff_prefixos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_iff_prefixos
+
+/-- info: 'ClayRiemannProof.Biblioteca.corte_existe' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.corte_existe
+
+/-- info: 'ClayRiemannProof.Biblioteca.contraexemplo_finito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.contraexemplo_finito
+
+/-- info: 'ClayRiemannProof.Biblioteca.corte_em_altura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.corte_em_altura
+
+/-- info: 'ClayRiemannProof.Biblioteca.formas_do_infinito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.formas_do_infinito
+
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
 /-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/

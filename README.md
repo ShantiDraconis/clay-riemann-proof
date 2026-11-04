@@ -2181,6 +2181,23 @@ quadrados) e divergência em `σ = ½` (`fronteiras_de_euler`). Passar do produt
 O que sobra é um quarto de faixa infinito, `½ < Re s < 1 − c/log t`, `t > 3 000 181 942 471`: nenhuma redução tira
 o "para todo `t`", e é ele o problema.
 
+**Reduzir o infinito** (`Biblioteca/Lagarias.lean`, `Biblioteca/Infinito.lean`, `computations/infinito/`). O infinito
+não some, muda de tipo:
+
+1. do contínuo ao enumerável: RH ⟺ toda caixa `[13 + 120 000·n, 13 + 120 000·(n + 1))` sem zero com `Re s > ½`
+   (`formas_do_infinito`);
+2. do analítico ao aritmético: com o critério de Lagarias (2002, a partir de Robin, 1984) como hipótese nomeada,
+   RH ⟺ `σ(n) ≤ H_n + e^{H_n} log H_n` para todo `n ≥ 1`; um contraexemplo seria um único inteiro
+   (`nao_rh_iff_inteiro`). Conferido para todo `n ≤ 10⁷` (fora do kernel, `lagarias.py`): nenhuma falha; a menor folga
+   relativa é em `n = 12` (1,14%), depois 120, 60, 2 520 e 5 040; `n = 1` é igualdade (`lagarias_um`, no kernel);
+3. o contraexemplo é finito, a prova não: RH falsa ⟺ falha numa altura finita (`contraexemplo_finito`);
+4. o corte finito existe só classicamente: há `Z` (e há `X` para Lagarias) tal que conferir até ele bastaria, mas a
+   prova não diz qual — se RH vale qualquer um serve, se não vale é o do contraexemplo (`corte_em_altura`,
+   `corte_existe`). Um corte explícito com prova seria uma prova de RH.
+
+Abaixo disso não há redução: passar de "para todo `n`" a finitos casos exige um teorema que limite onde um
+contraexemplo poderia estar, e esse teorema é do tamanho de RH.
+
 **O que não é entrada**: cota `λ < 0` de par de Lehmer (mais fraca que `Λ ≥ 0`), média ½ de uma reparametrização
 (vale para qualquer lista), produto de Euler em `σ = ½` (diverge), qualquer altura finita. A existência do operador de
 Hilbert–Pólya é equivalente a RH (com RH, o operador diagonal com os `γ` serve): a ponte diz a forma de uma prova,

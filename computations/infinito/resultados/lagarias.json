@@ -1,0 +1,194 @@
+{
+ "N": 10000000,
+ "n_1": "igualdade (σ(1) = 1 = H_1 + e·log 1)",
+ "falhas_float64_n_ge_2": [],
+ "folga_minima_n_ge_2": {
+  "n": 12,
+  "folga_relativa": 0.01136357280408423,
+  "sigma": 28,
+  "H_n": 3.103210678210678
+ },
+ "menores_folgas": [
+  {
+   "n": 12,
+   "sigma": 28,
+   "folga_relativa_float64": 0.01136357280408423,
+   "folga_relativa_exata": 0.011363572804084239
+  },
+  {
+   "n": 120,
+   "sigma": 360,
+   "folga_relativa_float64": 0.016561791964331683,
+   "folga_relativa_exata": 0.016561791964329373
+  },
+  {
+   "n": 60,
+   "sigma": 168,
+   "folga_relativa_float64": 0.01740988414586534,
+   "folga_relativa_exata": 0.01740988414586718
+  },
+  {
+   "n": 2520,
+   "sigma": 9360,
+   "folga_relativa_float64": 0.021686811960033556,
+   "folga_relativa_exata": 0.021686811960035076
+  },
+  {
+   "n": 5040,
+   "sigma": 19344,
+   "folga_relativa_float64": 0.024819057293988856,
+   "folga_relativa_exata": 0.024819057294024883
+  },
+  {
+   "n": 24,
+   "sigma": 60,
+   "folga_relativa_float64": 0.028458074515290113,
+   "folga_relativa_exata": 0.028458074515290234
+  },
+  {
+   "n": 360,
+   "sigma": 1170,
+   "folga_relativa_float64": 0.02889235992652691,
+   "folga_relativa_exata": 0.02889235992652859
+  },
+  {
+   "n": 840,
+   "sigma": 2880,
+   "folga_relativa_float64": 0.03531798536970229,
+   "folga_relativa_exata": 0.03531798536969764
+  },
+  {
+   "n": 55440,
+   "sigma": 232128,
+   "folga_relativa_float64": 0.0375318188221845,
+   "folga_relativa_exata": 0.03753181882218934
+  },
+  {
+   "n": 10080,
+   "sigma": 39312,
+   "folga_relativa_float64": 0.040698275708888884,
+   "folga_relativa_exata": 0.04069827570891868
+  },
+  {
+   "n": 180,
+   "sigma": 546,
+   "folga_relativa_float64": 0.041084342695292875,
+   "folga_relativa_exata": 0.0410843426952915
+  },
+  {
+   "n": 720720,
+   "sigma": 3249792,
+   "folga_relativa_float64": 0.04238204939307559,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 240,
+   "sigma": 744,
+   "folga_relativa_float64": 0.043473906785897756,
+   "folga_relativa_exata": 0.04347390678589697
+  },
+  {
+   "n": 27720,
+   "sigma": 112320,
+   "folga_relativa_float64": 0.044304076165622944,
+   "folga_relativa_exata": 0.0443040761655667
+  },
+  {
+   "n": 1441440,
+   "sigma": 6604416,
+   "folga_relativa_float64": 0.044323866000207574,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 110880,
+   "sigma": 471744,
+   "folga_relativa_float64": 0.04486856093773528,
+   "folga_relativa_exata": 0.04486856093784437
+  },
+  {
+   "n": 2162160,
+   "sigma": 9999360,
+   "folga_relativa_float64": 0.044992647915125666,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 1680,
+   "sigma": 5952,
+   "folga_relativa_float64": 0.04515675243296466,
+   "folga_relativa_exata": 0.045156752432961356
+  },
+  {
+   "n": 4324320,
+   "sigma": 20321280,
+   "folga_relativa_float64": 0.045283232239317364,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 720,
+   "sigma": 2418,
+   "folga_relativa_float64": 0.04531170772759677,
+   "folga_relativa_exata": 0.04531170772759476
+  },
+  {
+   "n": 166320,
+   "sigma": 714240,
+   "folga_relativa_float64": 0.048365875918250215,
+   "folga_relativa_exata": 0.048365875918237065
+  },
+  {
+   "n": 15120,
+   "sigma": 59520,
+   "folga_relativa_float64": 0.04853920721710882,
+   "folga_relativa_exata": 0.04853920721713069
+  },
+  {
+   "n": 7207200,
+   "sigma": 34122816,
+   "folga_relativa_float64": 0.049032859957760896,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 3603600,
+   "sigma": 16790592,
+   "folga_relativa_float64": 0.04941311931397997,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 1260,
+   "sigma": 4368,
+   "folga_relativa_float64": 0.049430733577495584,
+   "folga_relativa_exata": 0.04943073357750223
+  },
+  {
+   "n": 7560,
+   "sigma": 28800,
+   "folga_relativa_float64": 0.050637715147362865,
+   "folga_relativa_exata": 0.05063771514740343
+  },
+  {
+   "n": 8648640,
+   "sigma": 40965120,
+   "folga_relativa_float64": 0.052376066812563016,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 2882880,
+   "sigma": 13313664,
+   "folga_relativa_float64": 0.052886758137547736,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 332640,
+   "sigma": 1451520,
+   "folga_relativa_float64": 0.05302513392549164,
+   "folga_relativa_exata": null
+  },
+  {
+   "n": 420,
+   "sigma": 1344,
+   "folga_relativa_float64": 0.05487707767199317,
+   "folga_relativa_exata": 0.05487707767199506
+  }
+ ],
+ "todos_conferidos": true
+}
