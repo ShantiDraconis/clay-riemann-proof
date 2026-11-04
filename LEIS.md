@@ -53,6 +53,10 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | | `hasse_F5`, `hasse_F7`, `hasse_F11`, `hasse_F13`, `hasse_justo`, `rh_curva`, `rh_curva_reta`, `rh_todas_F13` | toda curva `y² = x³ + ax + b` sobre `𝔽₅ … 𝔽₁₃` tem `a_p² ≤ 4p` (contagem no kernel): RH da curva |
 | | `petersen_ramanujan`, `prisma_nao_ramanujan`, `prisma_zeros_fora` | Petersen é Ramanujan (RH de Ihara); `K₇ □ K₂` não é: zeros `s = log 2/log 6`, `log 3/log 6` fora da reta |
 | | `selberg_reta`, `desvio_de_lambda`, `selberg_316`, `kim_sarnak` | `s(1 − s) = λ` na reta ⟺ `λ ≥ ¼`; desvio `≤ ¼` com `3/16`, `≤ 7/64` com `975/4096` |
+| `Identidades.lean` | `defeito_circulo`, `defeito_espelho`, `target_iff_defeito_zero`, `nao_target_iff` | `1 − |1 − 1/ρ|² = (2 Re ρ − 1)/|ρ|²`: RH ⟺ defeito 0 em todo zero; refutação ⟺ zero com `Re ρ < ½`, com `|1 − 1/ρ|² = 1 + 2b/|ρ|²` |
+| | `li_aparece`, `li_aparece_para_zero` | `|w|² ≥ 1 + δ` ⟹ `|wⁿ| ≥ 2` para `n ≥ 3/δ`; um zero fora aparece no critério de Li em `n ≈ 1,5γ²/b` |
+| | `defeito_tende_a_zero`, `defeito_some_na_altura`, `familia_simetrica`, `colisao_no_circulo` | defeito `2b/|ρ|² → 0` com `b → 0`, `≤ 2b/γ²`; `A + tB` simétrica; transição = zero duplo |
+| | `robin_refuta`, `lagarias_refuta`, `vonKoch_refuta`, `mertens_refuta`, `lambda_positivo_refuta` | com os enunciados nomeados: um `n` refuta (Robin, Lagarias); `ψ` e `M` pedem violações sem cota; `Λ > 0` refuta |
 
 ## 3. Teoremas com hipótese nomeada (dados da Arb)
 

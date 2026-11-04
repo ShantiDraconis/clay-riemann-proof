@@ -51,6 +51,7 @@ import ClayRiemannProof.Absorcao
 import ClayRiemannProof.Biblioteca
 import ClayRiemannProof.Parametro
 import ClayRiemannProof.Geometrias
+import ClayRiemannProof.Identidades
 
 /-!
 # Auditoria de axiomas
@@ -3025,3 +3026,66 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Geometrias.prisma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Geometrias.prisma
+
+/-- info: 'ClayRiemannProof.Identidades.defeito_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.defeito_circulo
+
+/-- info: 'ClayRiemannProof.Identidades.defeito_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.defeito_espelho
+
+/-- info: 'ClayRiemannProof.Identidades.target_iff_defeito_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.target_iff_defeito_zero
+
+/-- info: 'ClayRiemannProof.Identidades.nao_target_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.nao_target_iff
+
+/-- info: 'ClayRiemannProof.Identidades.li_aparece' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.li_aparece
+
+/-- info: 'ClayRiemannProof.Identidades.li_aparece_para_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.li_aparece_para_zero
+
+/-- info: 'ClayRiemannProof.Identidades.defeito_tende_a_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.defeito_tende_a_zero
+
+/-- info: 'ClayRiemannProof.Identidades.defeito_some_na_altura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.defeito_some_na_altura
+
+/-- info: 'ClayRiemannProof.Identidades.familia_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.familia_simetrica
+
+/-- info: 'ClayRiemannProof.Identidades.colisao_no_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.colisao_no_circulo
+
+/-- info: 'ClayRiemannProof.Identidades.robin_refuta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.robin_refuta
+
+/-- info: 'ClayRiemannProof.Identidades.lagarias_refuta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.lagarias_refuta
+
+/-- info: 'ClayRiemannProof.Identidades.vonKoch_refuta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.vonKoch_refuta
+
+/-- info: 'ClayRiemannProof.Identidades.mertens_refuta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.mertens_refuta
+
+/-- info: 'ClayRiemannProof.Identidades.lambda_positivo_refuta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.lambda_positivo_refuta
+
+/-- info: 'ClayRiemannProof.Identidades.psi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.psi
+
+/-- info: 'ClayRiemannProof.Identidades.mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.mertens
+
+/-- info: 'ClayRiemannProof.Identidades.Robin1984' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.Robin1984
+
+/-- info: 'ClayRiemannProof.Identidades.Lagarias2002' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.Lagarias2002
+
+/-- info: 'ClayRiemannProof.Identidades.VonKoch1901' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.VonKoch1901
+
+/-- info: 'ClayRiemannProof.Identidades.MertensRH' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Identidades.MertensRH

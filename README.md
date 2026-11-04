@@ -16,8 +16,8 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de cada uma das 899 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
-faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 152 guardas no total). Todas dependem apenas de
+de `#print axioms` de cada uma das 934 declarações públicas acrescentadas; `ClayRiemannProof/AuditThirteen.lean`
+faz o mesmo para as 253 da cadeia certificada até a altura 13 (1 187 guardas no total). Todas dependem apenas de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2171,6 +2171,95 @@ quadrados) e divergência em `σ = ½` (`fronteiras_de_euler`). Passar do produt
 (vale para qualquer lista), produto de Euler em `σ = ½` (diverge), qualquer altura finita. A existência do operador de
 Hilbert–Pólya é equivalente a RH (com RH, o operador diagonal com os `γ` serve): a ponte diz a forma de uma prova,
 não a encurta. `OPEN_MATH = true`.
+
+## 42. A identidade da prova, a identidade da refutação, e uma tendendo para a outra
+
+Arquivo: `ClayRiemannProof/Identidades.lean` (15 teoremas e 6 definições, só `[propext, Classical.choice,
+Quot.sound]`). Dados: `computations/parametro/homotopia.py`, `homotopia_resumo.py`, `figura_homotopia.py` e os
+`.json`.
+
+**As duas identidades num número só** (`defeito_circulo`, `defeito_espelho`, `target_iff_defeito_zero`,
+`nao_target_iff`). Para todo `ρ ≠ 0`,
+
+    1 − |1 − 1/ρ|² = (2 Re ρ − 1)/|ρ|².
+
+- **Identidade da prova:** a RH equivale a "o defeito é 0 em todo zero".
+- **Identidade da refutação:** existe um zero com `Re ρ < ½` (a torção leva um zero com `Re > ½` no espelho
+  `1 − ρ̄`), e para ele `|1 − 1/ρ|² = 1 + 2b/|ρ|²`, com `b = ½ − Re ρ`.
+- O ½ aparece como **expoente**: `p^{−½} = 1/√p`, e `½ = 1/√p` não tem solução prima. É o eixo da reflexão
+  `s ↦ 1 − s̄` (`Geometrias`, `Parametro.eixo_unico`), não uma igualdade numérica com primos.
+
+**A ponte quantitativa** (`li_aparece`, `li_aparece_para_zero`). Por Bernoulli, `|w|² ≥ 1 + δ` faz `|wⁿ| ≥ 2` para
+todo `n ≥ 3/δ`. Para o zero acima `δ = 2b/|ρ|²`, então o termo de Li do quarteto passa de 2 em módulo a partir de
+`n ≈ 1,5·γ²/b`, e algum termo de Li do quarteto é negativo (`LiCircle.liQ_neg`). Um zero fora da reta na altura
+`10¹²` com `b = 10⁻³` só aparece depois de `~10²⁷` coeficientes de Li.
+
+**Uma tendendo para a outra** (`defeito_tende_a_zero`, `defeito_some_na_altura`, `familia_simetrica`,
+`colisao_no_circulo`). Com `ρ_b = ½ + b + iγ` o defeito `2b/|ρ_b|²` vai a 0 quando `b → 0` e fica `≤ 2b/γ²` na altura
+`γ`. O segmento `A + tB` entre uma função do lado da prova e uma do lado da refutação conserva as duas simetrias para
+todo `t` real, e a transição entre os lados é um zero duplo sobre a reta.
+
+Para ver isso numa família que existe, `Z_t = ζ(s)L(s, χ₋₂₀) + t·L(s, χ₋₄)L(s, χ₅)`: as duas parcelas têm a mesma
+equação funcional (`(√20/2π)^s Γ(s)`) e coeficientes reais. Em `t = 1` é a zeta de Epstein de `m² + 5n²` (lado da
+refutação: 13 pares fora da reta até `Im 100`, §39). Em `t = 0` é a zeta de Dedekind de `Q(√−5)`, produto de duas
+L-funções. Segui cada um dos 13 zeros quando `t` desce (mpmath, sem certificação):
+
+| par em `t = 1` | `b` em `t = 1` | volta à reta em `t_c` | altura do encontro | `C` em `b² ≈ C(t − t_c)` |
+|---|---|---|---|---|
+| `0,932970 + 15,6682i` | 0,4330 | 0,14032 | 15,239 | 0,956 |
+| `0,937667 + 29,9834i` | 0,4377 | 0,01785 | 30,572 | 1,811 |
+| `0,696927 + 36,3741i` | 0,1969 | 0,40179 | 36,500 | 0,130 |
+| `0,823187 + 44,0001i` | 0,3232 | 0,05006 | 43,578 | 0,630 |
+| `0,634908 + 46,7584i` | 0,1349 | 0,77866 | 46,802 | 0,098 |
+| `0,597437 + 52,7433i` | 0,0974 | 0,03338 | 52,906 | 0,073 |
+| `0,811172 + 58,5077i` | 0,3112 | 0,03926 | 58,968 | 1,161 |
+| `0,799778 + 61,1403i` | 0,2998 | 0,02401 | 60,752 | 0,322 |
+| `0,724850 + 64,9919i` | 0,2249 | 0,23092 | 65,276 | 0,309 |
+| `0,845467 + 75,3400i` | 0,3455 | 0,05238 | 75,837 | 0,598 |
+| `0,807718 + 79,4195i` | 0,3077 | 0,06981 | 79,248 | 0,142 |
+| `0,907993 + 89,5598i` | 0,4080 | 0,02285 | 89,093 | 1,203 |
+| `0,850281 + 96,1072i` | 0,3503 | 0,05143 | 95,628 | 1,297 |
+
+- **Todos voltam à reta antes de `t = 0`.** O último é em `t_c = 0,0178`.
+- **A lei da raiz quadrada.** Perto de `t_c`, `b² = C(t − t_c)`, com resíduo do ajuste `≤ 7·10⁻⁸`: é a mesma lei do
+  fluxo de de Bruijn (`Parametro.tempo_de_colisao`), agora numa família de L-funções.
+- **A contagem confere com o rastreamento.** Pelo princípio do argumento em `0,505 < Re s < 3`, `1 ≤ Im ≤ 100`:
+  - em `t = ½`, 12 pares fora da reta (o rastreamento prevê 12: todos menos o de `t_c = 0,779`);
+  - em `t = 0`, nenhum par fora;
+  - nenhum par nasce no caminho.
+
+![a refutação tendendo à prova](computations/parametro/homotopia.png)
+
+**Refutações finitas e assintóticas** (`Robin1984`, `Lagarias2002`, `VonKoch1901`, `MertensRH` — enunciados nomeados
+de teoremas publicados; `robin_refuta`, `lagarias_refuta`, `vonKoch_refuta`, `mertens_refuta`,
+`lambda_positivo_refuta`).
+
+- **Finitas.** Robin e Lagarias se refutam com **um** `n`, um certificado finito. Também um coeficiente de Li
+  negativo, ou um zero isolado numa caixa disjunta da reta.
+- **Assintóticas.** Von Koch (`|ψ(x) − x| ≤ C√x log²x`) e Mertens (`M(x) = O(x^{½+ε})`) só se refutam com violações
+  **sem cota**: para todo `C`, um `x`. Um valor grande isolado não refuta nada.
+  - A conjectura forte de Mertens, `|M(x)| < √x`, é falsa (Odlyzko–te Riele 1985), e a RH continua aberta.
+  - `ψ(x) − x` oscila com amplitude `√x·log log log x` (Littlewood 1914) sem contradizer a RH.
+- **`Λ > 0`** refutaria, com `RH_iff_Lambda`.
+
+A verificação até a altura `C₀` não dá cota para `ψ(x)` em `x` arbitrário. Com a RH conferida até a altura `T` saem
+cotas explícitas para `x` até a ordem de `(T/log T)²` (Büthe 2016), e nada para `x → ∞`.
+
+**Correções ao texto colado.**
+
+- As frações `2 497/5 000`, `249 703/500 000` e `653/1 250` são valores do número absorvido `½ + b(s − 1)`, **não**
+  centros de bolas da Arb. Os centros são alturas `γ` com 17 casas.
+- "Se achar um gap com `t_col < 0` e `H_{t_col}` com zero não real, é evidência para `H_t`": todo par na reta tem
+  `t_col < 0`, e para todo `t < 0` `H_t` tem zeros não reais (Rodgers–Tao). Não é evidência de nada.
+- O intervalo `[−1,74·10⁻⁶; −1,39·10⁻⁶]` não vem só de `lo/hi = 166 747/166 748`: o extremo de baixo é o termo dos
+  vizinhos da cota de CSV (`Δ²g ≤ 4/5`).
+- `5 400 000/23 111 813` e `1 120 000/4 793 561` são `L/N`, não a média dos gaps (§39).
+- A RH até `C₀` é condicional às janelas da Arb (hipóteses nomeadas), e não "falta `Λ ≤ 0`" para ela. `Λ ≤ 0` é o
+  que falta para a RH **inteira**.
+- A densidade `N(σ, T)`: o déficit 0 até `C₀` dá `N(½ + δ, T) = 0` para `T ≤ C₀` (condicional), não para `T → ∞`.
+
+**O que NÃO é**: nada aqui prova ou refuta a RH. A família `Z_t` é numérica (mpmath), e a RH para a zeta de Dedekind
+de `Q(√−5)` também é conjectura. `OPEN_MATH = true`.
 
 ## Autor
 
