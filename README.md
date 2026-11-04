@@ -2167,6 +2167,20 @@ Euler (`Biblioteca/Euler.lean`): o produto vale em `Re s > 1` (`produto_de_euler
 (`sem_zeros_re_ge_um`), e as somas sobre primos têm três fronteiras: `σ > 1` (produto absoluto), `σ > ½` (soma dos
 quadrados) e divergência em `σ = ½` (`fronteiras_de_euler`). Passar do produto para os zeros da faixa é o problema.
 
+**RH reduzida** (`Biblioteca/Reducao.lean`, 7 teoremas, cada passo uma equivalência provada):
+
+| passo | RH ⟺ | teorema |
+|---|---|---|
+| um lado | nenhum zero com `Re s > ½` | `rh_de_metade` |
+| um quarto | nenhum zero com `Re s > ½` e `Im s > T`, se RH vale até `T` (o espelho `s ↦ s̄` leva a metade de baixo para a de cima) | `rh_iff_acima` |
+| incondicional | nenhum zero com `Re s > ½` e `Im s > 13` (não há zeros na faixa com `|Im s| ≤ 13`) | `rh_iff_quarto` |
+| com a verificação | nenhum zero com `Re s > ½` e `Im s > 3 000 181 942 471` (`Resto`), com Platt–Trudgian e as seis janelas da Arb como hipóteses nomeadas | `rh_reduzida` |
+| em caixas | toda caixa `[T + n·w, T + (n + 1)·w)` sem zero com `Re s > ½`; cada caixa é uma verificação finita, RH é a conjunção de todas | `rh_iff_caixas` |
+| faixa estreita | nenhum zero com `½ < Re s < 1 − c/log(Im s)` e `Im s > T`, com a região livre de de la Vallée Poussin como hipótese nomeada (`c = 1/5,558691`, Mossinghoff–Trudgian–Yang) | `rh_iff_faixa_estreita` |
+
+O que sobra é um quarto de faixa infinito, `½ < Re s < 1 − c/log t`, `t > 3 000 181 942 471`: nenhuma redução tira
+o "para todo `t`", e é ele o problema.
+
 **O que não é entrada**: cota `λ < 0` de par de Lehmer (mais fraca que `Λ ≥ 0`), média ½ de uma reparametrização
 (vale para qualquer lista), produto de Euler em `σ = ½` (diverge), qualquer altura finita. A existência do operador de
 Hilbert–Pólya é equivalente a RH (com RH, o operador diagonal com os `γ` serve): a ponte diz a forma de uma prova,
