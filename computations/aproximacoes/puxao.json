@@ -1,0 +1,191 @@
+[
+ {
+  "t": -1e-07,
+  "pares_fora_da_reta": 0,
+  "fracao_dos_pares": "0/1",
+  "b_max": 0.0,
+  "b_mediano": 0.0,
+  "menor_s_na_reta": 0.002646746733436968,
+  "cauda_curta_s<1/100": {
+   "fracao": "23/14380682",
+   "contagem": 23,
+   "total": 14380682,
+   "um_em": 625247
+  },
+  "cauda_longa_s>3": {
+   "fracao": "549/14380682",
+   "contagem": 549,
+   "total": 14380682,
+   "um_em": 26194
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "5/14380682",
+   "contagem": 5,
+   "total": 14380682,
+   "um_em": 2876136
+  },
+  "espaco_criado_medio": null
+ },
+ {
+  "t": -2e-07,
+  "pares_fora_da_reta": 1,
+  "fracao_dos_pares": "1/14380682",
+  "b_max": 6.628870189993069e-05,
+  "b_mediano": 6.628870189993069e-05,
+  "menor_s_na_reta": 0.003129920134129651,
+  "cauda_curta_s<1/100": {
+   "fracao": "11/7190340",
+   "contagem": 22,
+   "total": 14380680,
+   "um_em": 653667
+  },
+  "cauda_longa_s>3": {
+   "fracao": "55/1438068",
+   "contagem": 550,
+   "total": 14380680,
+   "um_em": 26147
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "1/2876136",
+   "contagem": 5,
+   "total": 14380680,
+   "um_em": 2876136
+  },
+  "espaco_criado_medio": 3.1804286099211225
+ },
+ {
+  "t": -5e-07,
+  "pares_fora_da_reta": 3,
+  "fracao_dos_pares": "3/14380682",
+  "b_max": 0.0003929302635323193,
+  "b_mediano": 0.0003410302913206962,
+  "menor_s_na_reta": 0.004467295421896862,
+  "cauda_curta_s<1/100": {
+   "fracao": "5/3595169",
+   "contagem": 20,
+   "total": 14380676,
+   "um_em": 719034
+  },
+  "cauda_longa_s>3": {
+   "fracao": "138/3595169",
+   "contagem": 552,
+   "total": 14380676,
+   "um_em": 26052
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "7/14380676",
+   "contagem": 7,
+   "total": 14380676,
+   "um_em": 2054382
+  },
+  "espaco_criado_medio": 3.475891320598185
+ },
+ {
+  "t": -1e-06,
+  "pares_fora_da_reta": 5,
+  "fracao_dos_pares": "5/14380682",
+  "b_max": 0.0006359199572269908,
+  "b_mediano": 0.0005199376800823813,
+  "menor_s_na_reta": 0.006796973531087597,
+  "cauda_curta_s<1/100": {
+   "fracao": "9/7190336",
+   "contagem": 18,
+   "total": 14380672,
+   "um_em": 798926
+  },
+  "cauda_longa_s>3": {
+   "fracao": "553/14380672",
+   "contagem": 553,
+   "total": 14380672,
+   "um_em": 26005
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "7/14380672",
+   "contagem": 7,
+   "total": 14380672,
+   "um_em": 2054382
+  },
+  "espaco_criado_medio": 3.2137714553349683
+ },
+ {
+  "t": -1e-05,
+  "pares_fora_da_reta": 115,
+  "fracao_dos_pares": "115/14380682",
+  "b_max": 0.0022145866864947007,
+  "b_mediano": 0.0012974148174222434,
+  "menor_s_na_reta": 0.019187775806327162,
+  "cauda_curta_s<1/100": {
+   "fracao": "0/1",
+   "contagem": 0,
+   "total": 14380452,
+   "um_em": null
+  },
+  "cauda_longa_s>3": {
+   "fracao": "65/1597828",
+   "contagem": 585,
+   "total": 14380452,
+   "um_em": 24582
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "5/3595113",
+   "contagem": 20,
+   "total": 14380452,
+   "um_em": 719023
+  },
+  "espaco_criado_medio": 2.7880783104407274
+ },
+ {
+  "t": -0.0001,
+  "pares_fora_da_reta": 3372,
+  "fracao_dos_pares": "1686/7190341",
+  "b_max": 0.007064304225612002,
+  "b_mediano": 0.004330124328481228,
+  "menor_s_na_reta": 0.06053593994120942,
+  "cauda_curta_s<1/100": {
+   "fracao": "0/1",
+   "contagem": 0,
+   "total": 14373940,
+   "um_em": null
+  },
+  "cauda_longa_s>3": {
+   "fracao": "1719/14373940",
+   "contagem": 1719,
+   "total": 14373940,
+   "um_em": 8362
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "37/1437394",
+   "contagem": 370,
+   "total": 14373940,
+   "um_em": 38848
+  },
+  "espaco_criado_medio": 2.8093375759364947
+ },
+ {
+  "t": -0.001,
+  "pares_fora_da_reta": 104277,
+  "fracao_dos_pares": "104277/14380682",
+  "b_max": 0.022358541861937233,
+  "b_mediano": 0.013670087365232847,
+  "menor_s_na_reta": 0.19140600363726382,
+  "cauda_curta_s<1/100": {
+   "fracao": "0/1",
+   "contagem": 0,
+   "total": 14172868,
+   "um_em": null
+  },
+  "cauda_longa_s>3": {
+   "fracao": "9318/3543217",
+   "contagem": 37272,
+   "total": 14172868,
+   "um_em": 380
+  },
+  "cauda_longa_s>7/2": {
+   "fracao": "2647/3543217",
+   "contagem": 10588,
+   "total": 14172868,
+   "um_em": 1339
+  },
+  "espaco_criado_medio": 2.812818763112205
+ }
+]

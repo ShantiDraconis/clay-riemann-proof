@@ -1792,6 +1792,72 @@ unidades normalizadas, e um zero fora da reta continuaria permitido em quase tod
 **O que NÃO é**: cauda e mínimos são estatística dos dados (fora do kernel). Os teoremas de §6 são sobre o modelo de
 dois zeros, não sobre `ζ`. `OPEN_MATH = true`.
 
+## 37. As caudas em frações e como zeros fora da reta puxariam as caudas
+
+Arquivos: `computations/aproximacoes/` (`caudas_fracoes.py`, `caudas_fracoes.json`, `zeros_em_fracoes.csv`,
+`puxao.json`, `puxao_serie.json`, `figura_puxao.py`, `puxao_das_caudas.png`). Dados: os 14 380 683 zeros contíguos da
+seção 36 (14 380 682 espaçamentos).
+
+**A cauda curta** (quase-encontros) e **a cauda longa** (vazios), em frações exatas:
+
+| s < x | fração exata | 1 em |
+|---|---|---|
+| 1/1000 | 0/1 | — |
+| 1/400 | 0/1 | — |
+| 1/300 | 1/7 190 341 | 7 190 341 |
+| 1/200 | 5/14 380 682 | 2 876 136 |
+| 1/100 | 23/14 380 682 | 625 247 |
+| 1/50 | 61/7 190 341 | 117 874 |
+| 1/20 | 1 923/14 380 682 | 7 478 |
+| 1/10 | 15 189/14 380 682 | 947 |
+| 1/5 | 118 827/14 380 682 | 121 |
+| 1/2 | 1 596 315/14 380 682 | 9 |
+| 1/1 | 7 650 569/14 380 682 | 2 |
+
+| s > x | fração exata | 1 em |
+|---|---|---|
+| 2/1 | 117 906/7 190 341 | 61 |
+| 5/2 | 833/756 878 | 909 |
+| 3/1 | 549/14 380 682 | 26 194 |
+| 13/4 | 71/14 380 682 | 202 545 |
+| 7/2 | 5/14 380 682 | 2 876 136 |
+| 18/5 | 2/7 190 341 | 3 595 170 |
+
+**Os zeros em frações.** Cada zero é uma bola `[c ± r]` da Arb. A parte depois da vírgula de `c` é uma fração exata
+(denominador `10^k`, reduzida), e a fração de menor denominador dentro da bola está na mesma bola que o zero, portanto
+certificadamente a menos de `2r ≤ 10⁻¹⁷` dele. Para o par mais próximo de todos (parte inteira 3 000 178 690 726):
+
+| zero | centro da bola | cauda do centro (exata) | fração mais simples na bola |
+|---|---|---|---|
+| 12 363 167 808 945 | 3000178690726.16233566825147131 | 16 233 566 825 147 131/100 000 000 000 000 000 | 49 726 352/306 318 091 |
+| 12 363 167 808 946 | 3000178690726.16295407189495341 | 16 295 407 189 495 341/100 000 000 000 000 000 | 54 571 483/334 888 735 |
+
+`Δγ` entre os centros: 6 184 036 434 821/10 000 000 000 000 000 exatamente; a fração mais simples dentro do erro
+(`r₁ + r₂`) é 285 021/460 897 996. Os vizinhos, a aglomeração mais densa e o maior vazio estão em
+`zeros_em_fracoes.csv`.
+
+**Como zeros fora da reta puxariam as caudas** (modelo do par isolado no fluxo de de Bruijn para trás, `t < 0`; não é
+`ζ`, onde nada está fora da reta). No tempo `t` sai da reta todo par com `Δγ² < −2t`, a `b = √(−Δγ² − 2t)/2` de
+`Re s = ½`; na reta, o vizinho, o par e o outro vizinho viram um espaço só:
+
+![puxão das caudas](computations/aproximacoes/puxao_das_caudas.png)
+
+| t | pares fora da reta | fração | b máximo | menor s na reta | s < 1/100 | s > 3 | s > 7/2 |
+|---|---|---|---|---|---|---|---|
+| −10⁻⁷ | 0 | 0/1 | 0,0000 | 0,0026 | 23/14 380 682 | 549/14 380 682 | 5/14 380 682 |
+| −10⁻⁶ | 5 | 5/14 380 682 | 0,0006 | 0,0068 | 9/7 190 336 | 553/14 380 672 | 7/14 380 672 |
+| −10⁻⁵ | 115 | 115/14 380 682 | 0,0022 | 0,0192 | 0/1 | 65/1 597 828 | 5/3 595 113 |
+| −10⁻⁴ | 3 372 | 1 686/7 190 341 | 0,0071 | 0,0605 | 0/1 | 1 719/14 373 940 | 37/1 437 394 |
+| −10⁻³ | 104 277 | 104 277/14 380 682 | 0,0224 | 0,1914 | 0/1 | 9 318/3 543 217 | 2 647/3 543 217 |
+
+Os pares que saem são sempre os da cauda curta, então ela é comida de baixo para cima: em `t = −10⁻⁵` não sobra
+nenhum espaçamento com `s < 1/100`. Cada par que sai deixa na reta um vazio de cerca de 2,8 espaçamentos médios, e a
+cauda longa engorda: `s > 3` passa de 1 em 26 194 para 1 em 380 em `t = −10⁻³`. O primeiro par a sair é o
+12 363 167 808 945/946, em `|t| = 1,91·10⁻⁷`, e `b` cresce como `√|t|`.
+
+**O que NÃO é**: as frações das caudas são contagens dos dados; as frações dos zeros são aproximações racionais
+certificadas (o zero em si deve ser irracional). O puxão é o modelo de dois zeros, não `ζ`. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
