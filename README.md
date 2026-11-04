@@ -1401,7 +1401,7 @@ forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
 Classical.choice, Quot.sound]` (32 guardas).
 
-## 31. Continuação contígua: RH conferida até 3 000 181 942 471,5 (cálculo certificado fora do kernel)
+## 31. Continuação contígua: RH conferida até 3 000 183 382 471,5 (cálculo certificado fora do kernel)
 
 Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
 `.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
@@ -1498,8 +1498,19 @@ começa em `N(C0) = 12 363 178 644 727`, o fim da quarta extensão, e as 6 faixa
 ficam 6 609 671,5 unidades e 28 289 165 zeros acima do recorde publicado. O par mais frágil destas faixas é o
 12 363 179 255 965/…966 (`s = 0,0078`, `λ = −1,673·10⁻⁶`); o de todos os dados continua o 808 945/946. No kernel:
 `Continuacao.rhAteZ_continuacao5`, `primeiro_fora_acima_continuacao5` e `par_mais_fragil_continuacao5`
-(`−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`). A execução 41777848348 (faixas 6–11 do mesmo `C0`) terminou, mas o resultado gravado na branch
-`resultados-continuacao` não tem a faixa 8 (e `falhas` está vazio); essas faixas só entram aqui quando a 8 for refeita.
+(`−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`).
+
+**Faixas 6–17 do mesmo `C0`** (runs 41777848348 para as faixas 6, 7, 9, 10 e 11, 41809658688 para a faixa 8, refeita
+sozinha depois que o runner caiu, e 41809668823 para as faixas 12–17; colagem das 18 faixas em
+`de_3000181222471.5/juntas_0-17/`): as 18 colagens conferem e o déficit é 0 em todas; de 3 000 181 222 471,5 até
+**3 000 183 382 471,5** são 9 244 726 zeros, todos na reta (maior raio das bolas 5,01·10⁻¹⁸). Faixas 6–11: `N` de
+12 363 181 726 303 a 12 363 184 807 878; faixas 12–17: até `N(3 000 183 382 471,5) = 12 363 187 889 453` (3 081 575 zeros
+em cada bloco de seis). Somando tudo, ficam 8 049 671,5 unidades e 34 452 315 zeros acima do recorde publicado. Os pares
+mais frágeis: 12 363 184 245 937/…938 nas faixas 6–11 (`s = 0,0070`, `λ = −1,329·10⁻⁶`) e 12 363 185 811 880/…881 nas
+12–17 (`s = 0,0050`, `λ = −6,881·10⁻⁷`); o de todos os dados continua o 808 945/946 (`s = 0,0026`). No kernel, com as
+janelas como hipóteses nomeadas `JanelaContinuacao2026f` e `JanelaContinuacao2026g`: `Continuacao.rhAteZ_continuacao6`,
+`rhAteZ_continuacao7`, `primeiro_fora_acima_continuacao6`/`7` e `par_mais_fragil_continuacao6`
+(`−1,67·10⁻⁶ ≤ λ ≤ −1,32·10⁻⁶`) e `par_mais_fragil_continuacao7` (`−8,61·10⁻⁷ ≤ λ ≤ −6,88·10⁻⁷`).
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
@@ -2579,7 +2590,7 @@ Arquivo: `ClayRiemannProof/CertificateBridge.lean` (6 declarações). Estava só
 - **Contagem de guardas no cabeçalho:** contava uma linha de docstring; agora conta só as linhas que começam com
   `#guard_msgs` (1 035 + 252).
 - **Nome inexistente:** `Fronteira.Hadamard.xi` (§9) passou a `Fronteira.xi`.
-- **`LEIS.md`:** o resumo dos dados vai até `3 000 181 942 471,5` (com 10¹⁷); um "par mais perto em todos os dados"
+- **`LEIS.md`:** o resumo dos dados vai até `3 000 183 382 471,5` (com 10¹⁷); um "par mais perto em todos os dados"
   já superado saiu.
 - **§18:** a seção cita agora 10¹⁷ certificada.
 - **§26:** "em todos os dados" passou a "até então".
