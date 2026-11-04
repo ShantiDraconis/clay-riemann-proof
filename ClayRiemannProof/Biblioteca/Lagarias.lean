@@ -22,26 +22,33 @@ A conferência numérica até `n = 10⁷` está em `computations/infinito/` (for
 
 namespace ClayRiemannProof.Biblioteca
 
-open ArithmeticFunction
-
 /-- **A desigualdade de Lagarias** para `n`: `σ(n) ≤ H_n + e^{H_n} log H_n`. -/
 def Lagarias (n : ℕ) : Prop :=
-  (σ 1 n : ℝ) ≤ (harmonic n : ℝ) + Real.exp (harmonic n) * Real.log (harmonic n)
+  (ArithmeticFunction.sigma 1 n : ℝ) ≤ (harmonic n : ℝ) + Real.exp (harmonic n) * Real.log (harmonic n)
 
 /-- **O critério de Lagarias** (Lagarias 2002), como hipótese nomeada. -/
 def CriterioDeLagarias : Prop := RiemannHypothesis ↔ ∀ n : ℕ, 1 ≤ n → Lagarias n
 
 /-- Em `n = 1` vale a igualdade: `σ(1) = 1 = H_1 + e·log 1`. -/
 theorem lagarias_um : Lagarias 1 := by
+  have h1 : (ArithmeticFunction.sigma 1 1 : ℝ) = 1 := by simp [ArithmeticFunction.sigma_one_apply]
+  have h2 : (harmonic 1 : ℝ) = 1 := by simp [harmonic]
   unfold Lagarias
-  simp [sigma_one_apply, harmonic]
+  rw [h1, h2]
+  simp
 
 /-- **Um contraexemplo de RH seria um inteiro.** -/
 theorem nao_rh_iff_inteiro (h : CriterioDeLagarias) :
     ¬ RiemannHypothesis ↔ ∃ n : ℕ, 1 ≤ n ∧ ¬ Lagarias n := by
   unfold CriterioDeLagarias at h
   rw [h]
-  simp only [not_forall, _root_.not_imp, exists_prop]
+  constructor
+  · intro hn
+    by_contra hc
+    push_neg at hc
+    exact hn hc
+  · rintro ⟨n, h1, hn⟩ hall
+    exact hn (hall n h1)
 
 /-- **RH é o limite dos prefixos finitos.** -/
 theorem rh_iff_prefixos (h : CriterioDeLagarias) :
