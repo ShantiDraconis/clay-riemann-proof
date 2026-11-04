@@ -1,0 +1,647 @@
+{
+ "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+ "faixa": 6,
+ "a": "3000185542471.5",
+ "b": "3000185662471.5",
+ "blocos": [
+  {
+   "n": "12363197134180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197139180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197144180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197149180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197154180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.0
+  },
+  {
+   "n": "12363197159180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197164180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197169180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197174180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.1
+  },
+  {
+   "n": "12363197179180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.0
+  },
+  {
+   "n": "12363197184180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.5
+  },
+  {
+   "n": "12363197189180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.3
+  },
+  {
+   "n": "12363197194180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.1
+  },
+  {
+   "n": "12363197199180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.1
+  },
+  {
+   "n": "12363197204180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197209180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197214180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197219180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197224180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197229180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197234180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197239180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.1
+  },
+  {
+   "n": "12363197244180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197249180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.8
+  },
+  {
+   "n": "12363197254180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197259180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.6
+  },
+  {
+   "n": "12363197264180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.6
+  },
+  {
+   "n": "12363197269180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197274180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197279180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197284180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197289180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197294180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197299180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197304180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 64.8
+  },
+  {
+   "n": "12363197309180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.0
+  },
+  {
+   "n": "12363197314180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197319180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.0
+  },
+  {
+   "n": "12363197324180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 65.6
+  },
+  {
+   "n": "12363197329180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.9
+  },
+  {
+   "n": "12363197334180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.4
+  },
+  {
+   "n": "12363197339180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197344180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197349180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197354180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197359180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197364180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.0
+  },
+  {
+   "n": "12363197369180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197374180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197379180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.2
+  },
+  {
+   "n": "12363197384180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197389180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.1
+  },
+  {
+   "n": "12363197394180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.4
+  },
+  {
+   "n": "12363197399180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197404180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.0
+  },
+  {
+   "n": "12363197409180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.2
+  },
+  {
+   "n": "12363197414180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.3
+  },
+  {
+   "n": "12363197419180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.0
+  },
+  {
+   "n": "12363197424180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.6
+  },
+  {
+   "n": "12363197429180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.2
+  },
+  {
+   "n": "12363197434180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.1
+  },
+  {
+   "n": "12363197439180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.8
+  },
+  {
+   "n": "12363197444180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.0
+  },
+  {
+   "n": "12363197449180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.9
+  },
+  {
+   "n": "12363197454180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.2
+  },
+  {
+   "n": "12363197459180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.5
+  },
+  {
+   "n": "12363197464180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197469180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197474180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.8
+  },
+  {
+   "n": "12363197479180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.5
+  },
+  {
+   "n": "12363197484180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.4
+  },
+  {
+   "n": "12363197489180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.1
+  },
+  {
+   "n": "12363197494180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.4
+  },
+  {
+   "n": "12363197499180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.2
+  },
+  {
+   "n": "12363197504180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.9
+  },
+  {
+   "n": "12363197509180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.2
+  },
+  {
+   "n": "12363197514180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.5
+  },
+  {
+   "n": "12363197519180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.3
+  },
+  {
+   "n": "12363197524180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.0
+  },
+  {
+   "n": "12363197529180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.6
+  },
+  {
+   "n": "12363197534180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197539180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197544180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.0
+  },
+  {
+   "n": "12363197549180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.9
+  },
+  {
+   "n": "12363197554180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.1
+  },
+  {
+   "n": "12363197559180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.8
+  },
+  {
+   "n": "12363197564180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197569180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197574180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197579180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.0
+  },
+  {
+   "n": "12363197584180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 62.2
+  },
+  {
+   "n": "12363197589180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197594180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197599180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.5
+  },
+  {
+   "n": "12363197604180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.3
+  },
+  {
+   "n": "12363197609180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 61.7
+  },
+  {
+   "n": "12363197614180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 63.6
+  },
+  {
+   "n": "12363197619180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 64.8
+  },
+  {
+   "n": "12363197624180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 64.3
+  },
+  {
+   "n": "12363197629180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 66.5
+  },
+  {
+   "n": "12363197634180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 67.3
+  },
+  {
+   "n": "12363197639180",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 68.8
+  },
+  {
+   "n": "12363197644180",
+   "pedidos": 3596,
+   "achados": 3596,
+   "segundos": 53.9
+  }
+ ],
+ "falhas": [],
+ "N(a)": "12363197134179",
+ "N(b)": "12363197647775",
+ "zeros_esperados": 513596,
+ "segundos_nzeros": [
+  2.0,
+  2.1
+ ],
+ "segundos": 6397.6,
+ "conferencia": {
+  "todos_os_indices": true,
+  "zeros_na_reta": 513596,
+  "bolas_disjuntas_e_em_ordem": true,
+  "indices_seguidos": true,
+  "extremos_dentro_da_faixa": true,
+  "maior_raio": "5.01E-18",
+  "na_reta_igual_a_N(b)-N(a)": true,
+  "deficit_(zeros_fora_da_reta)": 0
+ },
+ "certificado_ate": "3000185662471.5",
+ "conclusao": "nenhum zero fora da reta em 0 < Re s < 1, 3000185542471.5 < Im s ≤ 3000185662471.5"
+}
