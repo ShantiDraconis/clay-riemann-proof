@@ -3,6 +3,7 @@ import ClayRiemannProof.Biblioteca.Euler
 import ClayRiemannProof.Biblioteca.Entradas
 import ClayRiemannProof.Biblioteca.Reducao
 import ClayRiemannProof.Biblioteca.Lagarias
+import ClayRiemannProof.Biblioteca.Refutacao
 import ClayRiemannProof.Biblioteca.Infinito
 
 /-!
@@ -21,6 +22,9 @@ Organizada como o Mathlib, um arquivo por área. O alvo é sempre o `RiemannHypo
 * `Biblioteca/Lagarias.lean` e `Biblioteca/Infinito.lean` — reduzir o infinito: do contínuo às caixas enumeráveis,
   do analítico às desigualdades de Lagarias entre inteiros (critério nomeado), o contraexemplo finito e o corte
   finito que só existe classicamente (`corte_existe`, `corte_em_altura`).
+* `Biblioteca/Refutacao.lean` — refutação indireta sem achar zero: von Koch, a forma explícita de Schoenfeld (um único
+  `x` refutaria, `nao_rh_iff_um_x`), Littlewood/Mertens (`refuta_por_mertens`, `rh_de_mertens`) e a densidade
+  (`Infinito.nao_rh_iff_densidade`).
 * `Biblioteca/Entradas.lean` — o mapa: para cada rota, a entrada aberta e a ponte provada (`rotas_para_rh`), as
   equivalências sem hipótese (`equivalencias_sem_hipotese`), a verificação finita (`verificacao`), de Bruijn–Newman
   com Rodgers–Tao (`lambda_com_rodgers_tao`) e `rh_de_metade`.
