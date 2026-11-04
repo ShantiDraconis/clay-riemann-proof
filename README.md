@@ -1400,7 +1400,7 @@ forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
 Classical.choice, Quot.sound]` (32 guardas).
 
-## 31. Continuação contígua: RH conferida até 3 000 181 222 471,5 (cálculo certificado fora do kernel)
+## 31. Continuação contígua: RH conferida até 3 000 181 942 471,5 (cálculo certificado fora do kernel)
 
 Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
 `.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
@@ -1489,7 +1489,15 @@ faixa (`N(3 000 181 222 471,5) = 12 363 178 644 727`; lacuna média `5 400 000/2
 acima do recorde publicado. O par 808 945/946 continua sendo o mais frágil; o das faixas 36–44 é o 12 363 175 635
 090/…091 (`γ ≈ 3 000 180 519 279,4651`, a 0,0016675 um do outro, `s = 0,0071`, `λ = −1,390·10⁻⁶`). No kernel, com
 a quarta janela como hipótese nomeada: `Continuacao.rhAteZ_continuacao4`, `primeiro_fora_acima_continuacao4` e
-`par_mais_fragil_continuacao4` (`−1,74·10⁻⁶ ≤ λ ≤ −1,39·10⁻⁶`). O próximo lote começa em `C0 = 3 000 181 222 471,5`.
+`par_mais_fragil_continuacao4` (`−1,74·10⁻⁶ ≤ λ ≤ −1,39·10⁻⁶`).
+
+**Faixas 0–5 do `C0 = 3 000 181 222 471,5`** (run 41749059161; colagem em `de_3000181222471.5/juntas_0-5/`): a faixa 0
+começa em `N(C0) = 12 363 178 644 727`, o fim da quarta extensão, e as 6 faixas vão até **3 000 181 942 471,5**, com
+3 081 576 zeros, todos na reta, déficit 0 em cada faixa (`N(3 000 181 942 471,5) = 12 363 181 726 303`). Somando tudo,
+ficam 6 609 671,5 unidades e 28 289 165 zeros acima do recorde publicado. O par mais frágil destas faixas é o
+12 363 179 255 965/…966 (`s = 0,0078`, `λ = −1,673·10⁻⁶`); o de todos os dados continua o 808 945/946. No kernel:
+`Continuacao.rhAteZ_continuacao5`, `primeiro_fora_acima_continuacao5` e `par_mais_fragil_continuacao5`
+(`−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`). As faixas 6–11 do mesmo `C0` estão rodando (run 41777848348).
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`

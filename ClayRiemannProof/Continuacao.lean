@@ -205,4 +205,42 @@ theorem par_mais_fragil_continuacao4 {γ₁ γ₂ g : ℝ}
     (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
   exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
 
+/-! ## A quinta extensão: faixas 0–5 acima de 3 000 181 222 471,5
+
+Run 41749059161 (faixas 0–5 do `C0 = 3 000 181 222 471,5`), pasta `de_3000181222471.5/faixas_0-5/`; colagem em
+`de_3000181222471.5/juntas_0-5/`: `3 000 181 222 471,5 < Im s ≤ 3 000 181 942 471,5`, 3 081 576 zeros, todos na reta,
+as 6 colagens conferindo (a faixa 0 começa em `N(C0) = 12 363 178 644 727`, o fim da quarta extensão), déficit 0,
+`N(3 000 181 942 471,5) = 12 363 181 726 303`. Hipótese nomeada `JanelaContinuacao2026e`. -/
+
+/-- **Janela da quinta extensão (fora do kernel)**: todos os zeros com `3 000 181 222 471 < Im s ≤ 3 000 181 942 471`
+estão na reta. -/
+def JanelaContinuacao2026e : Prop := JanelaNaReta 3000181222471 3000181942471
+
+/-- RH até `3 000 181 942 471`, condicional a Platt–Trudgian e às seis janelas da Arb. -/
+theorem rhAteZ_continuacao5 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026)
+    (hC2 : JanelaContinuacao2026b) (hC3 : JanelaContinuacao2026c) (hC4 : JanelaContinuacao2026d)
+    (hC5 : JanelaContinuacao2026e) : RHateZ 3000181942471 :=
+  rhateZ_estende (rhAteZ_continuacao4 hPT hJ hC hC2 hC3 hC4) (by exact_mod_cast hC5)
+
+/-- **O primeiro zero fora da reta, se existir, tem `Im > 3 000 181 942 471`** (condicional). -/
+theorem primeiro_fora_acima_continuacao5 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026)
+    (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b) (hC3 : JanelaContinuacao2026c)
+    (hC4 : JanelaContinuacao2026d) (hC5 : JanelaContinuacao2026e) (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) :
+    ∃ ρ ∈ Z, ρ.re ≠ 1 / 2 ∧ (3000181942471 : ℝ) < ρ.im ∧ ∀ σ ∈ Z, σ.re ≠ 1 / 2 → ρ.im ≤ |σ.im| := by
+  have := primeiro_fora_acima (rhAteZ_continuacao5 hPT hJ hC hC2 hC3 hC4 hC5) h
+  simpa using this
+
+/-- **O par mais frágil das faixas 0–5 do C0 novo** (zeros 12 363 179 255 965 e …966, `γ ≈ 3 000 181 365 285,2845`,
+a 0,0018293 um do outro, `s = 0,0078`): `−2,10·10⁻⁶ ≤ λ ≤ −1,67·10⁻⁶`, qualquer que seja `g` com `Δ²g ≤ 4/5` (CSV
+calculado: −1,6732·10⁻⁶). -/
+theorem par_mais_fragil_continuacao5 {γ₁ γ₂ g : ℝ}
+    (h₁ : |γ₁ - 300018136528528453703154094549 / 10 ^ 17| ≤ 516 / 10 ^ 21)
+    (h₂ : |γ₂ - 300018136528528636629535666598 / 10 ^ 17| ≤ 481 / 10 ^ 20)
+    (hg : 0 < g) (hq : (2 * (γ₂ - γ₁)) ^ 2 * g ≤ 4 / 5) :
+    -(210 : ℝ) / 100000000 ≤ csv (2 * (γ₂ - γ₁)) g ∧ csv (2 * (γ₂ - γ₁)) g ≤ -(167 : ℝ) / 100000000 := by
+  obtain ⟨hlo, hhi⟩ := dif_bolas h₁ h₂
+  obtain ⟨c1, c2⟩ := csv_por_distancia (lo := 182926 / 100000000) (hi := 182927 / 100000000)
+    (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
+  exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
+
 end ClayRiemannProof.Continuacao
