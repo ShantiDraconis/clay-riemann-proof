@@ -56,6 +56,7 @@ import ClayRiemannProof.Maquina
 import ClayRiemannProof.Nos
 import ClayRiemannProof.Fracoes
 import ClayRiemannProof.CertificateBridge
+import ClayRiemannProof.Milenio
 
 /-!
 # Auditoria de axiomas
@@ -3471,3 +3472,63 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
  Classical.choice,
  Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.CertificateBridge.injOn_of_second_derivative_bound
+
+
+/-! ## `ClayRiemannProof/Milenio.lean` -/
+
+/-- info: 'ClayRiemannProof.Milenio.abeliano_mata_relacoes' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.abeliano_mata_relacoes
+
+/-- info: 'ClayRiemannProof.Milenio.S5' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.S5
+
+/-- info: 'ClayRiemannProof.Milenio.T5' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.T5
+
+/-- info: 'ClayRiemannProof.Milenio.relacoes_SL25' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.relacoes_SL25
+
+/-- info: 'ClayRiemannProof.Milenio.homologia_nao_ve_pi1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.homologia_nao_ve_pi1
+
+/-- info: 'ClayRiemannProof.Milenio.beta0Gauge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.beta0Gauge
+
+/-- info: 'ClayRiemannProof.Milenio.beta0Gauge_SU' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.beta0Gauge_SU
+
+/-- info: 'ClayRiemannProof.Milenio.abeliano_sem_liberdade' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.abeliano_sem_liberdade
+
+/-- info: 'ClayRiemannProof.Milenio.nao_abeliano_puro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.nao_abeliano_puro
+
+/-- info: 'ClayRiemannProof.Milenio.Circuito' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.Circuito
+
+/-- info: 'ClayRiemannProof.Milenio.porta' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.porta
+
+/-- info: 'ClayRiemannProof.Milenio.fios' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.fios
+
+/-- info: 'ClayRiemannProof.Milenio.funcao' depends on axioms: [propext] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.funcao
+
+/-- info: 'ClayRiemannProof.Milenio.card_circuito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.card_circuito
+
+/-- info: 'ClayRiemannProof.Milenio.existe_funcao_dificil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.existe_funcao_dificil
+
+/-- info: 'ClayRiemannProof.Milenio.dificil_6_5' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.dificil_6_5
+
+/-- info: 'ClayRiemannProof.Milenio.dificil_10_60' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.dificil_10_60
+
+/-- info: 'ClayRiemannProof.Milenio.poucas_faceis_6_5' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.poucas_faceis_6_5
+
+/-- info: 'ClayRiemannProof.Milenio.padrao_no_kernel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Milenio.padrao_no_kernel

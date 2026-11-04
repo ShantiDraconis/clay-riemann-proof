@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 053 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 072 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 438 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 457 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2780,6 +2780,117 @@ theorem LargerBall.rho1_no_circulo_de_Li : ‖1 − 1/ρ₁‖ = 1
 
 **Axiomas:** as 63 declarações novas dependem de `[propext, Classical.choice, Quot.sound]`. Não há
 `Lean.ofReduceBool`. Estão fixadas em `ClayRiemannProof/AuditThirteen.lean`.
+
+## 49. O padrão dos sete problemas do milênio, comparados
+
+Arquivo: `ClayRiemannProof/Milenio.lean` (19 declarações). Esta seção compara os sete problemas pelos mesmos eixos.
+As citações são teoremas publicados, não formalizados aqui, exceto onde a coluna "no kernel" diz o contrário.
+
+**O padrão.** Os sete têm a mesma forma: "para todo objeto `X` de uma família infinita, vale `P(X)`". E em todos
+aparecem as mesmas cinco peças:
+
+1. **Um caso baixo provado**, em dimensão, posto, tipo ou tamanho dos dados.
+2. **Um resultado de "quase todo" provado** (proporção positiva, média, objeto genérico), mas não "todo".
+3. **Um vizinho falso**: um objeto com a mesma estrutura mole em que `P` falha. Ele mostra qual ingrediente a prova
+   tem de usar, porque toda prova que só use a estrutura mole provaria também o vizinho.
+4. **Um limiar crítico**, que é o centro de uma simetria ou a escala crítica, onde os métodos conhecidos param (§45).
+5. **A refutação seria um único objeto**, mas só na RH esse objeto se confere com uma conta finita: a RH é `Π₁` (§43).
+
+O único resolvido seguiu esse roteiro. A esfera de homologia de Poincaré (1904) mostrou que "homologia de `S³`" não
+basta e que o ingrediente é `π₁`. Perelman (2002–2003) usou `π₁ = 1` com uma quantidade monótona (a entropia do
+fluxo de Ricci com cirurgia).
+
+**Tabela 1: o vizinho falso e o ingrediente.**
+
+| problema | estrutura mole | vizinho falso (`P` falha) | ingrediente que a prova tem de usar | no kernel |
+|---|---|---|---|---|
+| Poincaré (resolvido) | homologia de `S³` | esfera de homologia de Poincaré (1904): `H₁ = 0`, `π₁` de ordem 120 | `π₁ = 1` | `homologia_nao_ve_pi1` (novo) |
+| RH | equação funcional e continuação | Davenport–Heilbronn (1936); zetas de Epstein (§39: `m² + 5n²`, 13 pares fora até `Im 100`); Ihara de grafo não Ramanujan | produto de Euler (positividade local `λ² ≤ 4q`) | `Geometrias.prisma_nao_ramanujan`, `Nos.no_discriminante` |
+| P vs NP | provas que relativizam, naturais ou algebrizantes | oráculos com `P^A = NP^A` e `P^B ≠ NP^B` (Baker–Gill–Solovay 1975); provas naturais (Razborov–Rudich 1997); algebrização (Aaronson–Wigderson 2009) | uma técnica fora das três barreiras, sobre uma função explícita | `existe_funcao_dificil`, `dificil_10_60` (novos) |
+| Navier–Stokes | identidade de energia e estimativas harmônicas | a NS "média" de Tao (2016): mesma energia, explode em tempo finito | a estrutura fina de `(u·∇)u` | `Fracoes.energia_supercritica` |
+| Yang–Mills | teoria de gauge em 4D, invariante de escala clássica | Maxwell `U(1)`: fóton sem massa, `β₀ < 0`; `φ⁴₄` trivial (Aizenman–Duminil-Copin 2021) | grupo não abeliano (`β₀ > 0`) | `abeliano_sem_liberdade`, `nao_abeliano_puro` (novos) |
+| Hodge | classes de tipo `(p, p)` | coeficientes inteiros: Atiyah–Hirzebruch (1962); Kähler não projetiva: Voisin (2002) | coeficientes racionais e projetividade | `Maquina.positividade_iff` (só a positividade local) |
+| BSD | função `L`, equação funcional, modularidade | nenhum conhecido; a barreira é o posto analítico `≥ 2`, onde não há pontos de Heegner | um sistema de Euler para posto `≥ 2` | `Maquina.hasse_E0_97` (RH local) |
+
+**Tabela 2: o que está provado e onde para.**
+
+| problema | caso baixo provado | "quase todo" provado | limiar (§45) | estado em novembro de 2026 |
+|---|---|---|---|---|
+| Poincaré | `n ≥ 5` (Smale 1961), `n = 4` topológico (Freedman 1982) | — | dimensão 3 | resolvido (Perelman); prêmio recusado em 2010 |
+| RH | zeros até `3·10¹²` (Platt–Trudgian 2021) e a continuação (§31); o primeiro zero na reta pelo kernel (§47–§48) | `≥ 41,7%` dos zeros na reta (Pratt–Robles–Zaharescu–Zeindler 2020); quase todos a `ε` da reta (Bohr–Landau 1914) | `Re s = ½` | aberto |
+| P vs NP | 2-SAT em P | quase toda função de `n` bits pede `~2ⁿ/n` portas (Shannon 1949) | 3-SAT em `α ≈ 4,27`; o melhor explícito é `3,1n − o(n)` (Li–Yang 2022) | aberto |
+| Navier–Stokes | 2D global (Leray, Ladyzhenskaya); dados pequenos (Fujita–Kato 1964, Koch–Tataru 2001) | soluções fracas globais (Leray 1934); o conjunto singular tem medida parabólica 1D nula (Caffarelli–Kohn–Nirenberg 1982) | `2/p + 3/q = 1`; a energia dá `3/2` | com força externa: explosão anunciada pela OpenAI (8/9/2026); o Clay disse que o problema "parece resolvido" e que a revisão é "deliberadamente sem pressa"; sem força: aberto |
+| Yang–Mills | QFTs interagentes em 2D e 3D (Glimm–Jaffe e outros); na rede, gap em acoplamento forte (Osterwalder–Seiler 1978) | — | dimensão 4 (acoplamento sem dimensão) | aberto |
+| Hodge | tipo `(1, 1)` (Lefschetz 1924) e, por Lefschetz forte, classes de curvas | — | `(p, p)` com `2 ≤ p ≤ n − 2` | aberto |
+| BSD | posto analítico 0 e 1 (Gross–Zagier 1986, Kolyvagin 1988) | mais de 66% das curvas, ordenadas por altura (Bhargava–Skinner–Zhang 2014) | `s = 1`, centro da equação funcional | aberto |
+
+**O que o kernel prova (novo, `Milenio.lean`).**
+
+- **Poincaré:**
+  - `abeliano_mata_relacoes`: num grupo comutativo, `(st)² = s³ = t⁵` obriga `s = t = 1`. Esse é o `H₁ = 0` do grupo
+    `⟨s, t | (st)² = s³ = t⁵⟩`, o `π₁` da esfera de homologia.
+  - `relacoes_SL25`: as matrizes `S = [[0, 2], [2, 1]]` e `T = [[2, 1], [1, 1]]` de `SL(2, 𝔽₅)` satisfazem as mesmas
+    relações (as três valem `−I`), com `S ≠ I` e `ST ≠ TS`.
+  - Juntos (`homologia_nao_ve_pi1`): a homologia não vê o grupo fundamental.
+- **Yang–Mills:** `abeliano_sem_liberdade` e `nao_abeliano_puro`. Com `β₀ = (11/3)C_A − (2/3)n_f`, o abeliano
+  (`C_A = 0`) com matéria tem `β₀ < 0`, e `SU(N)` puro tem `β₀ = 11N/3 > 0`.
+- **P vs NP:** contagem de Shannon com circuitos de verdade, em que cada porta é uma das 16 funções de dois bits
+  (base `B₂`).
+  - `existe_funcao_dificil`: se `16ˢ(n + s)²ˢ < 2^(2ⁿ)`, alguma função de `n` bits não tem circuito de `s` portas.
+  - Há função de 6 bits sem circuito de 5 portas, e de 10 bits sem circuito de 60 (`dificil_6_5`, `dificil_10_60`).
+  - Os circuitos de 5 portas cobrem menos de `1/600` das `2⁶⁴` funções de 6 bits (`poucas_faceis_6_5`).
+  - A prova não diz qual função é difícil. Isso é exatamente o que falta: o melhor resultado para uma função
+    explícita é linear, `3,1n − o(n)`.
+- **`padrao_no_kernel`** junta os quatro pares: RH local (Petersen com a RH de Ihara, o prisma sem ela), Poincaré,
+  Yang–Mills e P vs NP.
+
+**Comparação: onde os problemas diferem.**
+
+- **O lado esperado.** RH, BSD, Hodge e Yang–Mills são esperados verdadeiros, e em P vs NP espera-se `P ≠ NP`.
+  Navier–Stokes é o único em que o vizinho falso virou caminho: a NS média de Tao (2016) explode, e em 2026 apareceu
+  a explosão com força externa (casos (C) e (D) do enunciado de Fefferman), ainda não aceita.
+- **O tipo do ingrediente.**
+  - Aritmético: produto de Euler (RH), sistemas de Euler (BSD), racionalidade e projetividade (Hodge).
+  - Topológico ou algébrico: `π₁` (Poincaré), grupo não abeliano (Yang–Mills).
+  - Analítico: a forma da não linearidade (Navier–Stokes).
+  - Lógico: técnicas que não relativizam (P vs NP).
+- **Quanto custa refutar.**
+  - RH: um único `n` na desigualdade de Lagarias, conferível em tempo finito (§43).
+  - P vs NP: `P ≠ NP` é `Π₂`; seria refutada por um algoritmo polinomial para SAT, com prova de correção e de tempo.
+  - Navier–Stokes, Hodge e BSD: um único objeto (um dado inicial, uma variedade, uma curva), mas a propriedade que o
+    refuta é de um objeto infinito, e precisa de prova, não de conta.
+- **O ponto comum com as seções anteriores.** O limiar é sempre o ponto em que uma quantidade controlada fica no
+  limite: a reta da equação funcional (RH, BSD), o tipo do meio (Hodge), a escala crítica (Navier–Stokes, 4D em
+  Yang–Mills). A positividade `λ² ≤ 4q` da §44 é o mesmo nó em RH, Hodge e BSD.
+
+**O que isto NÃO é:**
+
+- Não é prova nem refutação de nenhum problema: os modelos do kernel são os vizinhos que a literatura já conhece.
+- O padrão é uma comparação de estrutura (heurística), não um teorema que valha para os sete ao mesmo tempo.
+- Os anúncios de 2026 (Navier–Stokes com força; resultados parciais divulgados pela OpenAI em 6/10/2026 sobre RH, BSD
+  e Hodge) estão em revisão e não foram aceitos.
+- `OPEN_MATH = true`.
+
+**Axiomas:** as 19 declarações estão fixadas em `ClayRiemannProof/Audit.lean`. `Circuito` não depende de nenhum
+axioma; `abeliano_mata_relacoes`, `porta`, `fios` e `funcao` usam `[propext]`; `S5` e `T5` usam
+`[propext, Quot.sound]`; as demais usam `[propext, Classical.choice, Quot.sound]`.
+
+**Fontes:**
+
+- Clay Mathematics Institute, lista dos problemas: https://claymath.org/millennium-prize-problems
+- Tao, *Finite time blowup for an averaged three-dimensional Navier–Stokes equation*, JAMS 29 (2016):
+  https://arxiv.org/abs/1402.0290
+- Aizenman e Duminil-Copin, *Marginal triviality of the scaling limits of critical 4D Ising and `φ⁴₄` models*,
+  Annals 194 (2021): https://annals.math.princeton.edu/2021/194-1/p03
+- Voisin, *A counterexample to the Hodge conjecture for Kähler varieties* (2002): https://arxiv.org/abs/math/0112247
+- Bhargava, Skinner e Zhang, *A majority of elliptic curves over Q satisfy the BSD conjecture* (2014):
+  https://arxiv.org/abs/1407.1826
+- Goldston e Suriajaya (2026), que cita os 41,7% de Pratt–Robles–Zaharescu–Zeindler (2020):
+  https://arxiv.org/abs/2511.20059
+- Li e Yang, `3,1n − o(n)` *circuit lower bounds for explicit functions* (STOC 2022):
+  https://eccc.weizmann.ac.il/report/2021/023/
+- Navier–Stokes em 2026: the-decoder (14/9/2026), https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled/;
+  https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy
 
 ## Autor
 
