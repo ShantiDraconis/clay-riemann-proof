@@ -51,5 +51,6 @@ import ClayRiemannProof.Forca
 import ClayRiemannProof.Empurrao
 import ClayRiemannProof.Leis
 import ClayRiemannProof.Correcoes
+import ClayRiemannProof.Absorcao
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
