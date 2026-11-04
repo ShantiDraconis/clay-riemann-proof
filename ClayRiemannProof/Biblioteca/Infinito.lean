@@ -1,5 +1,6 @@
 import ClayRiemannProof.Biblioteca.Reducao
 import ClayRiemannProof.Biblioteca.Lagarias
+import ClayRiemannProof.Biblioteca.Refutacao
 
 /-!
 # Reduzir o infinito: até onde dá
@@ -42,5 +43,23 @@ theorem formas_do_infinito (hL : CriterioDeLagarias) :
   ⟨rh_iff_caixas (by norm_num) (by norm_num)
       (fun s hs h => absurd hs.1 (HeightThirteen.faixa_sem_zeros hs.2.1 hs.2.2 h)),
     hL, FiniteWorlds.target_iff_todos_os_mundos⟩
+
+/-- **A refutação pela densidade**: RH falsa ⟺ existem `σ > ½` e `T` com `N(σ, T) ≥ 1`, isto é, um zero com
+`Re s ≥ σ` e `0 < Im s ≤ T`. Uma cota superior para `N(σ, T)` não refuta nada; refutar é exibir um. -/
+theorem nao_rh_iff_densidade :
+    ¬ RiemannHypothesis ↔
+      ∃ σ : ℝ, 1 / 2 < σ ∧ ∃ T : ℝ, ∃ s ∈ Zeta.Symmetry.Z, σ ≤ s.re ∧ 0 < s.im ∧ s.im ≤ T := by
+  rw [rh_iff_quarto]
+  constructor
+  · intro h
+    push_neg at h
+    obtain ⟨s, hs, him, hre⟩ := h
+    exact ⟨s.re, hre, s.im, s, hs, le_rfl, by linarith, le_rfl⟩
+  · rintro ⟨σ, hσ, T, s, hs, hσs, him, _⟩ hall
+    by_cases h13 : 13 < s.im
+    · have := hall s hs h13
+      linarith
+    · push_neg at h13
+      exact absurd hs.1 (HeightThirteen.faixa_sem_zeros hs.2.1 hs.2.2 (by rw [abs_of_pos him]; exact h13))
 
 end ClayRiemannProof.Biblioteca

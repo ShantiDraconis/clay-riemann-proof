@@ -2198,6 +2198,18 @@ não some, muda de tipo:
 Abaixo disso não há redução: passar de "para todo `n`" a finitos casos exige um teorema que limite onde um
 contraexemplo poderia estar, e esse teorema é do tamanho de RH.
 
+**Refutação indireta, sem achar zero fora da reta** (`Biblioteca/Refutacao.lean`, `computations/infinito/psi_mertens.py`):
+
+| critério (hipótese nomeada) | RH ⟺ | o que refutaria | conferido até `x = 10⁸` |
+|---|---|---|---|
+| von Koch | `ψ(x) − x = O(√x·log²x)` | uma sequência `x_n` com `|ψ − x|/(√x·log²x)` acima de toda constante (`refuta_por_psi`) | — |
+| Schoenfeld (explícito) | `|ψ(x) − x| < √x·log²x/(8π)` para `x ≥ 73,2` | **um único `x`** acima da cota (`nao_rh_iff_um_x`) | nenhuma violação; a razão máxima é 0,03961 em `x = 89` (o limite é `1/(8π) = 0,03979`) |
+| Littlewood | `M(x) = O(x^{1/2+ε})` para todo `ε > 0` | `ε > 0` e `|M(x)|/x^{1/2+ε}` sem limite (`refuta_por_mertens`) | `max |M(x)|/√x = 0,566` para `x ≥ 200`; `|M(10⁸)| = 1 928` |
+| densidade | `N(σ, T) = 0` para todo `σ > ½`, `T` | um zero com `Re s ≥ σ > ½` (`nao_rh_iff_densidade`); cota superior para `N(σ, T)` não refuta | `N(½ + δ, 3 000 181 942 471) = 0` (§31) |
+
+A conjectura de Mertens (`|M(x)| ≤ √x`) implicaria RH (`rh_de_mertens`), mas é falsa (Odlyzko–te Riele, 1985) e
+isso não refuta RH: a falha de `|M| ≤ √x` não dá crescimento `x^{1/2+ε}`.
+
 **O que não é entrada**: cota `λ < 0` de par de Lehmer (mais fraca que `Λ ≥ 0`), média ½ de uma reparametrização
 (vale para qualquer lista), produto de Euler em `σ = ½` (diverge), qualquer altura finita. A existência do operador de
 Hilbert–Pólya é equivalente a RH (com RH, o operador diagonal com os `γ` serve): a ponte diz a forma de uma prova,

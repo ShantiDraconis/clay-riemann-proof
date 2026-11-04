@@ -2584,6 +2584,21 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Biblioteca.formas_do_infinito' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Biblioteca.formas_do_infinito
 
+/-- info: 'ClayRiemannProof.Biblioteca.refuta_por_psi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.refuta_por_psi
+
+/-- info: 'ClayRiemannProof.Biblioteca.nao_rh_iff_um_x' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.nao_rh_iff_um_x
+
+/-- info: 'ClayRiemannProof.Biblioteca.refuta_por_mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.refuta_por_mertens
+
+/-- info: 'ClayRiemannProof.Biblioteca.rh_de_mertens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.rh_de_mertens
+
+/-- info: 'ClayRiemannProof.Biblioteca.nao_rh_iff_densidade' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Biblioteca.nao_rh_iff_densidade
+
 /-! ## `ClayRiemannProof/Alturas.lean` -/
 
 /-- info: 'ClayRiemannProof.Alturas.par_mais_fragil_1e14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
