@@ -2140,6 +2140,30 @@ tem zeros fora.
 de Weil (Castelnuovo); a ponte que falta para ζ é exatamente um análogo disso. Nada aqui prova ou refuta a RH.
 `OPEN_MATH = true`.
 
+## 41. Biblioteca RH: as entradas abertas e as pontes já provadas
+
+Arquivos: `ClayRiemannProof/Biblioteca.lean` e `ClayRiemannProof/Biblioteca/` (`HilbertPolya`, `Euler`, `Entradas`).
+O alvo é o `RiemannHypothesis` do Mathlib. Nenhuma entrada é `axiom`: cada uma é uma proposição, e a ponte dela até RH
+é um teorema no kernel (só axiomas padrão). Quem provar uma entrada fecha RH aqui sem mais trabalho formal.
+
+| rota | entrada aberta | ponte no kernel |
+|---|---|---|
+| espectral (Hilbert–Pólya) | existe um operador simétrico com cada zero `ρ = ½ + iμ` dando o autovalor `μ` (`HilbertPolya`) | `rh_de_hilbertPolya`: autovalor de operador simétrico é real (Mathlib), logo `Re ρ = ½` |
+| fluxo do calor | `Λ ≤ 0` (com o teorema clássico `RH ⟺ Λ ≤ 0` como hipótese nomeada) | `rotas_para_rh`; com Rodgers–Tao, RH ⟺ `Λ = 0` e `Λ < 0` é impossível (`lambda_com_rodgers_tao`) |
+| Li | `λ_n ≥ 0` para todo `n` (com o critério de Li como hipótese nomeada) | `rotas_para_rh` |
+| um lado só | nenhum zero com `Re s > ½` | `rh_de_metade`: a reflexão da equação funcional dá o outro lado |
+| Báez-Duarte | `D_N → 0` | `equivalencias_sem_hipotese` (equivalência provada, sem hipótese) |
+| verificação | RH até `Z` para todo `Z` | `verificacao`: equivalência provada; e RH falsa ⟺ contraexemplo numa altura finita |
+
+Euler (`Biblioteca/Euler.lean`): o produto vale em `Re s > 1` (`produto_de_euler`), ζ não se anula em `Re s ≥ 1`
+(`sem_zeros_re_ge_um`), e as somas sobre primos têm três fronteiras: `σ > 1` (produto absoluto), `σ > ½` (soma dos
+quadrados) e divergência em `σ = ½` (`fronteiras_de_euler`). Passar do produto para os zeros da faixa é o problema.
+
+**O que não é entrada**: cota `λ < 0` de par de Lehmer (mais fraca que `Λ ≥ 0`), média ½ de uma reparametrização
+(vale para qualquer lista), produto de Euler em `σ = ½` (diverge), qualquer altura finita. A existência do operador de
+Hilbert–Pólya é equivalente a RH (com RH, o operador diagonal com os `γ` serve): a ponte diz a forma de uma prova,
+não a encurta. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
