@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 104 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 122 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 489 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 507 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3071,6 +3071,74 @@ Arquivo: `ClayRiemannProof/Aurea.lean`, §7 (8 declarações novas: `rot90`, `ro
 **O que NÃO é:** a cruz das quatro cópias não é a estrutura de `ζ`, porque a rotação de 90° não preserva os zeros. Ela
 não localiza nem exclui zeros fora da reta além do que o kernel já tinha (a faixa até 13 e o ângulo `< 1/26`).
 `OPEN_MATH = true`.
+
+## 53. Oito cópias giradas de 45° em torno do 0 absoluto: onde um zero fora da reta pode estar
+
+Arquivos: `ClayRiemannProof/Aurea.lean`, §8 (18 declarações novas); `computations/aurea/oito_copias.py`
+(→ `oito_copias.json`) e `figura_oito_copias.py` (→ `oito_copias.png`).
+
+**A construção.** Oito cópias da estrutura de Riemann, todas presas no 0 e giradas de 0°, 45°, …, 315°. A cópia `k` é
+`s ↦ ωᵏs`, com `ω = e^{iπ/4} = (1 + i)/√2`, e a cópia 0 é `ζ`.
+
+**O que o kernel prova.**
+
+- `omega8_sq`, `omega8_pow_four`, `omega8_pow_eight`: `ω² = i`, `ω⁴ = −1`, `ω⁸ = 1`. Diferente da §52, a meia volta em
+  torno do 0 é `s ↦ −s`, e não a simetria `s ↦ 1 − s` de `ζ`.
+- `oito_copias_no_zero`: as sete cópias `k = 1, …, 7` tiram **todo** zero não trivial da faixa crítica. As de 45°·ímpar,
+  90° e 270° levam o zero para `|Re| > 8` (`gira_longe`); a de 180° o leva para `−1 < Re < 0`.
+- `oito_copias_disjuntas`: se `ωʲρ = ωᵏρ'` com `ρ` e `ρ'` zeros não triviais, então `j ≡ k (mod 8)` e `ρ = ρ'`. Nenhum
+  ponto é zero de duas cópias.
+- `meia_volta_no_zero_translada`: a meia volta no 0 seguida de `s ↦ 1 − s` é a translação `s ↦ s + 1`.
+- `meia_volta_simetria_iff`: para um pivô real `c`, a meia volta `s ↦ 2c − s` leva zeros em zeros **se e só se**
+  `c = ½`. O 0 absoluto não é pivô de simetria de `ζ`.
+- `zeros_nos_raios`: em qualquer cópia, cada zero fica a menos de `1/13` rad (4,41°) do seu raio. Como `2/13 < π/4`,
+  as cunhas de raios vizinhos não se tocam.
+- `copias_da_reta_tangentes`: cada reta crítica copiada é tangente ao círculo `|s| = ½`, no ponto `ωᵏ/2`. As oito
+  cercam um octógono regular de apótema ½.
+- `oito_copias_no_meio` (comparação com o pivô ½): a cópia de 180° é `s ↦ 1 − s`, então as oito se juntam duas a duas e
+  só há 4 cópias distintas. As de 45°·ímpar, 90° e 270° tiram todo zero da faixa.
+
+**As contas** (`oito_copias.py`; os zeros de `ζ` até a altura 100 são achados com `zeta_em`, sem certificado, só para
+desenhar).
+
+- Perto do 0 as 8 retas críticas copiadas se cruzam. Retas com `Δk = 1, 2, 3` se cruzam a `|s| = ½/cos(Δk·π/8)`, isto
+  é, 0,541, 0,707 e 1,307; com `Δk = 4` são paralelas, a distância 1. Todo cruzamento fica em `|s| ≤ 1,307`, e o zero
+  mais perto do 0 está em `|s| = 14,14` (kernel: `> 13`).
+- Longe do 0 a figura é uma estrela de 8 braços, nas direções 90° + 45°k. Cada braço é um corredor de largura 1: de um
+  lado a reta crítica da cópia `k` (os zeros com `γ > 0`), do outro a da cópia `k + 4` (os zeros com `γ < 0`, levados
+  pela meia volta).
+- Com os 29 zeros até a altura 100 (e os conjugados) nas 8 cópias, nenhum ponto das cópias 1 a 7 cai na faixa. O menor
+  `|Re|` nas cópias de 45°·ímpar é 9,64 = (14,13 − ½)/√2. A menor distância entre zeros de cópias diferentes é 1: as
+  duas paredes do mesmo corredor.
+- O ponto de teste `0,2 + i` engana: girado em torno do 0, ele cai na faixa nas cópias de 225° (`0,566 − 0,849i`) e
+  315° (`0,849 + 0,566i`), e na borda `Re = 1` na de 270°. Isso só acontece porque `|Im| = 1` é pequeno; um zero
+  verdadeiro tem `|Im| > 13` e nunca entra.
+
+**Onde um zero fora da reta pode estar, nessa figura.** Suponha `ρ = ½ + b + iγ` zero, com `0 < |b| < ½` e `|γ| > 13`.
+
+- Nas 8 cópias o quarteto vira 32 pontos, em dois anéis em torno do 0, de raios `|½ + b + iγ|` e `|½ − b + iγ|`. Em
+  cada anel os pontos formam pares a `±ε` dos 8 raios, com `ε = arctan((½ ± b)/|γ|) < 1/13` rad.
+- Visto de dentro de um braço, o quarteto são 4 pontos à mesma distância do 0, com desvios `±½ ± b` do eixo: um par em
+  volta de cada parede, a `|b|` dela.
+- Os anéis nunca são polígonos regulares de 16 lados. Isso exigiria `ε = π/16` (11,25°), ou seja,
+  `|γ| = (½ ± b)·cot(π/16) < 5,03`, e o kernel dá `|γ| > 13`. O ponto de teste `0,2 + i` quase forma um (lacunas de
+  22,62° e 22,38°), porque `0,2 ≈ tan(π/16) = 0,1989`.
+- Com pivô ½ (comparação), o quarteto vira 16 pontos `½ + ωᵏ(±b ± iγ)`, em pares a `±δ` dos 8 raios, com
+  `δ = arctan(|b|/|γ|) < 1/26`. O 16-ágono regular só ocorre em `γ/b = cot(π/16) = 5,027`; o octógono das 4 cópias
+  (§52), em `1 + √2`.
+
+| caso | `γ/b` | pivô ½: lacunas dos 16 pontos | pivô 0: lacunas nos dois anéis |
+|---|---|---|---|
+| ponto de teste `0,2 + i` (não é zero) | 3,33 | 33,40° e 11,60° | anel 1: 22,62° e 22,38°; anel 2: 32,32° e 12,68° |
+| 1º quarteto fora da reta de Epstein `m² + 5n²` (`γ = 15,67`) | 36,2 | 3,17° e 41,83° | anel 1: 6,82° e 38,18°; anel 2: 0,49° e 44,51° |
+| 1º de Davenport–Heilbronn (`γ = 85,70`) | 277,8 | 0,41° e 44,59° | anel 1: 1,08° e 43,92°; anel 2: 0,26° e 44,74° |
+| zero fora da reta de `ζ`, se existir (kernel) | `> 26` | `2δ < 4,41°` | lacuna pequena `2ε < 8,82°` |
+
+**O que NÃO é:** girar em torno do 0 não é simetria de `ζ`; o único pivô real é ½. As 7 cópias não produzem nem
+excluem zeros. A figura dá a forma (pares colados aos raios, corredores de largura 1, ângulo `< 1/13`), mas não a
+posição. Juntar as 8 rotações no 0 com `s ↦ 1 − s` gera translações por `1, ω, i, …`, e portanto por `ℤ[ω] ⊇ ℤ + √2ℤ`,
+que é denso; um conjunto discreto e não vazio de zeros não pode ser fechado por todas elas. (A conta das translações é
+elementar; a densidade é fato conhecido e não está no kernel.) `OPEN_MATH = true`.
 
 ## Autor
 

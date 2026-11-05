@@ -3636,3 +3636,57 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Aurea.octeto_colado_aos_bracos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Aurea.octeto_colado_aos_bracos
+
+/-- info: 'ClayRiemannProof.Aurea.omega8' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8
+
+/-- info: 'ClayRiemannProof.Aurea.meio_raiz_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.meio_raiz_dois
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_mul_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_mul_re
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_mul_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_mul_im
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_sq
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_pow_four' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_pow_four
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_pow_eight' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_pow_eight
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_pows' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_pows
+
+/-- info: 'ClayRiemannProof.Aurea.omega8_pow_mod' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.omega8_pow_mod
+
+/-- info: 'ClayRiemannProof.Aurea.norm_omega8' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.norm_omega8
+
+/-- info: 'ClayRiemannProof.Aurea.gira_longe' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.gira_longe
+
+/-- info: 'ClayRiemannProof.Aurea.oito_copias_no_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.oito_copias_no_zero
+
+/-- info: 'ClayRiemannProof.Aurea.oito_copias_disjuntas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.oito_copias_disjuntas
+
+/-- info: 'ClayRiemannProof.Aurea.oito_copias_no_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.oito_copias_no_meio
+
+/-- info: 'ClayRiemannProof.Aurea.meia_volta_no_zero_translada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.meia_volta_no_zero_translada
+
+/-- info: 'ClayRiemannProof.Aurea.meia_volta_simetria_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.meia_volta_simetria_iff
+
+/-- info: 'ClayRiemannProof.Aurea.zeros_nos_raios' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.zeros_nos_raios
+
+/-- info: 'ClayRiemannProof.Aurea.copias_da_reta_tangentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.copias_da_reta_tangentes

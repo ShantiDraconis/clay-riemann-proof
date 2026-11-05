@@ -293,4 +293,239 @@ theorem octeto_colado_aos_bracos {ρ : ℂ} (hρ : ρ ∈ Z) (hb : ρ.re ≠ 1 /
   rw [← arctan_inv_of_pos hx, inv_div] at h
   exact h
 
+/-! ## 8. Oito cópias giradas de 45° em torno do 0 absoluto -/
+
+/-- `ω = (√2/2)(1 + i) = e^{iπ/4}`: multiplicar por `ω` gira 45° em torno do 0. -/
+noncomputable def omega8 : ℂ := ((√2 / 2 : ℝ) : ℂ) * (1 + I)
+
+theorem meio_raiz_dois : (7 / 10 : ℝ) < √2 / 2 ∧ √2 / 2 < 1 := by
+  have h1 : (7 / 5 : ℝ) < √2 := (Real.lt_sqrt (by norm_num)).mpr (by norm_num)
+  have h2 : √2 < 2 := (Real.sqrt_lt' (by norm_num)).mpr (by norm_num)
+  constructor <;> linarith
+
+theorem omega8_mul_re (s : ℂ) : (omega8 * s).re = √2 / 2 * (s.re - s.im) := by
+  simp [omega8, Complex.mul_re, Complex.mul_im]
+  ring
+
+theorem omega8_mul_im (s : ℂ) : (omega8 * s).im = √2 / 2 * (s.re + s.im) := by
+  simp [omega8, Complex.mul_re, Complex.mul_im]
+  ring
+
+/-- **Duas rotações de 45° são `i`, quatro são `−1` (meia volta em torno do 0, `s ↦ −s`), oito voltam ao início.** -/
+theorem omega8_sq : omega8 ^ 2 = I := by
+  have h : ((√2 / 2 : ℝ) : ℂ) ^ 2 = 1 / 2 := by
+    rw [← Complex.ofReal_pow, div_pow, Real.sq_sqrt (by norm_num)]
+    norm_num
+  rw [omega8, mul_pow, h]
+  linear_combination (1 / 2 : ℂ) * I_sq
+
+theorem omega8_pow_four : omega8 ^ 4 = -1 := by
+  rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, omega8_sq, I_sq]
+
+theorem omega8_pow_eight : omega8 ^ 8 = 1 := by
+  rw [show (8 : ℕ) = 4 * 2 from rfl, pow_mul, omega8_pow_four]
+  norm_num
+
+theorem omega8_pows : omega8 ^ 3 = I * omega8 ∧ omega8 ^ 5 = -omega8 ∧ omega8 ^ 6 = -I ∧
+    omega8 ^ 7 = -(I * omega8) := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [pow_succ, omega8_sq]
+  · rw [pow_succ, omega8_pow_four]
+    ring
+  · rw [show (6 : ℕ) = 4 + 2 from rfl, pow_add, omega8_pow_four, omega8_sq]
+    ring
+  · rw [show (7 : ℕ) = 4 + 2 + 1 from rfl, pow_add, pow_add, omega8_pow_four, omega8_sq]
+    ring
+
+theorem omega8_pow_mod (k : ℕ) : omega8 ^ k = omega8 ^ (k % 8) := by
+  conv_lhs => rw [← Nat.div_add_mod k 8, pow_add, pow_mul, omega8_pow_eight, one_pow, one_mul]
+
+theorem norm_omega8 : ‖omega8‖ = 1 := by
+  have h : ‖omega8‖ ^ 2 = 1 := by
+    rw [Complex.sq_norm, Complex.normSq_apply]
+    have hr : omega8.re = √2 / 2 := by simpa using omega8_mul_re 1
+    have hi : omega8.im = √2 / 2 := by simpa using omega8_mul_im 1
+    rw [hr, hi]
+    nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
+  have h0 := norm_nonneg omega8
+  nlinarith
+
+private theorem oito_lt {a t : ℝ} (ha : 7 / 10 < a) (ht : 12 < |t|) : 8 < |a * t| := by
+  rw [abs_mul, abs_of_pos (by linarith)]
+  nlinarith [mul_pos (sub_pos.2 ha) (sub_pos.2 ht)]
+
+/-- **Longe da faixa**: se `|Re w| < 1` e `|Im w| > 13`, girar `w` de `45°·k` em torno do 0, com `k` não múltiplo de
+4, leva a parte real para `|Re| > 8`. -/
+theorem gira_longe {w : ℂ} (hr : |w.re| < 1) (hi : 13 < |w.im|) {k : ℕ} (hk : k % 4 ≠ 0) :
+    8 < |(omega8 ^ k * w).re| := by
+  have ha := meio_raiz_dois.1
+  rw [abs_lt] at hr
+  have hm : 12 < |w.re - w.im| := by
+    rcases lt_abs.mp hi with h | h
+    · exact lt_abs.mpr (Or.inr (by linarith))
+    · exact lt_abs.mpr (Or.inl (by linarith))
+  have hp : 12 < |w.re + w.im| := by
+    rcases lt_abs.mp hi with h | h
+    · exact lt_abs.mpr (Or.inl (by linarith))
+    · exact lt_abs.mpr (Or.inr (by linarith))
+  rw [omega8_pow_mod]
+  obtain ⟨r, hr8, hrk⟩ : ∃ r, r < 8 ∧ k % 8 = r := ⟨_, Nat.mod_lt _ (by norm_num), rfl⟩
+  have hr4 : r ≠ 0 ∧ r ≠ 4 := by omega
+  rw [hrk]
+  interval_cases r
+  · exact absurd rfl hr4.1
+  · rw [pow_one, omega8_mul_re]
+    exact oito_lt ha hm
+  · rw [omega8_sq, Complex.I_mul_re, abs_neg]
+    linarith
+  · rw [omega8_pows.1, mul_assoc, Complex.I_mul_re, omega8_mul_im, abs_neg]
+    exact oito_lt ha hp
+  · exact absurd rfl hr4.2
+  · rw [omega8_pows.2.1, neg_mul, Complex.neg_re, abs_neg, omega8_mul_re]
+    exact oito_lt ha hm
+  · rw [omega8_pows.2.2.1, neg_mul, Complex.neg_re, Complex.I_mul_re, neg_neg]
+    linarith
+  · rw [omega8_pows.2.2.2, neg_mul, Complex.neg_re, mul_assoc, Complex.I_mul_re, neg_neg, omega8_mul_im]
+    exact oito_lt ha hp
+
+/-- **As sete cópias giradas em torno do 0 tiram todo zero não trivial da faixa**: para `k = 1, …, 7` (45°, …, 315°),
+`ωᵏρ ∉ Z`. As de 45°·ímpar, 90° e 270° levam `ρ` para `|Re| > 8`; a de 180° (`s ↦ −s`) para `−1 < Re < 0`. -/
+theorem oito_copias_no_zero {ρ : ℂ} (hρ : ρ ∈ Z) {k : ℕ} (hk : k % 8 ≠ 0) : omega8 ^ k * ρ ∉ Z := by
+  have h13 := HeightThirteen.primeiro_zero_entre.2 ρ hρ
+  obtain ⟨-, h0, h1⟩ := hρ
+  rintro ⟨-, g0, g1⟩
+  by_cases h4 : k % 4 = 0
+  · have hk4 : k % 8 = 4 := by omega
+    rw [omega8_pow_mod, hk4, omega8_pow_four, neg_one_mul, Complex.neg_re] at g0
+    linarith
+  · have := gira_longe (w := ρ) (by rw [abs_lt]; constructor <;> linarith) h13 h4
+    rcases lt_abs.mp this with h | h <;> linarith
+
+/-- **As oito cópias têm zeros disjuntos**: se `ωʲρ = ωᵏρ'` com `ρ, ρ'` zeros não triviais, então `j ≡ k (mod 8)` e
+`ρ = ρ'`. Nenhum ponto é zero de duas cópias. -/
+theorem oito_copias_disjuntas {ρ ρ' : ℂ} (hρ : ρ ∈ Z) (hρ' : ρ' ∈ Z) {j k : ℕ}
+    (h : omega8 ^ j * ρ = omega8 ^ k * ρ') : j % 8 = k % 8 ∧ ρ = ρ' := by
+  have h8 : omega8 ^ (8 * k) = 1 := by rw [pow_mul, omega8_pow_eight, one_pow]
+  have e : ρ' = omega8 ^ (j + 7 * k) * ρ := by
+    calc ρ' = omega8 ^ (8 * k) * ρ' := by rw [h8, one_mul]
+      _ = omega8 ^ (7 * k) * (omega8 ^ k * ρ') := by rw [← mul_assoc, ← pow_add]; ring_nf
+      _ = omega8 ^ (7 * k) * (omega8 ^ j * ρ) := by rw [h]
+      _ = omega8 ^ (j + 7 * k) * ρ := by rw [← mul_assoc, ← pow_add, add_comm]
+  have hm : (j + 7 * k) % 8 = 0 := by
+    by_contra hne
+    exact oito_copias_no_zero hρ hne (e ▸ hρ')
+  refine ⟨by omega, ?_⟩
+  rw [e, omega8_pow_mod, hm, pow_zero, one_mul]
+
+/-- **Em torno de ½ as oito cópias se juntam duas a duas**: a de `180°` (e `k ≡ 4 mod 8`) é a tensão `s ↦ 1 − s`, uma
+simetria de `ζ`; as de `45°·ímpar`, `90°` e `270°` tiram todo zero da faixa. -/
+theorem oito_copias_no_meio {ρ : ℂ} (hρ : ρ ∈ Z) {k : ℕ} :
+    (k % 4 ≠ 0 → 1 / 2 + omega8 ^ k * (ρ - 1 / 2) ∉ Z) ∧
+    (k % 8 = 4 → 1 / 2 + omega8 ^ k * (ρ - 1 / 2) = tensao ρ) := by
+  have h13 := HeightThirteen.primeiro_zero_entre.2 ρ hρ
+  obtain ⟨-, h0, h1⟩ := hρ
+  constructor
+  · intro hk
+    rintro ⟨-, g0, g1⟩
+    have hw : |(ρ - 1 / 2).re| < 1 := by
+      have : (ρ - 1 / 2).re = ρ.re - 1 / 2 := by simp
+      rw [this, abs_lt]
+      constructor <;> linarith
+    have hw' : 13 < |(ρ - 1 / 2).im| := by simpa using h13
+    have := gira_longe hw hw' hk
+    have e : (1 / 2 + omega8 ^ k * (ρ - 1 / 2)).re = 1 / 2 + (omega8 ^ k * (ρ - 1 / 2)).re := by simp
+    rw [e] at g0 g1
+    rcases lt_abs.mp this with h | h <;> linarith
+  · intro hk
+    rw [omega8_pow_mod, hk, omega8_pow_four]
+    simp only [tensao]
+    ring
+
+/-- **Meia volta em torno do 0 seguida da simetria de `ζ` é uma translação**: `1 − (−s) = s + 1`. -/
+theorem meia_volta_no_zero_translada (s : ℂ) : tensao (-s) = s + 1 := by
+  simp only [tensao]
+  ring
+
+/-- **O único pivô real cuja meia volta é simetria dos zeros é ½**: se `s ↦ 2c − s` (com `c` real) leva `Z` em `Z`,
+então `c = ½`. Com `c ≠ ½`, juntando com `s ↦ 1 − s` os zeros andariam de `±(1 − 2c)` sem fim e sairiam da faixa. -/
+theorem meia_volta_simetria_iff {c : ℝ} : (∀ ρ ∈ Z, 2 * (c : ℂ) - ρ ∈ Z) ↔ c = 1 / 2 := by
+  constructor
+  · intro h
+    by_contra hc
+    obtain ⟨ρ, hρ⟩ := ClayRiemannProof.CertifiedZeros.FirstZero.Z_nao_vazio
+    have hd0 : (1 - 2 * c : ℝ) ≠ 0 := by
+      intro e
+      apply hc
+      linarith
+    have mais : ∀ σ ∈ Z, σ + ((1 - 2 * c : ℝ) : ℂ) ∈ Z := by
+      intro σ hσ
+      have := tensao_mem_Z (h σ hσ)
+      convert this using 1
+      simp only [tensao]
+      push_cast
+      ring
+    have menos : ∀ σ ∈ Z, σ - ((1 - 2 * c : ℝ) : ℂ) ∈ Z := by
+      intro σ hσ
+      have := h _ (tensao_mem_Z hσ)
+      convert this using 1
+      simp only [tensao]
+      push_cast
+      ring
+    have it : ∀ n : ℕ, ρ + (n : ℂ) * ((1 - 2 * c : ℝ) : ℂ) ∈ Z ∧ ρ - (n : ℂ) * ((1 - 2 * c : ℝ) : ℂ) ∈ Z := by
+      intro n
+      induction n with
+      | zero => simpa using hρ
+      | succ n ih =>
+        constructor
+        · have := mais _ ih.1
+          convert this using 1
+          push_cast
+          ring
+        · have := menos _ ih.2
+          convert this using 1
+          push_cast
+          ring
+    have hpos : 0 < |1 - 2 * c| := abs_pos.mpr hd0
+    obtain ⟨n, hn⟩ := exists_nat_gt (1 / |1 - 2 * c|)
+    have hn' : 1 < n * |1 - 2 * c| := by rwa [div_lt_iff₀ hpos] at hn
+    obtain ⟨-, a0, a1⟩ := (it n).1
+    obtain ⟨-, b0, b1⟩ := (it n).2
+    obtain ⟨-, r0, r1⟩ := hρ
+    simp only [Complex.add_re, Complex.sub_re, Complex.mul_re, Complex.natCast_re, Complex.natCast_im,
+      Complex.ofReal_re, Complex.ofReal_im, mul_zero, sub_zero] at a0 a1 b0 b1
+    rcases abs_cases (1 - 2 * c) with ⟨e, -⟩ | ⟨e, -⟩
+    · rw [e] at hn'
+      linarith
+    · rw [e, mul_neg] at hn'
+      linarith
+  · rintro rfl ρ hρ
+    convert tensao_mem_Z hρ using 1
+    simp only [tensao]
+    push_cast
+    ring
+
+/-- **Em cada cópia, cada zero fica a menos de `1/13` rad do seu raio**: girar preserva ângulos, e `ρ` faz com o
+semieixo imaginário o ângulo `arctan(Re ρ/|Im ρ|)`, com `0 < Re ρ < 1` e `|Im ρ| > 13`. Como `2/13 < π/4`, as cunhas
+de raios vizinhos (a 45°) não se tocam. -/
+theorem zeros_nos_raios {ρ : ℂ} (hρ : ρ ∈ Z) :
+    0 < Real.arctan (ρ.re / |ρ.im|) ∧ Real.arctan (ρ.re / |ρ.im|) < 1 / 13 ∧ 2 / 13 < π / 4 := by
+  have h13 := HeightThirteen.primeiro_zero_entre.2 ρ hρ
+  obtain ⟨-, h0, h1⟩ := hρ
+  have hg : 0 < |ρ.im| := by linarith
+  have hy : 0 < ρ.re / |ρ.im| := div_pos h0 hg
+  refine ⟨arctan_pos.mpr hy, (arctan_lt_self hy).trans ?_, by linarith [Real.pi_gt_three]⟩
+  rw [div_lt_iff₀ hg]
+  linarith
+
+/-- **As oito retas críticas copiadas são tangentes ao círculo `|s| = ½`**: cada cópia `ωᵏ·{Re s = ½}` fica a
+distância `≥ ½` do 0 e toca o círculo em `ωᵏ/2`. As oito juntas cercam um octógono regular de apótema ½. -/
+theorem copias_da_reta_tangentes (k : ℕ) :
+    (∀ s : ℂ, s.re = 1 / 2 → 1 / 2 ≤ ‖omega8 ^ k * s‖) ∧ ‖omega8 ^ k * (1 / 2)‖ = 1 / 2 := by
+  have hk : ‖omega8 ^ k‖ = 1 := by rw [norm_pow, norm_omega8, one_pow]
+  refine ⟨fun s hs => ?_, ?_⟩
+  · rw [norm_mul, hk, one_mul, ← hs]
+    exact (le_abs_self _).trans (Complex.abs_re_le_norm s)
+  · rw [norm_mul, hk, one_mul]
+    norm_num
+
 end ClayRiemannProof.Aurea
