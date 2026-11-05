@@ -3690,3 +3690,6 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Aurea.copias_da_reta_tangentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Aurea.copias_da_reta_tangentes
+
+/-- info: 'ClayRiemannProof.Aurea.par_fora_da_reta_rotacionado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.par_fora_da_reta_rotacionado
