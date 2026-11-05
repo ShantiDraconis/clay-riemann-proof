@@ -63,5 +63,6 @@ import ClayRiemannProof.Fracoes
 import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Milenio
 import ClayRiemannProof.Aurea
+import ClayRiemannProof.Estrutura
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

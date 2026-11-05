@@ -58,6 +58,7 @@ import ClayRiemannProof.Fracoes
 import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Milenio
 import ClayRiemannProof.Aurea
+import ClayRiemannProof.Estrutura
 
 /-!
 # Auditoria de axiomas
@@ -3715,3 +3716,178 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Aurea.par_fora_da_reta_rotacionado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Aurea.par_fora_da_reta_rotacionado
+
+/-! ## `ClayRiemannProof/Estrutura.lean` -/
+
+/-- info: 'ClayRiemannProof.Estrutura.gira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira
+
+/-- info: 'ClayRiemannProof.Estrutura.exp_giro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.exp_giro
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_zero
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_soma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_soma
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_volta
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_periodo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_periodo
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_isometria' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_isometria
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_re
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_meia_volta
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_meio_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_meio_meia_volta
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_meio_quarto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_meio_quarto
+
+/-- info: 'ClayRiemannProof.Estrutura.exp_quarto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.exp_quarto
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_zero_oitavo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_zero_oitavo
+
+/-- info: 'ClayRiemannProof.Estrutura.espelho_gira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.espelho_gira
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann
+
+/-- info: 'ClayRiemannProof.Estrutura.estrutura_Z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.estrutura_Z
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.fecha_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.fecha_torcao
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.gira_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.gira_meio
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.gira_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.gira_zero
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.meia_volta_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.meia_volta_zero
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.angulo_bracos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.angulo_bracos
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.angulo_raios' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.angulo_raios
+
+/-- info: 'ClayRiemannProof.Estrutura.EstruturaDeRiemann.nunca_regular' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.EstruturaDeRiemann.nunca_regular
+
+/-- info: 'ClayRiemannProof.Estrutura.seno_grande' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.seno_grande
+
+/-- info: 'ClayRiemannProof.Estrutura.seno_grande_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.seno_grande_zero
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_meio_tira_da_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_meio_tira_da_faixa
+
+/-- info: 'ClayRiemannProof.Estrutura.gira_zero_tira_da_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.gira_zero_tira_da_faixa
+
+/-- info: 'ClayRiemannProof.Estrutura.copias_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.copias_meio
+
+/-- info: 'ClayRiemannProof.Estrutura.copias_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.copias_zero
+
+/-- info: 'ClayRiemannProof.Estrutura.modelo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.modelo
+
+/-- info: 'ClayRiemannProof.Estrutura.estrutura_modelo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.estrutura_modelo
+
+/-- info: 'ClayRiemannProof.Estrutura.zModelo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.zModelo
+
+/-- info: 'ClayRiemannProof.Estrutura.poly_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.poly_zero_iff
+
+/-- info: 'ClayRiemannProof.Estrutura.barreira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.barreira
+
+/-- info: 'ClayRiemannProof.Estrutura.estrutura_nao_decide' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.estrutura_nao_decide
+
+/-- info: 'ClayRiemannProof.Estrutura.reta_iff_equidistante' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.reta_iff_equidistante
+
+/-- info: 'ClayRiemannProof.Estrutura.norma_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.norma_torcao
+
+/-- info: 'ClayRiemannProof.Estrutura.reta_iff_octeto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.reta_iff_octeto
+
+/-- info: 'ClayRiemannProof.Estrutura.reta_iff_espelho_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.reta_iff_espelho_meia_volta
+
+/-- info: 'ClayRiemannProof.Estrutura.pontes_da_estrutura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.pontes_da_estrutura
+
+/-- info: 'ClayRiemannProof.Estrutura.translada' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.translada
+
+/-- info: 'ClayRiemannProof.Estrutura.translada_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.translada_eq
+
+/-- info: 'ClayRiemannProof.Estrutura.translada_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.translada_um
+
+/-- info: 'ClayRiemannProof.Estrutura.translada_raiz_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.translada_raiz_dois
+
+/-- info: 'ClayRiemannProof.Estrutura.translacoes_densas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.translacoes_densas
+
+/-- info: 'ClayRiemannProof.Estrutura.zeros_nao_transladam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.zeros_nao_transladam
+
+/-- info: 'ClayRiemannProof.Estrutura.log_irracional' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.log_irracional
+
+/-- info: 'ClayRiemannProof.Estrutura.fases_densas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.fases_densas
+
+/-- info: 'ClayRiemannProof.Estrutura.fib_ge_phi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.fib_ge_phi
+
+/-- info: 'ClayRiemannProof.Estrutura.zetaFib' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.zetaFib
+
+/-- info: 'ClayRiemannProof.Estrutura.fib_pos' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.fib_pos
+
+/-- info: 'ClayRiemannProof.Estrutura.norma_termo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.norma_termo
+
+/-- info: 'ClayRiemannProof.Estrutura.termo_le_geom' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.termo_le_geom
+
+/-- info: 'ClayRiemannProof.Estrutura.termo_le_geom'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.termo_le_geom'
+
+/-- info: 'ClayRiemannProof.Estrutura.inv_phi_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.inv_phi_lt_one
+
+/-- info: 'ClayRiemannProof.Estrutura.zetaFib_summable' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.zetaFib_summable
+
+/-- info: 'ClayRiemannProof.Estrutura.zetaFib_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Estrutura.zetaFib_ne_zero

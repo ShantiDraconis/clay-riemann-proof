@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 129 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 186 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 514 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 571 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3170,6 +3170,95 @@ excluem zeros. A figura dá a forma (pares colados aos raios, corredores de larg
 posição. Juntar as 8 rotações no 0 com `s ↦ 1 − s` gera translações por `1, ω, i, …`, e portanto por `ℤ[ω] ⊇ ℤ + √2ℤ`,
 que é denso; um conjunto discreto e não vazio de zeros não pode ser fechado por todas elas. (A conta das translações é
 elementar; a densidade é fato conhecido e não está no kernel.) `OPEN_MATH = true`.
+
+## 54. A estrutura toda no kernel: operadores, leis, a barreira, as pontes e as áreas que surgem
+
+Arquivo: `ClayRiemannProof/Estrutura.lean` (57 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`; nenhuma usa `sorry`, `axiom` ou `native_decide`).
+
+**O que era conta ou fato citado nas §50–53 e agora é teorema.**
+
+| afirmação | onde estava | teorema |
+|---|---|---|
+| as rotações de 90° (§52) e 45° (§53) tiram todo zero da faixa | dois casos | `gira_meio_tira_da_faixa` e `gira_zero_tira_da_faixa`: **qualquer** ângulo com `\|sin θ\| ≥ 1/13` (pivô ½) ou `≥ 2/13` (pivô 0) |
+| quantas cópias | 4 e 8 | `copias_meio`: até 26 cópias em torno de ½ (exceto identidade e meia volta); `copias_zero`: até 13 em torno do 0 (exceto a identidade) |
+| a órbita nunca é polígono regular | conta (§52, §53) | `nunca_regular`: para todo `n ≤ 40` |
+| `ℤ + √2ℤ` é denso (§53) | fato citado | `translada_um`, `translada_raiz_dois`, `translacoes_densas` |
+| o toro das fases de 2 e 3 (§50) | fato citado (Kronecker) | `fases_densas`: os múltiplos de `log 2` são densos no círculo de comprimento `log 3` (a seção de Poincaré do fluxo no toro; o enunciado do fluxo em 2D decorre dela por um argumento padrão que não formalizei) |
+| a zeta de Fibonacci não tem zeros à direita (§51) | numérico (`σ* ≈ 0,757`) | `zetaFib_ne_zero`: nenhum zero em `Re s ≥ 1` (`F_{n+2} ≥ φⁿ`, cauda `≤ φ < 2`). A cota `0,757` continua numérica |
+
+**Os operadores e as leis.** `gira c θ s = c + e^{iθ}(s − c)` é a rotação de ângulo `θ` em torno do pivô `c`.
+
+- Lei de grupo: `gira_zero`, `gira_soma` (`θ + η`), `gira_volta` e `gira_periodo` (período `2π`).
+- Isometria: `gira_isometria`.
+- A meia volta é `s ↦ 2c − s` (`gira_meia_volta`). Em ½ ela é a tensão `s ↦ 1 − s`, a simetria de `ζ`
+  (`gira_meio_meia_volta`).
+- As rotações das seções anteriores são casos: `gira_meio_quarto` é o `rot90` da §52, e `gira_zero_oitavo` é o `ωᵏ`
+  da §53.
+- Lei diedral: `espelho_gira`, `s̄` conjuga a rotação na rotação inversa. Com as `n` rotações de `2π/n` isto é o grupo
+  diedral de ordem `2n`; Klein (§50), `D₄` (§52) e `D₈` (§53) são casos.
+
+**A estrutura abstrata.** `EstruturaDeRiemann W` reúne tudo o que as §50–53 usaram dos zeros:
+
+- a faixa `0 < Re < 1`;
+- o fechamento por `s ↦ 1 − s` e por `s ↦ s̄`;
+- a altura `|Im| > 13`.
+
+`estrutura_Z` prova que os zeros não triviais de `ζ` a têm. As leis são provadas para **qualquer** `W` com a
+estrutura:
+
+- `fecha_torcao`;
+- `gira_meio`, `gira_zero` e `meia_volta_zero`: as cópias saem da faixa;
+- `angulo_bracos` (`< 1/26`) e `angulo_raios` (`< 1/13`);
+- `nunca_regular`.
+
+**A barreira.** É o resultado central desta seção.
+
+- `modelo` é o quarteto `½ ± 3/10 ± 14i`. São os zeros na faixa de um polinômio com a mesma simetria da `ξ`
+  (`poly_zero_iff`, sobre `Analogs.quartetoPoly`).
+- `estrutura_modelo`: ele tem a estrutura inteira, e portanto toda lei acima vale para ele.
+- `barreira` e `estrutura_nao_decide`: ele está fora da reta.
+
+Logo **nenhum argumento que use só a faixa, as duas simetrias, a altura e a geometria das cópias prova a RH**. O que
+`ζ` tem e o modelo não tem é a série de Dirichlet com produto de Euler. Os zeros fora da reta de Davenport–Heilbronn e
+de Epstein (§50) mostram que nem a série de Dirichlet com equação funcional basta: a ponte que falta tem de usar o
+produto de Euler. Isto fortalece `Analogs.simetria_nao_basta_abstrata`, que só tinha as simetrias.
+
+**As pontes.** `pontes_da_estrutura` (um `List.TFAE`) prova que o enunciado do Clay equivale a cada uma das formas
+geométricas das §52–53:
+
+1. o enunciado do Clay;
+2. todo zero não trivial na reta;
+3. todo zero equidistante do 0 e do 1 (`‖ρ‖ = ‖1 − ρ‖`);
+4. os dois anéis da §53 coincidem (`‖ρ‖ = ‖1 − ρ̄‖`);
+5. o octeto da §52 colapsa (`δ = 0`);
+6. a meia volta em ½ coincide com o espelho.
+
+Com as 22 de `PontesTotal.pontes_total` são 26 formulações equivalentes no repositório. São reformulações: nenhuma é
+mais fraca que a RH, e fechar qualquer uma é fechar a RH.
+
+**As áreas que surgem.**
+
+| área | o que entrou no kernel | o que fica aberto |
+|---|---|---|
+| teoria de grupos (diedrais, ações) | leis de `gira`, `espelho_gira`, Klein/`D₄`/`D₈` | — |
+| geometria euclidiana (isometrias, polígonos) | `gira_isometria`, `copias_da_reta_tangentes` (§53), `nunca_regular` | — |
+| desigualdades trigonométricas (Jordan) | `seno_grande` (6,92° a 173,08°), `seno_grande_zero` (13,85° a 166,15°) | a cota ótima é conta: para o 1º zero (na reta) basta `\|sin θ\| ≥ 1/(2·14,13)`, isto é, a partir de 2,03° |
+| aproximação diofantina (Kronecker) | `translacoes_densas`, `fases_densas`, `log_irracional` | o toro de todas as fases `log p` juntas (dimensão infinita) |
+| corpos quadráticos e ciclotômicos | `φ` e Binet (§50), `√2 = ω + ω̄` como translação | — |
+| séries de Dirichlet sem produto de Euler | `zetaFib_ne_zero` em `Re s ≥ 1` | os zeros da §51 e `σ* ≈ 0,757` são numéricos |
+| lógica das provas (barreiras) | `barreira`, `estrutura_nao_decide` | — |
+| teoria analítica: produto de Euler ⇒ posição dos zeros | 26 formulações equivalentes | **a ponte que falta** |
+
+**O que fecharia `OPEN_MATH`.** Um argumento que use o produto de Euler, que o modelo não tem, para forçar `b = 0`.
+Nenhum é conhecido. Os programas conhecidos já estão representados no repositório como formulações equivalentes ou
+condicionais:
+
+- Hilbert–Pólya: `Analogs.selberg_polya` mostra que um operador simétrico com os `λ(ρ)` como autovalores bastaria;
+- a positividade de Weil e Li: `LiCircle`;
+- Báez-Duarte e Nyman–Beurling: `BaezDuarte`.
+
+Nenhum deles está provado. Esta seção não prova a RH e não reduz o problema a nada mais fraco. `OPEN_MATH = true`.
 
 ## Autor
 

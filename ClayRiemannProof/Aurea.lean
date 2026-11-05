@@ -554,7 +554,7 @@ theorem par_fora_da_reta_rotacionado (b γ : ℝ) (k : ℕ) :
   have hm :
       omega8 ^ k * (((1 / 2 - b : ℝ) : ℂ) + (γ : ℂ) * I) -
         omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I) =
-        omega8 ^ k * (-b : ℂ) := by
+        omega8 ^ k * ((-b : ℝ) : ℂ) := by
     push_cast
     ring
   refine ⟨?_, ?_, ?_⟩
