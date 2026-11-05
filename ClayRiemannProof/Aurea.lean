@@ -528,4 +528,39 @@ theorem copias_da_reta_tangentes (k : ℕ) :
   · rw [norm_mul, hk, one_mul]
     norm_num
 
+
+/-- **A pair hypothetically off the critical line stays symmetrically displaced from every rotated copy of it.**
+For fixed height `γ), the points `½ ± b + iγ` have midpoint `½ + iγ`; after rotation by `ωᵏ), the midpoint lies on
+`Lₖ = ωᵏ(½ + iℝ)`, and each point is at distance `|b|) from that midpoint. This is a geometric statement only:
+it does not assert that either point is a zero of `ζ`. -/
+theorem par_fora_da_reta_rotacionado (b γ : ℝ) (k : ℕ) :
+    (omega8 ^ k * (((1 / 2 + b : ℝ) : ℂ) + (γ : ℂ) * I) +
+      omega8 ^ k * (((1 / 2 - b : ℝ) : ℂ) + (γ : ℂ) * I)) / 2 =
+        omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I) ∧
+    ‖omega8 ^ k * (((1 / 2 + b : ℝ) : ℂ) + (γ : ℂ) * I) -
+      omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I)‖ = |b| ∧
+    ‖omega8 ^ k * (((1 / 2 - b : ℝ) : ℂ) + (γ : ℂ) * I) -
+      omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I)‖ = |b| := by
+  have hnorm : ∀ x : ℝ, ‖omega8 ^ k * (x : ℂ)‖ = |x| := by
+    intro x
+    rw [norm_mul, norm_pow, norm_omega8]
+    simp [Complex.norm_real, Real.norm_eq_abs]
+  have hp :
+      omega8 ^ k * (((1 / 2 + b : ℝ) : ℂ) + (γ : ℂ) * I) -
+        omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I) =
+        omega8 ^ k * (b : ℂ) := by
+    push_cast
+    ring
+  have hm :
+      omega8 ^ k * (((1 / 2 - b : ℝ) : ℂ) + (γ : ℂ) * I) -
+        omega8 ^ k * (((1 / 2 : ℝ) : ℂ) + (γ : ℂ) * I) =
+        omega8 ^ k * (-b : ℂ) := by
+    push_cast
+    ring
+  refine ⟨?_, ?_, ?_⟩
+  · push_cast
+    ring
+  · rw [hp, hnorm]
+  · rw [hm, hnorm, abs_neg]
+
 end ClayRiemannProof.Aurea
