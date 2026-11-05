@@ -148,8 +148,10 @@ theorem continuaAte_of_semZeros {θ : ℝ} (h : SemZeros θ) : ContinuaAte θ :=
 /-- O semiplano superior `{Re s > θ, Im s > 0}`. -/
 def U (θ : ℝ) : Set ℂ := {s | θ < s.re ∧ 0 < s.im}
 
-theorem U_aberto (θ : ℝ) : IsOpen (U θ) :=
-  (isOpen_lt continuous_const continuous_re).inter (isOpen_lt continuous_const continuous_im)
+theorem U_aberto (θ : ℝ) : IsOpen (U θ) := by
+  have h1 : IsOpen {s : ℂ | θ < s.re} := isOpen_lt continuous_const continuous_re
+  have h2 : IsOpen {s : ℂ | 0 < s.im} := isOpen_lt continuous_const continuous_im
+  exact h1.inter h2
 
 theorem U_convexo (θ : ℝ) : Convex ℝ (U θ) := by
   have h1 : Convex ℝ {s : ℂ | θ < s.re} := convex_halfSpace_re_gt θ
