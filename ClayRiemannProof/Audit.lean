@@ -57,6 +57,7 @@ import ClayRiemannProof.Nos
 import ClayRiemannProof.Fracoes
 import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Milenio
+import ClayRiemannProof.Aurea
 
 /-!
 # Auditoria de axiomas
@@ -3532,3 +3533,60 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Milenio.padrao_no_kernel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Milenio.padrao_no_kernel
+
+
+/-! ## `ClayRiemannProof/Aurea.lean` -/
+
+/-- info: 'ClayRiemannProof.Aurea.fib_sobre_phi_pow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.fib_sobre_phi_pow
+
+/-- info: 'ClayRiemannProof.Aurea.norma_cinco_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.norma_cinco_na_reta
+
+/-- info: 'ClayRiemannProof.Aurea.binet_eh_euler_5' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.binet_eh_euler_5
+
+/-- info: 'ClayRiemannProof.Aurea.fib_vezes_erro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.fib_vezes_erro
+
+/-- info: 'ClayRiemannProof.Aurea.hurwitz_phi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.hurwitz_phi
+
+/-- info: 'ClayRiemannProof.Aurea.entrada' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.entrada
+
+/-- info: 'ClayRiemannProof.Aurea.primos200' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.primos200
+
+/-- info: 'ClayRiemannProof.Aurea.primos200_primos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.primos200_primos
+
+/-- info: 'ClayRiemannProof.Aurea.entrada_ate_200' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.entrada_ate_200
+
+/-- info: 'ClayRiemannProof.Aurea.polos_fibonacci' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.polos_fibonacci
+
+/-- info: 'ClayRiemannProof.Aurea.fibonacci_ladrilha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.fibonacci_ladrilha
+
+/-- info: 'ClayRiemannProof.Aurea.quarteto_klein' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.quarteto_klein
+
+/-- info: 'ClayRiemannProof.Aurea.norma_menos_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.norma_menos_torcao
+
+/-- info: 'ClayRiemannProof.Aurea.norma_menos_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.norma_menos_espelho
+
+/-- info: 'ClayRiemannProof.Aurea.quarteto_retangulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.quarteto_retangulo
+
+/-- info: 'ClayRiemannProof.Aurea.angulo_do_quarteto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.angulo_do_quarteto
+
+/-- info: 'ClayRiemannProof.Aurea.li_inversao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.li_inversao
+
+/-- info: 'ClayRiemannProof.Aurea.fases_independentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.fases_independentes

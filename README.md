@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 072 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 090 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 457 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 475 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2891,6 +2891,84 @@ axioma; `abeliano_mata_relacoes`, `porta`, `fios` e `funcao` usam `[propext]`; `
   https://eccc.weizmann.ac.il/report/2021/023/
 - Navier–Stokes em 2026: the-decoder (14/9/2026), https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled/;
   https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy
+
+## 50. φ, Fibonacci, `1/√p` e os quartetos: o que é exato e o que não acontece
+
+Arquivo: `ClayRiemannProof/Aurea.lean` (18 declarações). Dados: `computations/aurea/` (`aurea.py`, `aurea.json`,
+figura `aurea.png`).
+
+**A proposta.** `1/√p → 0`; `√−1` "fraciona" o ½; o produto de Euler para de travar; a solução seria `φ`, ou `φ` e
+Fibonacci; os zeros fora da reta seguiriam isso; e o quarteto teria a estrutura de círculo, quadrado e triângulo,
+representável em espiral, cone e toro. Esta seção calcula cada parte, em frações onde dá.
+
+**1. O que é exato (kernel).**
+
+- **`1/√5` aparece três vezes**:
+  - `F_n/φⁿ → 1/√5` (Binet, `fib_sobre_phi_pow`);
+  - `|5^{−s}| = 1/√5` na reta (`norma_cinco_na_reta`, `binet_eh_euler_5`);
+  - `F_n²·|φ − F_{n+1}/F_n| → 1/√5` (`hurwitz_phi`, a partir de `F_n(F_{n+1} − φF_n) = ((−1)ⁿ − ψ^{2n})/√5`).
+  Este último é a constante de Hurwitz: `φ` é o número pior aproximado por frações, e as melhores frações são
+  `2/1, 3/2, 5/3, 8/5, 13/8, …`.
+- **Fibonacci obedece ao fator de Euler de `L(s, χ₅)`**: `p ∣ F_{p − (5/p)}` (`entrada_ate_200`, para os 46 primos
+  menores que 200; em ponto flutuante, para todos os 9 592 primos até `10⁵`).
+  - É a lei de `ℚ(√5)`, cuja zeta é `ζ(s)·L(s, χ₅)` e cuja unidade fundamental é `φ`.
+  - Daí `L(1, χ₅) = 2·log φ/√5 = 0,4304089…` (fórmula do número de classes; numérico, igual até a precisão dupla).
+- **`π` em Fibonacci**: a zeta de Fibonacci `Σ F_n^{−s}` tem polos onde `φ^{−s} = 1`, em `s = 2πim/log φ`
+  (`polos_fibonacci`), espaçados `2π/log φ ≈ 13,057`.
+- **Os quadrados de Fibonacci ladrilham um retângulo**: `Σ_{k ≤ n} F_k² = F_n·F_{n+1}` (`fibonacci_ladrilha`). É a
+  espiral áurea: cada quarto de volta (`π/2`) multiplica o raio por `φ`.
+
+**2. O quarteto: retângulo, não quadrado nem triângulo.**
+
+- As simetrias `s ↦ 1 − s`, `s ↦ s̄` e `s ↦ 1 − s̄` são involuções que comutam (`quarteto_klein`). O grupo é o de
+  Klein, que é o grupo de simetria de um retângulo: não há rotação de 90° (quadrado) nem de 120° (triângulo).
+- Os lados do quarteto `ρ, 1 − ρ̄, ρ̄, 1 − ρ` são `|2 Re ρ − 1| < 1` e `2|Im ρ| > 26` (`quarteto_retangulo`, com a
+  faixa sem zeros até 13 da §4). Nunca é quadrado.
+- **O ângulo, em frações de `π`.** A diagonal faz com o eixo real o ângulo `θ = arctan(γ/b)`, com `b = Re ρ − ½`.
+  - Pelo kernel, `0 < π/2 − θ < 1/26` (`angulo_do_quarteto`), isto é, `θ/π > ½ − 0,0123`.
+  - Em geral, `½ − θ/π = arctan(b/γ)/π ≈ b/(πγ)`. Acima de `3·10¹²`, onde um zero fora da reta teria de estar, isso
+    fica abaixo de `5,3·10⁻¹⁴`.
+  - O `√−1 = e^{iπ/2}` da proposta é este meio de `π`. O ângulo tende a ele, mas não diz se `b = 0`.
+- **No círculo de Li** (`w = 1 − 1/s`, a reta vai no círculo unitário): `ρ` e `1 − ρ̄` vão em pontos inversos,
+  `|w(ρ)|·|w(1 − ρ̄)| = 1` (`li_inversao`; numérico: `1,000000000` nos 15 quartetos abaixo).
+- **Os outros desenhos.**
+  - Cone: `|p^{−s}| = p^{−σ}`, círculos que encolhem com `σ` e têm raio `1/√p` na reta (`Geometrias.circulo_eh_reta`).
+  - Toro: as fases `(t log 2, t log 3)` nunca fecham uma órbita, porque `log 2/log 3` não é racional
+    (`fases_independentes`).
+  - O produto de Euler converge ("trava") só em `Re s > 1`. Na reta, `Σ 1/√p` diverge
+    (`Parametro.euler_meio_diverge`).
+
+**3. Os zeros fora da reta seguem `φ`? Não, onde eles existem.** Os 15 quartetos fora da reta conhecidos nos vizinhos
+falsos (§49: zeta de Epstein de `m² + 5n²`, 12 até `Im 100`; Davenport–Heilbronn, 3 até `Im 170`, dados da §39) dão:
+
+| teste | resultado | se seguissem `φ` |
+|---|---|---|
+| parte fracionária de `log_φ(γ/b)` | KS = 0,26 (crítico a 5%: 0,35), compatível com uniforme | acumulada em 0 ou 1 |
+| distância média a uma potência de `φ` (em `log_φ`) | 0,22 (uniforme: 0,25) | perto de 0 |
+| razões entre alturas consecutivas a menos de 0,05 de `φ` | 0 de 13 | a maioria |
+| `½ − θ/π` contra `b/(πγ)` | sobre a reta `½ − θ/π = b/(πγ)`, de `8,8·10⁻³` a `1,4·10⁻⁴` | — |
+
+**4. A "zeta de Fibonacci" com e sem produto de Euler** (numérico):
+
+| função | produto de Euler | equação funcional | zeros encontrados |
+|---|---|---|---|
+| `L(s, χ₅)` (o fator novo de `ζ_{ℚ(√5)}`) | sim | sim | 16 em `0 < t ≤ 40`, todos na reta (`6,648453; 9,831444; 11,958846; 16,033821; …`); o princípio do argumento no retângulo `[0,02; 0,98] × [1; 40]` dá 16,0 |
+| `Σ F_n^{−s}` (Navas 2001) | não | não | 10 em `[−3,5; 3] × [0,1; 45]`, com `Re` de `−3,00` a `0,64`, sem linha; o princípio do argumento dá zeros − polos = 4, com 6 polos |
+
+Esta é a mesma lição do vizinho falso da §49: Fibonacci com o produto de Euler (via `ℚ(√5)`) tem os zeros na reta;
+Fibonacci sem ele não tem linha nenhuma.
+
+**O que NÃO é:**
+
+- Nada aqui põe os zeros de `ζ` em lugar nenhum. `φ` entra em `L(s, χ₅)`, no valor `L(1, χ₅)`, nas frações de
+  Fibonacci e nos polos de `Σ F_n^{−s}`, não na posição dos zeros de `ζ`.
+- A estrutura do quarteto (retângulo de Klein com o ângulo indo a `π/2`) vale para todo quarteto hipotético e não
+  decide se ele existe.
+- `OPEN_MATH = true`.
+
+**Axiomas:** `entrada` e `primos200` não dependem de nenhum; as outras 16 declarações usam
+`[propext, Classical.choice, Quot.sound]`. `entrada_ate_200` é `decide +kernel`. Estão fixadas em
+`ClayRiemannProof/Audit.lean`.
 
 ## Autor
 
