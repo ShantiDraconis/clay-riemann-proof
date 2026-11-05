@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 300 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 306 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 685 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 691 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -1402,7 +1402,7 @@ forçado é do modelo `H_t` com `t < 0`, não de `ζ`. `OPEN_MATH = true`.
 **Origem**: Gram (1903), Rosser–Yohe–Schoenfeld (1969), de Bruijn (1950); formalização nova. **Axiomas**: `[propext,
 Classical.choice, Quot.sound]` (32 guardas).
 
-## 31. Continuação contígua: RH conferida até 3 000 190 582 471,5 (cálculo certificado fora do kernel)
+## 31. Continuação contígua: RH conferida até 3 000 192 022 471,5 (cálculo certificado fora do kernel)
 
 Arquivos: `computations/continuacao/` (`continua.py`, `agrega.py`, `gram.py`, `inicio.json`),
 `.github/workflows/continuacao.yml`. Execução 41559243734 do GitHub Actions
@@ -1579,6 +1579,19 @@ dados continua o 787/788 (`s = 0,0016`). No kernel, com as janelas como hipótes
 `JanelaContinuacao2026q`: `Continuacao.rhAteZ_continuacao16`, `rhAteZ_continuacao17`,
 `primeiro_fora_acima_continuacao16`/`17`, `par_mais_fragil_continuacao16` (`−1,68·10⁻⁶ ≤ λ ≤ −1,33·10⁻⁶`) e
 `par_mais_fragil_continuacao17` (`−2,21·10⁻⁶ ≤ λ ≤ −1,76·10⁻⁶`).
+
+**Décima oitava e décima nona extensões: faixas 0–11 a partir de `C0 = 3 000 190 582 471,5`** (runs 42080945931
+para as faixas 0–5 e 42080958292 para as 6–11; colagem das 12 faixas em `de_3000190582471.5/juntas_0-11/`): a faixa 0
+recalcula `N(3 000 190 582 471,5) = 12 363 218 705 207`, o fim da décima sétima extensão, as 12 colagens conferem e o
+déficit é 0 em todas; até **3 000 192 022 471,5** são 6 163 152 zeros, todos na reta (maior raio das bolas
+5,01·10⁻¹⁸). Faixas 0–5: `N` de 12 363 218 705 207 a 12 363 221 786 783 (3 081 576 zeros); faixas 6–11: até
+`N(3 000 192 022 471,5) = 12 363 224 868 359` (3 081 576 zeros). Somando tudo, ficam 16 689 671,5 unidades e
+71 431 221 zeros acima do recorde publicado. Os pares mais frágeis: 12 363 221 560 334/…335 nas faixas 0–5
+(`s = 0,0064`, `λ = −1,102·10⁻⁶`) e 12 363 224 051 931/…932 nas 6–11 (`s = 0,0055`, `λ = −8,15·10⁻⁷`); o de todos os
+dados continua o 787/788 (`s = 0,0016`). No kernel, com as janelas como hipóteses nomeadas `JanelaContinuacao2026r` e
+`JanelaContinuacao2026s`: `Continuacao.rhAteZ_continuacao18`, `rhAteZ_continuacao19`,
+`primeiro_fora_acima_continuacao18`/`19`, `par_mais_fragil_continuacao18` (`−1,38·10⁻⁶ ≤ λ ≤ −1,10·10⁻⁶`) e
+`par_mais_fragil_continuacao19` (`−1,02·10⁻⁶ ≤ λ ≤ −8,15·10⁻⁷`).
 
 **O que NÃO é**: uma verificação finita, que não diz nada sobre alturas maiores. O kernel não refaz o cálculo da Arb:
 ele entra como hipótese nomeada. `λ` de um par de Lehmer é cota inferior para a constante de de Bruijn–Newman `Λ`
@@ -2658,7 +2671,7 @@ Arquivo: `ClayRiemannProof/CertificateBridge.lean` (6 declarações). Estava só
 - **Contagem de guardas no cabeçalho:** contava uma linha de docstring; agora conta só as linhas que começam com
   `#guard_msgs` (1 035 + 252).
 - **Nome inexistente:** `Fronteira.Hadamard.xi` (§9) passou a `Fronteira.xi`.
-- **`LEIS.md`:** o resumo dos dados vai até `3 000 190 582 471,5` (com 10¹⁷); um "par mais perto em todos os dados"
+- **`LEIS.md`:** o resumo dos dados vai até `3 000 192 022 471,5` (com 10¹⁷); um "par mais perto em todos os dados"
   já superado saiu.
 - **§18:** a seção cita agora 10¹⁷ certificada.
 - **§26:** "em todos os dados" passou a "até então".
