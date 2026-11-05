@@ -3134,6 +3134,23 @@ desenhar).
 | 1º de Davenport–Heilbronn (`γ = 85,70`) | 277,8 | 0,41° e 44,59° | anel 1: 1,08° e 43,92°; anel 2: 0,26° e 44,74° |
 | zero fora da reta de `ζ`, se existir (kernel) | `> 26` | `2δ < 4,41°` | lacuna pequena `2ε < 8,82°` |
 
+**Comparação das cópias com as zeros da reta, em cada quadrante.** Suponha, condicionalmente, que exista um zero fora da reta
+\[
+  ρ_± = \tfrac12 \pm b + iγ, \qquad 0<|b|<\tfrac12.
+\]
+Pela simetria de conjugação e pela equação funcional, o quarteto é
+\(\tfrac12\pm b\pm iγ\). Para a cópia \(k\), escreva
+\(L_k=ω^k(\tfrac12+i\mathbb R)\), a reta crítica girada, e
+\(m_{k,γ}=ω^k(\tfrac12+iγ)\). Então, exatamente,
+\[
+  ω^kρ_± = m_{k,γ} \pm bω^k.
+\]
+Logo o ponto médio do par está sobre \(L_k\); os dois pontos ficam em lados opostos, cada um à distância \(|b|\) da reta copiada, e a separação entre eles é \(2|b|\). Os conjugados dão o par espelhado no braço oposto. Para zeros na reta, \(b=0\), o par colapsa sobre \(L_k\).
+
+Assim, a região geométrica permitida é uma faixa dos dois lados de cada reta girada: para um \(b\) fixo, os dois traços têm deslocamentos assinados \(\pm b\); deixando \(b\) variar no intervalo permitido \(0<|b|<1/2\), obtêm-se as faixas abertas a menos de \(1/2\) de cada \(L_k\). A reflexão complexa leva \(L_k\) a \(L_{-k\,\mathrm{mod}\,8}\); ela espelha os rótulos e os pontos, mas não cria novas direções geométricas. Os oito traços ficam, portanto, organizados em torno das oito retas do octógono.
+
+Comparar com as alturas \(γ_n\) dos zeros que estão na reta não fixa \(γ\): a simetria obriga os quatro pontos hipotéticos a compartilhar a altura \(|γ|\), mas não exige que essa altura coincida com algum \(γ_n\), nem que caia no meio de um intervalo entre zeros consecutivos da reta. A construção localiza **onde procurar no modelo** — deslocamentos \(\pm b\) da reta e alturas a testar —, mas não determina \(b\) nem prova que exista ali um zero de \(ζ\). As rotações \(ω^kρ\) são zeros das funções copiadas \(ζ(ω^{-k}s)\); só a cópia original é a própria \(ζ\).
+
 **O que NÃO é:** girar em torno do 0 não é simetria de `ζ`; o único pivô real é ½. As 7 cópias não produzem nem
 excluem zeros. A figura dá a forma (pares colados aos raios, corredores de largura 1, ângulo `< 1/13`), mas não a
 posição. Juntar as 8 rotações no 0 com `s ↦ 1 − s` gera translações por `1, ω, i, …`, e portanto por `ℤ[ω] ⊇ ℤ + √2ℤ`,
