@@ -2970,6 +2970,47 @@ Fibonacci sem ele não tem linha nenhuma.
 `[propext, Classical.choice, Quot.sound]`. `entrada_ate_200` é `decide +kernel`. Estão fixadas em
 `ClayRiemannProof/Audit.lean`.
 
+## 51. Os zeros da zeta de Fibonacci traçados: que linhas aparecem e como se ligam
+
+Dados: `computations/aurea/zeros_fibonacci.py`, `zeros_fibonacci.json` e a figura `zeros_fibonacci.png`.
+
+**A conta.**
+
+- Todos os zeros de `Σ F_n^{−s}` no retângulo `[−4,5; 1,5] × (0; 300]`: são **112**. Em cada uma das 30 faixas de
+  altura 10, zeros − polos é igual ao número de voltas (princípio do argumento), então a lista está completa.
+- A continuação usada é estável em precisão dupla: `Σ_{n<12} F_n^{−s} + 5^{s/2} Σ_k C(s+k−1, k)·x_k¹²/(1 − x_k)`,
+  com `x_k = (−1)^k φ^{−s−2k}`. A conta da §50 (`n₀ = 1`) perde todos os dígitos acima de `t ≈ 60`, e esta confere
+  com 60 dígitos (mpmath) até `t = 300`, com erro relativo `≤ 4,4·10⁻⁸`.
+
+**Linhas aparecem, sim, mas nenhuma é uma linha crítica.** Tudo se organiza pelo período `P = 2π/log φ ≈ 13,057`
+(é `φ^{−s}` que se repete):
+
+| estrutura | o que os dados mostram |
+|---|---|
+| **linhas de polos** | exatas e verticais: `Re s = 0` e `−4` em `t = mP`, `Re s = −2` em `t = (m + ½)P` |
+| **companheiros** | cada polo de `Re s = 0` tem um zero colado a ele, a distância `0,35`–`1,03`, na mesma fase (`−0,005 ± 0,036` de período), com `Re` entre `0,002` e `0,64` (média `0,32`) |
+| **o padrão de 3 períodos** | nos polos `m ≡ 0 (mod 3)` o companheiro fica quase em `Re s = 0` (`0,002`–`0,21`); nos outros, em `0,26`–`0,64`. A razão é que, a cada período, `5^{s/2}` gira `log √5/log φ = 1,6723` volta, que é `≈ 5/3` (as frações da expansão são `2/1, 5/3, 97/58, …`; `φ⁵ = 11,090 ≈ √5³ = 11,180`) |
+| **cadeias** | os zeros à esquerda (`Re < −1,5`, 20 zeros) ficam nas fases `≈ ¼` e `≈ ¾` do período; uma cadeia de 11 zeros entra em `Re = −4,48` (`t = 108`) e anda para a direita um passo por período (`Δt` de `12,92` a `13,35`, `Δ Re` de `0,17` a `0,51`) até `Re = −1,53` (`t = 238`), sempre na fase `0,242 ± 0,014` |
+| **a faixa** | os 51 zeros com `−1,5 ≤ Re < 0` se espalham por todas as fases; não formam coluna |
+| **o lado direito** | nenhum zero com `Re s > σ* = 0,757`, onde `Σ_{n≥3} F_n^{−σ*} = 2` (para `Re s > σ*`, `|ζ_F| ≥ 2 − Σ_{n≥3} F_n^{−σ} > 0`); o maior `Re` observado é `0,638` |
+
+**Como se ligam.**
+
+- Enrolando a altura no período `P` (um cilindro), os polos ficam nas fases `0` e `½`. Os companheiros ficam
+  na fase `0`, e as cadeias na fase `¼` e na fase `¾`.
+- Nesse cilindro, as famílias de zeros são retas verticais. No plano, as cadeias são curvas que sobem e andam
+  para a direita, e os companheiros acompanham os polos de `Re s = 0` com o padrão de 3 períodos.
+- `π` e `φ` aparecem juntos em `P = 2π/log φ`, e `√5` aparece no giro `log √5/log φ`: é o mesmo `1/√5` de Binet da
+  §50.
+
+**Por que não são linhas críticas.**
+
+- Uma linha crítica é o eixo de uma simetria `s ↔ k − s` que a equação funcional impõe. `Σ F_n^{−s}` não tem essa
+  simetria, e por isso os zeros não se concentram em `Re s = ½` nem em nenhuma reta vertical.
+- O que aparece são linhas de polos (verticais, exatas) e famílias de zeros presas a elas, em fases fixas do período.
+- Em ζ e em `L(s, χ₅)`, que têm produto de Euler e equação funcional, os zeros conferidos ficam todos na mesma reta
+  `½` (§50). `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
