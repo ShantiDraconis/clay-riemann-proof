@@ -63,6 +63,7 @@ import ClayRiemannProof.Proporcao
 import ClayRiemannProof.PorQueMeio
 import ClayRiemannProof.Meio
 import ClayRiemannProof.TresEstados
+import ClayRiemannProof.Condicionais
 
 /-!
 # Auditoria de axiomas
@@ -4132,3 +4133,29 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.TresEstados.o_que_a_prova_nao_pode_ser' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.TresEstados.o_que_a_prova_nao_pode_ser
+
+/-! ## `ClayRiemannProof/Condicionais.lean` -/
+
+/-- info: 'ClayRiemannProof.Condicionais.EntradasLamzouri' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.EntradasLamzouri
+
+/-- info: 'ClayRiemannProof.Condicionais.proporcao_de_entradas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.proporcao_de_entradas
+
+/-- info: 'ClayRiemannProof.Condicionais.C_MT' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.C_MT
+
+/-- info: 'ClayRiemannProof.Condicionais.Lamzouri2026' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.Lamzouri2026
+
+/-- info: 'ClayRiemannProof.Condicionais.proporcao_2026' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.proporcao_2026
+
+/-- info: 'ClayRiemannProof.Condicionais.CorrelacaoAte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.CorrelacaoAte
+
+/-- info: 'ClayRiemannProof.Condicionais.proporcao_de_cp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.proporcao_de_cp
+
+/-- info: 'ClayRiemannProof.Condicionais.cp_implica_cem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Condicionais.cp_implica_cem

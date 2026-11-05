@@ -68,5 +68,6 @@ import ClayRiemannProof.Proporcao
 import ClayRiemannProof.PorQueMeio
 import ClayRiemannProof.Meio
 import ClayRiemannProof.TresEstados
+import ClayRiemannProof.Condicionais
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

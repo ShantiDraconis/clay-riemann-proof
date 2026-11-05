@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 261 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 269 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 646 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 654 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3519,6 +3519,71 @@ implicação. As duas hipóteses são o problema inteiro:
 
 O precedente é o caso dos corpos de funções: Weil obteve a positividade da geometria da superfície `C × C` (o teorema
 do índice de Hodge). Para `ℤ` falta o análogo dessa superfície. `OPEN_MATH = true`.
+
+## 59. As provas condicionais: o mapa
+
+Arquivo novo: `ClayRiemannProof/Condicionais.lean` (8 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`). O resto do mapa já estava no repositório, espalhado; aqui ele fica reunido.
+
+Uma prova condicional é um teorema "se H, então X" provado no kernel. Ela vale exatamente o que vale a hipótese H, e
+há quatro situações diferentes.
+
+**(A) Rotas para a RH: hipótese aberta ⇒ RH.**
+
+| rota | hipótese | ponte no kernel | situação da hipótese |
+|---|---|---|---|
+| espectral (Hilbert–Pólya) | `HilbertPolya` | `Biblioteca.rh_de_hilbertPolya` | aberta |
+| calor (de Bruijn–Newman) | `Λ ≤ 0`, com `RH_iff_Lambda` nomeada | `Biblioteca.rotas_para_rh`, `Fronteira.target_de_dbn` | aberta; `0 ≤ Λ ≤ 0,2` (Rodgers–Tao, Platt–Trudgian, nomeadas); RH ⟺ `Λ = 0` (`lambda_com_rodgers_tao`) |
+| Li | `PositividadeDeLi`, com `CriterioDeLi` nomeado | `rotas_para_rh`, `Fronteira.target_de_li` | aberta |
+| Báez-Duarte | `D_N → 0` | `BaezDuarte.Necessity.rh_iff_DN` (sem hipótese) | aberta |
+| aproximação (§58) | zeros de aproximações na reta e todo zero é limite deles | `TresEstados.forma_por_aproximacao` | (A) parcial (Connes 2026), (B) aberta |
+| redução ao resto | `Resto` (nenhum zero fora acima de `≈ 3·10¹²`), com Platt–Trudgian e as janelas da Arb nomeadas | `Biblioteca.rh_reduzida` | aberta |
+| um lado só | nenhum zero com `Re > ½` | `Biblioteca.rh_de_metade` | é a própria RH |
+| Mertens | `ConjecturaDeMertens` (`|M(x)| ≤ √x`), com Littlewood nomeado | `Biblioteca.rh_de_mertens` | **falsa** (Odlyzko e te Riele, 1985): rota morta |
+| máquina | a máquina nunca para, com `LagariasPi1` nomeada | `Maquina.rh_iff_maquina_nunca_para` | equivalente à RH |
+
+Duas lições. Uma hipótese **equivalente** à RH (Li, `Λ`, Báez-Duarte, um lado só, resto, máquina) só muda o problema
+de lugar. Uma hipótese **falsa** (Mertens) não prova nada, embora a implicação seja um teorema correto.
+
+**(B) Equivalências que dependem de um teorema publicado ainda não formalizado.** `Robin1984`, `Lagarias2002`,
+`VonKoch1901`, `MertensRH`, `Li1997`/`CriterioDeLi`, `RH_iff_Lambda`, `CriterioDeSchoenfeld`,
+`CriterioDeLittlewood`, `PlattTrudgian2021` e as janelas da Arb. São fatos da literatura ou dados externos usados como
+hipótese. Formalizar cada um tira a hipótese sem mudar nada do resto.
+
+**(C) Resultados parciais condicionais, que não dão a RH.**
+
+| hipótese | conclusão | teorema |
+|---|---|---|
+| `Lamzouri2026` (as entradas `EntradasLamzouri` com `C = C_MT`) | fração na reta `≥ 2 − C_MT ≈ 67,25%` | `Condicionais.proporcao_2026` |
+| `CorrelacaoAte A` (correlação de pares até `A`, densidade uniforme) | `≥ 1 − 1/(3A²)` | `Condicionais.proporcao_de_cp` |
+| correlação de pares em todo alcance | **100%** | `Condicionais.cp_implica_cem` |
+| `RHateZ X` (dados externos) | proporção exatamente 1 até `X` | `Proporcao.proporcao_um_ate` |
+| `OpenAIQuasiRH78` | RH ⟺ `NoZero_half_78` | `QuasiRH.target_iff_noZero_half_78` |
+
+`EntradasLamzouri` tem quatro campos:
+
+- as duas comparações entre as contagens da literatura (com multiplicidade, zeros simples) e as do kernel (sem
+  multiplicidade);
+- a desigualdade de Bessel `N₀ˢ ≥ 2N − S`;
+- a cota de correlação de pares `S ≤ (C + ε)N`.
+
+O kernel prova o resto do argumento (`proporcao_de_entradas`). `cp_implica_cem` é a forma condicional do resultado de
+Goldston, Lee, Schettler e Suriajaya. Mesmo assim, 100% não é a RH (`cem_por_cento_nao_basta`).
+
+**(D) Consequências da RH (RH ⇒ X).**
+
+- `Proporcao.rh_cem_por_cento`: a RH dá 100%.
+- `TresEstados.conjuntura_fixada_pelo_meio`: com von Koch, `|ψ(x) − x| ≤ C√x·log²x`.
+- `QuasiRH.openAIQuasiRH78_of_target`.
+- As desigualdades de Robin e de Lagarias, pelas equivalências nomeadas.
+
+**Quais hipóteses valem o esforço.** As que não são a RH disfarçada e que podem ser atacadas sozinhas:
+
+- as entradas de Lamzouri, que são matemática provada e só faltam formalizar;
+- a correlação de pares além de `|α| ≤ 1`, que é aberta e daria a curva da §56;
+- os passos (A) e (B) da aproximação.
+
+`OPEN_MATH = true`.
 
 ## Autor
 
