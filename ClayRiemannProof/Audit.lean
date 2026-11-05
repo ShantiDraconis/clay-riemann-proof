@@ -59,6 +59,7 @@ import ClayRiemannProof.CertificateBridge
 import ClayRiemannProof.Milenio
 import ClayRiemannProof.Aurea
 import ClayRiemannProof.Estrutura
+import ClayRiemannProof.Proporcao
 
 /-!
 # Auditoria de axiomas
@@ -3891,3 +3892,83 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Estrutura.zetaFib_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Estrutura.zetaFib_ne_zero
+
+/-! ## `ClayRiemannProof/Proporcao.lean` -/
+
+/-- info: 'ClayRiemannProof.Proporcao.ate' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.ate
+
+/-- info: 'ClayRiemannProof.Proporcao.N' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.N
+
+/-- info: 'ClayRiemannProof.Proporcao.N0' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.N0
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao
+
+/-- info: 'ClayRiemannProof.Proporcao.ProporcaoNaReta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.ProporcaoNaReta
+
+/-- info: 'ClayRiemannProof.Proporcao.ProporcaoNaReta.mono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.ProporcaoNaReta.mono
+
+/-- info: 'ClayRiemannProof.Proporcao.N0_le_N' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.N0_le_N
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao_le_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao_le_um
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao_de_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao_de_tendsto
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao_um_de_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao_um_de_reta
+
+/-- info: 'ClayRiemannProof.Proporcao.ate_Z_finita' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.ate_Z_finita
+
+/-- info: 'ClayRiemannProof.Proporcao.N_Z_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.N_Z_pos
+
+/-- info: 'ClayRiemannProof.Proporcao.rh_cem_por_cento' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.rh_cem_por_cento
+
+/-- info: 'ClayRiemannProof.Proporcao.rh_proporcao_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.rh_proporcao_um
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao_Z_le_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao_Z_le_um
+
+/-- info: 'ClayRiemannProof.Proporcao.linhaModelo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.linhaModelo
+
+/-- info: 'ClayRiemannProof.Proporcao.modeloCem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.modeloCem
+
+/-- info: 'ClayRiemannProof.Proporcao.estrutura_modeloCem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.estrutura_modeloCem
+
+/-- info: 'ClayRiemannProof.Proporcao.injetiva_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.injetiva_reta
+
+/-- info: 'ClayRiemannProof.Proporcao.reta_modeloCem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.reta_modeloCem
+
+/-- info: 'ClayRiemannProof.Proporcao.ate_modeloCem_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.ate_modeloCem_sub
+
+/-- info: 'ClayRiemannProof.Proporcao.par_distinto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.par_distinto
+
+/-- info: 'ClayRiemannProof.Proporcao.contagens_modeloCem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.contagens_modeloCem
+
+/-- info: 'ClayRiemannProof.Proporcao.cem_por_cento_modelo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.cem_por_cento_modelo
+
+/-- info: 'ClayRiemannProof.Proporcao.cem_por_cento_nao_basta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.cem_por_cento_nao_basta
+
+/-- info: 'ClayRiemannProof.Proporcao.cem_por_cento' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.cem_por_cento

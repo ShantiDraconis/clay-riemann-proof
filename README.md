@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 186 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 212 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 571 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 597 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -2843,7 +2843,7 @@ fluxo de Ricci com cirurgia).
 | problema | caso baixo provado | "quase todo" provado | limiar (§45) | estado em novembro de 2026 |
 |---|---|---|---|---|
 | Poincaré | `n ≥ 5` (Smale 1961), `n = 4` topológico (Freedman 1982) | — | dimensão 3 | resolvido (Perelman); prêmio recusado em 2010 |
-| RH | zeros até `3·10¹²` (Platt–Trudgian 2021) e a continuação (§31); o primeiro zero na reta pelo kernel (§47–§48) | `≥ 41,7%` dos zeros na reta (Pratt–Robles–Zaharescu–Zeindler 2020); quase todos a `ε` da reta (Bohr–Landau 1914) | `Re s = ½` | aberto |
+| RH | zeros até `3·10¹²` (Platt–Trudgian 2021) e a continuação (§31); o primeiro zero na reta pelo kernel (§47–§48) | `≥ 67,25%` dos zeros simples e na reta (2026: o resultado do Claude anunciado pela Anthropic, 67,2%, e a prova de Lamzouri, 67,25%; o valor anterior era 41,7%, Pratt–Robles–Zaharescu–Zeindler 2020); quase todos a `ε` da reta (Bohr–Landau 1914) | `Re s = ½` | aberto |
 | P vs NP | 2-SAT em P | quase toda função de `n` bits pede `~2ⁿ/n` portas (Shannon 1949) | 3-SAT em `α ≈ 4,27`; o melhor explícito é `3,1n − o(n)` (Li–Yang 2022) | aberto |
 | Navier–Stokes | 2D global (Leray, Ladyzhenskaya); dados pequenos (Fujita–Kato 1964, Koch–Tataru 2001) | soluções fracas globais (Leray 1934); o conjunto singular tem medida parabólica 1D nula (Caffarelli–Kohn–Nirenberg 1982) | `2/p + 3/q = 1`; a energia dá `3/2` | com força externa: explosão anunciada pela OpenAI (8/9/2026); o Clay disse que o problema "parece resolvido" e que a revisão é "deliberadamente sem pressa"; sem força: aberto |
 | Yang–Mills | QFTs interagentes em 2D e 3D (Glimm–Jaffe e outros); na rede, gap em acoplamento forte (Osterwalder–Seiler 1978) | — | dimensão 4 (acoplamento sem dimensão) | aberto |
@@ -2911,8 +2911,10 @@ axioma; `abeliano_mata_relacoes`, `porta`, `fios` e `funcao` usam `[propext]`; `
 - Voisin, *A counterexample to the Hodge conjecture for Kähler varieties* (2002): https://arxiv.org/abs/math/0112247
 - Bhargava, Skinner e Zhang, *A majority of elliptic curves over Q satisfy the BSD conjecture* (2014):
   https://arxiv.org/abs/1407.1826
-- Goldston e Suriajaya (2026), que cita os 41,7% de Pratt–Robles–Zaharescu–Zeindler (2020):
+- Goldston e Suriajaya (2026), que cita os 41,7% de Pratt–Robles–Zaharescu–Zeindler (2020), o valor anterior a agosto de 2026:
   https://arxiv.org/abs/2511.20059
+- Anthropic (10/8/2026), o Claude leva a proporção de 41,6% a 67,2%: https://www.anthropic.com/research/riemann-zeta
+- Lamzouri (9/9/2026), prova nova de `≥ 67,25%` simples e na reta, `≥ 83,62%` distintos e `≥ 88,76%` simples ou na reta: https://arxiv.org/abs/2609.02882
 - Li e Yang, `3,1n − o(n)` *circuit lower bounds for explicit functions* (STOC 2022):
   https://eccc.weizmann.ac.il/report/2021/023/
 - Navier–Stokes em 2026: the-decoder (14/9/2026), https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled/;
@@ -3259,6 +3261,70 @@ condicionais:
 - Báez-Duarte e Nyman–Beurling: `BaezDuarte`.
 
 Nenhum deles está provado. Esta seção não prova a RH e não reduz o problema a nada mais fraco. `OPEN_MATH = true`.
+
+## 55. A proporção de zeros na reta: os valores de 2026, o que é 100% e o que falta construir
+
+Arquivo: `ClayRiemannProof/Proporcao.lean` (26 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`).
+
+**Os valores conhecidos.** São cotas inferiores para `liminf N₀(T)/N(T)`; nenhuma está no kernel.
+
+| ano | quem | fração dos zeros na reta |
+|---|---|---|
+| 1942 | Selberg | uma fração positiva |
+| 1974 | Levinson | mais de 1/3 |
+| 1989 | Conrey | mais de 2/5 |
+| 2020 | Pratt, Robles, Zaharescu e Zeindler | mais de 5/12 (41,7%) |
+| 2026 (agosto) | Claude, anunciado pela Anthropic | 67,2% (simples e na reta) |
+| 2026 (setembro) | Lamzouri, prova nova | `≥ 67,25%` simples e na reta; `≥ 83,62%` distintos; `≥ 88,76%` simples ou na reta |
+
+O método de 2026 não é o mollifier de Levinson: é uma forma quadrática num espaço de Hilbert mais o teorema de
+correlação de pares de Montgomery na forma incondicional (Baluyot, Goldston, Suriajaya e Turnage-Butterbaugh).
+
+**O que o kernel prova.**
+
+- As definições: `N(T)` (zeros com altura em `(0, T]`), `N₀(T)` (os que estão na reta), `proporcao` e
+  `ProporcaoNaReta W c` (`liminf N₀/N ≥ c`). A contagem é sem multiplicidade; os resultados da literatura, que contam
+  com multiplicidade e medem zeros simples, implicam esta versão, porque `N₀ˢ/N_mult ≤ N₀/N_dist`.
+- `ate_Z_finita`: há só finitos zeros não triviais até cada altura. Usa `IsCompact.inter_riemannZetaZeros_finite`,
+  que está na Mathlib.
+- `N_Z_pos`: a contagem de `ζ` acaba positiva.
+- `proporcao_le_um`: a proporção nunca passa de 1.
+- `rh_cem_por_cento` e `rh_proporcao_um`: **a RH dá 100%** para `ζ`.
+- `cem_por_cento_nao_basta` e `cem_por_cento`: **100% não dá a RH**. O modelo `modeloCem` é a reta `½ + in`
+  (`|n| ≥ 14`) mais o quarteto `½ ± 3/10 ± 14i`. Ele tem a estrutura inteira da §54, sua proporção tende a 1
+  (`contagens_modeloCem`: `N₀ ≤ N ≤ N₀ + 2`), e ele tem um quarteto fora da reta. O mesmo vale com infinitos
+  quartetos esparsos, por exemplo nas alturas `14·2ᵏ`: eles somam `O(log T)` contra `N(T) ~ (T/2π) log T`. Esta
+  versão não está formalizada.
+
+**Por que não dá para "aumentar para 100%" agora.**
+
+1. Nenhum método conhecido chega a 100%. O de 2026 depende do teorema de Montgomery, que só vale para funções-teste
+   cuja transformada de Fourier tem suporte limitado. Alargar esse suporte é a conjectura de correlação de pares, que
+   está aberta. Também não se sabe se, mesmo com ela, o método chegaria a 100%.
+2. "Quase todos os zeros na reta" (proporção 1) é um problema aberto próprio, mais fraco que a RH. Mesmo resolvido,
+   não fecharia a RH (`cem_por_cento_nao_basta`).
+3. No kernel, o único caminho até 100% hoje é a própria RH (`rh_cem_por_cento`).
+
+**O que falta construir para formalizar os 67%.** A Mathlib existe e é mantida pela comunidade. O que falta é esta
+pilha de camadas:
+
+| camada | o que é | na Mathlib hoje |
+|---|---|---|
+| zeros discretos, finitos em compactos | `riemannZetaZeros`, `IsCompact.inter_riemannZetaZeros_finite` | sim |
+| função `Z` de Hardy | `hardyZ`, zeros de `Z` = zeros de `ζ` na reta | sim |
+| ordem de um zero (multiplicidade) | `analyticOrderAt` | sim, sem a ponte para `ζ` |
+| princípio do argumento | contar zeros por integral de contorno | não |
+| Riemann–von Mangoldt | `N(T) = (T/2π) log(T/2πe) + 7/8 + O(log T)` | não |
+| teoremas de Hardy e de Selberg | infinitos zeros e uma fração positiva na reta | não |
+| fórmula explícita e valor médio de Montgomery–Vaughan | somas sobre zeros e sobre primos | não |
+| correlação de pares de Montgomery (forma incondicional) | a entrada do método de 2026 | não |
+| desigualdade de Bessel | `Orthonormal.sum_inner_products_le` | sim |
+| o argumento de 2026 | a forma quadrática e a otimização | não. A Anthropic anuncia uma formalização em Lean; não verifiquei se é pública |
+
+Cada linha marcada "não" é um projeto de formalização grande. A primeira pedra (as definições, a finitude, as duas
+direções exatas entre 100% e a RH) está no kernel. Nada aqui prova RH, nem a proporção de 2026, nem 100%.
+`OPEN_MATH = true`.
 
 ## Autor
 
