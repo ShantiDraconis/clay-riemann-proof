@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 220 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 261 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 605 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 646 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3408,6 +3408,117 @@ cosseno de Montgomery–Taylor.
 - Não conferi se esta curva já aparece publicada; é uma conta direta a partir do artigo de Lamzouri.
 
 `OPEN_MATH = true`.
+
+## 57. Por que ½: a explicação provada até onde ela vai
+
+Arquivo: `ClayRiemannProof/PorQueMeio.lean` (12 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`).
+
+**O argumento.** A explicação proposta é: os zeros "se baseiam" em `π`, em Euler e em `√−1`; ficam "travados na cauda
+de todos os primos" pelo peso `1/√p`; o início está fechado em 0 e o fim em 1, então o meio fechado é ½; por isso
+seria impossível não ter parte real ½. Cada ingrediente foi para o kernel e a inferência final também foi testada.
+
+| ingrediente | status | teorema |
+|---|---|---|
+| `e^{iπ} = −1` (Euler, `π`, `√−1`) dá a meia volta, e em ½ ela é a simetria `s ↦ 1 − s` | **provado** | `euler_meia_volta` |
+| `[0, 1]` com `σ ↦ 1 − σ`: troca 0 com 1, e o único ponto fixo é ½ | **provado** | `meio_fechado` |
+| se todos os zeros estão numa mesma reta, ela é ½ ("poderia ser outro valor, mas é ½") | **provado** | `se_ha_uma_reta_ela_eh_meio` |
+| início fechado em 0 e fim fechado em 1; fechar o fim em `a` é fechar o início em `1 − a`; a RH é fechar todos os fins acima de ½ | **provado** | `bordas_fechadas` |
+| na reta, cada primo tem o peso `‖p^{−s}‖ = 1/√p`; a RH equivale a todo zero dar esse peso a todo primo (basta o 2) | **provado** (como equivalência) | `norma_primo_iff`, `rh_iff_um_sobre_raiz_p` |
+| `1/√p → 0` | **provado** | `um_sobre_raiz_tende_a_zero` |
+| a cauda dos primos trava o zero na reta | **falso como mecanismo**: `Σ_p 1/√p = ∞`, o produto de Euler não converge na reta | `cauda_diverge_na_reta` |
+| logo é impossível um zero fora da reta | **não segue**: o modelo da §54 tem todos os ingredientes e um ponto em que nenhum primo tem peso `1/√p` | `ingredientes_nao_travam` |
+
+**Onde a explicação acerta e onde para.**
+
+- Ela acerta que, **se** houver uma única reta, ela é ½. Também acerta que ½ é o eixo da simetria e o ponto em que o
+  peso de cada primo é `1/√p`.
+- Ela para em dois pontos. O peso `p^{−Re s}` **mede** a parte real, não a fixa (`peso_mede`): dizer "o zero tem peso
+  `1/√p`" é dizer "o zero tem `Re = ½`", o que é a própria RH. E a imagem do início e do fim fechados é a de
+  `riemann_iff_fim`, mas só se sabe fechar o fim em `a = 1`. Fechar em qualquer `a < 1` fixo (a quase-RH) está aberto.
+- Os contraexemplos com os mesmos ingredientes (o polinômio da §54, Davenport–Heilbronn, Epstein) mostram que o
+  "sempre", se for verdade, tem de vir do produto de Euler por um caminho que ninguém conhece.
+
+**O complemento `ClayRiemannProof/Meio.lean`** (10 declarações):
+
+- `espelho_de_euler`: `½ + e^{iπ}(s̄ − ½) = s ⟺ Re s = ½`. O espelho feito de `π`, Euler, `i` e ½ fixa exatamente a
+  reta.
+- `equilibrio_dos_termos`: `|n^{−s}| = |n^{−(1−s)}| ⟺ Re s = ½`. `equilibrio_na_reta`: `|ζ(1 − s)| = |ζ(s)|` na reta.
+  As duas metades de `ζ` pesam igual ali.
+- `troca_de_sinal` e `troca_de_sinal_robusta`: uma troca de sinal da função `Z` de Hardy (Mathlib) é um zero na reta,
+  e ela sobrevive a perturbações menores que `|Z|` nas pontas.
+- `ingredientes_nao_bastam`: `f = ξ·P`, a zeta completada `π^{−s/2}Γ(s/2)ζ(s)` vezes o polinômio-quarteto
+  `±(3/10 ± 14i)`, tem a mesma simetria da `ξ`, todos os zeros da `ξ` e mais um quarteto fora da reta. É uma barreira
+  mais forte que a do polinômio sozinho: `f` contém `π`, `Γ` e o próprio `ζ`. O que lhe falta é ser um produto de
+  Euler vezes o fator gama.
+
+**Verdadeiro, falso, ambos ou indeterminado** (`quatro_valores`).
+
+- **Verdadeiro ou falso:** a RH é uma das duas (lógica clássica do Lean).
+- **Ambos:** impossível.
+- **Indeterminado:** se a RH for falsa, a refutação é uma conta finita. Dada a equivalência de Lagarias, hipótese
+  nomeada, existe `N` com `maquina N = true` (`Maquina.refutacao_finita`). Por isso, se a RH fosse indeterminada
+  (nem demonstrável nem refutável nos axiomas usuais), ela seria verdadeira: uma RH falsa sempre se deixaria refutar.
+  Este passo final é metamatemático (fala de demonstrabilidade) e não está no kernel; o kernel prova a parte da conta
+  finita.
+
+`OPEN_MATH = true`.
+
+## 58. Os três estados, o empate no meio e a forma de uma prova incondicional
+
+Arquivo: `ClayRiemannProof/TresEstados.lean` (19 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`).
+
+**Os três estados.** `Estado` tem os valores `esq` (`Re s < ½`), `meio` (`Re s = ½`) e `dir` (`Re s > ½`). O "2" da
+conversa é o `meio`: não é "verdadeiro e falso ao mesmo tempo", é a posição da reta.
+
+- `classifica_torcao`: o espelho `s ↦ 1 − s̄` troca `esq` com `dir` e fixa o `meio`.
+- `quem_fixa_o_que`: a meia volta `s ↦ 1 − s` fixa só o **ponto** ½. Quem fixa a **reta** é `s ↦ 1 − s̄`. Um texto
+  externo afirmava `1 − s = s ⟺ Re s = ½`, o que está errado.
+
+**O empate de `π` e `Γ` no meio, agora no kernel.** Com `χ(s) = 2(2π)^{−s}Γ(s)cos(πs/2)`:
+
+- `zeta_um_menos`: a equação funcional da Mathlib é `ζ(1 − s) = χ(s)ζ(s)`.
+- `chi_meio`: `|χ(½ + it)| = 1` para todo `t`. A prova usa `chi_mul_chi_um_menos` (`χ(s)χ(1 − s) = 1`, pela reflexão
+  `Γ(s)Γ(1 − s) = π/sin(πs)`) e `chi_conj` (`χ(1 − s) = conj χ(s)` na reta).
+- Fora da reta, `|χ(σ + it)| ≈ (t/2π)^{½−σ} ≠ 1` para `t` grande. Isso sai da fórmula de Stirling e **não** está no
+  kernel.
+- `equacao_propaga`: a equação leva zero em zero (`0 = χ·0`). O empate local não proíbe o par `σ`, `1 − σ`.
+
+**A conjuntura.**
+
+- `pior_caso`: cada par tem pior lado `max(Re ρ, 1 − Re ρ) ≥ ½`, com igualdade só no meio. O erro dos primos é governado
+  por esse pior lado: um zero com `Re` perto de 1 dá erro perto de `x`, e um com `Re` perto de 0 dá erro perto de 1
+  (mas traz o gêmeo perto de 1).
+- `conjuntura_fixada_pelo_meio`: com von Koch como hipótese nomeada, "todo zero no meio" ⟺
+  `|ψ(x) − x| ≤ C√x·log²x`. O expoente do log é 2, não 1.
+
+**A forma de uma prova incondicional.**
+
+O que ela **não pode ser** (`o_que_a_prova_nao_pode_ser`, tudo no kernel):
+
+1. só a estrutura (faixa, `1 − s`, `s̄`, altura `> 13`);
+2. só `π`, `Γ` e o próprio `ζ` com a simetria: `ξ·P` tem um quarteto fora;
+3. só estatística: 100% de proporção não basta;
+4. só o empate local: `|χ| = 1` no meio convive com a equação levando qualquer zero no seu gêmeo.
+
+Ela também não pode ser verificação finita: `proporcao_um_ate` cobre só alturas finitas.
+
+O que ela **pode ser** (`forma_por_aproximacao`): se há conjuntos `W n` todos na reta (os zeros de aproximações
+construídas com finitos primos) e todo zero de `ζ` é limite de pontos deles, vale a RH. O kernel prova esta
+implicação. As duas hipóteses são o problema inteiro:
+
+- **(A) Positividade finita.** Cada aproximação, construída com um conjunto finito de primos, tem todos os zeros na reta.
+  Isso pede uma forma quadrática positiva ou um operador autoadjunto em dimensão finita. Connes (2026) faz isto para a
+  forma de Weil restrita aos primos menores que 13 e prova que as aproximações dos 50 primeiros zeros estão
+  exatamente na reta. O produto de Euler truncado não serve: não tem zeros e não converge na reta
+  (`cauda_diverge_na_reta`).
+- **(B) Convergência.** As aproximações convergem para `ξ` uniformemente em compactos quando o conjunto de primos cresce.
+  O teorema de Hurwitz então dá que todo zero de `ξ` é limite de zeros das aproximações. É aqui que a cauda dos primos
+  (`Σ 1/√p = ∞`) pesa, e é o passo aberto.
+
+O precedente é o caso dos corpos de funções: Weil obteve a positividade da geometria da superfície `C × C` (o teorema
+do índice de Hodge). Para `ℤ` falta o análogo dessa superfície. `OPEN_MATH = true`.
 
 ## Autor
 

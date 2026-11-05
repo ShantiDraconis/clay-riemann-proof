@@ -60,6 +60,9 @@ import ClayRiemannProof.Milenio
 import ClayRiemannProof.Aurea
 import ClayRiemannProof.Estrutura
 import ClayRiemannProof.Proporcao
+import ClayRiemannProof.PorQueMeio
+import ClayRiemannProof.Meio
+import ClayRiemannProof.TresEstados
 
 /-!
 # Auditoria de axiomas
@@ -4000,3 +4003,132 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Proporcao.esqueleto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Proporcao.esqueleto
+
+/-! ## `ClayRiemannProof/PorQueMeio.lean` -/
+
+/-- info: 'ClayRiemannProof.PorQueMeio.meio_fechado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.meio_fechado
+
+/-- info: 'ClayRiemannProof.PorQueMeio.euler_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.euler_meia_volta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.se_ha_uma_reta_ela_eh_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.se_ha_uma_reta_ela_eh_meio
+
+/-- info: 'ClayRiemannProof.PorQueMeio.bordas_fechadas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.bordas_fechadas
+
+/-- info: 'ClayRiemannProof.PorQueMeio.peso_mede' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.peso_mede
+
+/-- info: 'ClayRiemannProof.PorQueMeio.norma_primo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.norma_primo_iff
+
+/-- info: 'ClayRiemannProof.PorQueMeio.rh_iff_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.rh_iff_reta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.rh_iff_um_sobre_raiz_p' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.rh_iff_um_sobre_raiz_p
+
+/-- info: 'ClayRiemannProof.PorQueMeio.um_sobre_raiz_tende_a_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.um_sobre_raiz_tende_a_zero
+
+/-- info: 'ClayRiemannProof.PorQueMeio.cauda_diverge_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.cauda_diverge_na_reta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.ingredientes_nao_travam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.ingredientes_nao_travam
+
+/-- info: 'ClayRiemannProof.PorQueMeio.quatro_valores' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.quatro_valores
+
+/-! ## `ClayRiemannProof/Meio.lean` -/
+
+/-- info: 'ClayRiemannProof.Meio.euler_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.euler_meia_volta
+
+/-- info: 'ClayRiemannProof.Meio.espelho_de_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.espelho_de_euler
+
+/-- info: 'ClayRiemannProof.Meio.equilibrio_dos_termos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.equilibrio_dos_termos
+
+/-- info: 'ClayRiemannProof.Meio.equilibrio_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.equilibrio_na_reta
+
+/-- info: 'ClayRiemannProof.Meio.ivt_sinal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.ivt_sinal
+
+/-- info: 'ClayRiemannProof.Meio.troca_de_sinal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.troca_de_sinal
+
+/-- info: 'ClayRiemannProof.Meio.troca_de_sinal_robusta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.troca_de_sinal_robusta
+
+/-- info: 'ClayRiemannProof.Meio.simetrica_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.simetrica_mul
+
+/-- info: 'ClayRiemannProof.Meio.ingredientes_nao_bastam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.ingredientes_nao_bastam
+
+/-- info: 'ClayRiemannProof.Meio.por_que_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.por_que_meio
+
+/-! ## `ClayRiemannProof/TresEstados.lean` -/
+
+/-- info: 'ClayRiemannProof.TresEstados.Estado' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.Estado
+
+/-- info: 'ClayRiemannProof.TresEstados.classifica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.classifica
+
+/-- info: 'ClayRiemannProof.TresEstados.troca' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.troca
+
+/-- info: 'ClayRiemannProof.TresEstados.troca_troca' does not depend on any axioms -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.troca_troca
+
+/-- info: 'ClayRiemannProof.TresEstados.classifica_meio_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.classifica_meio_iff
+
+/-- info: 'ClayRiemannProof.TresEstados.classifica_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.classifica_torcao
+
+/-- info: 'ClayRiemannProof.TresEstados.quem_fixa_o_que' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.quem_fixa_o_que
+
+/-- info: 'ClayRiemannProof.TresEstados.chi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.chi
+
+/-- info: 'ClayRiemannProof.TresEstados.zeta_um_menos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.zeta_um_menos
+
+/-- info: 'ClayRiemannProof.TresEstados.equacao_propaga' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.equacao_propaga
+
+/-- info: 'ClayRiemannProof.TresEstados.sin_meio_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.sin_meio_ne_zero
+
+/-- info: 'ClayRiemannProof.TresEstados.dois_pi_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.dois_pi_ne_zero
+
+/-- info: 'ClayRiemannProof.TresEstados.chi_mul_chi_um_menos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.chi_mul_chi_um_menos
+
+/-- info: 'ClayRiemannProof.TresEstados.chi_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.chi_conj
+
+/-- info: 'ClayRiemannProof.TresEstados.chi_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.chi_meio
+
+/-- info: 'ClayRiemannProof.TresEstados.pior_caso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.pior_caso
+
+/-- info: 'ClayRiemannProof.TresEstados.conjuntura_fixada_pelo_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.conjuntura_fixada_pelo_meio
+
+/-- info: 'ClayRiemannProof.TresEstados.forma_por_aproximacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.forma_por_aproximacao
+
+/-- info: 'ClayRiemannProof.TresEstados.o_que_a_prova_nao_pode_ser' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.TresEstados.o_que_a_prova_nao_pode_ser
