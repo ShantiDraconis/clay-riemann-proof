@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 214 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 226 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 599 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 611 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3393,6 +3393,48 @@ cosseno de Montgomery–Taylor.
 - As contas da curva são numéricas, com quatro valores exatos em racionais; não estão no kernel.
 - Uma fração assintótica, mesmo 100%, não é a RH (`cem_por_cento_nao_basta`, §55).
 - Não conferi se esta curva já aparece publicada; é uma conta direta a partir do artigo de Lamzouri.
+
+`OPEN_MATH = true`.
+
+## 57. Por que ½: a explicação provada até onde ela vai
+
+Arquivo: `ClayRiemannProof/PorQueMeio.lean` (12 declarações, todas com no máximo `[propext, Classical.choice,
+Quot.sound]`).
+
+**O argumento.** A explicação proposta é: os zeros "se baseiam" em `π`, em Euler e em `√−1`; ficam "travados na cauda
+de todos os primos" pelo peso `1/√p`; o início está fechado em 0 e o fim em 1, então o meio fechado é ½; por isso
+seria impossível não ter parte real ½. Cada ingrediente foi para o kernel e a inferência final também foi testada.
+
+| ingrediente | status | teorema |
+|---|---|---|
+| `e^{iπ} = −1` (Euler, `π`, `√−1`) dá a meia volta, e em ½ ela é a simetria `s ↦ 1 − s` | **provado** | `euler_meia_volta` |
+| `[0, 1]` com `σ ↦ 1 − σ`: troca 0 com 1, e o único ponto fixo é ½ | **provado** | `meio_fechado` |
+| se todos os zeros estão numa mesma reta, ela é ½ ("poderia ser outro valor, mas é ½") | **provado** | `se_ha_uma_reta_ela_eh_meio` |
+| início fechado em 0 e fim fechado em 1; fechar o fim em `a` é fechar o início em `1 − a`; a RH é fechar todos os fins acima de ½ | **provado** | `bordas_fechadas` |
+| na reta, cada primo tem o peso `‖p^{−s}‖ = 1/√p`; a RH equivale a todo zero dar esse peso a todo primo (basta o 2) | **provado** (como equivalência) | `norma_primo_iff`, `rh_iff_um_sobre_raiz_p` |
+| `1/√p → 0` | **provado** | `um_sobre_raiz_tende_a_zero` |
+| a cauda dos primos trava o zero na reta | **falso como mecanismo**: `Σ_p 1/√p = ∞`, o produto de Euler não converge na reta | `cauda_diverge_na_reta` |
+| logo é impossível um zero fora da reta | **não segue**: o modelo da §54 tem todos os ingredientes e um ponto em que nenhum primo tem peso `1/√p` | `ingredientes_nao_travam` |
+
+**Onde a explicação acerta e onde para.**
+
+- Ela acerta que, **se** houver uma única reta, ela é ½. Também acerta que ½ é o eixo da simetria e o ponto em que o
+  peso de cada primo é `1/√p`.
+- Ela para em dois pontos. O peso `p^{−Re s}` **mede** a parte real, não a fixa (`peso_mede`): dizer "o zero tem peso
+  `1/√p`" é dizer "o zero tem `Re = ½`", o que é a própria RH. E a imagem do início e do fim fechados é a de
+  `riemann_iff_fim`, mas só se sabe fechar o fim em `a = 1`. Fechar em qualquer `a < 1` fixo (a quase-RH) está aberto.
+- Os contraexemplos com os mesmos ingredientes (o polinômio da §54, Davenport–Heilbronn, Epstein) mostram que o
+  "sempre", se for verdade, tem de vir do produto de Euler por um caminho que ninguém conhece.
+
+**Verdadeiro, falso, ambos ou indeterminado** (`quatro_valores`).
+
+- **Verdadeiro ou falso:** a RH é uma das duas (lógica clássica do Lean).
+- **Ambos:** impossível.
+- **Indeterminado:** se a RH for falsa, a refutação é uma conta finita. Dada a equivalência de Lagarias, hipótese
+  nomeada, existe `N` com `maquina N = true` (`Maquina.refutacao_finita`). Por isso, se a RH fosse indeterminada
+  (nem demonstrável nem refutável nos axiomas usuais), ela seria verdadeira: uma RH falsa sempre se deixaria refutar.
+  Este passo final é metamatemático (fala de demonstrabilidade) e não está no kernel; o kernel prova a parte da conta
+  finita.
 
 `OPEN_MATH = true`.
 

@@ -60,6 +60,7 @@ import ClayRiemannProof.Milenio
 import ClayRiemannProof.Aurea
 import ClayRiemannProof.Estrutura
 import ClayRiemannProof.Proporcao
+import ClayRiemannProof.PorQueMeio
 
 /-!
 # Auditoria de axiomas
@@ -3978,3 +3979,41 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Proporcao.esqueleto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Proporcao.esqueleto
+
+/-! ## `ClayRiemannProof/PorQueMeio.lean` -/
+
+/-- info: 'ClayRiemannProof.PorQueMeio.meio_fechado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.meio_fechado
+
+/-- info: 'ClayRiemannProof.PorQueMeio.euler_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.euler_meia_volta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.se_ha_uma_reta_ela_eh_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.se_ha_uma_reta_ela_eh_meio
+
+/-- info: 'ClayRiemannProof.PorQueMeio.bordas_fechadas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.bordas_fechadas
+
+/-- info: 'ClayRiemannProof.PorQueMeio.peso_mede' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.peso_mede
+
+/-- info: 'ClayRiemannProof.PorQueMeio.norma_primo_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.norma_primo_iff
+
+/-- info: 'ClayRiemannProof.PorQueMeio.rh_iff_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.rh_iff_reta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.rh_iff_um_sobre_raiz_p' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.rh_iff_um_sobre_raiz_p
+
+/-- info: 'ClayRiemannProof.PorQueMeio.um_sobre_raiz_tende_a_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.um_sobre_raiz_tende_a_zero
+
+/-- info: 'ClayRiemannProof.PorQueMeio.cauda_diverge_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.cauda_diverge_na_reta
+
+/-- info: 'ClayRiemannProof.PorQueMeio.ingredientes_nao_travam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.ingredientes_nao_travam
+
+/-- info: 'ClayRiemannProof.PorQueMeio.quatro_valores' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.quatro_valores
