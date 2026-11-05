@@ -3396,6 +3396,39 @@ cosseno de Montgomery–Taylor.
 
 `OPEN_MATH = true`.
 
+## 57. O gás de primos: a meta ⟺ `1/ζ` continua até `Re s > ½`, e os zeros triviais são simples
+
+Arquivo: `ClayRiemannProof/GasPrimos.lean` (33 teoremas, só a Mathlib e `Identidades.nao_target_iff`; versão
+só-Mathlib das rodadas 106–107 do ATK).
+
+**O gás bosônico.** Modos `n ≥ 1` com energia `log n`: `Σ_{n ≤ N+1} n^{−σ} → ζ(σ)` para `σ > 1`
+(`traco_bosonico`), isto é, `ζ(σ) = Tr e^{−σH}`.
+
+**O gás fermiônico.** Com o sinal `(−1)^F = μ(n)`: `Σ_{d ∣ n} μ(d) = [n = 1]` (`indice_witten`: só o vácuo
+sobrevive) e `Σ μ(n) n^{−s} = 1/ζ(s)` em `Re s > 1` (`traco_fermionico`).
+
+**O critério, para todo `θ`** (`semZeros_iff_continuaAte`): `ζ ≠ 0` em `Re s > θ` ⟺ `1/ζ` tem continuação
+holomorfa a `Re s > θ`. A ida usa a singularidade removível em `s = 1` (o polo de `ζ` vira zero de `1/ζ`); a volta,
+o princípio de identidade no semiplano `{Re s > θ, Im s > 0}`, a simetria `ζ(s̄) = conj ζ(s)` e a continuidade na
+reta real. Com `θ = ½`:
+
+    target_iff_continuaAte : Target ↔ ContinuaAte (1 / 2)
+    target_iff_traco       : Target ↔ ∃ F, F holomorfa em Re s > ½ ∧ F = Σ μ(n) n^{−s} em Re s > 1
+
+A meta é a continuação do traço fermiônico até `Re s > ½`. O que falta é exatamente essa continuação (equivalente
+a `M(x) = O(x^{½+ε})`, Littlewood; não formalizado aqui).
+
+**Zeros triviais.** `|ζ(−2m−δ)| = 2|sin(πδ/2)|·K_m(δ)`, `K_m(δ) = (2π)^{−(2m+1+δ)}Γ(2m+1+δ)|ζ(2m+1+δ)|`, exato
+(`formula_exata`), e `2δK_m ≤ |ζ(−2m−δ)| ≤ πδK_m` (`linearizacao`). No limite `δ → 0⁺`:
+
+    derivada_fatorial    : ‖ζ′(−2m)‖ = (2m)!·|ζ(2m+1)|/(2(2π)^{2m})   (m ≥ 1)
+    zero_trivial_simples : ζ′(−2m) ≠ 0
+
+e `|ζ′(−2)| = ζ(3)/(4π²) = 0,030448…` (`derivada_menos_dois`). Os valores `|ζ′(−2m)|` = 0,030448; 0,0079838;
+**0,0058998**; 0,0083162; … têm mínimo em `m = 3`. A simplicidade dos zeros **não** triviais continua aberta.
+
+Nada aqui prova a meta. `OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
