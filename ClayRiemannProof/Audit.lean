@@ -64,6 +64,7 @@ import ClayRiemannProof.PorQueMeio
 import ClayRiemannProof.Meio
 import ClayRiemannProof.TresEstados
 import ClayRiemannProof.Condicionais
+import ClayRiemannProof.WeilRota
 
 /-!
 # Auditoria de axiomas
@@ -4159,3 +4160,100 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Condicionais.cp_implica_cem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Condicionais.cp_implica_cem
+
+/-! ## `ClayRiemannProof/WeilRota.lean` -/
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.PositivoAte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.PositivoAte
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.positivo_desce' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.positivo_desce
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff_sequencia' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff_sequencia
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.nao_rh_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.nao_rh_iff
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.Fronteira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.Fronteira
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.fronteira_desce' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.fronteira_desce
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff_fronteira_ilimitada' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.rh_iff_fronteira_ilimitada
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.Chuk2026' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.Chuk2026
+
+/-- info: 'ClayRiemannProof.WeilRota.ProgramaDeWeil.chuk_fronteira' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.ProgramaDeWeil.chuk_fronteira
+
+/-- info: 'ClayRiemannProof.WeilRota.Aproximacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.Aproximacao
+
+/-- info: 'ClayRiemannProof.WeilRota.rh_de_aproximacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rh_de_aproximacao
+
+/-- info: 'ClayRiemannProof.WeilRota.rh_iff_existe_aproximacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rh_iff_existe_aproximacao
+
+/-- info: 'ClayRiemannProof.WeilRota.naReta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.naReta
+
+/-- info: 'ClayRiemannProof.WeilRota.naReta_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.naReta_re
+
+/-- info: 'ClayRiemannProof.WeilRota.aproximacao_de_espectro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.aproximacao_de_espectro
+
+/-- info: 'ClayRiemannProof.WeilRota.rotas_do_ataque' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rotas_do_ataque
+
+/-- info: 'ClayRiemannProof.WeilRota.hurwitz_passo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.hurwitz_passo
+
+/-- info: 'ClayRiemannProof.WeilRota.rota_hurwitz' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rota_hurwitz
+
+/-- info: 'ClayRiemannProof.WeilRota.zeta_nao_some_perto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.zeta_nao_some_perto
+
+/-- info: 'ClayRiemannProof.WeilRota.faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.faixa
+
+/-- info: 'ClayRiemannProof.WeilRota.faixa_aberta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.faixa_aberta
+
+/-- info: 'ClayRiemannProof.WeilRota.Z_na_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.Z_na_faixa
+
+/-- info: 'ClayRiemannProof.WeilRota.Z_ne_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.Z_ne_um
+
+/-- info: 'ClayRiemannProof.WeilRota.rota_hurwitz_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rota_hurwitz_zeta
+
+/-- info: 'ClayRiemannProof.WeilRota.rh_iff_rota_hurwitz_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rh_iff_rota_hurwitz_zeta
+
+/-- info: 'ClayRiemannProof.WeilRota.altura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.altura
+
+/-- info: 'ClayRiemannProof.WeilRota.altura_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.altura_im
+
+/-- info: 'ClayRiemannProof.WeilRota.altura_diff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.altura_diff
+
+/-- info: 'ClayRiemannProof.WeilRota.rota_hurwitz_espectral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilRota.rota_hurwitz_espectral

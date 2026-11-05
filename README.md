@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 269 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 300 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 654 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 685 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3537,6 +3537,7 @@ há quatro situações diferentes.
 | Li | `PositividadeDeLi`, com `CriterioDeLi` nomeado | `rotas_para_rh`, `Fronteira.target_de_li` | aberta |
 | Báez-Duarte | `D_N → 0` | `BaezDuarte.Necessity.rh_iff_DN` (sem hipótese) | aberta |
 | aproximação (§58) | zeros de aproximações na reta e todo zero é limite deles | `TresEstados.forma_por_aproximacao` | (A) parcial (Connes 2026), (B) aberta |
+| Hurwitz (§61) | (A) zeros das aproximações só na reta e (C) convergência localmente uniforme; (B) sai provada | `WeilRota.rota_hurwitz`, `rota_hurwitz_espectral` | (A) anunciada por Connes (2026), não formalizada; (C) aberta |
 | redução ao resto | `Resto` (nenhum zero fora acima de `≈ 3·10¹²`), com Platt–Trudgian e as janelas da Arb nomeadas | `Biblioteca.rh_reduzida` | aberta |
 | um lado só | nenhum zero com `Re > ½` | `Biblioteca.rh_de_metade` | é a própria RH |
 | Mertens | `ConjecturaDeMertens` (`|M(x)| ≤ √x`), com Littlewood nomeado | `Biblioteca.rh_de_mertens` | **falsa** (Odlyzko e te Riele, 1985): rota morta |
@@ -3612,12 +3613,12 @@ fórmula explícita foi conferida contra os zeros com uma `φ` gaussiana (difere
    estimativa com folga.
 3. **A estrutura do minimizante.** `ĝ* = Ξ·E_L`, onde `Ξ(r) = ξ(½ + ir)` e o fator `E_L` não troca de sinal em nenhum zero
    de `ζ` capturado, até perto de `2πe^{2L}`. Fora deles, `E_L` tem zeros extras, reais (em `L = ½·log 13`: perto de
-   5,25, 7, 9 e 16).
+   5,25, 7, 9 e 16). *Corrigido na §61: esses zeros extras eram artefato da precisão dupla.*
 4. **A realidade dos zeros.** Pelo princípio do argumento no retângulo `[0,3; 60] × [−1,5; 1,5]`, todos os zeros do
    minimizante são reais para `L = 0,6`, `0,9` e `½·log 13`: 10, 15 e 19 zeros, todos trocas de sinal na reta. Em
    `L = 1,5` aparecem 22 zeros e 20 trocas de sinal, ou seja, um par complexo. Isso **não** refuta nada: ali vários
    autovalores já estão no nível do ruído, e o "minimizante" em precisão dupla é uma mistura arbitrária das direções
-   quase nulas. Daqui em diante é preciso alta precisão.
+   quase nulas. Daqui em diante é preciso alta precisão. *Feito na §61: em alta precisão o par complexo some.*
 
 **Onde isto está na literatura (2026).**
 
@@ -3641,6 +3642,113 @@ duas está provada; (B) é o passo que a literatura declara intocado.
 **Próximo passo concreto:** alta precisão (50 dígitos), com uma base completa, para estender o teste de (A) e medir a
 lei de convergência de (B), `|zero_k(L) − γ_k|` em função de `L`. Essa lei é o que um teorema de (B) teria de explicar.
 `OPEN_MATH = true`.
+
+## 61. As pontes e as rotas no kernel; a fronteira em alta precisão
+
+Arquivos:
+
+- `ClayRiemannProof/WeilRota.lean` (31 declarações, todas com no máximo `[propext, Classical.choice, Quot.sound]`);
+- `computations/weil/alta.py` (→ `alta_<L>.json`; `base_<L>_n<n>.json` são as verificações com base maior);
+- `computations/weil/fronteira.py` (→ `fronteira.json`, `fronteira.png`).
+
+### 1. O que entrou no kernel
+
+A fórmula explícita não está na Mathlib, então a forma de Weil entra como a estrutura `ProgramaDeWeil`. O critério de
+Weil (RH ⟺ `W ≥ 0` em toda escala) é um campo nomeado da estrutura, uma hipótese e não um `axiom`. A partir dela o
+kernel prova:
+
+| teorema | o que diz |
+|---|---|
+| `positivo_desce` | a positividade numa escala `L'` dá todas as escalas menores |
+| `rh_iff_sequencia` | basta uma sequência de escalas que vá ao infinito |
+| `nao_rh_iff` | a RH é falsa ⟺ existe `L > 0` e `g` com suporte em `[−L, L]` e `W(g) < 0`: a refutação é sempre finita |
+| `rh_iff_fronteira_ilimitada` | a RH ⟺ a fronteira (as escalas onde vale a positividade) não tem teto |
+| `chuk_fronteira` | com `Chuk2026` (hipótese nomeada: positividade certificada em 0,8), toda escala `≤ 0,8` está na fronteira |
+| `rh_iff_existe_aproximacao` | a RH ⟺ existe uma aproximação com (A) e (B): a rota da §58 é justa |
+
+A parte nova não usa hipótese nomeada nenhuma. É o **teorema de Hurwitz, provado no kernel**:
+
+- `hurwitz_passo`: se `F n → f` uniformemente num disco fechado, `f(ρ) = 0` e `f ≠ 0` na borda, então `F n` tem um
+  zero no disco para `n` grande. A prova aplica o princípio do módulo máximo da Mathlib a `1/F n`: se `F n` não
+  zerasse, `|F n(ρ)|` ficaria acima de metade do mínimo de `|f|` na borda, mas `F n(ρ) → f(ρ) = 0`.
+- `rota_hurwitz`: (A) os `F n` só se anulam na reta, mais (C) a convergência localmente uniforme num aberto que contém
+  os zeros, para um `f` que zera em cada zero de `ζ` sem ser identicamente nulo perto dele, dão a RH. **A condição
+  (B) deixa de ser hipótese:** ela sai da convergência.
+- `zeta_nao_some_perto`: `ζ` não é identicamente nula perto de nenhum ponto `≠ 1` (princípio da identidade em
+  `ℂ ∖ {1}`, que é conexo, mais `ζ(2) ≠ 0`).
+- `rh_iff_rota_hurwitz_zeta`: com `f = ζ` na faixa, a rota é justa. A RH ⟺ existem funções holomorfas na faixa, com
+  zeros só na reta, que convergem para `ζ` localmente uniformemente.
+- `rota_hurwitz_espectral`: a mesma rota na variável `r = −i(s − ½)` dos estados fundamentais. Se cada `ĝ_n` é
+  inteira com **todos os zeros reais** (A), e `ĝ_n → g` localmente uniformemente (C), com `g` zerando na altura de cada
+  zero de `ζ`, então a RH vale.
+
+### 2. A fronteira em alta precisão
+
+**Método.** Base `cos(πjx/L)`, completa nas funções pares de `L²[−L, L]`. A forma `W` é calculada em forma fechada mais
+Gauss–Legendre, com 60 a 150 dígitos. A contagem de zeros usa o princípio do argumento em alta precisão, com passo
+adaptativo.
+
+| `L` | primos até | `n` | dígitos | `μ₁` | erro no 1º zero | zeros de `ĝ*` em `[0,3; 70] × [−8, 8]` | reais |
+|---|---|---|---|---|---|---|---|
+| 0,6 | 3 | 36 | 60 | `1,7·10⁻⁹` | `1,9·10⁻⁶` | 12 | 12 |
+| 0,7 | 4 | 36 | 60 | `4,9·10⁻¹³` | `8,7·10⁻¹⁰` | 14 | 14 |
+| 0,8 | 4 | 36 | 60 | `1,9·10⁻¹⁷` | `5,0·10⁻¹⁴` | 15 | 15 |
+| 0,9 | 6 | 32 | 70 | `5,8·10⁻²³` | `2,0·10⁻¹⁹` | 17 | 17 |
+| 1,0 | 7 | 32 | 70 | `1,1·10⁻²⁹` | `5,0·10⁻²⁶` | 17 | 17 |
+| 1,1 | 9 | 40 | 90 | `3,9·10⁻³⁸` | `2,1·10⁻³⁴` | 17 | 17 |
+| 1,2 | 11 | 40 | 90 | `6,0·10⁻⁴⁷` | `3,9·10⁻⁴³` | 17 | 17 |
+| ½·log 13 | 13 | 44 | 110 | `5,4·10⁻⁵⁵` | `4,0·10⁻⁵¹` | 17 | 17 |
+| 1,5 | 20 | 56 | 150 | `3,4·10⁻⁷⁹` | `3,5·10⁻⁷⁵` | 17 | 17 |
+
+**O que a conta mostra.**
+
+1. **(A) em toda a faixa medida.** Em todas as escalas, todos os zeros de `ĝ*` nas caixas `[0,3; 70] × [−h, h]` são
+   reais, para `h = 1,5`, 4 e 8: a contagem não cresce com a altura da caixa. A partir de `L = 0,9` são exatamente 17,
+   os 17 zeros de `ζ` abaixo de 70, sem nenhum zero extra.
+2. **Correção da §60.** Os zeros extras (perto de 5,25, 7, 9 e 16) e o par complexo em `L = 1,5` eram artefatos da
+   precisão dupla. Ali vários autovalores já estão abaixo de `10⁻¹²`, e o "minimizante" é uma mistura arbitrária das
+   direções quase nulas. Em alta precisão, nenhum dos dois aparece.
+3. **A lei de (B): o erro é de primeira ordem em `μ₁`.** Em cada escala, `|zero_k − γ_k| ≈ κ_k(L)·μ₁(L)`. A constante
+   `κ_k` cresce devagar com `L` e com `k`. Ela é estável quando a base cresce, mesmo quando o próprio `μ₁` não está
+   convergido:
+
+   | escala | `μ₁` com a base menor → maior | `κ₁` com a base menor → maior |
+   |---|---|---|
+   | `L = 1,0` (`n` = 32 → 40) | `1,12·10⁻²⁹` → `8,6·10⁻³⁰` | 4 422 → 4 417 |
+   | `L = 1,5` (`n` = 56 → 64 → 72) | `3,4·10⁻⁷⁹` → `8,3·10⁻⁸⁴` → `1,6·10⁻⁸⁷` | 10 167 → 9 551 → 9 178 |
+
+   Uma explicação heurística, não provada: sob a fórmula explícita com a RH, `W(g) = Σ_k 2ĝ(γ_k)²`. A equação de
+   autovalor então força `ĝ*(γ_k) = O(μ₁)` nos zeros capturados, como um multiplicador de Lagrange. Por isso o erro é
+   de ordem `μ₁`, e não `√μ₁`.
+4. **A altura capturada** (o maior `γ_k` com todos os erros até ele abaixo de `10⁻⁵`) acompanha `2πe^{2L}` até
+   `L ≈ 0,8`: 25,0 contra 25,5 e 32,9 contra 31,1. Depois passa à frente: 60,8 contra 46,4 em `L = 1`. Acima de
+   `L ≈ 1,1` a conta para em `γ ≤ 70`.
+5. **A lei de Chuk.** Os `μ₁` são cotas superiores de Rayleigh–Ritz. Para `L` grande eles não estão convergidos em `n`:
+   em `L = 1,5` caem oito ordens de grandeza de `n = 56` para `n = 72`. O `C` implícito em `−ln μ₁ ≈ C·N(T*)/ln N(T*)`
+   é, portanto, uma cota inferior: 13,5 em 0,8, 17,0 em 1,0 e ≈ 18 entre 1,1 e 1,3. Em 1,5 ele sobe de 16,4 (`n = 56`)
+   para 18,1 (`n = 72`) e continua subindo. Isso é compatível com o `2π² ≈ 19,7` ajustado por Chuk, sem confirmá-lo.
+   Em `L = 0,8`, o nosso `μ₁ = 1,94·10⁻¹⁷` está dentro do intervalo certificado por ele, `[8,9·10⁻¹⁸; 2,27·10⁻¹⁷]`.
+
+**Conferências.**
+
+- Quadratura: em `L = 1,5`, `n = 64`, dobrar os nós de Gauss–Legendre (grau 8 → 9) não muda `μ₁` nos 8 dígitos
+  impressos (`quadratura_1.5_n64_grau9.json`).
+- Base: (A) e a contagem de 17 zeros reais se repetem com `n = 40` em `L = 1,0` e com `n = 64` e 72 em `L = 1,5`.
+- Contagem: a contagem em precisão dupla da §60 era inválida acima de `r ≈ 40`, porque `ĝ*` ali é menor que o erro de
+  arredondamento da soma. Agora a contagem é em precisão alta, e cada passo do contorno muda o argumento em menos de ½.
+
+### 3. Onde está a fronteira agora
+
+Com `rota_hurwitz_espectral`, o kernel reduz esta rota a duas afirmações sobre os estados fundamentais:
+
+- **(A∞)** Para todo `L`, todos os zeros da transformada do estado fundamental são reais. Connes (2026) anuncia um
+  resultado geral que põe as suas aproximações exatamente na reta. As hipóteses estão no artigo e não foram conferidas
+  nem formalizadas aqui. Nas contas acima, (A) vale em todas as caixas medidas.
+- **(C)** As transformadas normalizadas `ĝ*_L` convergem localmente uniformemente para uma função inteira não nula que
+  zera nas alturas dos zeros de `ζ`. É o passo que Connes e Chuk deixam em aberto. Nas contas, os zeros convergem com
+  a lei `erro ≈ κ·μ₁`, e `μ₁ → 0` super-exponencialmente. A convergência das próprias funções não foi medida.
+
+Com (A∞) e (C), a RH sai no kernel. Nenhuma das duas está provada. `OPEN_MATH = true`.
 
 ## Autor
 
