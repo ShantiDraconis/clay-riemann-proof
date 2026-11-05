@@ -19,7 +19,7 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 - **Lombada**: entre dois zeros vizinhos `γ₁ < γ₂`, `Z` tem um extremo de altura `|Z*|` em `t*`. Num par apertado,
   `Z ≈ a − c(t − m)²` com `a = |Z*|`, `c = |Z''|/2`.
 - Dados certificados pela Arb (FLINT 3): 41 393 zeros em `3 000 175 332 800 < t ≤ 3 000 175 342 471,5` (seção 13);
-  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 57 009 141 até `3 000 189 142 471,5` (segunda a décima quinta extensões); 20 000 zeros em 10¹⁴, 10¹⁶ e 10¹⁷ (alturas);
+  2 054 383 zeros contíguos até `3 000 175 822 471,5` (continuação) e mais 63 172 293 até `3 000 190 582 471,5` (segunda a décima sétima extensões); 20 000 zeros em 10¹⁴, 10¹⁶ e 10¹⁷ (alturas);
   65 800 em 10¹⁸ (fronteira, 1ª onda). Todos na reta, contagens de Turing fechando.
 
 ## 2. Teoremas no kernel
@@ -132,6 +132,12 @@ uma Proposta R1xx (enunciado + referência mostrando que não está na literatur
 | `Continuacao.rhAteZ_continuacao15` | as anteriores + `JanelaContinuacao2026o` (faixas 6–11; 3 081 574 zeros) | RH até 3 000 189 142 471 |
 | `Continuacao.primeiro_fora_acima_continuacao15` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 189 142 471` |
 | `Continuacao.par_mais_fragil_continuacao15` | bolas do par 12 363 211 536 708/709 (`s = 0,0082`) | `−2,31·10⁻⁶ ≤ λ ≤ −1,84·10⁻⁶` |
+| `Continuacao.rhAteZ_continuacao16` | as anteriores + `JanelaContinuacao2026p` (faixas 0–5 do C0 3 000 189 142 471,5; 3 081 577 zeros) | RH até 3 000 189 862 471 |
+| `Continuacao.primeiro_fora_acima_continuacao16` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 189 862 471` |
+| `Continuacao.par_mais_fragil_continuacao16` | bolas do par 12 363 213 419 057/058 (`s = 0,0070`) | `−1,68·10⁻⁶ ≤ λ ≤ −1,33·10⁻⁶` |
+| `Continuacao.rhAteZ_continuacao17` | as anteriores + `JanelaContinuacao2026q` (faixas 6–11; 3 081 575 zeros) | RH até 3 000 190 582 471 |
+| `Continuacao.primeiro_fora_acima_continuacao17` | as mesmas | o primeiro zero fora da reta, se existir, tem `Im > 3 000 190 582 471` |
+| `Continuacao.par_mais_fragil_continuacao17` | bolas do par 12 363 216 568 001/002 (`s = 0,0080`) | `−2,21·10⁻⁶ ≤ λ ≤ −1,76·10⁻⁶` |
 | `Continuacao.par_mais_fragil_continuacao` | bolas da Arb do par 12 363 153 756 750/751 e `Δ²g ≤ 4/5` | `−5,75·10⁻⁷ ≤ λ ≤ −4,59·10⁻⁷` |
 | `Continuacao.par_mais_fragil_1e18` | bolas do par 6 144 758 226 908 699 989/990 | `−1,013·10⁻⁵ ≤ λ ≤ −8,09·10⁻⁶` |
 | `Continuacao.par_mais_fragil_onda2` | bolas do par 467 888 702 979 044/045 (2ª onda da fronteira, 7 791 406 zeros) | `−6,93·10⁻⁷ ≤ λ ≤ −5,53·10⁻⁷` |
