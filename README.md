@@ -3585,6 +3585,63 @@ Goldston, Lee, Schettler e Suriajaya. Mesmo assim, 100% não é a RH (`cem_por_c
 
 `OPEN_MATH = true`.
 
+## 60. O ataque direto: a positividade de Weil em escala finita
+
+Arquivos: `computations/weil/weil.py` (a forma de Weil com suporte finito) e `cascata.py` (→ `weil.json`, `weil.png`).
+
+**Por que esta rota.** As barreiras das §54, §57 e §58 provam no kernel que simetria, geometria, `π`, `Γ` e o próprio
+`ζ` com a simetria, estatística e o empate local não bastam. O que sobra tem de usar os primos por meio de uma
+positividade. Esta é a forma de Weil:
+
+    W(g) = φ(i/2) + φ(−i/2) − h(0)·log π + (1/2π)∫ φ(r)·Re ψ(¼ + ir/2) dr − 2 Σ_n Λ(n) n^{−½} h(log n),
+
+com `h = g ⋆ g` e `φ = |ĝ|²`. A fórmula explícita diz que `W(g) = Σ_ρ φ(γ_ρ)`. O critério de Weil diz que a RH vale
+⟺ `W(g) ≥ 0` para toda `g`. Para `g` com suporte em `[−L, L]` só entram os `n ≤ e^{2L}`, então a RH vira uma família de
+problemas finitos, um para cada escala `L`: a menor razão `μ(L) = min W(g)/‖g‖²` tem de ser `≥ 0`. A normalização da
+fórmula explícita foi conferida contra os zeros com uma `φ` gaussiana (diferença `3·10⁻¹⁶`).
+
+**O que a conta mostra** (base `cos²(πx/2L)·cos(πjx/L)`, precisão dupla):
+
+1. **Os zeros de `ζ` saem só dos primos até 13.** Em `L = ½·log 13`, a transformada `ĝ*` do minimizante tem zeros
+   reais nas alturas dos zeros de `ζ`: erro `≤ 10⁻¹²` nos 6 primeiros, `≤ 3·10⁻⁷` até o 11º, `3·10⁻⁵` no 12º. Daí em diante
+   a captura se perde. É o fenômeno de Connes (2026), reproduzido.
+2. **A cascata.** Os autovalores despencam um depois do outro: `μ₁ ≈ 10⁻¹` em `L = 0,2`, `10⁻⁶` em 0,5 e abaixo de
+   `10⁻¹²` a partir de 0,7; `μ₂`, `μ₃`, `μ₄`, `μ₅` caem do mesmo jeito em escalas sucessivas (≈ 0,8; 0,9; 1,0; >1). Cada
+   direção quase nula corresponde a um zero de `ζ` a mais que a escala "enxerga". A margem de positividade cai
+   super-exponencialmente: uma prova de `μ(L) ≥ 0` tem de ser exata (uma identidade ou uma estrutura), nunca uma
+   estimativa com folga.
+3. **A estrutura do minimizante.** `ĝ* = Ξ·E_L`, onde `Ξ(r) = ξ(½ + ir)` e o fator `E_L` não troca de sinal em nenhum zero
+   de `ζ` capturado, até perto de `2πe^{2L}`. Fora deles, `E_L` tem zeros extras, reais (em `L = ½·log 13`: perto de
+   5,25, 7, 9 e 16).
+4. **A realidade dos zeros.** Pelo princípio do argumento no retângulo `[0,3; 60] × [−1,5; 1,5]`, todos os zeros do
+   minimizante são reais para `L = 0,6`, `0,9` e `½·log 13`: 10, 15 e 19 zeros, todos trocas de sinal na reta. Em
+   `L = 1,5` aparecem 22 zeros e 20 trocas de sinal, ou seja, um par complexo. Isso **não** refuta nada: ali vários
+   autovalores já estão no nível do ruído, e o "minimizante" em precisão dupla é uma mistura arbitrária das direções
+   quase nulas. Daqui em diante é preciso alta precisão.
+
+**Onde isto está na literatura (2026).**
+
+- Connes (fevereiro): a forma de Weil restrita aos primos menores que 13 aproxima os 50 primeiros zeros; as
+  aproximações estão provadamente na reta; a estratégia é a convergência.
+- Chuk (agosto): positividade **certificada** para suporte `[−0,8; 0,8]` (`λ* ≥ 8,9·10⁻¹⁸`, entram 2, 3 e 4). Ele
+  propõe a lei de decaimento `−ln λ*(L) ≈ C·N(T*)/ln N(T*)`, com `T* = 2πe^{2L}` e `C ≈ 2π²`, constante ajustada e não
+  deduzida. A altura `2πe^{2L}` bate com a captura vista aqui.
+- Os dois deixam **em aberto** o passo (B): que os zeros do estado fundamental convergem para todos os zeros de `ζ`
+  quando `L → ∞`.
+
+**O que provaria a RH por esta rota.** Exatamente as duas hipóteses de `TresEstados.forma_por_aproximacao`, que o
+kernel já liga à RH:
+
+- **(A)** todos os zeros do estado fundamental, em cada escala, são reais;
+- **(B)** todo zero de `ζ` é limite de zeros do estado fundamental.
+
+Esta seção dá evidência numérica de (A) até `L = ½·log 13` e de (B) para os zeros abaixo de `≈ 2πe^{2L}`. Nenhuma das
+duas está provada; (B) é o passo que a literatura declara intocado.
+
+**Próximo passo concreto:** alta precisão (50 dígitos), com uma base completa, para estender o teste de (A) e medir a
+lei de convergência de (B), `|zero_k(L) − γ_k|` em função de `L`. Essa lei é o que um teorema de (B) teria de explicar.
+`OPEN_MATH = true`.
+
 ## Autor
 
 Tiago Paschoalatto Fagliari (ShantiDraconis) — ORCID [0009-0006-6874-3910](https://orcid.org/0009-0006-6874-3910).
