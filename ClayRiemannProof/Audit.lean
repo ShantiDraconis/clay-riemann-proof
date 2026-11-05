@@ -3590,3 +3590,27 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Aurea.fases_independentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Aurea.fases_independentes
+
+/-- info: 'ClayRiemannProof.Aurea.rot90' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90
+
+/-- info: 'ClayRiemannProof.Aurea.rot90_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90_re
+
+/-- info: 'ClayRiemannProof.Aurea.rot90_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90_im
+
+/-- info: 'ClayRiemannProof.Aurea.rot90_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90_dois
+
+/-- info: 'ClayRiemannProof.Aurea.rot90_rot90' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90_rot90
+
+/-- info: 'ClayRiemannProof.Aurea.rot90_tira_da_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.rot90_tira_da_faixa
+
+/-- info: 'ClayRiemannProof.Aurea.zeros_sem_simetria_do_quadrado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.zeros_sem_simetria_do_quadrado
+
+/-- info: 'ClayRiemannProof.Aurea.octeto_colado_aos_bracos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Aurea.octeto_colado_aos_bracos

@@ -238,4 +238,59 @@ theorem fases_independentes (m n : ℕ) (hn : 0 < n) : Real.log 2 / Real.log 3 �
     rw [Nat.pow_mod]; norm_num
   omega
 
+/-! ## 7. Quatro cópias da estrutura girada de 90° em torno de ½ -/
+
+/-- A rotação de 90° em torno de `½`: `s ↦ ½ + i(s − ½)`. -/
+noncomputable def rot90 (s : ℂ) : ℂ := 1 / 2 + I * (s - 1 / 2)
+
+theorem rot90_re (s : ℂ) : (rot90 s).re = 1 / 2 - s.im := by
+  simp [rot90]
+  ring
+
+theorem rot90_im (s : ℂ) : (rot90 s).im = s.re - 1 / 2 := by
+  simp [rot90]
+
+/-- **Duas rotações de 90° são a tensão `s ↦ 1 − s`** (a de 180° é uma simetria de `ζ`), e quatro voltam ao início:
+as quatro cópias formam o grupo cíclico de ordem 4, e com `s ↦ s̄` o grupo do quadrado (diedral de ordem 8). -/
+theorem rot90_dois (s : ℂ) : rot90 (rot90 s) = tensao s := by
+  simp only [rot90, tensao]
+  linear_combination (s - 1 / 2) * I_sq
+
+theorem rot90_rot90 (s : ℂ) : rot90 (rot90 s) = tensao s ∧ rot90 (rot90 (rot90 (rot90 s))) = s :=
+  ⟨rot90_dois s, by rw [rot90_dois (rot90 (rot90 s)), rot90_dois s, tensao_tensao]⟩
+
+/-- **A cópia girada de 90° (ou de 270°) tira todo zero não trivial da faixa crítica**: `Re(rot90 ρ) = ½ − Im ρ`,
+e `|Im ρ| > 13`. -/
+theorem rot90_tira_da_faixa {ρ : ℂ} (hρ : ρ ∈ Z) : rot90 ρ ∉ Z ∧ rot90 (rot90 (rot90 ρ)) ∉ Z := by
+  have h13 := HeightThirteen.primeiro_zero_entre.2 ρ hρ
+  have e3 : rot90 (rot90 (rot90 ρ)) = rot90 (tensao ρ) := by rw [(rot90_rot90 ρ).1]
+  have h13' := HeightThirteen.primeiro_zero_entre.2 _ (tensao_mem_Z hρ)
+  constructor
+  · rintro ⟨-, h0, h1⟩
+    rw [rot90_re] at h0 h1
+    rcases lt_abs.mp h13 with h | h <;> linarith
+  · rw [e3]
+    rintro ⟨-, h0, h1⟩
+    rw [rot90_re] at h0 h1
+    rcases lt_abs.mp h13' with h | h <;> linarith
+
+/-- **Os zeros de `ζ` não têm a simetria do quadrado**: nenhum conjunto não vazio de zeros não triviais é fechado pela
+rotação de 90°, e `Z` não é vazio. As quatro cópias giradas não são todas `ζ`: só as de 0° e 180° são. -/
+theorem zeros_sem_simetria_do_quadrado : ¬ ∀ ρ ∈ Z, rot90 ρ ∈ Z := by
+  intro h
+  obtain ⟨ρ, hρ⟩ := ClayRiemannProof.CertifiedZeros.FirstZero.Z_nao_vazio
+  exact (rot90_tira_da_faixa hρ).1 (h ρ hρ)
+
+/-- **Na cruz das quatro cópias, um zero fora da reta fica colado aos braços**: a órbita de `ρ` pelo grupo do quadrado
+são os 8 pontos `½ ± b ± iγ` e `½ ± γ ± ib`; cada um faz com o braço mais próximo da cruz (a reta crítica ou a sua
+cópia girada, o eixo real) um ângulo `arctan(|b|/|γ|) < 1/26`. -/
+theorem octeto_colado_aos_bracos {ρ : ℂ} (hρ : ρ ∈ Z) (hb : ρ.re ≠ 1 / 2) :
+    0 < Real.arctan (|ρ.re - 1 / 2| / |ρ.im|) ∧ Real.arctan (|ρ.re - 1 / 2| / |ρ.im|) < 1 / 26 := by
+  have h := angulo_do_quarteto hρ hb
+  have h13 := HeightThirteen.primeiro_zero_entre.2 ρ hρ
+  have hb0 : 0 < |ρ.re - 1 / 2| := abs_pos.mpr (sub_ne_zero.mpr hb)
+  have hx : 0 < |ρ.im| / |ρ.re - 1 / 2| := div_pos (by linarith) hb0
+  rw [← arctan_inv_of_pos hx, inv_div] at h
+  exact h
+
 end ClayRiemannProof.Aurea

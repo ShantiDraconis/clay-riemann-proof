@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 090 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 098 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 475 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 483 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3010,6 +3010,54 @@ Dados: `computations/aurea/zeros_fibonacci.py`, `zeros_fibonacci.json` e a figur
 - O que aparece são linhas de polos (verticais, exatas) e famílias de zeros presas a elas, em fases fixas do período.
 - Em ζ e em `L(s, χ₅)`, que têm produto de Euler e equação funcional, os zeros conferidos ficam todos na mesma reta
   `½` (§50). `OPEN_MATH = true`.
+
+## 52. Quatro cópias da estrutura de Riemann giradas de 90°: onde um zero fora da reta pode estar
+
+Arquivo: `ClayRiemannProof/Aurea.lean`, §7 (8 declarações novas: `rot90`, `rot90_re`, `rot90_im`, `rot90_dois`,
+`rot90_rot90`, `rot90_tira_da_faixa`, `zeros_sem_simetria_do_quadrado`, `octeto_colado_aos_bracos`).
+
+**A construção.** Quatro cópias da faixa crítica, ligadas pelo centro `½` e giradas de 0°, 90°, 180° e 270°:
+`rot90(s) = ½ + i(s − ½)`.
+
+- A cruz que se forma tem dois braços: a faixa vertical `|Re s − ½| < ½` e a faixa horizontal `|Im s| < ½`.
+- A reta crítica gira para o eixo real.
+- Com a conjugação `s ↦ s̄`, o grupo deixa de ser o de Klein (retângulo, §50) e passa a ser o do quadrado (diedral de
+  ordem 8). O quarteto vira um octeto: `½ ± b ± iγ` e `½ ± γ ± ib`.
+
+**O que o kernel prova.**
+
+- `rot90_dois`, `rot90_rot90`: duas rotações de 90° dão `s ↦ 1 − s`, que é a simetria verdadeira de `ζ`, e quatro
+  voltam ao ponto de partida.
+- `rot90_tira_da_faixa`: a cópia de 90° (e a de 270°) tira **todo** zero não trivial da faixa, porque
+  `Re(rot90 ρ) = ½ − Im ρ` e `|Im ρ| > 13`.
+- `zeros_sem_simetria_do_quadrado`: os zeros de `ζ` não são fechados pela rotação de 90°. Das quatro cópias, só a de
+  0° e a de 180° são `ζ`.
+- `octeto_colado_aos_bracos`: na cruz, cada ponto do octeto de um zero fora da reta faz com o braço mais próximo (a
+  reta crítica ou o eixo real) um ângulo `arctan(|b|/|γ|) < 1/26` rad, isto é, menos de 2,2°.
+
+**As contas (ângulos do octeto).** Os 8 pontos ficam igualmente espaçados (octógono regular, lacunas de 45°) só quando
+`γ/b = 1 + √2 ≈ 2,414`, a razão de prata.
+
+| caso | `γ/b` | lacunas entre os 8 pontos |
+|---|---|---|
+| o ponto de exemplo `0,2 + i` (não é zero: o kernel exclui `|Im s| ≤ 13`) | 3,33 | 33,40° e 56,60°, alternadas |
+| zeros fora da reta de Epstein `m² + 5n²` (12) | de 36 a 541 | `2δ` de 3,17° a 0,21°, e `90° − 2δ` |
+| zeros fora da reta de Davenport–Heilbronn (3) | de 278 a 2 239 | `2δ` de 0,41° a 0,05° |
+| um zero fora da reta de `ζ`, se existir (kernel: `γ/b > 26`) | `> 26` | `2δ < 4,41°` |
+| idem, acima de `3·10¹²` (verificação externa) | `> 6·10¹²` | `2δ < 2·10⁻¹¹` graus |
+
+**Onde um zero fora da reta pode estar, nessa figura.**
+
+- O octeto fica colado aos dois braços da cruz, a um ângulo `δ = arctan(b/γ)` de cada braço.
+- As cópias giradas de 90° e 270° caem fora da faixa, em `Re s = ½ ± γ`, onde `ζ` não tem zeros: em `Re s ≥ 1` não
+  há zeros, e em `Re s ≤ 0` só os triviais, que são reais. Elas nunca são zeros.
+- A figura dá a forma (quadrado em vez de retângulo, ângulo de no máximo `1/26`), mas não a posição.
+- Se as oito "vistas" de 45° em 45° forem lidas como pontos `s`, cada uma precisa ser conferida em `ζ` à parte. A
+  rotação de 45° não é simetria de `ζ`.
+
+**O que NÃO é:** a cruz das quatro cópias não é a estrutura de `ζ`, porque a rotação de 90° não preserva os zeros. Ela
+não localiza nem exclui zeros fora da reta além do que o kernel já tinha (a faixa até 13 e o ângulo `< 1/26`).
+`OPEN_MATH = true`.
 
 ## Autor
 
