@@ -66,5 +66,6 @@ import ClayRiemannProof.Aurea
 import ClayRiemannProof.Estrutura
 import ClayRiemannProof.Proporcao
 import ClayRiemannProof.PorQueMeio
+import ClayRiemannProof.Meio
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen

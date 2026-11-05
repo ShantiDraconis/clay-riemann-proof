@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 226 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 236 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 611 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 621 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3425,6 +3425,19 @@ seria impossível não ter parte real ½. Cada ingrediente foi para o kernel e a
   `riemann_iff_fim`, mas só se sabe fechar o fim em `a = 1`. Fechar em qualquer `a < 1` fixo (a quase-RH) está aberto.
 - Os contraexemplos com os mesmos ingredientes (o polinômio da §54, Davenport–Heilbronn, Epstein) mostram que o
   "sempre", se for verdade, tem de vir do produto de Euler por um caminho que ninguém conhece.
+
+**O complemento `ClayRiemannProof/Meio.lean`** (10 declarações):
+
+- `espelho_de_euler`: `½ + e^{iπ}(s̄ − ½) = s ⟺ Re s = ½`. O espelho feito de `π`, Euler, `i` e ½ fixa exatamente a
+  reta.
+- `equilibrio_dos_termos`: `|n^{−s}| = |n^{−(1−s)}| ⟺ Re s = ½`. `equilibrio_na_reta`: `|ζ(1 − s)| = |ζ(s)|` na reta.
+  As duas metades de `ζ` pesam igual ali.
+- `troca_de_sinal` e `troca_de_sinal_robusta`: uma troca de sinal da função `Z` de Hardy (Mathlib) é um zero na reta,
+  e ela sobrevive a perturbações menores que `|Z|` nas pontas.
+- `ingredientes_nao_bastam`: `f = ξ·P`, a zeta completada `π^{−s/2}Γ(s/2)ζ(s)` vezes o polinômio-quarteto
+  `±(3/10 ± 14i)`, tem a mesma simetria da `ξ`, todos os zeros da `ξ` e mais um quarteto fora da reta. É uma barreira
+  mais forte que a do polinômio sozinho: `f` contém `π`, `Γ` e o próprio `ζ`. O que lhe falta é ser um produto de
+  Euler vezes o fator gama.
 
 **Verdadeiro, falso, ambos ou indeterminado** (`quatro_valores`).
 

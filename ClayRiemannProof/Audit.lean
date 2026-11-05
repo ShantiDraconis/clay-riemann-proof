@@ -61,6 +61,7 @@ import ClayRiemannProof.Aurea
 import ClayRiemannProof.Estrutura
 import ClayRiemannProof.Proporcao
 import ClayRiemannProof.PorQueMeio
+import ClayRiemannProof.Meio
 
 /-!
 # Auditoria de axiomas
@@ -4017,3 +4018,35 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.PorQueMeio.quatro_valores' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.PorQueMeio.quatro_valores
+
+/-! ## `ClayRiemannProof/Meio.lean` -/
+
+/-- info: 'ClayRiemannProof.Meio.euler_meia_volta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.euler_meia_volta
+
+/-- info: 'ClayRiemannProof.Meio.espelho_de_euler' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.espelho_de_euler
+
+/-- info: 'ClayRiemannProof.Meio.equilibrio_dos_termos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.equilibrio_dos_termos
+
+/-- info: 'ClayRiemannProof.Meio.equilibrio_na_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.equilibrio_na_reta
+
+/-- info: 'ClayRiemannProof.Meio.ivt_sinal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.ivt_sinal
+
+/-- info: 'ClayRiemannProof.Meio.troca_de_sinal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.troca_de_sinal
+
+/-- info: 'ClayRiemannProof.Meio.troca_de_sinal_robusta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.troca_de_sinal_robusta
+
+/-- info: 'ClayRiemannProof.Meio.simetrica_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.simetrica_mul
+
+/-- info: 'ClayRiemannProof.Meio.ingredientes_nao_bastam' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.ingredientes_nao_bastam
+
+/-- info: 'ClayRiemannProof.Meio.por_que_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Meio.por_que_meio
