@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 122 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 123 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 507 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 508 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3074,7 +3074,7 @@ não localiza nem exclui zeros fora da reta além do que o kernel já tinha (a f
 
 ## 53. Oito cópias giradas de 45° em torno do 0 absoluto: onde um zero fora da reta pode estar
 
-Arquivos: `ClayRiemannProof/Aurea.lean`, §8 (18 declarações novas); `computations/aurea/oito_copias.py`
+Arquivos: `ClayRiemannProof/Aurea.lean`, §8 (19 declarações novas); `computations/aurea/oito_copias.py`
 (→ `oito_copias.json`) e `figura_oito_copias.py` (→ `oito_copias.png`).
 
 **A construção.** Oito cópias da estrutura de Riemann, todas presas no 0 e giradas de 0°, 45°, …, 315°. A cópia `k` é
@@ -3095,6 +3095,7 @@ Arquivos: `ClayRiemannProof/Aurea.lean`, §8 (18 declarações novas); `computat
   as cunhas de raios vizinhos não se tocam.
 - `copias_da_reta_tangentes`: cada reta crítica copiada é tangente ao círculo `|s| = ½`, no ponto `ωᵏ/2`. As oito
   cercam um octógono regular de apótema ½.
+- `par_fora_da_reta_rotacionado`: para o quarteto hipotético `½ ± b + iγ`, cada rotação tem ponto médio sobre a reta crítica copiada e deslocamentos iguais `|b|` dos dois lados; é geometria condicional, não afirma a existência de zeros.
 - `oito_copias_no_meio` (comparação com o pivô ½): a cópia de 180° é `s ↦ 1 − s`, então as oito se juntam duas a duas e
   só há 4 cópias distintas. As de 45°·ímpar, 90° e 270° tiram todo zero da faixa.
 
