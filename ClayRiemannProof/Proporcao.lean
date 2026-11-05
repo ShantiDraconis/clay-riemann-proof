@@ -281,4 +281,40 @@ theorem cem_por_cento : (Target → Tendsto (proporcao Z) atTop (𝓝 1)) ∧
   obtain ⟨W, hW, ht, ρ, hρ, hr⟩ := cem_por_cento_nao_basta
   exact hr (h W hW ht ρ hρ)
 
+/-! ## 4. 100% exato até cada altura verificada -/
+
+/-- **Até a altura verificada, a proporção é exatamente 1**: se todo zero não trivial com `|Im| ≤ X` está na reta
+(`RHateZ X`), então `N₀(T)/N(T) = 1` para todo `T ≤ X` com `N(T) ≠ 0`. Com a continuação do repositório
+(`Continuacao.rhAteZ_continuacao…`, sob as hipóteses nomeadas dos dados da Arb), vale até `≈ 3·10¹²`. -/
+theorem proporcao_um_ate {X : ℕ} (h : FiniteWorlds.RHateZ X) {T : ℝ} (hT : T ≤ X) (hN : N Z T ≠ 0) :
+    proporcao Z T = 1 := by
+  have e : N0 Z T = N Z T := by
+    unfold N0 N
+    congr 1
+    ext ρ
+    refine ⟨fun h' => h'.1, fun h' => ⟨h', ?_⟩⟩
+    obtain ⟨⟨hz, h0, h1⟩, hi0, hiT⟩ := h'
+    refine h ρ hz (not_trivial_of_re_pos h0) (fun e => ?_) ?_
+    · rw [e, Complex.one_re] at h1
+      exact lt_irrefl _ h1
+    · rw [abs_of_pos hi0]
+      linarith
+  unfold proporcao
+  rw [e, div_self (by exact_mod_cast hN)]
+
+/-! ## 5. O esqueleto do método de 2026 -/
+
+/-- **O esqueleto do método**: se `a(T) ≥ 2b(T) − S(T)` (a desigualdade de Bessel de Lamzouri, com `a = N₀ˢ`,
+`b = N` e `S = Σ K(γ − γ')²`) e, para todo `ε > 0`, `S(T) ≤ (C + ε)·b(T)` no limite (a correlação de pares, que dá a
+constante `C`), então `a/b ≥ 2 − C − ε` no limite. Com o alcance conhecido hoje (`|α| ≤ 1`) o melhor `C` é
+`C_MT = ½ + (1/√2)·cot(1/√2) ≈ 1,3275`, e sai `0,6725`; com a correlação de pares até o alcance `A`, `C(A)` cai e a
+fração sobe (`computations/proporcao/curva.py`). As duas hipóteses são as camadas que faltam no kernel. -/
+theorem esqueleto {a b S : ℝ → ℝ} {C : ℝ} (hab : ∀ᶠ T in atTop, 2 * b T - S T ≤ a T)
+    (hS : ∀ ε > 0, ∀ᶠ T in atTop, S T ≤ (C + ε) * b T) (hb : ∀ᶠ T in atTop, 0 < b T) :
+    ∀ ε > 0, ∀ᶠ T in atTop, 2 - C - ε ≤ a T / b T := by
+  intro ε hε
+  filter_upwards [hab, hS ε hε, hb] with T h1 h2 h3
+  rw [le_div_iff₀ h3]
+  nlinarith
+
 end ClayRiemannProof.Proporcao

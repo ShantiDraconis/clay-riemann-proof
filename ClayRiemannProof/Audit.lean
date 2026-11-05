@@ -3972,3 +3972,9 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Proporcao.cem_por_cento' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Proporcao.cem_por_cento
+
+/-- info: 'ClayRiemannProof.Proporcao.proporcao_um_ate' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.proporcao_um_ate
+
+/-- info: 'ClayRiemannProof.Proporcao.esqueleto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Proporcao.esqueleto

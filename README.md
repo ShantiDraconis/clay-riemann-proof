@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 212 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 214 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 597 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 599 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3324,6 +3324,76 @@ pilha de camadas:
 
 Cada linha marcada "não" é um projeto de formalização grande. A primeira pedra (as definições, a finitude, as duas
 direções exatas entre 100% e a RH) está no kernel. Nada aqui prova RH, nem a proporção de 2026, nem 100%.
+`OPEN_MATH = true`.
+
+## 56. Aumentar a proporção: o teto de hoje e o que cada porcentagem exige
+
+Arquivos: `computations/proporcao/curva.py` (→ `curva.json`) e `figura_curva.py` (→ `curva.png`);
+`ClayRiemannProof/Proporcao.lean`, §4–5 (2 declarações novas).
+
+**O teto de hoje é 67,25%.** No método de 2026 (Lamzouri, Prop. 2.1 e Lema 3.2) a cota é `2 − C`, com
+
+    C(g) = ‖g‖² + E min(|X − Y|, 1),   X, Y independentes com densidade g = η²,
+
+minimizado sobre as densidades `g` com suporte em `[−A/2, A/2]`. A correlação de pares de Montgomery só é conhecida,
+incondicionalmente, para funções-teste com transformada de Fourier em `|α| ≤ 1`, isto é, `A = 1`. Aí o mínimo é
+`C_MT = ½ + (1/√2)·cot(1/√2) = 1,3274993`, o extremal de Montgomery–Taylor, ótimo por Carneiro, Chandee, Littmann e
+Milinovich, e sai `2 − C_MT = 0,6725007`. O próprio artigo diz que este é o ótimo do método. Subir sem hipótese nova
+exige uma ideia nova.
+
+`curva.py` refaz a conta e confere:
+
+- a discretização exata (células constantes, integrais fechadas por `Φ'' = (1 − |t|)₊`) converge para `0,6725007` por
+  baixo (`n = 800`: `0,67250066`);
+- em racionais exatos, com `n = 160`, dá `0,6724995`, uma cota válida logo abaixo do ótimo.
+
+**O que cada porcentagem exige.** Seja CP(A) a hipótese de que o Lema 3.1 de Lamzouri vale para funções-teste com
+suporte em `[−A, A]`, com o valor conjecturado `F(α) = 1` em `1 ≤ |α| ≤ A` (a conjectura de correlação de pares de
+Montgomery até o alcance `A`). A desigualdade de Bessel vale para qualquer `A`, então sob CP(A) o mesmo método dá:
+
+| `A` | simples e na reta | distintos | simples ou na reta |
+|---|---|---|---|
+| 1 (hoje) | 67,25% | 83,62% | 88,76% |
+| 1,25 | 79,72% | 89,86% | 93,04% |
+| 1,5 | 86,57% | 93,28% | 95,39% |
+| 2 | 93,23% | 96,61% | 97,68% |
+| 3 | 97,57% | 98,79% | 99,17% |
+| 4 | 98,87% | 99,43% | 99,61% |
+| 6 | 99,63% | 99,81% | 99,87% |
+| 10 | 99,91% | 99,96% | 99,97% |
+
+O alcance necessário para cada meta (simples e na reta):
+
+| meta | 70% | 75% | 80% | 85% | 90% | 95% | 99% | 99,9% |
+|---|---|---|---|---|---|---|---|---|
+| `A` | 1,04 | 1,14 | 1,26 | 1,43 | 1,70 | 2,26 | 4,19 | 9,55 |
+
+Mais três fatos:
+
+- **Cota fechada:** com `g` uniforme, `C = 1 + 1/(3A²)` exatamente, então a fração é `≥ 1 − 1/(3A²)`. Com `A = 1`
+  isto é o `2/3` de Montgomery.
+- **Valores exatos:** em racionais, `A = 1,5` dá `≥ 0,8656716`, `A = 2` dá `≥ 0,932279` e `A = 3` dá `≥ 0,9757286`.
+- **Limite:** com a conjectura inteira (`A → ∞`) a fração tende a 1. Isto bate com Goldston, Lee, Schettler e
+  Suriajaya (a conjectura de Montgomery implica que quase todos os zeros são simples e estão na reta).
+
+A figura `curva.png` mostra (a) as três frações em função de `A` e (b) as densidades ótimas. Em `A = 1` a densidade é o
+cosseno de Montgomery–Taylor.
+
+**O que o kernel ganhou.**
+
+- `proporcao_um_ate`: se todo zero com `|Im| ≤ X` está na reta (`RHateZ X`), a proporção é **exatamente 1** em toda
+  altura `T ≤ X`. Com a continuação do repositório, sob as hipóteses nomeadas dos dados da Arb, isso vale até
+  `≈ 3·10¹²`.
+- `esqueleto`: o argumento lógico do método. Se `N₀ˢ ≥ 2N − S` (Bessel) e `S ≤ (C + ε)N` (correlação de pares),
+  então `N₀ˢ/N ≥ 2 − C − ε`. As duas hipóteses são exatamente as camadas que faltam (§55).
+
+**O que isso não é.**
+
+- CP(A) com `A > 1` é conjectura; a curva é condicional.
+- As contas da curva são numéricas, com quatro valores exatos em racionais; não estão no kernel.
+- Uma fração assintótica, mesmo 100%, não é a RH (`cem_por_cento_nao_basta`, §55).
+- Não conferi se esta curva já aparece publicada; é uma conta direta a partir do artigo de Lamzouri.
+
 `OPEN_MATH = true`.
 
 ## Autor
