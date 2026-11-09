@@ -65,6 +65,7 @@ import ClayRiemannProof.Meio
 import ClayRiemannProof.TresEstados
 import ClayRiemannProof.Condicionais
 import ClayRiemannProof.WeilRota
+import ClayRiemannProof.GasPrimos
 
 /-!
 # Auditoria de axiomas
@@ -4279,3 +4280,104 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.WeilRota.rota_hurwitz_espectral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.WeilRota.rota_hurwitz_espectral
+
+/-! ## `ClayRiemannProof/GasPrimos.lean` -/
+
+/-- info: 'ClayRiemannProof.GasPrimos.traco_bosonico' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.traco_bosonico
+
+/-- info: 'ClayRiemannProof.GasPrimos.indice_witten' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.indice_witten
+
+/-- info: 'ClayRiemannProof.GasPrimos.traco_fermionico_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.traco_fermionico_eq
+
+/-- info: 'ClayRiemannProof.GasPrimos.traco_fermionico' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.traco_fermionico
+
+/-- info: 'ClayRiemannProof.GasPrimos.inv_zeta_tende_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.inv_zeta_tende_zero
+
+/-- info: 'ClayRiemannProof.GasPrimos.inversa_de_ne' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.inversa_de_ne
+
+/-- info: 'ClayRiemannProof.GasPrimos.continuaAte_of_semZeros' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.continuaAte_of_semZeros
+
+/-- info: 'ClayRiemannProof.GasPrimos.U_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.U_aberto
+
+/-- info: 'ClayRiemannProof.GasPrimos.U_convexo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.U_convexo
+
+/-- info: 'ClayRiemannProof.GasPrimos.chave' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.chave
+
+/-- info: 'ClayRiemannProof.GasPrimos.semZeros_of_continuaAte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.semZeros_of_continuaAte
+
+/-- info: 'ClayRiemannProof.GasPrimos.semZeros_iff_continuaAte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.semZeros_iff_continuaAte
+
+/-- info: 'ClayRiemannProof.GasPrimos.continuaAte_iff_traco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.continuaAte_iff_traco
+
+/-- info: 'ClayRiemannProof.GasPrimos.continuaAte_mono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.continuaAte_mono
+
+/-- info: 'ClayRiemannProof.GasPrimos.continuaAte_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.continuaAte_um
+
+/-- info: 'ClayRiemannProof.GasPrimos.target_iff_semZeros' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.target_iff_semZeros
+
+/-- info: 'ClayRiemannProof.GasPrimos.target_iff_continuaAte' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.target_iff_continuaAte
+
+/-- info: 'ClayRiemannProof.GasPrimos.target_iff_traco' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.target_iff_traco
+
+/-- info: 'ClayRiemannProof.GasPrimos.K_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.K_pos
+
+/-- info: 'ClayRiemannProof.GasPrimos.formula_exata' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.formula_exata
+
+/-- info: 'ClayRiemannProof.GasPrimos.linearizacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.linearizacao
+
+/-- info: 'ClayRiemannProof.GasPrimos.seno_sobre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.seno_sobre
+
+/-- info: 'ClayRiemannProof.GasPrimos.K_tende' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.K_tende
+
+/-- info: 'ClayRiemannProof.GasPrimos.zeta_menos_dois_m' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.zeta_menos_dois_m
+
+/-- info: 'ClayRiemannProof.GasPrimos.nao_um' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.nao_um
+
+/-- info: 'ClayRiemannProof.GasPrimos.zeta_real_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.zeta_real_hasDerivAt
+
+/-- info: 'ClayRiemannProof.GasPrimos.quociente_tende' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.quociente_tende
+
+/-- info: 'ClayRiemannProof.GasPrimos.derivada_exata' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.derivada_exata
+
+/-- info: 'ClayRiemannProof.GasPrimos.K_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.K_zero
+
+/-- info: 'ClayRiemannProof.GasPrimos.derivada_fatorial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.derivada_fatorial
+
+/-- info: 'ClayRiemannProof.GasPrimos.a_impar_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.a_impar_pos
+
+/-- info: 'ClayRiemannProof.GasPrimos.zero_trivial_simples' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.zero_trivial_simples
+
+/-- info: 'ClayRiemannProof.GasPrimos.derivada_menos_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.GasPrimos.derivada_menos_dois
