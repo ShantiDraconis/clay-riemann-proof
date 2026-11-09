@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 358 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 383 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 743 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 768 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3934,6 +3934,53 @@ Com `rota_hurwitz_Xi_puro` e o teorema de Connes–van Suijlekom, esta rota se r
 
 (S) dá (A) pelo teorema de Connes–van Suijlekom (fora do kernel), e (A) mais (C) dão a RH no kernel. Nenhuma das duas
 está provada. `OPEN_MATH = true`.
+
+## 64. O núcleo finito de Connes–van Suijlekom no kernel
+
+Arquivo: `ClayRiemannProof/Toeplitz.lean` (25 declarações, todas com no máximo `[propext, Classical.choice, Quot.sound]`).
+
+**O teorema** (`zeros_no_circulo`). Seja `T` uma matriz `n × n` de Toeplitz (`T i j = t(i − j)`), hermitiana e
+semidefinida positiva, cujo núcleo é a reta gerada por um `ξ ≠ 0` (posto `n − 1`). Então todo zero de
+`P(z) = Σ ξ_j z^j` está no círculo unitário. É o passo (1) da prova de Connes–van Suijlekom (arXiv 2511.23257), que dá
+zeros reais à transformada do estado fundamental. A prova no kernel é elementar e não usa a decomposição de
+Carathéodory–Fejér:
+
+1. **`divisao`:** se `P(a) = 0`, a divisão sintética escreve `ξ = Sq − aq`, onde `q` são os coeficientes de
+   `P/(z − a)` (grau `≤ n − 2`) e `S` é o deslocamento (multiplicar por `z`).
+2. **`forma_desloca`:** a forma de Toeplitz é invariante pelo deslocamento: `⟨T Sq, Sq⟩ = ⟨T q, q⟩`.
+3. **A equação para `A = ⟨T q, q⟩`:** de `Tξ = 0` vêm `⟨Tξ, q⟩ = 0` e `⟨Tξ, Sq⟩ = 0`. Com a simetria hermitiana
+   (`forma_herm`), isso dá `A = |a|²A`. Se `|a| ≠ 1`, então `A = 0`.
+4. **A contradição:** semidefinida positiva com `⟨T q, q⟩ = 0` dá `T q = 0` (Mathlib,
+   `PosSemidef.dotProduct_mulVec_zero_iff`), e o mesmo para `Sq`. Pelo núcleo de dimensão 1, `q` e `Sq` são múltiplos
+   de `ξ`, logo `Sq = κq`. Mas o deslocamento não tem autovetor de grau `≤ n − 2` (`desloca_autovetor`), então `q = 0`
+   e daí `ξ = 0`. Contradição.
+
+`exemplo_2x2` mostra que as hipóteses não são vazias: `[[1, −1], [−1, 1]]`, com `ξ = (1, 1)` e `P(z) = 1 + z`, satisfaz
+todas, e o teorema devolve o zero `−1`.
+
+**O que isto não faz.**
+
+- **As matrizes de Weil não são de Toeplitz.** Na base `cos(πjx/L)` usada nas contas, as matrizes da forma de Weil não
+  têm essa estrutura. O teorema finito não se aplica a elas diretamente.
+- **Os passos de Connes–van Suijlekom que faltam no kernel:**
+  - (2) o análogo contínuo: formas de convolução num intervalo, como limite de matrizes de Toeplitz em grades
+    uniformes. O passo de Hurwitz já está no kernel (`WeilRota.hurwitz_passo`); a convergência dos autovetores, não.
+  - (3)–(4) a extensão para núcleos como o de Weil.
+
+  Os dois pedem teoria espectral em `L²` que a Mathlib ainda não tem nessa forma.
+
+### O mapa depois disto
+
+| elo | estado |
+|---|---|
+| Toeplitz finito ⟹ zeros no círculo | **kernel** (`Toeplitz.zeros_no_circulo`) |
+| contínuo + núcleo de Weil ⟹ zeros reais em cada escala, dado (S) | teorema publicado (Connes–van Suijlekom 2025), fora do kernel |
+| (S): o menor autovalor de Weil é simples, com autovetor par | **aberto**; medido em `L ∈ [0,6; 1,5]` (§63) |
+| (C): os estados fundamentais normalizados convergem para `Ξ` | **aberto**; medido: `ĝ*_L ≈ K·Ξ·e^{c(L)r²}`, `c(L) ≈ 0,02·e^{−2L}` (§63) |
+| zeros reais + convergência para `Ξ` ⟹ RH | **kernel** (`WeilXi.rota_hurwitz_Xi_puro`, Hurwitz provado) |
+
+Os dois elos abertos são os mesmos que Connes lista em 2026 (§6.6): (S), e mostrar que as aproximações prolatas, que
+já convergem para `Ξ`, aproximam o minimizante. Nada aqui prova RH. `OPEN_MATH = true`.
 
 ## Autor
 

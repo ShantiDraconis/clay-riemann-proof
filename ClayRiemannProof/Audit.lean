@@ -67,6 +67,7 @@ import ClayRiemannProof.Condicionais
 import ClayRiemannProof.WeilRota
 import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
+import ClayRiemannProof.Toeplitz
 
 /-!
 # Auditoria de axiomas
@@ -4445,3 +4446,80 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.WeilXi.rh_iff_rota_Xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.WeilXi.rh_iff_rota_Xi
+
+/-! ## `ClayRiemannProof/Toeplitz.lean` -/
+
+/-- info: 'ClayRiemannProof.Toeplitz.ext' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.ext
+
+/-- info: 'ClayRiemannProof.Toeplitz.toFin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.toFin
+
+/-- info: 'ClayRiemannProof.Toeplitz.Sh' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.Sh
+
+/-- info: 'ClayRiemannProof.Toeplitz.forma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.forma
+
+/-- info: 'ClayRiemannProof.Toeplitz.ext_val' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.ext_val
+
+/-- info: 'ClayRiemannProof.Toeplitz.ext_toFin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.ext_toFin
+
+/-- info: 'ClayRiemannProof.Toeplitz.forma_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.forma_eq
+
+/-- info: 'ClayRiemannProof.Toeplitz.forma_sub_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.forma_sub_mul
+
+/-- info: 'ClayRiemannProof.Toeplitz.forma_herm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.forma_herm
+
+/-- info: 'ClayRiemannProof.Toeplitz.forma_desloca' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.forma_desloca
+
+/-- info: 'ClayRiemannProof.Toeplitz.quoc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.quoc
+
+/-- info: 'ClayRiemannProof.Toeplitz.quoc_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.quoc_zero
+
+/-- info: 'ClayRiemannProof.Toeplitz.divisao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.divisao
+
+/-- info: 'ClayRiemannProof.Toeplitz.desloca_autovetor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.desloca_autovetor
+
+/-- info: 'ClayRiemannProof.Toeplitz.zeros_no_circulo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.zeros_no_circulo
+
+/-- info: 'ClayRiemannProof.Toeplitz.simbolo2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.simbolo2
+
+/-- info: 'ClayRiemannProof.Toeplitz.T2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.T2
+
+/-- info: 'ClayRiemannProof.Toeplitz.ξ2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.ξ2
+
+/-- info: 'ClayRiemannProof.Toeplitz.T2_toeplitz' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.T2_toeplitz
+
+/-- info: 'ClayRiemannProof.Toeplitz.R2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.R2
+
+/-- info: 'ClayRiemannProof.Toeplitz.T2_psd' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.T2_psd
+
+/-- info: 'ClayRiemannProof.Toeplitz.T2_xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.T2_xi
+
+/-- info: 'ClayRiemannProof.Toeplitz.T2_nucleo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.T2_nucleo
+
+/-- info: 'ClayRiemannProof.Toeplitz.xi2_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.xi2_ne_zero
+
+/-- info: 'ClayRiemannProof.Toeplitz.exemplo_2x2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Toeplitz.exemplo_2x2

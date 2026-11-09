@@ -72,5 +72,6 @@ import ClayRiemannProof.Condicionais
 import ClayRiemannProof.WeilRota
 import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
+import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
