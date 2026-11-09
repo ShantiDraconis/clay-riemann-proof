@@ -68,6 +68,7 @@ import ClayRiemannProof.WeilRota
 import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
+import ClayRiemannProof.Grade
 
 /-!
 # Auditoria de axiomas
@@ -4523,3 +4524,71 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Toeplitz.exemplo_2x2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Toeplitz.exemplo_2x2
+
+/-! ## `ClayRiemannProof/Grade.lean` -/
+
+/-- info: 'ClayRiemannProof.Grade.forma_secao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.forma_secao
+
+/-- info: 'ClayRiemannProof.Grade.simples_de_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.simples_de_queda
+
+/-- info: 'ClayRiemannProof.Grade.fi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.fi
+
+/-- info: 'ClayRiemannProof.Grade.differentiable_fi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.differentiable_fi
+
+/-- info: 'ClayRiemannProof.Grade.fi_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.fi_zero
+
+/-- info: 'ClayRiemannProof.Grade.fi_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.fi_of_ne
+
+/-- info: 'ClayRiemannProof.Grade.exp_de_fi_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.exp_de_fi_zero
+
+/-- info: 'ClayRiemannProof.Grade.integral_celula' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.integral_celula
+
+/-- info: 'ClayRiemannProof.Grade.transfDegrau' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.transfDegrau
+
+/-- info: 'ClayRiemannProof.Grade.polin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.polin
+
+/-- info: 'ClayRiemannProof.Grade.transfDegrau_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.transfDegrau_eq
+
+/-- info: 'ClayRiemannProof.Grade.differentiable_transfDegrau' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.differentiable_transfDegrau
+
+/-- info: 'ClayRiemannProof.Grade.im_de_norma_exp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.im_de_norma_exp
+
+/-- info: 'ClayRiemannProof.Grade.zeros_reais_degrau' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.zeros_reais_degrau
+
+/-- info: 'ClayRiemannProof.Grade.zeros_reais_translados' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.zeros_reais_translados
+
+/-- info: 'ClayRiemannProof.Grade.zeros_reais_bspline' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.zeros_reais_bspline
+
+/-- info: 'ClayRiemannProof.Grade.degrau_minimizante_zeros_reais' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.degrau_minimizante_zeros_reais
+
+/-- info: 'ClayRiemannProof.Grade.hurwitz_reais' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.hurwitz_reais
+
+/-- info: 'ClayRiemannProof.Grade.rh_de_grades' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.rh_de_grades
+
+/-- info: 'ClayRiemannProof.Grade.forma_succ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.forma_succ
+
+/-- info: 'ClayRiemannProof.Grade.sem_queda_nao_simples' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.sem_queda_nao_simples
+
+/-- info: 'ClayRiemannProof.Grade.simples_iff_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Grade.simples_iff_queda

@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 383 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 405 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 768 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 790 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3981,6 +3981,85 @@ todas, e o teorema devolve o zero `−1`.
 
 Os dois elos abertos são os mesmos que Connes lista em 2026 (§6.6): (S), e mostrar que as aproximações prolatas, que
 já convergem para `Ξ`, aproximam o minimizante. Nada aqui prova RH. `OPEN_MATH = true`.
+
+## 65. A rota pelas grades: (A) sem passo contínuo, (S) ⟺ queda estrita
+
+Arquivos:
+
+- `ClayRiemannProof/Grade.lean` (22 declarações, todas com no máximo `[propext, Classical.choice, Quot.sound]`);
+- `computations/weil/grade.py` (precisão dupla, degraus e B-splines → `grade.json`);
+- `computations/weil/grade_alta.py` (mpmath, B-splines cúbicos → `grade_alta_<L>_p4.json`).
+
+**A ideia.** A forma de Weil é invariante por translação: ela só depende de `h = g ⋆ g̃`. Restrita a translados de um
+único gerador numa grade uniforme de passo `δ` (funções-degrau, ou B-splines), sua matriz é **de Toeplitz**, e a Gram
+também. Com o menor autovalor generalizado `μ₁`, a matriz `M = T − μ₁G` é de Toeplitz, semidefinida positiva, com o
+minimizante `ξ` no núcleo. Isso cai exatamente no teorema finito da §64, sem o passo contínuo de Connes–van Suijlekom.
+
+### No kernel
+
+| teorema | o que diz |
+|---|---|
+| `simples_de_queda` | se a forma de `M` não se anula em vetor nenhum da seção (sem a última linha e coluna), o núcleo de `M` é uma reta: **a queda estrita do menor autovalor dá a simplicidade (S)** |
+| `sem_queda_nao_simples`, `simples_iff_queda` | a recíproca, para Toeplitz semidefinida positiva: sem queda, o minimizante da seção aparece duas vezes (`[x; 0]` e `[0; x]`). **Na grade, (S) ⟺ queda estrita** |
+| `integral_celula`, `transfDegrau_eq` | a transformada da função-degrau é `ĝ(r) = δ·φ(irδ)·P(e^{irδ})`, com `φ = dslope exp 0` inteira |
+| `zeros_reais_degrau`, `zeros_reais_translados`, `zeros_reais_bspline` | zeros de `P` no círculo dão zeros reais de `ĝ`, para degraus e para qualquer gerador cuja transformada só tenha zeros reais (B-splines: `(δφ(irδ))^p`) |
+| `degrau_minimizante_zeros_reais` | **o minimizante de uma forma de Toeplitz em funções-degrau tem transformada só com zeros reais**, sempre que há queda estrita |
+| `hurwitz_reais` | o limite localmente uniforme de funções inteiras só com zeros reais só tem zeros reais (onde não é identicamente nulo) |
+| `rh_de_grades` | minimizantes em grades, com queda estrita em cada uma, cujas transformadas convergem localmente uniformemente para `Ξ` ⟹ RH |
+
+Em `rh_de_grades` a única hipótese não finita é a convergência. A queda estrita é uma desigualdade entre dois autovalores,
+uma por grade.
+
+### O ataque numérico
+
+Construí a matriz de Toeplitz da forma de Weil nas grades. A entrada `τ(m)` é a forma aplicada à autocorrelação do
+gerador transladada de `mδ`, com o termo do polo em forma fechada. Tudo isso está em `grade.py` e `grade_alta.py`.
+
+**Validação.** Com B-splines cúbicos em `L = 0,6`, `μ₁` desce para `2,07·10⁻⁹` com `N = 320`, a caminho do
+`1,736·10⁻⁹` da base de cossenos. Em alta precisão, `N = 40` repete os números da precisão dupla.
+
+**Precisão dupla** (degraus `p = 1` e B-splines lineares `p = 2`; `L` de 0,6 a ½·log 13; `N` de 40 a 320):
+
+- **Queda estrita:** sempre.
+- **Zeros de `P` no círculo:** desvio `||z| − 1|` entre `10⁻¹⁴` e `10⁻⁸`.
+- **Paridade:** autovetor sempre par.
+- **Zeros aproximados:** em `L = 1`, `p = 2`, `N = 320`, os cinco primeiros `γ_k` saem com erro de `5·10⁻⁷` a `7·10⁻⁶`.
+- **Limite:** com `p = 4`, `μ₁` cai abaixo de `10⁻¹³` e a precisão dupla não basta.
+
+**Alta precisão** (B-splines cúbicos, 40 a 60 dígitos). As trocas de sinal de
+`Q(θ) = Σ ξ_j cos((j − c)θ)` (`ξ` simétrico, `c = (M − 1)/2`) contam os zeros de `P` no círculo sem achar raízes. Se
+há `⌊(M − 1)/2⌋` trocas em `(0, π)`, todos os `M − 1` zeros estão no círculo, pela contagem do grau.
+
+| `L` | `N` | funções | `μ₁` | `μ₁` da seção | queda | trocas em `(0, π)` | erro em `γ₁` | erro em `γ₂` |
+|---|---|---|---|---|---|---|---|---|
+| 0,6 | 40 | 37 | `7,5·10⁻⁹` | `2,1·10⁻⁸` | sim | 18/18 | `7,5·10⁻⁶` | `9,5·10⁻⁴` |
+| 0,6 | 80 | 77 | `3,9·10⁻⁹` | `6,8·10⁻⁹` | sim | 38/38 | `4,1·10⁻⁶` | `5,6·10⁻⁴` |
+| 0,6 | 120 | 117 | `3,0·10⁻⁹` | `4,4·10⁻⁹` | sim | 58/58 | `3,2·10⁻⁶` | `4,5·10⁻⁴` |
+| 0,8 | 40 | 37 | `1,2·10⁻¹¹` | `1,6·10⁻¹¹` | sim | 18/18 | `1,1·10⁻⁷` | `1,3·10⁻⁶` |
+| 0,8 | 60 | 57 | `7,0·10⁻¹³` | `1,1·10⁻¹²` | sim | 28/28 | `5,5·10⁻⁸` | `7,0·10⁻⁸` |
+| 0,8 | 80 | 77 | `1,4·10⁻¹³` | `1,5·10⁻¹³` | sim | 38/38 | `2,9·10⁻¹⁰` | `1,2·10⁻⁷` |
+| 0,8 | 120 | 117 | `5,4·10⁻¹⁵` | `5,6·10⁻¹⁵` | sim | 58/58 | `8,9·10⁻¹²` | `1,9·10⁻⁹` |
+| 1,0 | 40 | 37 | `6,0·10⁻¹²` | `9,0·10⁻¹²` | sim | 18/18 | `1,0·10⁻⁷` | `4,7·10⁻⁶` |
+| 1,0 | 60 | 57 | `3,3·10⁻¹³` | `3,7·10⁻¹³` | sim | 28/28 | `1,9·10⁻⁷` | `1,7·10⁻⁶` |
+| 1,0 | 80 | 77 | `3,6·10⁻¹⁴` | `3,9·10⁻¹⁴` | sim | 38/38 | `3,2·10⁻⁹` | `2,9·10⁻⁷` |
+| 1,0 | 120 | 117 | `1,7·10⁻¹⁵` | `1,9·10⁻¹⁵` | sim | 58/58 | `9,5·10⁻¹¹` | `3,8·10⁻⁹` |
+| ½·log 13 | 40 | 37 | `5,0·10⁻¹²` | `6,9·10⁻¹²` | sim | 18/18 | `3,0·10⁻⁷` | `4,2·10⁻⁵` |
+| ½·log 13 | 60 | 57 | `2,7·10⁻¹³` | `3,1·10⁻¹³` | sim | 28/28 | `2,1·10⁻⁸` | `1,1·10⁻⁵` |
+| ½·log 13 | 80 | 77 | `2,4·10⁻¹⁴` | `2,6·10⁻¹⁴` | sim | 38/38 | `9,9·10⁻¹⁰` | `5,4·10⁻⁷` |
+| ½·log 13 | 120 | 117 | `1,2·10⁻¹⁵` | `1,3·10⁻¹⁵` | sim | 58/58 | `8,5·10⁻¹¹` | `4,1·10⁻⁸` |
+
+Em todas as grades medidas há queda estrita, logo (S) vale, e todos os zeros de `P` estão no círculo, como o teorema
+garante. Os zeros aproximados convergem para os `γ_k` quando a grade refina.
+
+### Onde isto deixa a fronteira
+
+- **(A) numa grade fixa: teorema do kernel.** Vale sempre que há queda estrita, e a queda estrita é uma conta finita. As
+  medidas acima são em ponto flutuante de alta precisão, não certificadas com aritmética intervalar.
+- **(S) para todas as grades ao mesmo tempo: aberto.** Pelo `simples_iff_queda`, equivale a o menor autovalor cair
+  estritamente sempre que a grade ganha uma célula, isto é, a monotonia estrita de `μ₁` no comprimento do suporte.
+- **A convergência para `Ξ` quando `δ → 0` e `L → ∞`: aberta.** É a (C) da §63 na forma de grades.
+
+Nada aqui prova RH. `OPEN_MATH = true`.
 
 ## Autor
 
