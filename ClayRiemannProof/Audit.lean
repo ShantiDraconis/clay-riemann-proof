@@ -66,6 +66,7 @@ import ClayRiemannProof.TresEstados
 import ClayRiemannProof.Condicionais
 import ClayRiemannProof.WeilRota
 import ClayRiemannProof.GasPrimos
+import ClayRiemannProof.WeilXi
 
 /-!
 # Auditoria de axiomas
@@ -4403,3 +4404,44 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.GasPrimos.derivada_menos_dois' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.GasPrimos.derivada_menos_dois
+
+/-! ## `ClayRiemannProof/WeilXi.lean` -/
+
+/-- info: 'ClayRiemannProof.WeilXi.Xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.Xi
+
+/-- info: 'ClayRiemannProof.WeilXi.differentiable_naReta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.differentiable_naReta
+
+/-- info: 'ClayRiemannProof.WeilXi.differentiable_Xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.differentiable_Xi
+
+/-- info: 'ClayRiemannProof.WeilXi.naReta_altura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.naReta_altura
+
+/-- info: 'ClayRiemannProof.WeilXi.altura_naReta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.altura_naReta
+
+/-- info: 'ClayRiemannProof.WeilXi.Xi_altura' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.Xi_altura
+
+/-- info: 'ClayRiemannProof.WeilXi.rh_iff_Xi_zeros_reais' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.rh_iff_Xi_zeros_reais
+
+/-- info: 'ClayRiemannProof.WeilXi.inteira_nao_some' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.inteira_nao_some
+
+/-- info: 'ClayRiemannProof.WeilXi.produto_nao_some' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.produto_nao_some
+
+/-- info: 'ClayRiemannProof.WeilXi.xi_algum_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.xi_algum_ne_zero
+
+/-- info: 'ClayRiemannProof.WeilXi.rota_hurwitz_Xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.rota_hurwitz_Xi
+
+/-- info: 'ClayRiemannProof.WeilXi.rota_hurwitz_Xi_puro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.rota_hurwitz_Xi_puro
+
+/-- info: 'ClayRiemannProof.WeilXi.rh_iff_rota_Xi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.WeilXi.rh_iff_rota_Xi

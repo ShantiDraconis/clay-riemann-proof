@@ -16,9 +16,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 345 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 358 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 730 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (1 743 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -3563,7 +3563,7 @@ há quatro situações diferentes.
 | Li | `PositividadeDeLi`, com `CriterioDeLi` nomeado | `rotas_para_rh`, `Fronteira.target_de_li` | aberta |
 | Báez-Duarte | `D_N → 0` | `BaezDuarte.Necessity.rh_iff_DN` (sem hipótese) | aberta |
 | aproximação (§58) | zeros de aproximações na reta e todo zero é limite deles | `TresEstados.forma_por_aproximacao` | (A) parcial (Connes 2026), (B) aberta |
-| Hurwitz (§61) | (A) zeros das aproximações só na reta e (C) convergência localmente uniforme; (B) sai provada | `WeilRota.rota_hurwitz`, `rota_hurwitz_espectral` | (A) anunciada por Connes (2026), não formalizada; (C) aberta |
+| Hurwitz (§61) | (A) zeros das aproximações só na reta e (C) convergência localmente uniforme; (B) sai provada | `WeilRota.rota_hurwitz`, `rota_hurwitz_espectral`, `WeilXi.rota_hurwitz_Xi` | (A) teorema de Connes–van Suijlekom (2025) em cada escala se o menor autovalor é simples com autovetor par, o que falta provar; (C) com limite `Ξ` aberta (§63) |
 | redução ao resto | `Resto` (nenhum zero fora acima de `≈ 3·10¹²`), com Platt–Trudgian e as janelas da Arb nomeadas | `Biblioteca.rh_reduzida` | aberta |
 | um lado só | nenhum zero com `Re > ½` | `Biblioteca.rh_de_metade` | é a própria RH |
 | Mertens | `ConjecturaDeMertens` (`|M(x)| ≤ √x`), com Littlewood nomeado | `Biblioteca.rh_de_mertens` | **falsa** (Odlyzko e te Riele, 1985): rota morta |
@@ -3741,7 +3741,8 @@ adaptativo.
    | escala | `μ₁` com a base menor → maior | `κ₁` com a base menor → maior |
    |---|---|---|
    | `L = 1,0` (`n` = 32 → 40) | `1,12·10⁻²⁹` → `8,6·10⁻³⁰` | 4 422 → 4 417 |
-   | `L = 1,5` (`n` = 56 → 64 → 72) | `3,4·10⁻⁷⁹` → `8,3·10⁻⁸⁴` → `1,6·10⁻⁸⁷` | 10 167 → 9 551 → 9 178 |
+   | `L = ½·log 13` (`n` = 44 → 52) | `5,4·10⁻⁵⁵` → `1,5·10⁻⁵⁷` | 7 408 → 7 111 |
+   | `L = 1,5` (`n` = 56 → 64 → 72 → 80) | `3,4·10⁻⁷⁹` → `8,3·10⁻⁸⁴` → `1,6·10⁻⁸⁷` → `1,2·10⁻⁹⁰` | 10 167 → 9 551 → 9 178 → 8 937 |
 
    Uma explicação heurística, não provada: sob a fórmula explícita com a RH, `W(g) = Σ_k 2ĝ(γ_k)²`. A equação de
    autovalor então força `ĝ*(γ_k) = O(μ₁)` nos zeros capturados, como um multiplicador de Lagrange. Por isso o erro é
@@ -3769,10 +3770,12 @@ Com `rota_hurwitz_espectral`, o kernel reduz esta rota a duas afirmações sobre
 
 - **(A∞)** Para todo `L`, todos os zeros da transformada do estado fundamental são reais. Connes (2026) anuncia um
   resultado geral que põe as suas aproximações exatamente na reta. As hipóteses estão no artigo e não foram conferidas
-  nem formalizadas aqui. Nas contas acima, (A) vale em todas as caixas medidas.
+  nem formalizadas aqui. Nas contas acima, (A) vale em todas as caixas medidas. *Conferido na §63: é um teorema de
+  Connes–van Suijlekom em cada escala, desde que o menor autovalor seja simples com autovetor par.*
 - **(C)** As transformadas normalizadas `ĝ*_L` convergem localmente uniformemente para uma função inteira não nula que
   zera nas alturas dos zeros de `ζ`. É o passo que Connes e Chuk deixam em aberto. Nas contas, os zeros convergem com
-  a lei `erro ≈ κ·μ₁`, e `μ₁ → 0` super-exponencialmente. A convergência das próprias funções não foi medida.
+  a lei `erro ≈ κ·μ₁`, e `μ₁ → 0` super-exponencialmente. A convergência das próprias funções não foi medida. *Medida na
+  §63: o limite é `Ξ`.*
 
 Com (A∞) e (C), a RH sai no kernel. Nenhuma das duas está provada. `OPEN_MATH = true`.
 
@@ -3808,6 +3811,129 @@ e `|ζ′(−2)| = ζ(3)/(4π²) = 0,030448…` (`derivada_menos_dois`). Os valo
 **0,0058998**; 0,0083162; … têm mínimo em `m = 3`. A simplicidade dos zeros **não** triviais continua aberta.
 
 Nada aqui prova a meta. `OPEN_MATH = true`.
+
+## 63. O limite de (C) é `Ξ`; o que a literatura já prova de (A)
+
+Arquivos:
+
+- `ClayRiemannProof/WeilXi.lean` (13 declarações, todas com no máximo `[propext, Classical.choice, Quot.sound]`);
+- `computations/weil/limite.py` (→ `limite.json`, `limite.png`);
+- `computations/weil/paridade.py` (→ `paridade_<L>.json`);
+- `base_1.2825_n52.json`, `base_1.5_n80.json`: bases maiores.
+
+### 1. Correção: (A) já é teorema em cada escala, com uma condição
+
+Na §61, (A∞) foi descrito como "anunciado por Connes, hipóteses não conferidas". Conferidas:
+
+- **Connes–van Suijlekom** (arXiv 2511.23257, 2025; Teorema 6.1 em Connes 2602.04022).
+  - *Hipóteses:* a forma com núcleo `D̃(x − y)` é um operador autoadjunto limitado inferiormente em `L²[−L/2, L/2]`, e o
+    mínimo do espectro é um autovalor **simples e isolado, com autofunção par** `η`.
+  - *Conclusão:* todos os zeros de `η̂` são reais.
+  - *Núcleo da prova:* uma matriz de Toeplitz hermitiana, semidefinida positiva, `n × n` e de posto `n − 1` tem um
+    vetor `ξ` no núcleo; o polinômio `Σ ξ_j z^j` tem então todos os zeros no círculo unitário. A passagem ao limite é por
+    Hurwitz.
+- **Connes–Consani–Moscovici** (arXiv 2511.22755, Teorema 1.1): sob as mesmas hipóteses, os zeros de `ξ̂` são o espectro
+  de um operador autoadjunto.
+- **O que falta para (A)** (Connes 2026, §6.6): provar que o menor autovalor da forma de Weil é simples, com autovetor
+  par. Isso só é sabido para o operador prolato. Chamo esse passo de **(S)**.
+
+**Medida de (S)** (`paridade.py`). O menor autovalor foi calculado nos dois setores, o par (base `cos`) e o ímpar (base
+`sin`). Para `g` real, `h = g ⋆ g̃` é sempre par, então só o termo do polo muda: `+2G²` no setor par, `−2G²` no ímpar.
+Em toda escala medida os dois setores **se intercalam**: `μ₁ < ν₁ < μ₂ < ν₂ < μ₃ < ν₃`, com `μ` par e `ν` ímpar. É o
+padrão de um operador de Sturm–Liouville, como o prolato.
+
+| `L` | `n` | `μ₁` (par) | `ν₁` (ímpar) | `μ₂` (par) | `ν₁/μ₁` |
+|---|---|---|---|---|---|
+| 0,6 | 36 | `1,7·10⁻⁹` | `6,8·10⁻⁷` | `1,1·10⁻⁴` | 391 |
+| 0,7 | 36 | `4,9·10⁻¹³` | `2,9·10⁻¹⁰` | `9,7·10⁻⁸` | 581 |
+| 0,8 | 36 | `1,9·10⁻¹⁷` | `1,8·10⁻¹⁴` | `1,0·10⁻¹¹` | 941 |
+| 0,9 | 32 | `5,8·10⁻²³` | `1,0·10⁻¹⁹` | `9,9·10⁻¹⁷` | 1 723 |
+| 1,0 | 32 | `1,1·10⁻²⁹` | `2,9·10⁻²⁶` | `4,3·10⁻²³` | 2 554 |
+| 1,1 | 40 | `3,9·10⁻³⁸` | `1,5·10⁻³⁴` | `3,2·10⁻³¹` | 3 808 |
+| 1,2 | 40 | `6,0·10⁻⁴⁷` | `9,8·10⁻⁴⁴` | `5,0·10⁻⁴⁰` | 1 627 |
+| ½·log 13 | 44 | `5,4·10⁻⁵⁵` | `8,9·10⁻⁵²` | `6,2·10⁻⁴⁸` | 1 654 |
+| 1,5 | 56 | `3,4·10⁻⁷⁹` | `5,5·10⁻⁷⁶` | `6,2·10⁻⁷²` | 1 609 |
+
+O mínimo global é simples e par em todas as escalas medidas, com `ν₁/μ₁` entre 390 e 3 800. Os dois setores são cotas
+superiores de Rayleigh–Ritz na mesma base, então a comparação é tão boa quanto a convergência em `n`.
+
+- **Até `L = 1,1` ela é firme.** A base está perto de convergir: em `L = 1`, `μ₁` muda 23 % de `n = 32` para 40, muito
+  menos que a margem.
+- **De `L = 1,2` em diante é só indicativa.** Ali nenhum dos dois setores convergiu: em `L = 1,5`, `μ₁` cai onze ordens
+  de grandeza de `n = 56` para 80.
+
+É medida, não prova de (S).
+
+Também conferido: Groskin (arXiv 2605.20224) leva a mesma conta até a escala `c = 100`, com 300 a 329 dígitos certos nos
+dez primeiros zeros. As contas de alta precisão da §61 estão muito longe de recorde. O que elas têm de próprio é a lei
+`erro ≈ κ·μ₁` e a contagem em caixas.
+
+### 2. No kernel: o limite concreto
+
+`WeilXi.lean` usa a `ξ` inteira de `Xi.lean`, com `xi_eq_zero_iff` (os zeros de `ξ` são os zeros não triviais de `ζ`).
+
+- `rh_iff_Xi_zeros_reais`: **RH ⟺ `Ξ(r) = ξ(½ + ir)` só tem zeros reais.**
+- `inteira_nao_some`, `produto_nao_some`: uma função inteira não identicamente nula não é identicamente nula perto de
+  ponto nenhum, e o produto de duas também não (princípio da identidade).
+- `rota_hurwitz_Xi`: `G n` inteiras com todos os zeros reais (A) e `G n → Ξ·E` localmente uniformemente (C), com `E`
+  inteira não nula, dão a RH. A hipótese da §61 sobre o limite (`g` zera nas alturas dos zeros de `ζ` sem ser
+  identicamente nula perto delas) agora é **teorema**.
+- `rota_hurwitz_Xi_puro`, `rh_iff_rota_Xi`: com `E = 1`, RH ⟺ existem funções inteiras com todos os zeros reais que
+  convergem localmente uniformemente para `Ξ`.
+
+É o último passo da estratégia de Connes, formalizado: (A) mais convergência para `Ξ`, via Hurwitz, dão a RH. O
+teorema de Connes–van Suijlekom não está no kernel.
+
+### 3. O limite é `Ξ`, medido no próprio minimizante
+
+Connes (2026, §6.5) prova a convergência para `Ξ` das aproximações prolatas `k_λ` (Fato 6.4, uniforme em subfaixas
+fechadas). O que ele deixa em aberto é mostrar que `k_λ` aproxima o minimizante `θ_x`. Aqui a comparação é feita
+direto no minimizante, com os coeficientes de 60 a 200 dígitos.
+
+**Lado de Fourier.** Defino `E_L(r) = [ĝ*_L(r)/Ξ(r)] / [ĝ*_L(0)/Ξ(0)]`. A medida mostra
+`ln E_L(r) ≈ c(L)·r²`, isto é, **`ĝ*_L(r) ≈ K_L·Ξ(r)·e^{c(L)r²}`**, com `c(L) → 0`. Pontos complexos conferem a forma
+analítica: `|E_L/e^{c(L)r²} − 1|` é medido em `r = 2i, 4i, 10 + 3i, 25 + 5i`.
+
+**Espaço x.** Pelo mesmo motivo, `g*_L ≈ α(Φ − c(L)Φ'')`, onde `Φ` é o núcleo de Riemann–Pólya
+(`Ξ(r) = ∫ Φ(u)e^{iru} du`). O ajuste por mínimos quadrados dá um `−β/α` que acompanha o `c(L)` do lado de Fourier.
+
+| `L` | `n` | `c(L)` | `c(L)·e^{2L}` | `−β/α` (espaço x) | desvio em `10 + 3i` | resíduo com `Φ` só | com `Φ − cΦ''` |
+|---|---|---|---|---|---|---|---|
+| 0,6 | 36 | 0,00667 | 0,0221 | 0,00826 | `3,4·10⁻³` | 10,6 % | 1,18 % |
+| 0,7 | 36 | 0,00536 | 0,0217 | 0,00630 | `1,7·10⁻³` | 8,3 % | 0,69 % |
+| 0,8 | 36 | 0,00430 | 0,0213 | 0,00489 | `8,2·10⁻⁴` | 6,5 % | 0,42 % |
+| 0,9 | 32 | 0,00348 | 0,0210 | 0,00385 | `4,2·10⁻⁴` | 5,2 % | 0,27 % |
+| 1,0 | 40 | 0,00282 | 0,0208 | 0,00306 | `2,2·10⁻⁴` | 4,2 % | 0,17 % |
+| 1,1 | 40 | 0,00228 | 0,0206 | 0,00244 | `1,1·10⁻⁴` | 3,3 % | 0,11 % |
+| 1,2 | 40 | 0,00179 | 0,0198 | 0,00189 | `3,7·10⁻⁵` | 2,6 % | 0,07 % |
+| ½·log 13 | 52 | 0,00153 | 0,0199 | 0,00160 | `2,6·10⁻⁵` | 2,2 % | 0,05 % |
+| 1,5 | 80 | 0,00091 | 0,0184 | 0,00094 | `3,3·10⁻⁶` | 1,3 % | 0,02 % |
+
+O que a tabela mostra:
+
+- **`c(L)·e^{2L} ≈ 0,02`.** A largura da gaussiana cai como o inverso do corte dos primos `e^{2L}`, com deriva lenta
+  para baixo.
+- **O resíduo em `x` contra `Φ` cai de 11 % para 1,3 %.** Ele fica ≈ `15·c(L)` em toda a faixa.
+- **A base não basta em `L = 1,5`.** Ali `c(L)` ainda sobe com `n` (0,00058 → 0,00074 → 0,00085 → 0,00091 de `n = 56`
+  a 80).
+
+Se `c(L) → 0`, então `ĝ*_L/K_L → Ξ` localmente uniformemente. É exatamente a hipótese (C) de `rota_hurwitz_Xi_puro`,
+medida aqui com taxa `O(e^{−2L})` em compactos.
+
+Não encontrei a forma gaussiana `K_L·Ξ·e^{c(L)r²}` nem a lei `c(L) ≈ 0,02·e^{−2L}` nos trabalhos que li (Connes 2026,
+Connes–Consani–Moscovici 2025, Groskin 2026). Pode estar em outro lugar.
+
+### 4. Onde está a fronteira agora
+
+Com `rota_hurwitz_Xi_puro` e o teorema de Connes–van Suijlekom, esta rota se reduz a duas afirmações:
+
+- **(S)** Em toda escala, o menor autovalor da forma de Weil é simples, com autovetor par. Medido: os setores se
+  intercalam em `L ∈ [0,6; 1,5]`; o resultado é firme até `L = 1,1` e indicativo depois (base não convergida).
+- **(C)** Os estados fundamentais normalizados convergem localmente uniformemente para `Ξ`. Medido: o desvio é a
+  gaussiana `e^{c(L)r²}`, com `c(L) ≈ 0,02·e^{−2L}`.
+
+(S) dá (A) pelo teorema de Connes–van Suijlekom (fora do kernel), e (A) mais (C) dão a RH no kernel. Nenhuma das duas
+está provada. `OPEN_MATH = true`.
 
 ## Autor
 
