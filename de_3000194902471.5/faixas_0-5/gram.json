@@ -1,0 +1,623 @@
+{
+ "zeros": 3081574,
+ "intervalos_de_gram": 3081572,
+ "zeros_por_intervalo": {
+  "0": 461309,
+  "1": 2164993,
+  "2": 449231,
+  "3": 6039
+ },
+ "pontos_de_gram_ruins_%": 20.67,
+ "excecoes_de_Rosser": 121,
+ "blocos_fora_de_Rosser": 242,
+ "excecoes": [
+  [
+   {
+    "g_inicio": 12363237215968,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237215970,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237283552,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237283554,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237361090,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363237361091,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237432379,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237432381,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237503606,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363237503609,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237537755,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237537757,
+    "comprimento": 3,
+    "zeros": 5
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237581202,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237581204,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237605485,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237605487,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237633319,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237633321,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237715773,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363237715774,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237728501,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363237728503,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237743761,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363237743764,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237764595,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237764597,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237764785,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237764787,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237766335,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363237766338,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237780456,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237780458,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237790394,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237790396,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237820565,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363237820566,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237825549,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237825551,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237860049,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363237860050,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237871311,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363237871312,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237922112,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363237922115,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363237997302,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363237997304,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238016885,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238016887,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238055088,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238055090,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238077372,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363238077375,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238096071,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238096073,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238120600,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238120602,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238203180,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238203181,
+    "comprimento": 3,
+    "zeros": 1
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238229244,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238229246,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238243039,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238243041,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238280773,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238280775,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238285504,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238285505,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238299625,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238299627,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238369264,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238369266,
+    "comprimento": 3,
+    "zeros": 1
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238378387,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238378388,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238382848,
+    "comprimento": 3,
+    "zeros": 5
+   },
+   {
+    "g_inicio": 12363238382851,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238387695,
+    "comprimento": 3,
+    "zeros": 5
+   },
+   {
+    "g_inicio": 12363238387698,
+    "comprimento": 3,
+    "zeros": 1
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238412966,
+    "comprimento": 5,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238412971,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238423187,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238423188,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238484932,
+    "comprimento": 3,
+    "zeros": 1
+   },
+   {
+    "g_inicio": 12363238484935,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238487971,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238487973,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238497462,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238497464,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238499522,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238499524,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238592230,
+    "comprimento": 3,
+    "zeros": 5
+   },
+   {
+    "g_inicio": 12363238592233,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238613660,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238613662,
+    "comprimento": 1,
+    "zeros": 3
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238672618,
+    "comprimento": 2,
+    "zeros": 4
+   },
+   {
+    "g_inicio": 12363238672620,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238676816,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238676818,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238678525,
+    "comprimento": 2,
+    "zeros": 0
+   },
+   {
+    "g_inicio": 12363238678527,
+    "comprimento": 2,
+    "zeros": 4
+   }
+  ],
+  [
+   {
+    "g_inicio": 12363238683562,
+    "comprimento": 1,
+    "zeros": 3
+   },
+   {
+    "g_inicio": 12363238683563,
+    "comprimento": 2,
+    "zeros": 0
+   }
+  ]
+ ],
+ "S_max": 2.225066437618807,
+ "S_max_logo_depois_do_zero": 12363239201421,
+ "S_max_altura": "3000195371343.77172726085913359",
+ "S_min": -2.2410771844442934,
+ "S_min_logo_antes_do_zero": 12363238740260,
+ "S_min_altura": "3000195263595.83627102329311889",
+ "desvio_padrao_S": 0.3930396398757106,
+ "intervalos_com_mais_zeros": []
+}
