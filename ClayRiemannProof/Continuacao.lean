@@ -1030,4 +1030,103 @@ theorem par_mais_fragil_continuacao23 {γ₁ γ₂ g : ℝ}
     (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
   exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
 
+/-! ### Vigésima quarta e vigésima quinta extensões: faixas 0–5 e 6–11 do C0 3 000 194 902 471,5
+
+Runs 42735880703 (faixas 0–5) e 42735893892 (faixas 6–11), pastas `de_3000194902471.5/faixas_0-5/` e `faixas_6-11/`;
+colagem das 12 faixas em `de_3000194902471.5/juntas_0-11/`: as 12 colagens conferem (a faixa 0 recalcula
+`N(3 000 194 902 471,5) = 12 363 237 194 662`, o fim da vigésima terceira extensão), déficit 0 em todas,
+`3 000 194 902 471,5 < Im s ≤ 3 000 196 342 471,5` com 6 163 151 zeros, todos na reta (maior raio 5,01·10⁻¹⁸).
+Faixas 0–5: `N` de 12 363 237 194 662 a 12 363 240 276 236 (3 081 574 zeros). Faixas 6–11: `N` de 12 363 240 276 236 a
+12 363 243 357 813 (3 081 577 zeros). Hipóteses nomeadas `JanelaContinuacao2026x` e `JanelaContinuacao2026y`. -/
+
+/-- **Janela da vigésima quarta extensão (fora do kernel)**: todos os zeros com
+`3 000 194 902 471 < Im s ≤ 3 000 195 622 471` estão na reta. -/
+def JanelaContinuacao2026x : Prop := JanelaNaReta 3000194902471 3000195622471
+
+/-- **Janela da vigésima quinta extensão (fora do kernel)**: todos os zeros com
+`3 000 195 622 471 < Im s ≤ 3 000 196 342 471` estão na reta. -/
+def JanelaContinuacao2026y : Prop := JanelaNaReta 3000195622471 3000196342471
+
+/-- RH até `3 000 195 622 471`, condicional a Platt–Trudgian e às janelas da Arb até a vigésima quarta extensão. -/
+theorem rhAteZ_continuacao24 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b)
+    (hC3 : JanelaContinuacao2026c) (hC4 : JanelaContinuacao2026d) (hC5 : JanelaContinuacao2026e)
+    (hC6 : JanelaContinuacao2026f) (hC7 : JanelaContinuacao2026g) (hC8 : JanelaContinuacao2026h)
+    (hC9 : JanelaContinuacao2026i) (hC10 : JanelaContinuacao2026j) (hC11 : JanelaContinuacao2026k)
+    (hC12 : JanelaContinuacao2026l) (hC13 : JanelaContinuacao2026m) (hC14 : JanelaContinuacao2026n)
+    (hC15 : JanelaContinuacao2026o) (hC16 : JanelaContinuacao2026p) (hC17 : JanelaContinuacao2026q)
+    (hC18 : JanelaContinuacao2026r) (hC19 : JanelaContinuacao2026s) (hC20 : JanelaContinuacao2026t)
+    (hC21 : JanelaContinuacao2026u) (hC22 : JanelaContinuacao2026v) (hC23 : JanelaContinuacao2026w)
+    (hC24 : JanelaContinuacao2026x) : RHateZ 3000195622471 :=
+  rhateZ_estende (rhAteZ_continuacao23 hPT hJ hC hC2 hC3 hC4 hC5 hC6 hC7 hC8 hC9 hC10 hC11 hC12 hC13 hC14 hC15 hC16 hC17 hC18 hC19 hC20 hC21 hC22 hC23)
+    (by exact_mod_cast hC24)
+
+/-- **O primeiro zero fora da reta, se existir, tem `Im > 3 000 195 622 471`** (condicional). -/
+theorem primeiro_fora_acima_continuacao24 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b)
+    (hC3 : JanelaContinuacao2026c) (hC4 : JanelaContinuacao2026d) (hC5 : JanelaContinuacao2026e)
+    (hC6 : JanelaContinuacao2026f) (hC7 : JanelaContinuacao2026g) (hC8 : JanelaContinuacao2026h)
+    (hC9 : JanelaContinuacao2026i) (hC10 : JanelaContinuacao2026j) (hC11 : JanelaContinuacao2026k)
+    (hC12 : JanelaContinuacao2026l) (hC13 : JanelaContinuacao2026m) (hC14 : JanelaContinuacao2026n)
+    (hC15 : JanelaContinuacao2026o) (hC16 : JanelaContinuacao2026p) (hC17 : JanelaContinuacao2026q)
+    (hC18 : JanelaContinuacao2026r) (hC19 : JanelaContinuacao2026s) (hC20 : JanelaContinuacao2026t)
+    (hC21 : JanelaContinuacao2026u) (hC22 : JanelaContinuacao2026v) (hC23 : JanelaContinuacao2026w)
+    (hC24 : JanelaContinuacao2026x) (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) :
+    ∃ ρ ∈ Z, ρ.re ≠ 1 / 2 ∧ (3000195622471 : ℝ) < ρ.im ∧ ∀ σ ∈ Z, σ.re ≠ 1 / 2 → ρ.im ≤ |σ.im| := by
+  have := primeiro_fora_acima
+    (rhAteZ_continuacao24 hPT hJ hC hC2 hC3 hC4 hC5 hC6 hC7 hC8 hC9 hC10 hC11 hC12 hC13 hC14 hC15 hC16 hC17 hC18 hC19 hC20 hC21 hC22 hC23 hC24) h
+  simpa using this
+
+/-- **O par mais frágil das faixas 0–5** (zeros 12 363 238 243 209 e …210, `γ ≈ 3 000 195 147 461,2204`, a
+0,00110144 um do outro, `s = 0,0047`): `−7,59·10⁻⁷ ≤ λ ≤ −6,06·10⁻⁷`, qualquer que seja `g` com `Δ²g ≤ 4/5` (CSV
+calculado: −6,066·10⁻⁷). -/
+theorem par_mais_fragil_continuacao24 {γ₁ γ₂ g : ℝ}
+    (h₁ : |γ₁ - 300019514746122040545414147661 / 10 ^ 17| ≤ 398 / 10 ^ 20)
+    (h₂ : |γ₂ - 300019514746122150689796010598 / 10 ^ 17| ≤ 294 / 10 ^ 20)
+    (hg : 0 < g) (hq : (2 * (γ₂ - γ₁)) ^ 2 * g ≤ 4 / 5) :
+    -(759 : ℝ) / 1000000000 ≤ csv (2 * (γ₂ - γ₁)) g ∧ csv (2 * (γ₂ - γ₁)) g ≤ -(606 : ℝ) / 1000000000 := by
+  obtain ⟨hlo, hhi⟩ := dif_bolas h₁ h₂
+  obtain ⟨c1, c2⟩ := csv_por_distancia (lo := 110144 / 100000000) (hi := 110145 / 100000000)
+    (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
+  exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
+
+/-- RH até `3 000 196 342 471`, condicional a Platt–Trudgian e às janelas da Arb até a vigésima quinta extensão. -/
+theorem rhAteZ_continuacao25 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b)
+    (hC3 : JanelaContinuacao2026c) (hC4 : JanelaContinuacao2026d) (hC5 : JanelaContinuacao2026e)
+    (hC6 : JanelaContinuacao2026f) (hC7 : JanelaContinuacao2026g) (hC8 : JanelaContinuacao2026h)
+    (hC9 : JanelaContinuacao2026i) (hC10 : JanelaContinuacao2026j) (hC11 : JanelaContinuacao2026k)
+    (hC12 : JanelaContinuacao2026l) (hC13 : JanelaContinuacao2026m) (hC14 : JanelaContinuacao2026n)
+    (hC15 : JanelaContinuacao2026o) (hC16 : JanelaContinuacao2026p) (hC17 : JanelaContinuacao2026q)
+    (hC18 : JanelaContinuacao2026r) (hC19 : JanelaContinuacao2026s) (hC20 : JanelaContinuacao2026t)
+    (hC21 : JanelaContinuacao2026u) (hC22 : JanelaContinuacao2026v) (hC23 : JanelaContinuacao2026w)
+    (hC24 : JanelaContinuacao2026x) (hC25 : JanelaContinuacao2026y) : RHateZ 3000196342471 :=
+  rhateZ_estende (rhAteZ_continuacao24 hPT hJ hC hC2 hC3 hC4 hC5 hC6 hC7 hC8 hC9 hC10 hC11 hC12 hC13 hC14 hC15 hC16 hC17 hC18 hC19 hC20 hC21 hC22 hC23 hC24)
+    (by exact_mod_cast hC25)
+
+/-- **O primeiro zero fora da reta, se existir, tem `Im > 3 000 196 342 471`** (condicional). -/
+theorem primeiro_fora_acima_continuacao25 (hPT : PlattTrudgian2021) (hJ : JanelaArb2026) (hC : JanelaContinuacao2026) (hC2 : JanelaContinuacao2026b)
+    (hC3 : JanelaContinuacao2026c) (hC4 : JanelaContinuacao2026d) (hC5 : JanelaContinuacao2026e)
+    (hC6 : JanelaContinuacao2026f) (hC7 : JanelaContinuacao2026g) (hC8 : JanelaContinuacao2026h)
+    (hC9 : JanelaContinuacao2026i) (hC10 : JanelaContinuacao2026j) (hC11 : JanelaContinuacao2026k)
+    (hC12 : JanelaContinuacao2026l) (hC13 : JanelaContinuacao2026m) (hC14 : JanelaContinuacao2026n)
+    (hC15 : JanelaContinuacao2026o) (hC16 : JanelaContinuacao2026p) (hC17 : JanelaContinuacao2026q)
+    (hC18 : JanelaContinuacao2026r) (hC19 : JanelaContinuacao2026s) (hC20 : JanelaContinuacao2026t)
+    (hC21 : JanelaContinuacao2026u) (hC22 : JanelaContinuacao2026v) (hC23 : JanelaContinuacao2026w)
+    (hC24 : JanelaContinuacao2026x) (hC25 : JanelaContinuacao2026y) (h : ∃ ρ ∈ Z, ρ.re ≠ 1 / 2) :
+    ∃ ρ ∈ Z, ρ.re ≠ 1 / 2 ∧ (3000196342471 : ℝ) < ρ.im ∧ ∀ σ ∈ Z, σ.re ≠ 1 / 2 → ρ.im ≤ |σ.im| := by
+  have := primeiro_fora_acima
+    (rhAteZ_continuacao25 hPT hJ hC hC2 hC3 hC4 hC5 hC6 hC7 hC8 hC9 hC10 hC11 hC12 hC13 hC14 hC15 hC16 hC17 hC18 hC19 hC20 hC21 hC22 hC23 hC24 hC25) h
+  simpa using this
+
+/-- **O par mais frágil das faixas 6–11** (zeros 12 363 243 053 855 e …856, `γ ≈ 3 000 196 271 452,6832`, a
+0,00128093 um do outro, `s = 0,0055`): `−1,03·10⁻⁶ ≤ λ ≤ −8,20·10⁻⁷`, qualquer que seja `g` com `Δ²g ≤ 4/5` (CSV
+calculado: −8,204·10⁻⁷). -/
+theorem par_mais_fragil_continuacao25 {γ₁ γ₂ g : ℝ}
+    (h₁ : |γ₁ - 300019627145268317853622927214 / 10 ^ 17| ≤ 483 / 10 ^ 20)
+    (h₂ : |γ₂ - 300019627145268445946792220260 / 10 ^ 17| ≤ 296 / 10 ^ 20)
+    (hg : 0 < g) (hq : (2 * (γ₂ - γ₁)) ^ 2 * g ≤ 4 / 5) :
+    -(103 : ℝ) / 100000000 ≤ csv (2 * (γ₂ - γ₁)) g ∧ csv (2 * (γ₂ - γ₁)) g ≤ -(820 : ℝ) / 1000000000 := by
+  obtain ⟨hlo, hhi⟩ := dif_bolas h₁ h₂
+  obtain ⟨c1, c2⟩ := csv_por_distancia (lo := 128093 / 100000000) (hi := 128094 / 100000000)
+    (by norm_num) (le_trans (by norm_num) hlo) (le_trans hhi (by norm_num)) hg hq
+  exact ⟨le_trans (by norm_num) c1, le_trans c2 (by norm_num)⟩
+
 end ClayRiemannProof.Continuacao
