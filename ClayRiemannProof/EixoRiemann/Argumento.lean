@@ -241,8 +241,8 @@ teria autovalor `4/5` numa projeção. Eles não são "difíceis": são falsos. 
 `ρ ∈ Z` (`Espelho.autovetor`), e aí é equivalente a RH (`projecao_iff_rh`). -/
 theorem esqueleto_sem_amarra_inconsistente {V : Type*} [AddCommGroup V] [Module ℂ V]
     (P : V →ₗ[ℂ] V) (v : PonteLivre → V) (hP : P ∘ₗ P = P) (hv : ∀ ρ, v ρ ≠ 0)
-    (hλ : ∀ ρ, P (v ρ) = autovalor ρ.δ • v ρ) : False := by
-  have h := autovalor_colapsa (colapso P hP (hv ⟨1 / 4, 0⟩) (hλ ⟨1 / 4, 0⟩))
+    (hav : ∀ ρ, P (v ρ) = autovalor ρ.δ • v ρ) : False := by
+  have h := autovalor_colapsa (colapso P hP (hv ⟨1 / 4, 0⟩) (hav ⟨1 / 4, 0⟩))
   norm_num at h
 
 /-- Para **qualquer** projeção (em particular a projeção ortogonal no span de `p^{−it}`, feita só com primos),
