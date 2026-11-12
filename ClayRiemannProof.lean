@@ -80,3 +80,4 @@ import ClayRiemannProof.EixoRiemann.Algebra
 import ClayRiemannProof.EixoRiemann.Quarteto
 import ClayRiemannProof.EixoRiemann.Pontes
 import ClayRiemannProof.EixoRiemann.Reformulacao
+import ClayRiemannProof.EixoRiemann.Argumento
