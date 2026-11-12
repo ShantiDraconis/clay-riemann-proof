@@ -78,8 +78,8 @@ theorem sem_raiz_de_menos_um_dim3 (L : (Fin 3 → ℝ) →ₗ[ℝ] (Fin 3 → �
   have h1 := congrArg LinearMap.det h
   rw [LinearMap.det_comp] at h1
   have h2 : LinearMap.det (-LinearMap.id : (Fin 3 → ℝ) →ₗ[ℝ] (Fin 3 → ℝ)) = -1 := by
-    rw [show (-LinearMap.id : (Fin 3 → ℝ) →ₗ[ℝ] (Fin 3 → ℝ)) = (-1 : ℝ) • LinearMap.id by simp,
-      LinearMap.det_smul, Module.finrank_fin_fun ℝ, LinearMap.det_id]
+    rw [show (-LinearMap.id : (Fin 3 → ℝ) →ₗ[ℝ] (Fin 3 → ℝ)) = (-1 : ℝ) • LinearMap.id from
+      (neg_one_smul ℝ _).symm, LinearMap.det_smul, Module.finrank_fin_fun ℝ, LinearMap.det_id]
     norm_num
   rw [h2] at h1
   nlinarith [mul_self_nonneg (LinearMap.det L)]
@@ -103,11 +103,14 @@ theorem sem_algebra_associativa_dim3 (mul : (Fin 3 → ℝ) →ₗ[ℝ] (Fin 3 �
 
 instance : Mul Dual := ⟨fun x y => ⟨x.z * y.z, x.z * y.w + x.w * y.z⟩⟩
 
+@[simp] theorem Dual.mul_z (x y : Dual) : (x * y).z = x.z * y.z := rfl
+@[simp] theorem Dual.mul_w (x y : Dual) : (x * y).w = x.z * y.w + x.w * y.z := rfl
+
 theorem Dual.mul_assoc (x y t : Dual) : (x * y) * t = x * (y * t) := by
-  ext <;> simp only [HMul.hMul, Mul.mul] <;> ring
+  ext <;> simp <;> ring
 
 theorem Dual.mul_comm (x y : Dual) : x * y = y * x := by
-  ext <;> simp only [HMul.hMul, Mul.mul] <;> ring
+  ext <;> simp <;> ring
 
 /-- `z + w·e` com `e² = e`: a cauda absorve, como o 𝕀. -/
 @[ext] structure Idem where
@@ -116,15 +119,18 @@ theorem Dual.mul_comm (x y : Dual) : x * y = y * x := by
 
 instance : Mul Idem := ⟨fun x y => ⟨x.z * y.z, x.z * y.w + x.w * y.z + x.w * y.w⟩⟩
 
+@[simp] theorem Idem.mul_z (x y : Idem) : (x * y).z = x.z * y.z := rfl
+@[simp] theorem Idem.mul_w (x y : Idem) : (x * y).w = x.z * y.w + x.w * y.z + x.w * y.w := rfl
+
 theorem Idem.mul_assoc (x y t : Idem) : (x * y) * t = x * (y * t) := by
-  ext <;> simp only [HMul.hMul, Mul.mul] <;> ring
+  ext <;> simp <;> ring
 
 theorem Idem.e_mul_e : (⟨0, 1⟩ : Idem) * ⟨0, 1⟩ = ⟨0, 1⟩ := by
-  ext <;> simp only [HMul.hMul, Mul.mul] <;> ring
+  ext <;> simp
 
 /-- Em `Idem`, `i·e` é `i·e`, um ponto próprio do eixo, e não `e`: é isso que salva a associatividade. -/
 theorem Idem.i_mul_e : (⟨Complex.I, 0⟩ : Idem) * ⟨0, 1⟩ = ⟨0, Complex.I⟩ := by
-  ext <;> simp only [HMul.hMul, Mul.mul] <;> ring
+  ext <;> simp
 
 /-! ## 4. "Puxar para a reta" não decide nada sobre os zeros -/
 
