@@ -69,6 +69,7 @@ import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
+import ClayRiemannProof.EixoRiemann.Reformulacao
 
 /-!
 # Auditoria de axiomas
@@ -4790,3 +4791,35 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'ClayRiemannProof.Grade.simples_iff_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Grade.simples_iff_queda
+
+/-! ## Eixo Riemann: a reformulação de RH -/
+
+/-- info: 'EixoRiemann.rh_eixo_riemann' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rh_eixo_riemann
+
+/-- info: 'EixoRiemann.rh_iff_rhIdem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rh_iff_rhIdem
+
+/-- info: 'EixoRiemann.rh_iff_sem_ponte_horizontal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rh_iff_sem_ponte_horizontal
+
+/-- info: 'EixoRiemann.rhQuarteto_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rhQuarteto_iff
+
+/-- info: 'EixoRiemann.rhIdem_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rhIdem_iff
+
+/-- info: 'EixoRiemann.rhFaixa_iff_rhF' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rhFaixa_iff_rhF
+
+/-- info: 'EixoRiemann.rhIdemAte_of_rhateZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.rhIdemAte_of_rhateZ
+
+/-- info: 'EixoRiemann.orbitas_iguais_ou_disjuntas' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbitas_iguais_ou_disjuntas
+
+/-- info: 'EixoRiemann.zeros_fora_em_quartetos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.zeros_fora_em_quartetos
+
+/-- info: 'EixoRiemann.Idem.avalia_mul_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.avalia_mul_iff
