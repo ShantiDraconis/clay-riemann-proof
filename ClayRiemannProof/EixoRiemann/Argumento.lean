@@ -229,6 +229,29 @@ theorem inabitante_meio_da_ponte :
   intro h
   rcases (Idem.avalia_mul_iff (1 / 2)).mp h with h' | h' <;> norm_num at h'
 
+/-! ## O esqueleto com `sorry`: pontes sem amarra com ζ -/
+
+/-- Uma "ponte" só como par `(δ, γ)`, sem exigir que seja zero de ζ. -/
+structure PonteLivre where
+  δ : ℝ
+  γ : ℝ
+
+/-- **Os dois lemas do esqueleto, sobre pontes sem amarra com ζ, são contraditórios**: a ponte livre `δ = 1/4`
+teria autovalor `4/5` numa projeção. Eles não são "difíceis": são falsos. A versão correta quantifica só sobre
+`ρ ∈ Z` (`Espelho.autovetor`), e aí é equivalente a RH (`projecao_iff_rh`). -/
+theorem esqueleto_sem_amarra_inconsistente {V : Type*} [AddCommGroup V] [Module ℂ V]
+    (P : V →ₗ[ℂ] V) (v : PonteLivre → V) (hP : P ∘ₗ P = P) (hv : ∀ ρ, v ρ ≠ 0)
+    (hλ : ∀ ρ, P (v ρ) = autovalor ρ.δ • v ρ) : False := by
+  have h := autovalor_colapsa (colapso P hP (hv ⟨1 / 4, 0⟩) (hλ ⟨1 / 4, 0⟩))
+  norm_num at h
+
+/-- Para **qualquer** projeção (em particular a projeção ortogonal no span de `p^{−it}`, feita só com primos),
+nenhum vetor não nulo tem autovalor `1/(1 + 4δ²)` com `δ ≠ 0`. Construir `P` com primos torna a idempotência
+grátis e o lema do autovalor equivalente a "não existe zero fora da reta". -/
+theorem projecao_sem_autovalor_intermediario {V : Type*} [AddCommGroup V] [Module ℂ V]
+    (P : V →ₗ[ℂ] V) (hP : P ∘ₗ P = P) {v : V} (hv : v ≠ 0) {δ : ℝ} (hδ : δ ≠ 0) :
+    P v ≠ autovalor δ • v := fun h => hδ (autovalor_colapsa (colapso P hP hv h))
+
 end EixoRiemann
 
 #print axioms EixoRiemann.Idem.idempotentes
@@ -248,3 +271,5 @@ end EixoRiemann
 #print axioms EixoRiemann.inabitante_ponta_na_borda
 #print axioms EixoRiemann.inabitante_quarteto_conectado
 #print axioms EixoRiemann.inabitante_meio_da_ponte
+#print axioms EixoRiemann.esqueleto_sem_amarra_inconsistente
+#print axioms EixoRiemann.projecao_sem_autovalor_intermediario
