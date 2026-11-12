@@ -1,5 +1,6 @@
 import ClayRiemannProof.EixoRiemann.Pontes
 import Mathlib.Tactic.TFAE
+import ClayRiemannProof.FiniteWorlds
 
 /-!
 # A Hipótese de Riemann no eixo Riemann
@@ -64,9 +65,37 @@ theorem rh_eixo_riemann :
 /-- A conjectura na forma principal: `RiemannHypothesis ⟺ RHIdem`. -/
 theorem rh_iff_rhIdem : RiemannHypothesis ↔ RHIdem := rh_iff_rhFaixa.trans rhIdem_iff.symm
 
+/-! ## O que é provável hoje: a conjectura até uma altura -/
+
+/-- A conjectura do eixo Riemann até a altura `T`: pontes com as duas pontas em `|Im| ≤ T`. -/
+def RHIdemAte (T : ℕ) : Prop :=
+  ∀ x : Idem, Idem.aplica riemannZeta x = ⟨0, 0⟩ → 0 < x.z.re → x.z.re < 1 →
+    0 < (x.z + x.w).re → (x.z + x.w).re < 1 → |x.z.im| ≤ T → |(x.z + x.w).im| ≤ T →
+      x.z.re = 1 / 2 ∧ x.w.re = 0
+
+/-- **Toda verificação de RH até `T` vira a conjectura do eixo Riemann até `T`.** Com
+`ClayRiemannProof.Continuacao.rhAteZ_continuacao37`, isso vale para `T = 3 000 204 982 471`, condicional a
+Platt–Trudgian 2021 e às janelas numéricas nomeadas. -/
+theorem rhIdemAte_of_rhateZ {T : ℕ} (h : ClayRiemannProof.FiniteWorlds.RHateZ T) : RHIdemAte T := by
+  have reta : ∀ s : ℂ, riemannZeta s = 0 → 0 < s.re → s.re < 1 → |s.im| ≤ T → s.re = 1 / 2 := by
+    intro s hz h0 h1 hT
+    refine h s hz ?_ ?_ hT
+    · intro ht
+      exact absurd (re_trivial ht) (not_lt.mpr h0.le)
+    · rintro rfl
+      simp at h1
+  intro x hx h0 h1 h0' h1' hT hT'
+  rw [Idem.aplica_eq_zero] at hx
+  have a := reta _ hx.1 h0 h1 hT
+  have b := reta _ hx.2 h0' h1' hT'
+  refine ⟨a, ?_⟩
+  rw [Complex.add_re] at b
+  linarith
+
 end EixoRiemann
 
 #print axioms EixoRiemann.rh_iff_rhFaixa
 #print axioms EixoRiemann.rhFaixa_iff_rhF
 #print axioms EixoRiemann.rh_eixo_riemann
 #print axioms EixoRiemann.rh_iff_rhIdem
+#print axioms EixoRiemann.rhIdemAte_of_rhateZ
