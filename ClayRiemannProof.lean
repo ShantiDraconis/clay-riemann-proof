@@ -78,3 +78,4 @@ import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
 import ClayRiemannProof.EixoRiemann.Algebra
 import ClayRiemannProof.EixoRiemann.Quarteto
+import ClayRiemannProof.EixoRiemann.Pontes
