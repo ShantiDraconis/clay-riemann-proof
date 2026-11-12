@@ -88,5 +88,38 @@ ok = all(abs(f(s) - (f(puxado(s)) + (f(s) - f(puxado(s))))) < 1e-12 for s in (c(
 confere("decomposição f(s) = f(puxado) + I vale para f(s) = s - 1", ok)
 confere("e mesmo assim f tem zero fora da reta (s = 1)", f(1) == 0 and puxado(1).real != 1)
 
+# 4 componentes: o exemplo e o colapso i·R -> R
+p4 = idem_mul((5 + 2j, 0.1), (3 + 1j, 0.2))
+confere("Idem: (5+2i+0,1e)(3+i+0,2e) = 13+11i+(1,32+0,5i)e", perto((p4[0], p4[1]), (13 + 11j, 1.32 + 0.5j)))
+
+
+def sobe(x):
+    return (complex(x[0], x[1]), complex(x[2], 0))
+
+
+def colapsa(x):
+    return (x[0].real, x[0].imag, x[1].real + x[1].imag)
+
+
+ok = True
+for _ in range(2000):
+    x = tuple(random.uniform(-3, 3) for _ in range(3))
+    y = tuple(random.uniform(-3, 3) for _ in range(3))
+    ok &= perto(r3_mul(x, y), colapsa(idem_mul(sobe(x), sobe(y))))
+confere("R3 = Idem com i·R colapsado em R, 2000 pares", ok)
+
+
+def par(x):
+    return (x[0], x[0] + x[1])
+
+
+ok = True
+for _ in range(2000):
+    x = (complex(random.uniform(-3, 3), random.uniform(-3, 3)), complex(random.uniform(-3, 3), random.uniform(-3, 3)))
+    y = (complex(random.uniform(-3, 3), random.uniform(-3, 3)), complex(random.uniform(-3, 3), random.uniform(-3, 3)))
+    a, b = par(idem_mul(x, y)), (par(x)[0] * par(y)[0], par(x)[1] * par(y)[1])
+    ok &= perto(a, b)
+confere("Idem ≅ ℂ×ℂ: par(x·y) = par(x)·par(y), 2000 pares", ok)
+
 print(f"RESUMO: {falhas} falha(s)")
 sys.exit(1 if falhas else 0)

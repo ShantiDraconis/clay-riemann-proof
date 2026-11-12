@@ -128,7 +128,7 @@ theorem Idem.mul_assoc (x y t : Idem) : (x * y) * t = x * (y * t) := by
 theorem Idem.e_mul_e : (⟨0, 1⟩ : Idem) * ⟨0, 1⟩ = ⟨0, 1⟩ := by
   ext <;> simp
 
-/-- Em `Idem`, `i·e` é `i·e`, um ponto próprio do eixo, e não `e`: é isso que salva a associatividade. -/
+/-- Em `Idem`, `i·e = (0, i)`: um quarto vetor da base, e não `e`. É isso que salva a associatividade. -/
 theorem Idem.i_mul_e : (⟨Complex.I, 0⟩ : Idem) * ⟨0, 1⟩ = ⟨0, Complex.I⟩ := by
   ext <;> simp
 
@@ -158,6 +158,80 @@ theorem zero_fora_vira_cauda (ρ : ℂ) (h : riemannZeta ρ = 0) :
     cauda riemannZeta ρ = -riemannZeta (puxado ρ) := by
   unfold cauda; rw [h]; ring
 
+/-! ## 5. O que o eixo de 4 componentes guarda
+
+`Idem` é `ℂ × ℂ` disfarçado: `(z, w) ↦ (z, z + w)` preserva o produto. Aplicar `f` no eixo guarda exatamente
+dois valores, `f(z)` e `f(z + w)`; aplicar `f` em `Dual` guarda `f(z)` e `f'(z)·w`. -/
+
+/-- O produto de 3 componentes é o de 4 com `i·R` colapsado em `R`: `1,82 = 1,32 + 0,5`. -/
+def Idem.colapsa (x : Idem) : R3 := ⟨x.z.re, x.z.im, x.w.re + x.w.im⟩
+
+/-- Um número de 3 componentes visto em `Idem`, com cauda real. -/
+def Idem.sobe (x : R3) : Idem := ⟨⟨x.re, x.im⟩, (x.r : ℂ)⟩
+
+theorem Idem.r3_mul_eq_colapsa (x y : R3) : x * y = Idem.colapsa (Idem.sobe x * Idem.sobe y) := by
+  ext <;> simp [Idem.colapsa, Idem.sobe] <;> ring
+
+/-- A conta do exemplo em 4 componentes: `(5 + 2i + 0,1e)(3 + i + 0,2e) = 13 + 11i + (1,32 + 0,5i)e`. -/
+theorem Idem.exemplo_produto :
+    (⟨5 + 2 * Complex.I, 1 / 10⟩ : Idem) * ⟨3 + Complex.I, 2 / 10⟩ =
+      ⟨13 + 11 * Complex.I, 132 / 100 + 1 / 2 * Complex.I⟩ := by
+  refine Idem.ext ?_ ?_
+  · show (5 + 2 * Complex.I) * (3 + Complex.I) = 13 + 11 * Complex.I
+    linear_combination (2 : ℂ) * Complex.I_sq
+  · show (5 + 2 * Complex.I) * (2 / 10) + 1 / 10 * (3 + Complex.I) + 1 / 10 * (2 / 10) =
+      132 / 100 + 1 / 2 * Complex.I
+    ring
+
+/-- `(z, w) ↦ (z, z + w)`. -/
+def Idem.par (x : Idem) : ℂ × ℂ := (x.z, x.z + x.w)
+
+/-- `Idem.par` preserva o produto: `Idem ≅ ℂ × ℂ` como anel. -/
+theorem Idem.par_mul (x y : Idem) : (x * y).par = x.par * y.par := by
+  refine Prod.ext ?_ ?_ <;> simp [Idem.par] <;> ring
+
+theorem Idem.par_injective : Function.Injective Idem.par := by
+  intro x y h
+  simp only [Idem.par, Prod.mk.injEq] at h
+  refine Idem.ext ?_ ?_
+  · exact h.1
+  · linear_combination h.2 - h.1
+
+/-- `f` aplicada no eixo: `f(z + w·e) = f(z) + (f(z + w) - f(z))·e`. -/
+def Idem.aplica (f : ℂ → ℂ) (x : Idem) : Idem := ⟨f x.z, f (x.z + x.w) - f x.z⟩
+
+theorem Idem.par_aplica (f : ℂ → ℂ) (x : Idem) : (Idem.aplica f x).par = (f x.z, f (x.z + x.w)) := by
+  simp [Idem.aplica, Idem.par]
+
+/-- O ponto `(1/2, t, σ - 1/2)` calculado no eixo é o par `(ζ(1/2 + it), I_ζ(s))`, sem nada a mais. -/
+theorem Idem.aplica_puxado (f : ℂ → ℂ) (s : ℂ) :
+    Idem.aplica f ⟨puxado s, s - puxado s⟩ = ⟨f (puxado s), cauda f s⟩ := by
+  refine Idem.ext ?_ ?_ <;> simp [Idem.aplica, cauda]
+
+theorem Idem.aplica_eq_zero (f : ℂ → ℂ) (x : Idem) :
+    Idem.aplica f x = ⟨0, 0⟩ ↔ f x.z = 0 ∧ f (x.z + x.w) = 0 := by
+  simp only [Idem.aplica, Idem.mk.injEq]
+  constructor
+  · rintro ⟨h1, h2⟩
+    exact ⟨h1, by rwa [h1, sub_zero] at h2⟩
+  · rintro ⟨h1, h2⟩
+    exact ⟨h1, by rw [h1, h2, sub_zero]⟩
+
+/-- No eixo, "ser zero" é ser zero de `ζ` na reta **e** no ponto original. O eixo não cria nem esconde zeros. -/
+theorem Idem.zero_no_eixo (s : ℂ) :
+    Idem.aplica riemannZeta ⟨puxado s, s - puxado s⟩ = ⟨0, 0⟩ ↔
+      riemannZeta (puxado s) = 0 ∧ riemannZeta s = 0 := by
+  rw [Idem.aplica_eq_zero]
+  simp
+
+/-- `f` aplicada em `Dual`: `f(z + w·ε) = f(z) + f'(z)·w·ε` (Taylor de primeira ordem, exato em `ε² = 0`). -/
+noncomputable def Dual.aplica (f : ℂ → ℂ) (x : Dual) : Dual := ⟨f x.z, deriv f x.z * x.w⟩
+
+/-- Em `Dual`, zero exige `f(z) = 0` e `f'(z)·w = 0`: com zero simples (`f'(z) ≠ 0`), só `w = 0`. -/
+theorem Dual.aplica_eq_zero (f : ℂ → ℂ) (x : Dual) :
+    Dual.aplica f x = ⟨0, 0⟩ ↔ f x.z = 0 ∧ (deriv f x.z = 0 ∨ x.w = 0) := by
+  simp only [Dual.aplica, Dual.mk.injEq, mul_eq_zero]
+
 end EixoRiemann
 
 #print axioms EixoRiemann.R3.nao_associativa
@@ -167,3 +241,10 @@ end EixoRiemann
 #print axioms EixoRiemann.Idem.mul_assoc
 #print axioms EixoRiemann.decomposicao_nao_exclui_zeros
 #print axioms EixoRiemann.zero_fora_vira_cauda
+#print axioms EixoRiemann.Idem.r3_mul_eq_colapsa
+#print axioms EixoRiemann.Idem.exemplo_produto
+#print axioms EixoRiemann.Idem.par_mul
+#print axioms EixoRiemann.Idem.par_injective
+#print axioms EixoRiemann.Idem.aplica_puxado
+#print axioms EixoRiemann.Idem.zero_no_eixo
+#print axioms EixoRiemann.Dual.aplica_eq_zero
