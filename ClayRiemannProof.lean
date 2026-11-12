@@ -77,3 +77,4 @@ import ClayRiemannProof.Grade
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
 import ClayRiemannProof.EixoRiemann.Algebra
+import ClayRiemannProof.EixoRiemann.Quarteto
