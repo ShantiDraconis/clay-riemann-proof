@@ -2695,6 +2695,28 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao27' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao27
 
+/-- info: 'ClayRiemannProof.Continuacao.rhAteZ_continuacao28' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.rhAteZ_continuacao28
+
+/-- info: 'ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao28' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao28
+
+/-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao28' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao28
+
+/-- info: 'ClayRiemannProof.Continuacao.rhAteZ_continuacao29' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.rhAteZ_continuacao29
+
+/-- info: 'ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao29' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.primeiro_fora_acima_continuacao29
+
+/-- info: 'ClayRiemannProof.Continuacao.par_mais_fragil_continuacao29' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ClayRiemannProof.Continuacao.par_mais_fragil_continuacao29
+
 /-! ## `ClayRiemannProof/Absorcao.lean` -/
 
 /-- info: 'ClayRiemannProof.Absorcao.media_reAbs' depends on axioms: [propext, Classical.choice, Quot.sound] -/
