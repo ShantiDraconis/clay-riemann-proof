@@ -32,9 +32,13 @@ inductive V3
   | F
   | U
   | T
-  deriving DecidableEq, Repr, Fintype
+  deriving DecidableEq, Repr
 
 open V3
+
+instance : Fintype V3 where
+  elems := {F, U, T}
+  complete := fun x => by cases x <;> decide
 
 def nao : V3 → V3
   | F => T
