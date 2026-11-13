@@ -332,6 +332,18 @@ theorem ligacao_iff_rh {F : Type*} (P : ProgramaDeWeil F) :
     simp only [hm]
     exact tendsto_const_nhds
 
+open ClayRiemannProof.WeilRota Filter Topology in
+/-- **Dedução completa a partir da única hipótese em aberto**: uma família `S_T ≥ 0` que converge para a forma de
+Weil dá RH e todas as formas do eixo Riemann ao mesmo tempo. -/
+theorem deducao {F : Type*} (P : ProgramaDeWeil F) (S : ℝ → F → ℝ) (hS : ∀ T g, 0 ≤ S T g)
+    (hlim : ∀ L : ℝ, 0 < L → ∀ g ∈ P.teste L, Tendsto (fun T => S T g) atTop (𝓝 (P.W g))) :
+    RiemannHypothesis ∧ RHIdem ∧ RHQuarteto ∧ ¬ PonteHorizontal ∧ RHF ∧
+      (∀ B : PonteAncorada, B.δ = 0) ∧ Nonempty Espelho := by
+  have hRH := (ligacao_iff_rh P).mp ⟨S, hS, hlim⟩
+  have hF := rh_iff_rhFaixa.mp hRH
+  exact ⟨hRH, rhIdem_iff.mpr hF, rhQuarteto_iff.mpr hF, rh_iff_sem_ponte_horizontal.mp hF,
+    rhFaixa_iff_rhF.mp hF, ponte_ancorada_iff_rh.mpr hRH, projecao_iff_rh.mpr hF⟩
+
 end EixoRiemann
 
 #print axioms EixoRiemann.Idem.idempotentes
@@ -357,3 +369,4 @@ end EixoRiemann
 #print axioms EixoRiemann.ponteCampo_apaga_zeros
 #print axioms EixoRiemann.gram_primos_formal
 #print axioms EixoRiemann.ligacao_iff_rh
+#print axioms EixoRiemann.deducao
