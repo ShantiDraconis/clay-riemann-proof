@@ -252,6 +252,82 @@ theorem projecao_sem_autovalor_intermediario {V : Type*} [AddCommGroup V] [Modul
     (P : V →ₗ[ℂ] V) (hP : P ∘ₗ P = P) {v : V} (hv : v ≠ 0) {δ : ℝ} (hδ : δ ≠ 0) :
     P v ≠ autovalor δ • v := fun h => hδ (autovalor_colapsa (colapso P hP hv h))
 
+/-! ## Ponte ancorada, Gram de primos e ligação -/
+
+/-- **Ponte ancorada**: um zero de ζ na faixa. `δ` e `γ` são **calculados** de `ρ`, não são campos. -/
+structure PonteAncorada where
+  ρ : ℂ
+  zero : riemannZeta ρ = 0
+  re_pos : 0 < ρ.re
+  re_lt : ρ.re < 1
+
+def PonteAncorada.δ (P : PonteAncorada) : ℝ := P.ρ.re - 1 / 2
+
+/-- Com a ponte ancorada, "toda ponte tem `δ = 0`" é exatamente a `RiemannHypothesis` da Mathlib. -/
+theorem ponte_ancorada_iff_rh : (∀ P : PonteAncorada, P.δ = 0) ↔ RiemannHypothesis := by
+  rw [rh_iff_rhFaixa]
+  constructor
+  · intro h s hs
+    obtain ⟨hz, h0, h1⟩ := hs
+    have h' := h ⟨s, hz, h0, h1⟩
+    simp only [PonteAncorada.δ] at h'
+    linarith
+  · intro h P
+    have h' := h P.ρ ⟨P.zero, P.re_pos, P.re_lt⟩
+    simp only [PonteAncorada.δ]
+    linarith
+
+/-- A mesma ponte com `δ` como **campo** (ainda que com valor padrão `ρ.re − 1/2`): o campo fica solto. -/
+structure PonteCampo where
+  ρ : ℂ
+  zero : riemannZeta ρ = 0
+  re_pos : 0 < ρ.re
+  re_lt : ρ.re < 1
+  δ : ℝ := ρ.re - 1 / 2
+
+/-- Com `δ` como campo, "toda ponte tem `δ = 0`" equivale a ζ não ter **nenhum** zero na faixa (falso, Hardy). -/
+theorem ponteCampo_apaga_zeros : (∀ P : PonteCampo, P.δ = 0) ↔ Z = ∅ := by
+  constructor
+  · intro h
+    ext s
+    simp only [Set.mem_empty_iff_false, iff_false]
+    rintro ⟨hz, h0, h1⟩
+    have h' := h ⟨s, hz, h0, h1, 1⟩
+    simp at h'
+  · intro h P
+    exfalso
+    have hP : P.ρ ∈ Z := ⟨P.zero, P.re_pos, P.re_lt⟩
+    rw [h] at hP
+    simp at hP
+
+/-- Soma de primos `Σ a_p p^{−it}`, sem nenhum zero. -/
+noncomputable def somaPrimos (P : Finset ℕ) (a : ℕ → ℂ) (t : ℝ) : ℂ :=
+  ∑ p ∈ P, a p * Complex.exp (-(Complex.I * t) * Real.log p)
+
+/-- **Gram de primos é formal**: `‖Σ a_p p^{−it}‖² ≥ 0` para quaisquer coeficientes. O enunciado nem menciona ζ. -/
+theorem gram_primos_formal (P : Finset ℕ) (a : ℕ → ℂ) (t : ℝ) : 0 ≤ ‖somaPrimos P a t‖ ^ 2 := by
+  positivity
+
+open ClayRiemannProof.WeilRota Filter Topology in
+/-- **Ligação ⟺ RH, e por que ela é vazia**: existir **alguma** família `S_T ≥ 0` que converge para a forma de Weil
+em toda função-teste é RH (critério de Weil como hipótese nomeada). Com RH, a família constante `max(W, 0)` já
+serve. Todo o conteúdo estaria em uma família **específica**, feita só com primos, e que ela convirja é uma
+afirmação analítica sem argumento. -/
+theorem ligacao_iff_rh {F : Type*} (P : ProgramaDeWeil F) :
+    (∃ S : ℝ → F → ℝ, (∀ T g, 0 ≤ S T g) ∧
+      ∀ L : ℝ, 0 < L → ∀ g ∈ P.teste L, Tendsto (fun T => S T g) atTop (𝓝 (P.W g))) ↔
+      RiemannHypothesis := by
+  rw [P.criterio]
+  constructor
+  · rintro ⟨S, hS, hlim⟩ L hL g hg
+    exact ge_of_tendsto' (hlim L hL g hg) (fun T => hS T g)
+  · intro h
+    refine ⟨fun _ g => max (P.W g) 0, fun _ _ => le_max_right _ _, ?_⟩
+    intro L hL g hg
+    have hm : max (P.W g) 0 = P.W g := max_eq_left (h L hL g hg)
+    simp only [hm]
+    exact tendsto_const_nhds
+
 end EixoRiemann
 
 #print axioms EixoRiemann.Idem.idempotentes
@@ -273,3 +349,7 @@ end EixoRiemann
 #print axioms EixoRiemann.inabitante_meio_da_ponte
 #print axioms EixoRiemann.esqueleto_sem_amarra_inconsistente
 #print axioms EixoRiemann.projecao_sem_autovalor_intermediario
+#print axioms EixoRiemann.ponte_ancorada_iff_rh
+#print axioms EixoRiemann.ponteCampo_apaga_zeros
+#print axioms EixoRiemann.gram_primos_formal
+#print axioms EixoRiemann.ligacao_iff_rh
