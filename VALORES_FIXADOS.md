@@ -68,6 +68,12 @@ Em 13/11/2026 às 09:30 UTC foram disparadas as execuções 43401822112 e 434018
 estão em `resultados-continuacao`, em `de_3000209302471.5/` (commits `b2b44a0` e `780c2af`): faixas incompletas, sem
 `zeros*.csv.gz`, com conclusão `inconclusivo`. **Não fazem parte dos valores fixados.**
 
+Duas execuções anteriores, 43401365186 e 43401369198, também foram canceladas. Tinham sido disparadas às 09:26 UTC
+sobre `c1bf1e9`, ainda com o `C0` antigo, `3 000 207 862 471,5`. Antes do cancelamento, gravaram saídas parciais por cima
+dos JSON da rodada 21 em `de_3000207862471.5/faixas_0-5` e `faixas_6-11` (commits `49206b7` e `b714dfd`). Os
+`zeros*.csv.gz` e a junção `juntas_0-11` ficaram intactos. O commit `cd6a515` devolveu esses arquivos ao estado de
+`3ccf7e5`, sem reescrever o histórico. Os dados da rodada 21 são os de `3ccf7e5`, que são os mesmos de `cd6a515`.
+
 ## Retomada
 
 A continuação só volta a rodar quando o autor pedir. O workflow `continuacao.yml` está desativado no GitHub Actions.
