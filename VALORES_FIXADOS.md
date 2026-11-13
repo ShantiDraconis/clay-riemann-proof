@@ -18,8 +18,8 @@ Isto **não** é prova de RH (`OPEN_MATH = true`). É uma verificação numéric
 | par mais perto em todos os dados | 12 363 187 982 787/…788 (`γ ≈ 3 000 183 404 278,7579`, distância 0,00036432, `s = 0,0016`, `λ = −6,636·10⁻⁸`) |
 | no kernel | `ClayRiemannProof.Continuacao.rhAteZ_continuacao43 : … → RHateZ 3000209302471`, com 45 hipóteses nomeadas (`PlattTrudgian2021`, `JanelaArb2026`, `JanelaContinuacao2026` … `JanelaContinuacao2026aq`); axiomas `[propext, Classical.choice, Quot.sound]` (guarda em `Audit.lean`) |
 | Lean e Mathlib | Lean 4.36.0-rc2, Mathlib `8fe7ce4`; 1 856 guardas `#guard_msgs` |
-| commit do resultado | `main` em `1b6b252` (CI Lean 43401888535 verde); este arquivo e a tag `rh-conferida-3000209302471.5` no commit seguinte, que só mexe em documentação |
-| dados | branch `resultados-continuacao` em `3ccf7e5` (tag `dados-continuacao-3000209302471.5`), junção final em `de_3000207862471.5/juntas_0-11/` |
+| commit do resultado | `main` em `1b6b252` (CI Lean 43401888535 verde); este arquivo entrou em `8114911`, commit só de documentação |
+| dados | branch `resultados-continuacao` em `3ccf7e5`, junção final em `de_3000207862471.5/juntas_0-11/` |
 | ponto de retomada | `computations/continuacao/inicio.json`: `C0 = 3000209302471.5`, `N(C0) = 12363298826181` |
 
 ## Por rodada
