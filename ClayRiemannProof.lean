@@ -86,3 +86,5 @@ import ClayRiemannProof.EixoRiemann.Tres
 import ClayRiemannProof.EixoRiemann.Valores
 import ClayRiemannProof.EixoRiemann.Familia
 import ClayRiemannProof.EixoRiemann.PsiZeros
+import ClayRiemannProof.MathlibCandidates.Hurwitz
+import ClayRiemannProof.MathlibCandidates.PsiZeroFree
