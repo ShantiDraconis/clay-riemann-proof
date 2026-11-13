@@ -393,8 +393,9 @@ theorem frequencia_cruzada_nao_inteira {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
   have hdvd : p ∣ q := ⟨n, by rw [h, Nat.mul_comm]⟩
   exact hpq ((Nat.prime_dvd_prime_iff_eq hp hq).mp hdvd)
 
-/-- As frequências `log(q/p)` dos termos cruzados nunca são as frequências `log n` da fórmula explícita
-(`n ≥ 1`, em particular nenhuma potência de primo). -/
+/-- As frequências `log(q/p)` dos termos cruzados (`p ≠ q`) nunca são as frequências `log n` da fórmula explícita,
+para nenhum `n ≥ 1`, em particular nenhuma potência de primo. A diagonal `p = q` dá `log 1 = 0`, e `n = 1` tem peso
+`Λ(1) = 0` na forma de Weil (`diagonal_sem_peso`): ela não é contraexemplo. -/
 theorem log_cruzado_ne_log_inteiro {p q n : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hn : 0 < n) :
     Real.log ((q : ℝ) / p) ≠ Real.log n := by
   intro h
@@ -406,6 +407,120 @@ theorem log_cruzado_ne_log_inteiro {p q n : ℕ} (hp : p.Prime) (hq : q.Prime) (
   rw [div_eq_iff hp0.ne'] at hdiv
   have hnat : q = n * p := by exact_mod_cast hdiv
   exact frequencia_cruzada_nao_inteira hp hq hpq n hnat
+
+/-- A diagonal do Gram tem frequência `log 1`, e `Λ(1) = 0`. -/
+theorem diagonal_sem_peso : ArithmeticFunction.vonMangoldt 1 = 0 := ArithmeticFunction.vonMangoldt_apply_one
+
+/-! ## Média em `t`: os termos cruzados somem, sobra a diagonal
+
+Dois parâmetros diferentes: o **conjunto de primos** `P` (corte fixo) e a **janela de média** `[−T, T]` (`T → ∞`). -/
+
+section Media
+
+open MeasureTheory Filter Topology
+
+theorem norm_exp_I_mul (c t : ℝ) : ‖Complex.exp (Complex.I * c * t)‖ = 1 := by
+  rw [Complex.norm_exp]
+  simp
+
+theorem norma_integral_exp_le {c : ℝ} (hc : c ≠ 0) (T : ℝ) :
+    ‖∫ t in (-T)..T, Complex.exp (Complex.I * c * t)‖ ≤ 2 / |c| := by
+  have hc' : (Complex.I * c) ≠ 0 := mul_ne_zero Complex.I_ne_zero (by exact_mod_cast hc)
+  rw [integral_exp_mul_complex hc', norm_div, norm_mul, Complex.norm_I, one_mul, Complex.norm_real,
+    Real.norm_eq_abs, div_le_div_iff_of_pos_right (abs_pos.mpr hc)]
+  refine le_trans (norm_sub_le _ _) ?_
+  rw [norm_exp_I_mul, norm_exp_I_mul]
+  norm_num
+
+/-- `(1/2T) ∫_{−T}^{T} e^{ict} dt → 0` para `c ≠ 0`. -/
+theorem media_exp_tende_zero {c : ℝ} (hc : c ≠ 0) :
+    Tendsto (fun T : ℝ => (1 / (2 * T) : ℝ) • ∫ t in (-T)..T, Complex.exp (Complex.I * c * t))
+      atTop (𝓝 0) := by
+  have hlim : Tendsto (fun T : ℝ => (1 / |c|) / T) atTop (𝓝 0) := tendsto_const_nhds.div_atTop tendsto_id
+  refine squeeze_zero_norm' ?_ hlim
+  filter_upwards [eventually_gt_atTop 0] with T hT
+  have hT' : T ≠ 0 := hT.ne'
+  have hc0 : |c| ≠ 0 := abs_ne_zero.mpr hc
+  rw [norm_smul, Real.norm_eq_abs, abs_of_pos (by positivity : (0 : ℝ) < 1 / (2 * T))]
+  calc 1 / (2 * T) * ‖∫ t in (-T)..T, Complex.exp (Complex.I * c * t)‖
+      ≤ 1 / (2 * T) * (2 / |c|) := by
+        gcongr
+        exact norma_integral_exp_le hc T
+    _ = 1 / |c| / T := by field_simp <;> ring
+
+/-- `S(t)·conj S(t)` como soma dupla de exponenciais puras `e^{it(log q − log p)}`. -/
+theorem somaPrimos_mul_conj (P : Finset ℕ) (a : ℕ → ℂ) (t : ℝ) :
+    somaPrimos P a t * (starRingEnd ℂ) (somaPrimos P a t) =
+      ∑ p ∈ P, ∑ q ∈ P, a p * (starRingEnd ℂ) (a q) *
+        Complex.exp (Complex.I * ((Real.log q - Real.log p : ℝ) : ℂ) * t) := by
+  unfold somaPrimos
+  rw [map_sum, Finset.sum_mul_sum]
+  refine Finset.sum_congr rfl fun p _ => Finset.sum_congr rfl fun q _ => ?_
+  rw [map_mul, ← Complex.exp_conj]
+  simp only [map_mul, map_neg, Complex.conj_I, Complex.conj_ofReal]
+  rw [mul_mul_mul_comm, ← Complex.exp_add]
+  congr 2
+  push_cast
+  ring
+
+/-- **Média do Gram de primos**: com `P` fixo (primos ou quaisquer naturais positivos), a média de `|Σ a_p p^{−it}|²`
+em `[−T, T]` converge para a diagonal `Σ |a_p|²`. Os termos cruzados somem; não sobra potência de primo nem termo
+arquimediano. -/
+theorem media_gram (P : Finset ℕ) (hP : ∀ p ∈ P, 0 < p) (a : ℕ → ℂ) :
+    Tendsto (fun T : ℝ => (1 / (2 * T) : ℝ) •
+        ∫ t in (-T)..T, somaPrimos P a t * (starRingEnd ℂ) (somaPrimos P a t))
+      atTop (𝓝 (∑ p ∈ P, a p * (starRingEnd ℂ) (a p))) := by
+  have hint : ∀ T : ℝ, (∫ t in (-T)..T, somaPrimos P a t * (starRingEnd ℂ) (somaPrimos P a t)) =
+      ∑ p ∈ P, ∑ q ∈ P, a p * (starRingEnd ℂ) (a q) *
+        ∫ t in (-T)..T, Complex.exp (Complex.I * ((Real.log q - Real.log p : ℝ) : ℂ) * t) := by
+    intro T
+    simp_rw [somaPrimos_mul_conj]
+    rw [intervalIntegral.integral_finsetSum]
+    · refine Finset.sum_congr rfl fun p _ => ?_
+      rw [intervalIntegral.integral_finsetSum]
+      · refine Finset.sum_congr rfl fun q _ => ?_
+        exact intervalIntegral.integral_const_mul _ _
+      · intro q _
+        apply Continuous.intervalIntegrable
+        fun_prop
+    · intro p _
+      apply Continuous.intervalIntegrable
+      fun_prop
+  have htarget : (∑ p ∈ P, a p * (starRingEnd ℂ) (a p)) =
+      ∑ p ∈ P, ∑ q ∈ P, (if p = q then a p * (starRingEnd ℂ) (a q) else 0) := by
+    refine Finset.sum_congr rfl fun p hp => ?_
+    simp [hp]
+  simp_rw [hint, Finset.smul_sum]
+  rw [htarget]
+  refine tendsto_finset_sum _ fun p hp => tendsto_finset_sum _ fun q hq => ?_
+  by_cases hpq : p = q
+  · subst hpq
+    rw [if_pos rfl]
+    refine tendsto_const_nhds.congr' ?_
+    filter_upwards [eventually_gt_atTop 0] with T hT
+    have hT' : (T : ℂ) ≠ 0 := by exact_mod_cast hT.ne'
+    simp only [sub_self, Complex.ofReal_zero, mul_zero, zero_mul, Complex.exp_zero,
+      intervalIntegral.integral_const, Complex.real_smul]
+    push_cast
+    first
+      | (field_simp; ring)
+      | field_simp
+      | ring
+  · rw [if_neg hpq]
+    have hc : Real.log q - Real.log p ≠ 0 := by
+      intro h
+      apply hpq
+      have hp0 : (0 : ℝ) < p := by exact_mod_cast hP p hp
+      have hq0 : (0 : ℝ) < q := by exact_mod_cast hP q hq
+      have h' : Real.log (q : ℝ) = Real.log (p : ℝ) := by linarith
+      have := Real.log_injOn_pos (Set.mem_Ioi.mpr hq0) (Set.mem_Ioi.mpr hp0) h'
+      exact_mod_cast this.symm
+    have h := (media_exp_tende_zero hc).const_mul (a p * (starRingEnd ℂ) (a q))
+    rw [mul_zero] at h
+    refine h.congr fun T => ?_
+    rw [mul_smul_comm]
+
+end Media
 
 end EixoRiemann
 
@@ -438,3 +553,7 @@ end EixoRiemann
 #print axioms EixoRiemann.gram_no_go
 #print axioms EixoRiemann.frequencia_cruzada_nao_inteira
 #print axioms EixoRiemann.log_cruzado_ne_log_inteiro
+#print axioms EixoRiemann.diagonal_sem_peso
+#print axioms EixoRiemann.media_exp_tende_zero
+#print axioms EixoRiemann.somaPrimos_mul_conj
+#print axioms EixoRiemann.media_gram
