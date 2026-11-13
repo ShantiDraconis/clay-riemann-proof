@@ -76,3 +76,13 @@ import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
 import ClayRiemannProof.Audit
 import ClayRiemannProof.AuditThirteen
+import ClayRiemannProof.EixoRiemann.Algebra
+import ClayRiemannProof.EixoRiemann.Quarteto
+import ClayRiemannProof.EixoRiemann.Pontes
+import ClayRiemannProof.EixoRiemann.Reformulacao
+import ClayRiemannProof.EixoRiemann.Argumento
+import ClayRiemannProof.EixoRiemann.Mapa
+import ClayRiemannProof.EixoRiemann.Tres
+import ClayRiemannProof.EixoRiemann.Valores
+import ClayRiemannProof.EixoRiemann.Familia
+import ClayRiemannProof.EixoRiemann.PsiZeros
