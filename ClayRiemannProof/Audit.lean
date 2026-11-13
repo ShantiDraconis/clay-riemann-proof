@@ -69,7 +69,7 @@ import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
-import ClayRiemannProof.EixoRiemann.Tres
+import ClayRiemannProof.EixoRiemann.Valores
 
 /-!
 # Auditoria de axiomas
@@ -4792,7 +4792,7 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Grade.simples_iff_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Grade.simples_iff_queda
 
-/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa, Tres) -/
+/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa, Tres, Valores) -/
 
 /-- info: 'EixoRiemann.C4_idempotentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.C4_idempotentes
@@ -4892,6 +4892,57 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.Tres.vClass_ou' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.vClass_ou
+
+/-- info: 'EixoRiemann.Valores.belnap_assoc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_assoc
+
+/-- info: 'EixoRiemann.Valores.belnap_de_morgan' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_de_morgan
+
+/-- info: 'EixoRiemann.Valores.belnap_distributiva' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_distributiva
+
+/-- info: 'EixoRiemann.Valores.belnap_dois_fixos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_dois_fixos
+
+/-- info: 'EixoRiemann.Valores.belnap_estende_kleene' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_estende_kleene
+
+/-- info: 'EixoRiemann.Valores.belnap_sem_explosao' depends on axioms: [propext] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_sem_explosao
+
+/-- info: 'EixoRiemann.Valores.cauda_meio_diverge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.cauda_meio_diverge
+
+/-- info: 'EixoRiemann.Valores.cauda_primos_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.cauda_primos_iff
+
+/-- info: 'EixoRiemann.Valores.cos_impar_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.cos_impar_zero
+
+/-- info: 'EixoRiemann.Valores.e5_nao_associativo' depends on axioms: [propext] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.e5_nao_associativo
+
+/-- info: 'EixoRiemann.Valores.equacao_funcional_cega_impar' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.equacao_funcional_cega_impar
+
+/-- info: 'EixoRiemann.Valores.lukasiewicz_continuo_fixo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_continuo_fixo
+
+/-- info: 'EixoRiemann.Valores.lukasiewicz_fixo_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_fixo_iff
+
+/-- info: 'EixoRiemann.Valores.lukasiewicz_fixo_unico' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_fixo_unico
+
+/-- info: 'EixoRiemann.Valores.tensao_parte_linear' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.tensao_parte_linear
+
+/-- info: 'EixoRiemann.Valores.torcao_parte_linear' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.torcao_parte_linear
+
+/-- info: 'EixoRiemann.Valores.zeta_par_fecha' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.zeta_par_fecha
 
 /-- info: 'EixoRiemann.Z_nonempty_de_hardy' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Z_nonempty_de_hardy
