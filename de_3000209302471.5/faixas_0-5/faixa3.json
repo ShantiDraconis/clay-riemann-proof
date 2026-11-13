@@ -1,0 +1,77 @@
+{
+ "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+ "faixa": 3,
+ "a": "3000209662471.5",
+ "b": "3000209782471.5",
+ "blocos": [
+  {
+   "n": "12363300366970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 65.8
+  },
+  {
+   "n": "12363300371970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 74.0
+  },
+  {
+   "n": "12363300376970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 75.9
+  },
+  {
+   "n": "12363300381970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 91.0
+  },
+  {
+   "n": "12363300386970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 85.6
+  },
+  {
+   "n": "12363300391970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 76.2
+  },
+  {
+   "n": "12363300396970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 75.1
+  },
+  {
+   "n": "12363300401970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 73.6
+  },
+  {
+   "n": "12363300406970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 75.2
+  },
+  {
+   "n": "12363300411970",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 77.6
+  }
+ ],
+ "falhas": [],
+ "N(a)": "12363300366969",
+ "N(b)": "12363300880566",
+ "zeros_esperados": 513597,
+ "segundos_nzeros": [
+  5.1,
+  2.3
+ ],
+ "segundos": 777.5
+}

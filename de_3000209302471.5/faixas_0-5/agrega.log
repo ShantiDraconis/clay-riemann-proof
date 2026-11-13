@@ -1,0 +1,57 @@
+{
+ "colagem": [
+  {
+   "altura": "3000209302471.5",
+   "N_pela_faixa": "12363298826181",
+   "N_pela_execucao_anterior": "12363298826181",
+   "confere": true
+  },
+  {
+   "altura": "3000209422471.5",
+   "N_pela_faixa": "12363299339777",
+   "N_pela_seguinte": "12363299339777",
+   "confere": true
+  },
+  {
+   "altura": "3000209542471.5",
+   "N_pela_faixa": "12363299853373",
+   "N_pela_seguinte": "12363299853373",
+   "confere": true
+  },
+  {
+   "altura": "3000209662471.5",
+   "N_pela_faixa": "12363300366969",
+   "N_pela_seguinte": "12363300366969",
+   "confere": true
+  },
+  {
+   "altura": "3000209782471.5",
+   "N_pela_faixa": "12363300880566",
+   "N_pela_seguinte": "12363300880566",
+   "confere": true
+  },
+  {
+   "altura": "3000209902471.5",
+   "N_pela_faixa": "12363301394161",
+   "N_pela_seguinte": "12363301394161",
+   "confere": true
+  }
+ ],
+ "pares_mais_frageis": [],
+ "deficits": {
+  "0": null,
+  "1": null,
+  "2": null,
+  "3": null,
+  "4": null,
+  "5": null
+ },
+ "falhas": {},
+ "colagem_ok": true,
+ "contiguo": {
+  "de": "3000209302471.5",
+  "ate": "3000209302471.5",
+  "zeros_na_reta": 0
+ },
+ "conclusao": "inconclusivo: ver faixas"
+}

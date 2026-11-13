@@ -1,0 +1,16 @@
+{
+ "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+ "faixa": 1,
+ "a": "3000209422471.5",
+ "b": "3000209542471.5",
+ "blocos": [],
+ "falhas": [],
+ "N(a)": "12363299339777",
+ "N(b)": "12363299853373",
+ "zeros_esperados": 513596,
+ "segundos_nzeros": [
+  4.7,
+  4.3
+ ],
+ "segundos": 9.0
+}

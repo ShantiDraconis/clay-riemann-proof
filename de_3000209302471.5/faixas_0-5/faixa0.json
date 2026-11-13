@@ -1,0 +1,78 @@
+{
+ "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+ "faixa": 0,
+ "a": "3000209302471.5",
+ "b": "3000209422471.5",
+ "blocos": [
+  {
+   "n": "12363298826182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 87.9
+  },
+  {
+   "n": "12363298831182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 89.1
+  },
+  {
+   "n": "12363298836182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 85.8
+  },
+  {
+   "n": "12363298841182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 86.8
+  },
+  {
+   "n": "12363298846182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 93.0
+  },
+  {
+   "n": "12363298851182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 85.7
+  },
+  {
+   "n": "12363298856182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 85.7
+  },
+  {
+   "n": "12363298861182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 89.4
+  },
+  {
+   "n": "12363298866182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 96.5
+  },
+  {
+   "n": "12363298871182",
+   "pedidos": 5000,
+   "achados": 5000,
+   "segundos": 93.7
+  }
+ ],
+ "falhas": [],
+ "N(a)": "12363298826181",
+ "N(b)": "12363299339777",
+ "zeros_esperados": 513596,
+ "segundos_nzeros": [
+  2.9,
+  4.0
+ ],
+ "N(C0)_confere_com_a_execucao_anterior": true,
+ "segundos": 900.5
+}
