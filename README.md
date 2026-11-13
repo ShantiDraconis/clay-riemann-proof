@@ -7,6 +7,8 @@ fixado no commit `47fe26a`. O alvo é `ClayRiemann.Statement`, sem redefinição
 Estado: sem prova. `OPEN_MATH = true`. Nada abaixo prova RH: há equivalências exatas (as treze estão reunidas
 em `Bridges.pontes`, seção 8), um resultado condicional a um teorema externo e o mundo `Z = 13` certificado.
 
+O que se reivindica, item por item, com a classe e o certificado de cada um: `REIVINDICACOES.md`.
+
 Continuação numérica pausada em 13/11/2026 a pedido do autor, com os valores fixados em
 [`VALORES_FIXADOS.md`](VALORES_FIXADOS.md): RH conferida até 3 000 209 302 471,5, isto é, 145 389 043 zeros acima
 do recorde publicado, todos na reta. A conferência é numérica, por intervalos, e entra no kernel como hipóteses
@@ -21,9 +23,9 @@ em periódico referado; o Clay espera ainda dois anos e aceitação geral.
 ## Auditoria
 
 `ClayRiemannProof/Audit.lean` (importado por último pela raiz) fixa, com `#guard_msgs`, a saída real
-de `#print axioms` de 1 471 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
+de `#print axioms` de 1 683 declarações públicas acrescentadas (todos os teoremas e a maior parte das definições);
 `ClayRiemannProof/AuditThirteen.lean` faz o mesmo para as 385 da cadeia certificada até a altura 13, do primeiro zero
-na reta (§47) e da bola alargada (§48) (1 856 guardas no total, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
+na reta (§47) e da bola alargada (§48) (2 069 guardas no total com a de `MathlibCandidates/PsiZeroFree.lean`, contadas como linhas que começam com `#guard_msgs`). Todas dependem no máximo de
 `[propext, Classical.choice, Quot.sound]` (os axiomas padrão que o próprio Mathlib usa; `Real` já
 depende deles). Verificado com Lean 4.36.0-rc2 e Mathlib `8fe7ce4`.
 
@@ -4208,6 +4210,49 @@ garante. Os zeros aproximados convergem para os `γ_k` quando a grade refina.
 - **A convergência para `Ξ` quando `δ → 0` e `L → ∞`: aberta.** É a (C) da §63 na forma de grades.
 
 Nada aqui prova RH. `OPEN_MATH = true`.
+
+## 66. O eixo Riemann: quartetos, pontes, controle de ψ e semiplanos sem zeros
+
+Arquivos: `ClayRiemannProof/EixoRiemann/` (`Algebra`, `Quarteto`, `Pontes`, `Reformulacao`, `Argumento`, `Mapa`,
+`Tres`, `Valores`, `Familia`, `PsiZeros`; 205 teoremas, todos com guarda) e `computations/eixo_riemann/`.
+A lista completa, com a classe de cada item, está em `REIVINDICACOES.md`.
+
+O eixo é `Idem = ℂ[e]/(e² − e)`, com `ζ(z + δ·e) = (ζ(z), ζ(z + δ))`. Uma **ponte** é `z → z + δ` com as duas pontas
+zeros de `ζ`; é **horizontal** se `δ` é real e não nulo.
+
+```lean
+theorem rh_eixo_riemann : List.TFAE [RiemannHypothesis, RHFaixa, RHIdem, RHQuarteto, ¬ PonteHorizontal, RHF]
+theorem orbitas_iguais_ou_disjuntas   -- quartetos {s, s̄, 1 − s, 1 − s̄} não se conectam
+theorem quase_rh_iff_pontes (θ : ℝ) :
+    (∀ ρ ∈ Z, ρ.re ≤ θ) ↔ ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 2 * θ - 1
+theorem sem_zeros_acima {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) {ρ : ℂ} (hρ : θ < ρ.re) :
+    riemannZeta ρ ≠ 0                 -- ControlePsi θ : ψ(n) − n = O(n^θ)
+theorem rh_de_chebyshev
+    (h : ∀ θ : ℝ, 1 / 2 < θ → (fun x : ℝ ↦ Chebyshev.psi x - x) =O[atTop] fun x ↦ x ^ θ) :
+    RiemannHypothesis
+theorem pontes_openai_78 (h : OpenAIQuasiRH78) :
+    ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 3 / 4
+theorem familia_finita_estrita_nao_basta   -- nenhuma família finita de desigualdades estritas fecha RH
+```
+
+**O que é**: `rh_eixo_riemann` põe seis formas da mesma proposição no kernel; RH é "toda ponte é vertical".
+`sem_zeros_acima` é o teorema clássico "controle de `ψ` no expoente `θ` ⟹ `ζ` sem zeros em `Re s > θ`", provado a partir
+da Mathlib (somação de Abel, `mellin_differentiableAt_of_isBigO_rpow`, princípio da identidade em `{Re s > θ} ∖ {1}`,
+ordem do zero). Combinado com `quase_rh_iff_pontes`, o controle no expoente `θ` encurta toda ponte horizontal para
+`|δ| ≤ 2θ − 1`; com `θ > 1/2` arbitrário, dá RH. Com o semiplano `Re s > 7/8` do quasi-RH anunciado pela OpenAI (§2,
+hipótese nomeada), `|δ| ≤ 3/4`. Uma versão só com a Mathlib está em
+`ClayRiemannProof/MathlibCandidates/PsiZeroFree.lean` (`Chebyshev.riemannZeta_ne_zero_of_isBigO`).
+
+**Weil finito** (`computations/eixo_riemann/weil_finito.py`, ponto flutuante): com `g = h ∗ h̃` de suporte
+`[−log 4, log 4]` só os primos 2 e 3 entram; em `γ = 0`, `W = 0,19305 − 0,02301 − 0,00060 − 0,16920 = 2,344·10⁻⁴ > 0`,
+igual ao lado dos zeros (138 zeros até `T = 300`) com diferença `1,5·10⁻¹³`.
+
+**O que NÃO é**: a recíproca (RH ⟹ `ψ(x) − x = O(x^{1/2} log² x)`) não está formalizada; ela pede a fórmula explícita
+truncada. `ψ(x) − x = O(x^{1/2})` com o expoente exato é falso (Littlewood). As refutações do eixo (a tabuada
+`a + bi + cR`, a RH-Idem com `δ = 0`, quartetos conectados, a escada de 5 valores, as famílias de Gram) estão em
+`REIVINDICACOES.md`. Nada aqui prova RH. `OPEN_MATH = true`.
+
+**Axiomas**: `[propext, Classical.choice, Quot.sound]`.
 
 ## Autor
 

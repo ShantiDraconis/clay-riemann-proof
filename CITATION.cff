@@ -7,6 +7,8 @@ authors:
     given-names: "Tiago Paschoalatto"
     orcid: "https://orcid.org/0009-0006-6874-3910"
 license: CC0-1.0
+version: "reivindicacoes-2026-11-13"
+date-released: "2026-11-13"
 repository-code: "https://github.com/ShantiDraconis/clay-riemann-proof"
 keywords:
   - Riemann hypothesis
@@ -18,3 +20,7 @@ keywords:
   - de Bruijn-Newman constant
   - Lehmer pairs
   - Conrey-Ghosh extrema
+  - Riemann axis (eixo Riemann)
+  - zero-free region
+  - Chebyshev psi function
+  - Weil explicit formula

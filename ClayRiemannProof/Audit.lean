@@ -5451,7 +5451,7 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'EixoRiemann.Tres.codC_bij' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.codC_bij
 
-/-- info: 'EixoRiemann.Tres.meio_nao_contradicao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'EixoRiemann.Tres.meio_nao_contradicao' depends on axioms: [propext] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.meio_nao_contradicao
 
 /-- info: 'EixoRiemann.Tres.vClass_nao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -5460,20 +5460,20 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'EixoRiemann.Tres.vClass_true' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.vClass_true
 
-/-- info: 'EixoRiemann.Tres.luk_aberto_implica_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'EixoRiemann.Tres.luk_aberto_implica_aberto' does not depend on any axioms -/
 #guard_msgs in #print axioms EixoRiemann.Tres.luk_aberto_implica_aberto
 
-/-- info: 'EixoRiemann.Tres.kleene_aberto_implica_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'EixoRiemann.Tres.kleene_aberto_implica_aberto' depends on axioms: [propext] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.kleene_aberto_implica_aberto
 
 /-- info: 'EixoRiemann.Tres.luk_modus_ponens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.luk_modus_ponens
 
-/-- info: 'EixoRiemann.Tres.kleene_nao_absorve' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'EixoRiemann.Tres.kleene_nao_absorve' depends on axioms: [propext] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.kleene_nao_absorve
 
 /-- info: 'EixoRiemann.Valores.belnap_dupla_negacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.belnap_dupla_negacao
 
-/-- info: 'EixoRiemann.Valores.belnap_nem_ambos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'EixoRiemann.Valores.belnap_nem_ambos' depends on axioms: [propext] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.belnap_nem_ambos
