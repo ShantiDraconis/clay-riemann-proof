@@ -261,7 +261,7 @@ structure PonteAncorada where
   re_pos : 0 < ρ.re
   re_lt : ρ.re < 1
 
-def PonteAncorada.δ (P : PonteAncorada) : ℝ := P.ρ.re - 1 / 2
+noncomputable def PonteAncorada.δ (P : PonteAncorada) : ℝ := P.ρ.re - 1 / 2
 
 /-- Com a ponte ancorada, "toda ponte tem `δ = 0`" é exatamente a `RiemannHypothesis` da Mathlib. -/
 theorem ponte_ancorada_iff_rh : (∀ P : PonteAncorada, P.δ = 0) ↔ RiemannHypothesis := by
@@ -277,6 +277,8 @@ theorem ponte_ancorada_iff_rh : (∀ P : PonteAncorada, P.δ = 0) ↔ RiemannHyp
     simp only [PonteAncorada.δ]
     linarith
 
+noncomputable section
+
 /-- A mesma ponte com `δ` como **campo** (ainda que com valor padrão `ρ.re − 1/2`): o campo fica solto. -/
 structure PonteCampo where
   ρ : ℂ
@@ -284,6 +286,8 @@ structure PonteCampo where
   re_pos : 0 < ρ.re
   re_lt : ρ.re < 1
   δ : ℝ := ρ.re - 1 / 2
+
+end
 
 /-- Com `δ` como campo, "toda ponte tem `δ = 0`" equivale a ζ não ter **nenhum** zero na faixa (falso, Hardy). -/
 theorem ponteCampo_apaga_zeros : (∀ P : PonteCampo, P.δ = 0) ↔ Z = ∅ := by
