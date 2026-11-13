@@ -107,7 +107,7 @@ theorem resto_topo {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) :
 theorem resto_base (b : ℝ) : resto =O[𝓝[>] (0 : ℝ)] fun t : ℝ ↦ t ^ (-b) := by
   refine EventuallyEq.trans_isBigO ?_ (isBigO_zero _ _)
   filter_upwards [mem_nhdsWithin_of_mem_nhds (Iio_mem_nhds (zero_lt_one' ℝ))] with t ht
-  rw [resto, Set.indicator_of_notMem (show t ∉ Set.Ioi (1 : ℝ) from fun h1 ↦ lt_asymm ht h1)]
+  rw [resto, Set.indicator_of_notMem (show t ∉ Set.Ioi (1 : ℝ) from fun h1 ↦ lt_asymm (Set.mem_Iio.mp ht) (Set.mem_Ioi.mp h1))]
 
 /-- `F(s) = s · ∫₁^∞ R(t) t^{−s−1} dt = s · 𝓜[R](−s)`. -/
 noncomputable def F (s : ℂ) : ℂ := s * mellin resto (-s)
@@ -162,7 +162,7 @@ theorem semiplano_furado {θ : ℝ} (hθ : θ < 1) :
       ((({s : ℂ | θ < s.re} ∩ {s | 0 < s.im}) ∪ {s | 1 < s.re}) ∪
         ({s : ℂ | θ < s.re} ∩ {s | s.im < 0})) ∪ ({s : ℂ | θ < s.re} ∩ {s | s.re < 1}) := by
     ext s
-    simp only [Set.mem_inter_iff, Set.mem_setOf_eq, Set.mem_compl_iff, Set.mem_singleton_iff,
+    simp only [Set.mem_inter_iff, Set.mem_ofPred_eq, Set.mem_compl_iff, Set.mem_singleton_iff,
       Set.mem_union]
     constructor
     · rintro ⟨h1, h2⟩
@@ -298,7 +298,7 @@ theorem sem_zeros_acima {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) {ρ : �
 
 /-- Controle no expoente `θ` ⟹ todo zero da faixa tem `Re ρ ≤ θ`. -/
 theorem controle_psi_faixa {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) : ∀ ρ ∈ Z, ρ.re ≤ θ :=
-  fun ρ hρ ↦ not_lt.mp fun hlt ↦ sem_zeros_acima hθ h hlt hρ.1
+  fun _ hρ ↦ not_lt.mp fun hlt ↦ sem_zeros_acima hθ h hlt hρ.1
 
 /-- Controle no expoente `θ` ⟹ toda ponte horizontal `s, s + r` entre zeros tem `|r| ≤ 2θ − 1`. -/
 theorem controle_psi_pontes {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) :
