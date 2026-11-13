@@ -24,7 +24,10 @@ Cada item tem uma classe:
 - **condicional**: implicação a partir de uma hipótese nomeada (`def … : Prop`, nunca `axiom`).
 
 **Novo**: nenhum item está marcado como novo. Marcar exige uma proposta com o enunciado e a referência que mostre que
-ele não está na literatura, e o aceite do autor.
+ele não está na literatura, e o aceite do autor. Proposta aberta, aguardando decisão:
+[#4](https://github.com/ShantiDraconis/clay-riemann-proof/issues/4), a continuação contígua até `3 000 209 302 471,5`
+(§3 abaixo). Os demais itens não são candidatos: são reformulações, consequências ou formalizações de resultados
+conhecidos.
 
 ## O que NÃO se reivindica
 
@@ -119,8 +122,11 @@ ele não está na literatura, e o aceite do autor.
 | `Complex.eventually_exists_zero_of_tendstoUniformlyOn` (Hurwitz, existência de zeros) | ferramenta |
 | `Complex.im_eq_zero_of_tendstoLocallyUniformly` (limite de funções inteiras com zeros reais) | ferramenta |
 
-Compilam no CI deste repositório. O PR na `leanprover-community/mathlib4` não foi aberto: sai de um fork do autor,
-com o uso de IA declarado, e costuma passar antes pelo Zulip.
+Compilam no CI deste repositório. O PR na `leanprover-community/mathlib4` não é aberto por uma sessão de IA. A política
+da Mathlib (https://leanprover-community.github.io/contribute/) exige que quem envia entenda todo o código escrito por IA
+e justifique cada decisão sem IA, declare o uso de IA no PR (rótulo `LLM-generated`) e escreva os comentários com as
+próprias palavras; PRs de baixa qualidade gerados por LLM são fechados e o autor pode ser suspenso. O PR fica para o
+autor, depois de estudar a prova.
 
 ## 3. O restante do repositório (README §1–§65)
 
@@ -136,6 +142,7 @@ Cada seção do README diz o seu estatuto. As que reivindicam algo:
   contígua: **RH conferida até a altura `3 000 209 302 471,5`**, `N = 12 363 298 826 181`, 145 389 043 zeros acima de
   Platt–Trudgian (`T_PT = 3 000 175 332 800`), todos em `Re s = 1/2`. É extensão contígua da verificação publicada em
   33 969 671,5 unidades de altura, com FLINT 3 / Arb a 256 bits; não é revisada por pares. Pausada em 13/11/2026.
+  Proposta de classe "novo": [#4](https://github.com/ShantiDraconis/clay-riemann-proof/issues/4), aguardando decisão.
 
 ## Como conferir
 
