@@ -5,6 +5,15 @@ Authors: Tiago Paschoalatto Fagliari
 -/
 import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.LSeries.SumCoeff
+import Mathlib.NumberTheory.LSeries.Linearity
+import Mathlib.Analysis.Asymptotics.SpecificAsymptotics
+import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+import Mathlib.MeasureTheory.Function.Floor
+import Mathlib.Analysis.Calculus.FDeriv.Analytic
+import Mathlib.Analysis.Calculus.Deriv.Pow
+import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Analytic.Constructions
+import Mathlib.Analysis.Analytic.Uniqueness
 import Mathlib.NumberTheory.LSeries.Dirichlet
 import Mathlib.NumberTheory.LSeries.Nonvanishing
 import Mathlib.Analysis.MellinTransform
@@ -16,8 +25,8 @@ import Mathlib.Analysis.Normed.Module.Connected
 /-!
 # A power-saving error term for `ψ` gives a zero-free half-plane for `ζ`
 
-Candidate for Mathlib. If `ψ x - x = O(x ^ θ)` with `0 ≤ θ`, then `riemannZeta s ≠ 0` for
-`θ < s.re`.
+Candidate for Mathlib. If `ψ x - x = O(x ^ β)` with `0 ≤ β`, then `riemannZeta s ≠ 0` for
+`β < s.re`.
 
 ## Main results
 
@@ -27,8 +36,8 @@ Candidate for Mathlib. If `ψ x - x = O(x ^ θ)` with `0 ≤ θ`, then `riemannZ
 
 With `E n = Λ n - 1`, Abel summation (`LSeries_eq_mul_integral`) gives
 `-ζ'/ζ - ζ = F` on `1 < re s`, where `F s = s * mellin R (-s)` and `R t = ψ t - ⌊t⌋` for `1 < t`.
-The hypothesis makes `F` holomorphic on `θ < re s` (`mellin_differentiableAt_of_isBigO_rpow`).
-Hence `ζ' + ζ (ζ + F) = 0` on the connected open set `{θ < re s} \ {1}`. At a zero `ρ` of order
+The hypothesis makes `F` holomorphic on `β < re s` (`mellin_differentiableAt_of_isBigO_rpow`).
+Hence `ζ' + ζ (ζ + F) = 0` on the connected open set `{β < re s} \ {1}`. At a zero `ρ` of order
 `n + 1`, writing `ζ = (s - ρ) ^ (n + 1) g` with `g ρ ≠ 0`, this identity becomes
 `(s - ρ) ^ n * ((n + 1) g + (s - ρ) (g' + g (ζ + F))) = 0` near `ρ`, which is impossible since the
 second factor is `(n + 1) g ρ ≠ 0` at `ρ`.
@@ -50,8 +59,8 @@ private lemma sum_err (n : ℕ) : ∑ k ∈ Finset.Icc 1 n, err k = ((psi n - n 
   push_cast
   simp [err, Finset.sum_sub_distrib]
 
-private lemma isBigO_sum_err {θ : ℝ} (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ θ) :
-    (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, err k) =O[atTop] fun n ↦ (n : ℝ) ^ θ := by
+private lemma isBigO_sum_err {β : ℝ} (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ β) :
+    (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, err k) =O[atTop] fun n ↦ (n : ℝ) ^ β := by
   refine isBigO_norm_left.mp ((isBigO_norm_left.mpr h.natCast_atTop).congr_left fun n ↦ ?_)
   rw [sum_err, Complex.norm_real]
 
@@ -93,12 +102,12 @@ private lemma locallyIntegrableOn_rem : LocallyIntegrableOn rem (Set.Ioi 0) := b
   · rw [rem, Set.indicator_of_notMem h1, norm_zero]
     exact Finset.sum_nonneg fun n _ ↦ norm_nonneg _
 
-private lemma isBigO_rem_atTop {θ : ℝ} (hθ : 0 ≤ θ)
-    (h : (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, err k) =O[atTop] fun n ↦ (n : ℝ) ^ θ) :
-    rem =O[atTop] fun t : ℝ ↦ t ^ θ := by
-  have hreal : (fun t : ℝ ↦ ∑ k ∈ Finset.Icc 1 ⌊t⌋₊, err k) =O[atTop] fun t ↦ t ^ θ :=
+private lemma isBigO_rem_atTop {β : ℝ} (hβ : 0 ≤ β)
+    (h : (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, err k) =O[atTop] fun n ↦ (n : ℝ) ^ β) :
+    rem =O[atTop] fun t : ℝ ↦ t ^ β := by
+  have hreal : (fun t : ℝ ↦ ∑ k ∈ Finset.Icc 1 ⌊t⌋₊, err k) =O[atTop] fun t ↦ t ^ β :=
     (h.comp_tendsto tendsto_nat_floor_atTop).trans <|
-      isEquivalent_nat_floor.isBigO.rpow hθ (eventually_ge_atTop 0)
+      isEquivalent_nat_floor.isBigO.rpow hβ (eventually_ge_atTop 0)
   refine EventuallyEq.trans_isBigO ?_ hreal
   filter_upwards [eventually_gt_atTop (1 : ℝ)] with t ht
   rw [rem, Set.indicator_of_mem (show t ∈ Set.Ioi (1 : ℝ) from ht)]
@@ -129,39 +138,39 @@ private lemma integral_eq_mellin_rem (s : ℂ) :
 /-- `s * mellin R (-s)`, the continuation of `-ζ'(s)/ζ(s) - ζ(s)`. -/
 private noncomputable def remMellin (s : ℂ) : ℂ := s * mellin rem (-s)
 
-private lemma differentiableAt_remMellin {θ : ℝ} (hθ : 0 ≤ θ)
-    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ θ) {s : ℂ} (hs : θ < s.re) :
+private lemma differentiableAt_remMellin {β : ℝ} (hβ : 0 ≤ β)
+    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ β) {s : ℂ} (hs : β < s.re) :
     DifferentiableAt ℂ remMellin s := by
   have hm : DifferentiableAt ℂ (mellin rem) (-s) :=
-    mellin_differentiableAt_of_isBigO_rpow (a := -θ) (b := -s.re - 1) locallyIntegrableOn_rem
-      (by simpa only [neg_neg] using isBigO_rem_atTop hθ (isBigO_sum_err h))
+    mellin_differentiableAt_of_isBigO_rpow (a := -β) (b := -s.re - 1) locallyIntegrableOn_rem
+      (by simpa only [neg_neg] using isBigO_rem_atTop hβ (isBigO_sum_err h))
       (by rw [Complex.neg_re]; linarith) (isBigO_rem_zero _) (by rw [Complex.neg_re]; linarith)
   have hneg : DifferentiableAt ℂ (fun z : ℂ ↦ -z) s := differentiableAt_id.neg
   show DifferentiableAt ℂ (fun z : ℂ ↦ z * mellin rem (-z)) s
   exact differentiableAt_id.mul (hm.comp s hneg)
 
 /-- On `1 < re s`, `-ζ'(s)/ζ(s) - ζ(s) = s * mellin R (-s)`. -/
-private lemma neg_logDeriv_sub_eq {θ : ℝ} (hθ : 0 ≤ θ)
-    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ θ) {s : ℂ} (hs : 1 < s.re)
-    (hθs : θ < s.re) :
+private lemma neg_logDeriv_sub_eq {β : ℝ} (hβ : 0 ≤ β)
+    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ β) {s : ℂ} (hs : 1 < s.re)
+    (hβs : β < s.re) :
     -deriv riemannZeta s / riemannZeta s - riemannZeta s = remMellin s := by
   obtain ⟨hsum, heq⟩ := LSeries_err hs
-  rw [← heq, LSeries_eq_mul_integral err hθ hθs hsum (isBigO_sum_err h), integral_eq_mellin_rem]
+  rw [← heq, LSeries_eq_mul_integral err hβ hβs hsum (isBigO_sum_err h), integral_eq_mellin_rem]
   rfl
 
-/-- `{s | θ < re s} \ {1}` is preconnected for `θ < 1`. -/
-private lemma isPreconnected_re_gt_inter_compl_one {θ : ℝ} (hθ : θ < 1) :
-    IsPreconnected ({s : ℂ | θ < s.re} ∩ {1}ᶜ) := by
-  have hA : IsPreconnected ({s : ℂ | θ < s.re} ∩ {s | 0 < s.im}) :=
-    ((convex_halfSpace_re_gt θ).inter (convex_halfSpace_im_gt 0)).isPreconnected
-  have hB : IsPreconnected ({s : ℂ | θ < s.re} ∩ {s | s.im < 0}) :=
-    ((convex_halfSpace_re_gt θ).inter (convex_halfSpace_im_lt 0)).isPreconnected
+/-- `{s | β < re s} \ {1}` is preconnected for `β < 1`. -/
+private lemma isPreconnected_re_gt_inter_compl_one {β : ℝ} (hβ : β < 1) :
+    IsPreconnected ({s : ℂ | β < s.re} ∩ {1}ᶜ) := by
+  have hA : IsPreconnected ({s : ℂ | β < s.re} ∩ {s | 0 < s.im}) :=
+    ((convex_halfSpace_re_gt β).inter (convex_halfSpace_im_gt 0)).isPreconnected
+  have hB : IsPreconnected ({s : ℂ | β < s.re} ∩ {s | s.im < 0}) :=
+    ((convex_halfSpace_re_gt β).inter (convex_halfSpace_im_lt 0)).isPreconnected
   have hC : IsPreconnected {s : ℂ | 1 < s.re} := (convex_halfSpace_re_gt 1).isPreconnected
-  have hD : IsPreconnected ({s : ℂ | θ < s.re} ∩ {s | s.re < 1}) :=
-    ((convex_halfSpace_re_gt θ).inter (convex_halfSpace_re_lt 1)).isPreconnected
-  have hU : {s : ℂ | θ < s.re} ∩ {1}ᶜ =
-      ((({s : ℂ | θ < s.re} ∩ {s | 0 < s.im}) ∪ {s | 1 < s.re}) ∪
-        ({s : ℂ | θ < s.re} ∩ {s | s.im < 0})) ∪ ({s : ℂ | θ < s.re} ∩ {s | s.re < 1}) := by
+  have hD : IsPreconnected ({s : ℂ | β < s.re} ∩ {s | s.re < 1}) :=
+    ((convex_halfSpace_re_gt β).inter (convex_halfSpace_re_lt 1)).isPreconnected
+  have hU : {s : ℂ | β < s.re} ∩ {1}ᶜ =
+      ((({s : ℂ | β < s.re} ∩ {s | 0 < s.im}) ∪ {s | 1 < s.re}) ∪
+        ({s : ℂ | β < s.re} ∩ {s | s.im < 0})) ∪ ({s : ℂ | β < s.re} ∩ {s | s.re < 1}) := by
     ext s
     simp only [Set.mem_inter_iff, Set.mem_ofPred_eq, Set.mem_compl_iff, Set.mem_singleton_iff,
       Set.mem_union]
@@ -180,52 +189,52 @@ private lemma isPreconnected_re_gt_inter_compl_one {θ : ℝ} (hθ : θ < 1) :
       · exact ⟨h1, fun h ↦ by rw [h] at hi; simp at hi⟩
       · exact ⟨h1, fun h ↦ by rw [h] at hr; simp at hr⟩
   rw [hU]
-  have p1 : (⟨2, 1⟩ : ℂ) ∈ {s : ℂ | θ < s.re} ∩ {s | 0 < s.im} :=
-    Set.mem_inter (show θ < 2 by linarith) (show (0 : ℝ) < 1 by norm_num)
+  have p1 : (⟨2, 1⟩ : ℂ) ∈ {s : ℂ | β < s.re} ∩ {s | 0 < s.im} :=
+    Set.mem_inter (show β < 2 by linarith) (show (0 : ℝ) < 1 by norm_num)
   have p2 : (⟨2, 1⟩ : ℂ) ∈ {s : ℂ | 1 < s.re} := show (1 : ℝ) < 2 by norm_num
   have p3 : (⟨2, -1⟩ : ℂ) ∈ {s : ℂ | 1 < s.re} := show (1 : ℝ) < 2 by norm_num
-  have p4 : (⟨2, -1⟩ : ℂ) ∈ {s : ℂ | θ < s.re} ∩ {s | s.im < 0} :=
-    Set.mem_inter (show θ < 2 by linarith) (show (-1 : ℝ) < 0 by norm_num)
-  have p5 : (⟨(θ + 1) / 2, 1⟩ : ℂ) ∈ {s : ℂ | θ < s.re} ∩ {s | 0 < s.im} :=
-    Set.mem_inter (show θ < (θ + 1) / 2 by linarith) (show (0 : ℝ) < 1 by norm_num)
-  have p6 : (⟨(θ + 1) / 2, 1⟩ : ℂ) ∈ {s : ℂ | θ < s.re} ∩ {s | s.re < 1} :=
-    Set.mem_inter (show θ < (θ + 1) / 2 by linarith) (show (θ + 1) / 2 < 1 by linarith)
+  have p4 : (⟨2, -1⟩ : ℂ) ∈ {s : ℂ | β < s.re} ∩ {s | s.im < 0} :=
+    Set.mem_inter (show β < 2 by linarith) (show (-1 : ℝ) < 0 by norm_num)
+  have p5 : (⟨(β + 1) / 2, 1⟩ : ℂ) ∈ {s : ℂ | β < s.re} ∩ {s | 0 < s.im} :=
+    Set.mem_inter (show β < (β + 1) / 2 by linarith) (show (0 : ℝ) < 1 by norm_num)
+  have p6 : (⟨(β + 1) / 2, 1⟩ : ℂ) ∈ {s : ℂ | β < s.re} ∩ {s | s.re < 1} :=
+    Set.mem_inter (show β < (β + 1) / 2 by linarith) (show (β + 1) / 2 < 1 by linarith)
   have hAC := IsPreconnected.union _ p1 p2 hA hC
   have hACB := IsPreconnected.union _ (Set.mem_union_right _ p3) p4 hAC hB
   exact IsPreconnected.union _ (Set.mem_union_left _ (Set.mem_union_left _ p5)) p6 hACB hD
 
 /-- **Power saving in the prime number theorem gives a zero-free half-plane.** If
-`ψ x - x = O(x ^ θ)` with `0 ≤ θ`, then `ζ` has no zeros with `θ < re s`. -/
-theorem riemannZeta_ne_zero_of_isBigO {θ : ℝ} (hθ : 0 ≤ θ)
-    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ θ) {ρ : ℂ} (hρ : θ < ρ.re) :
+`ψ x - x = O(x ^ β)` with `0 ≤ β`, then `ζ` has no zeros with `β < re s`. -/
+theorem riemannZeta_ne_zero_of_isBigO {β : ℝ} (hβ : 0 ≤ β)
+    (h : (fun x : ℝ ↦ psi x - x) =O[atTop] fun x ↦ x ^ β) {ρ : ℂ} (hρ : β < ρ.re) :
     riemannZeta ρ ≠ 0 := by
-  have hFd : ∀ {s : ℂ}, θ < s.re → DifferentiableAt ℂ remMellin s :=
-    fun hs ↦ differentiableAt_remMellin hθ h hs
+  have hFd : ∀ {s : ℂ}, β < s.re → DifferentiableAt ℂ remMellin s :=
+    fun hs ↦ differentiableAt_remMellin hβ h hs
   intro hz
   have hρ1 : ρ.re < 1 := by
     by_contra hge
     exact riemannZeta_ne_zero_of_one_le_re (not_lt.mp hge) hz
-  have hθ1 : θ < 1 := hρ.trans hρ1
+  have hβ1 : β < 1 := hρ.trans hρ1
   have hρne : ρ ≠ 1 := by
     rintro rfl
     simp at hρ1
   have hρc : ρ ∈ ({1}ᶜ : Set ℂ) := Set.mem_compl_singleton_iff.mpr hρne
   have h2c : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ) := Set.mem_compl_singleton_iff.mpr (by norm_num)
   have hζ2 : riemannZeta 2 ≠ 0 := riemannZeta_ne_zero_of_one_le_re Nat.one_le_ofNat
-  -- `ζ' + ζ (ζ + remMellin) = 0` on `{θ < re s} \ {1}`
-  have hFan : AnalyticOnNhd ℂ remMellin {s : ℂ | θ < s.re} :=
+  -- `ζ' + ζ (ζ + remMellin) = 0` on `{β < re s} \ {1}`
+  have hFan : AnalyticOnNhd ℂ remMellin {s : ℂ | β < s.re} :=
     DifferentiableOn.analyticOnNhd (fun s hs ↦ (hFd hs).differentiableWithinAt)
       (isOpen_lt continuous_const Complex.continuous_re)
   have hHan : AnalyticOnNhd ℂ
       (fun s ↦ deriv riemannZeta s + riemannZeta s * (riemannZeta s + remMellin s))
-      ({s : ℂ | θ < s.re} ∩ {1}ᶜ) := by
+      ({s : ℂ | β < s.re} ∩ {1}ᶜ) := by
     intro s hs
     have a1 : AnalyticAt ℂ (deriv riemannZeta) s := analyticOn_riemannZeta.deriv s hs.2
     have a2 : AnalyticAt ℂ riemannZeta s := analyticOn_riemannZeta s hs.2
     have a3 : AnalyticAt ℂ remMellin s := hFan s hs.1
     exact a1.add (a2.mul (a2.add a3))
-  have h2U : (2 : ℂ) ∈ {s : ℂ | θ < s.re} ∩ {1}ᶜ :=
-    ⟨show θ < (2 : ℂ).re by rw [Complex.re_ofNat]; linarith, h2c⟩
+  have h2U : (2 : ℂ) ∈ {s : ℂ | β < s.re} ∩ {1}ᶜ :=
+    ⟨show β < (2 : ℂ).re by rw [Complex.re_ofNat]; linarith, h2c⟩
   have hH2 : (fun s ↦ deriv riemannZeta s + riemannZeta s * (riemannZeta s + remMellin s))
       =ᶠ[𝓝 (2 : ℂ)] 0 := by
     have hmem : {s : ℂ | 1 < s.re} ∈ 𝓝 (2 : ℂ) :=
@@ -234,17 +243,17 @@ theorem riemannZeta_ne_zero_of_isBigO {θ : ℝ} (hθ : 0 ≤ θ)
     filter_upwards [hmem] with s hs
     have hs' : 1 < s.re := hs
     have hne := riemannZeta_ne_zero_of_one_le_re hs'.le
-    have hid := neg_logDeriv_sub_eq hθ h hs' (by linarith)
+    have hid := neg_logDeriv_sub_eq hβ h hs' (by linarith)
     have h1 : -deriv riemannZeta s / riemannZeta s = riemannZeta s + remMellin s := by
       linear_combination hid
     rw [div_eq_iff hne] at h1
     show deriv riemannZeta s + riemannZeta s * (riemannZeta s + remMellin s) = 0
     linear_combination -h1
   have hEq := hHan.eqOn_zero_of_preconnected_of_eventuallyEq_zero
-    (isPreconnected_re_gt_inter_compl_one hθ1) h2U hH2
-  have hUo : IsOpen ({s : ℂ | θ < s.re} ∩ {1}ᶜ) :=
+    (isPreconnected_re_gt_inter_compl_one hβ1) h2U hH2
+  have hUo : IsOpen ({s : ℂ | β < s.re} ∩ {1}ᶜ) :=
     (isOpen_lt continuous_const Complex.continuous_re).inter isOpen_compl_singleton
-  have hρU : ρ ∈ {s : ℂ | θ < s.re} ∩ {1}ᶜ := ⟨hρ, hρc⟩
+  have hρU : ρ ∈ {s : ℂ | β < s.re} ∩ {1}ᶜ := ⟨hρ, hρc⟩
   have hHρ : ∀ᶠ z in 𝓝 ρ,
       deriv riemannZeta z + riemannZeta z * (riemannZeta z + remMellin z) = 0 := by
     filter_upwards [hUo.mem_nhds hρU] with z hz
