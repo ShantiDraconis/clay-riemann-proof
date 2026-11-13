@@ -7,6 +7,11 @@ fixado no commit `47fe26a`. O alvo é `ClayRiemann.Statement`, sem redefinição
 Estado: sem prova. `OPEN_MATH = true`. Nada abaixo prova RH: há equivalências exatas (as treze estão reunidas
 em `Bridges.pontes`, seção 8), um resultado condicional a um teorema externo e o mundo `Z = 13` certificado.
 
+Continuação numérica pausada em 13/11/2026 a pedido do autor, com os valores fixados em
+[`VALORES_FIXADOS.md`](VALORES_FIXADOS.md): RH conferida até 3 000 209 302 471,5, isto é, 145 389 043 zeros acima
+do recorde publicado, todos na reta. A conferência é numérica, por intervalos, e entra no kernel como hipóteses
+nomeadas (seção 31).
+
 Regras: nenhum `sorry`, `axiom`, `native_decide` ou marcador; `#print axioms ClayRiemannProof.main` fixado
 com `#guard_msgs` quando `main` existir.
 
