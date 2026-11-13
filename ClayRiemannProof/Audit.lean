@@ -4893,6 +4893,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'EixoRiemann.Tres.vClass_ou' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Tres.vClass_ou
 
+/-- info: 'EixoRiemann.Valores.abaixo_do_meio_falso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.abaixo_do_meio_falso
+
+/-- info: 'EixoRiemann.Valores.acima_de_um_trivial' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.acima_de_um_trivial
+
 /-- info: 'EixoRiemann.Valores.belnap_assoc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.belnap_assoc
 
@@ -4926,6 +4932,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'EixoRiemann.Valores.equacao_funcional_cega_impar' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.equacao_funcional_cega_impar
 
+/-- info: 'EixoRiemann.Valores.faixa_simetrica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.faixa_simetrica
+
+/-- info: 'EixoRiemann.Valores.hardy_reta_unica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.hardy_reta_unica
+
 /-- info: 'EixoRiemann.Valores.lukasiewicz_continuo_fixo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_continuo_fixo
 
@@ -4934,6 +4946,12 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.Valores.lukasiewicz_fixo_unico' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_fixo_unico
+
+/-- info: 'EixoRiemann.Valores.quase_rh_iff_pontes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.quase_rh_iff_pontes
+
+/-- info: 'EixoRiemann.Valores.reta_unica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.reta_unica
 
 /-- info: 'EixoRiemann.Valores.tensao_parte_linear' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.tensao_parte_linear
