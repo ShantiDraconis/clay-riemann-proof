@@ -344,6 +344,69 @@ theorem deducao {F : Type*} (P : ProgramaDeWeil F) (S : ℝ → F → ℝ) (hS :
   exact ⟨hRH, rhIdem_iff.mpr hF, rhQuarteto_iff.mpr hF, rh_iff_sem_ponte_horizontal.mp hF,
     rhFaixa_iff_rhF.mp hF, ponte_ancorada_iff_rh.mpr hRH, projecao_iff_rh.mpr hF⟩
 
+/-! ## No-go do Gram de primos -/
+
+/-- A soma de primos com coeficientes multiplicados por `c` sai multiplicada por `c`. -/
+theorem somaPrimos_mul (P : Finset ℕ) (a : ℕ → ℂ) (c : ℂ) (t : ℝ) :
+    somaPrimos P (fun p => c * a p) t = c * somaPrimos P a t := by
+  unfold somaPrimos
+  rw [Finset.mul_sum]
+  refine Finset.sum_congr rfl fun p _ => ?_
+  ring
+
+/-- **A família de Gram é 2-homogênea**: dobrar os coeficientes multiplica `‖Σ a_p p^{−it}‖²` por 4. -/
+theorem gram_dobra (P : Finset ℕ) (a : ℕ → ℂ) (t : ℝ) :
+    ‖somaPrimos P (fun p => 2 * a p) t‖ ^ 2 = 4 * ‖somaPrimos P a t‖ ^ 2 := by
+  rw [somaPrimos_mul, norm_mul]
+  norm_num
+  ring
+
+open Filter Topology in
+/-- **No-go da homogeneidade.** Numa classe `C` fechada por `φ ↦ 2φ`, uma família 2-homogênea (`S_T(2φ) = 4 S_T(φ)`,
+como `‖Σ a_p(φ) p^{−it}‖²` ou sua média em `t`, com `a_p` linear em `φ`) só converge para um funcional 1-homogêneo
+(`W(2φ) = 2 W(φ)`, como a forma de Weil, linear em `φ`) onde `W = 0`. -/
+theorem gram_homogeneidade_no_go {Φ : Type*} (C : Set Φ) (dobro : Φ → Φ) (hC : ∀ φ ∈ C, dobro φ ∈ C)
+    (S : ℝ → Φ → ℝ) (W : Φ → ℝ) (hS : ∀ T φ, S T (dobro φ) = 4 * S T φ)
+    (hW : ∀ φ, W (dobro φ) = 2 * W φ)
+    (hlim : ∀ φ ∈ C, Tendsto (fun T => S T φ) atTop (𝓝 (W φ))) : ∀ φ ∈ C, W φ = 0 := by
+  intro φ hφ
+  have h2 := hlim _ (hC φ hφ)
+  simp only [hS] at h2
+  have h4 : Tendsto (fun T => 4 * S T φ) atTop (𝓝 (4 * W φ)) := (hlim φ hφ).const_mul 4
+  have he := tendsto_nhds_unique h2 h4
+  rw [hW] at he
+  linarith
+
+/-- Corolário: basta **uma** função-teste com `W(φ) ≠ 0` para não existir família 2-homogênea convergindo para `W`. -/
+theorem gram_no_go {Φ : Type*} (C : Set Φ) (dobro : Φ → Φ) (hC : ∀ φ ∈ C, dobro φ ∈ C) (W : Φ → ℝ)
+    (hW : ∀ φ, W (dobro φ) = 2 * W φ) (hne : ∃ φ ∈ C, W φ ≠ 0) :
+    ¬ ∃ S : ℝ → Φ → ℝ, (∀ T φ, S T (dobro φ) = 4 * S T φ) ∧
+      ∀ φ ∈ C, Filter.Tendsto (fun T => S T φ) Filter.atTop (nhds (W φ)) := by
+  rintro ⟨S, hS, hlim⟩
+  obtain ⟨φ, hφ, hW0⟩ := hne
+  exact hW0 (gram_homogeneidade_no_go C dobro hC S W hS hW hlim φ hφ)
+
+/-- **Frequências cruzadas** (aritmética): para primos `p ≠ q`, `q` nunca é `n·p`. -/
+theorem frequencia_cruzada_nao_inteira {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (n : ℕ) :
+    q ≠ n * p := by
+  intro h
+  have hdvd : p ∣ q := ⟨n, by rw [h, Nat.mul_comm]⟩
+  exact hpq ((Nat.prime_dvd_prime_iff_eq hp hq).mp hdvd)
+
+/-- As frequências `log(q/p)` dos termos cruzados nunca são as frequências `log n` da fórmula explícita
+(`n ≥ 1`, em particular nenhuma potência de primo). -/
+theorem log_cruzado_ne_log_inteiro {p q n : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hn : 0 < n) :
+    Real.log ((q : ℝ) / p) ≠ Real.log n := by
+  intro h
+  have hp0 : (0 : ℝ) < p := by exact_mod_cast hp.pos
+  have hq0 : (0 : ℝ) < q := by exact_mod_cast hq.pos
+  have hn0 : (0 : ℝ) < n := by exact_mod_cast hn
+  have hdiv : (q : ℝ) / p = n :=
+    Real.log_injOn_pos (Set.mem_Ioi.mpr (div_pos hq0 hp0)) (Set.mem_Ioi.mpr hn0) h
+  rw [div_eq_iff hp0.ne'] at hdiv
+  have hnat : q = n * p := by exact_mod_cast hdiv
+  exact frequencia_cruzada_nao_inteira hp hq hpq n hnat
+
 end EixoRiemann
 
 #print axioms EixoRiemann.Idem.idempotentes
@@ -370,3 +433,8 @@ end EixoRiemann
 #print axioms EixoRiemann.gram_primos_formal
 #print axioms EixoRiemann.ligacao_iff_rh
 #print axioms EixoRiemann.deducao
+#print axioms EixoRiemann.gram_dobra
+#print axioms EixoRiemann.gram_homogeneidade_no_go
+#print axioms EixoRiemann.gram_no_go
+#print axioms EixoRiemann.frequencia_cruzada_nao_inteira
+#print axioms EixoRiemann.log_cruzado_ne_log_inteiro
