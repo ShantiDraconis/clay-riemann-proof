@@ -492,7 +492,7 @@ theorem media_gram (P : Finset ℕ) (hP : ∀ p ∈ P, 0 < p) (a : ℕ → ℂ) 
     simp [hp]
   simp_rw [hint, Finset.smul_sum]
   rw [htarget]
-  refine tendsto_finset_sum _ fun p hp => tendsto_finset_sum _ fun q hq => ?_
+  refine tendsto_finsetSum _ fun p hp => tendsto_finsetSum _ fun q hq => ?_
   by_cases hpq : p = q
   · subst hpq
     rw [if_pos rfl]
