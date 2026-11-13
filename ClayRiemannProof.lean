@@ -85,3 +85,4 @@ import ClayRiemannProof.EixoRiemann.Mapa
 import ClayRiemannProof.EixoRiemann.Tres
 import ClayRiemannProof.EixoRiemann.Valores
 import ClayRiemannProof.EixoRiemann.Familia
+import ClayRiemannProof.EixoRiemann.PsiZeros

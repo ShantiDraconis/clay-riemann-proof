@@ -69,7 +69,7 @@ import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
-import ClayRiemannProof.EixoRiemann.Familia
+import ClayRiemannProof.EixoRiemann.PsiZeros
 
 /-!
 # Auditoria de axiomas
@@ -5189,3 +5189,44 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.zeros_fora_em_quartetos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.zeros_fora_em_quartetos
+
+/-! ## Eixo Riemann: controle de ψ ⟹ região sem zeros ⟹ pontes curtas -/
+
+/-- info: 'EixoRiemann.PsiZeros.soma_erro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.soma_erro
+
+/-- info: 'EixoRiemann.PsiZeros.lseries_erro' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.lseries_erro
+
+/-- info: 'EixoRiemann.PsiZeros.controle_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_real
+
+/-- info: 'EixoRiemann.PsiZeros.resto_localmente_integravel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.resto_localmente_integravel
+
+/-- info: 'EixoRiemann.PsiZeros.F_holomorfa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.F_holomorfa
+
+/-- info: 'EixoRiemann.PsiZeros.integral_eq_mellin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.integral_eq_mellin
+
+/-- info: 'EixoRiemann.PsiZeros.identidade' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.identidade
+
+/-- info: 'EixoRiemann.PsiZeros.semiplano_furado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.semiplano_furado
+
+/-- info: 'EixoRiemann.PsiZeros.sem_zeros_acima' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.sem_zeros_acima
+
+/-- info: 'EixoRiemann.PsiZeros.controle_psi_faixa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_psi_faixa
+
+/-- info: 'EixoRiemann.PsiZeros.controle_psi_pontes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_psi_pontes
+
+/-- info: 'EixoRiemann.PsiZeros.rh_de_controle_psi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.rh_de_controle_psi
+
+/-- info: 'EixoRiemann.PsiZeros.controle_psi_abaixo_do_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_psi_abaixo_do_meio
