@@ -83,3 +83,4 @@ import ClayRiemannProof.EixoRiemann.Reformulacao
 import ClayRiemannProof.EixoRiemann.Argumento
 import ClayRiemannProof.EixoRiemann.Mapa
 import ClayRiemannProof.EixoRiemann.Tres
+import ClayRiemannProof.EixoRiemann.Valores
