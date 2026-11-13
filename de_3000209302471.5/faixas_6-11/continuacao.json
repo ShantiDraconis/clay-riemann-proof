@@ -1,0 +1,143 @@
+{
+ "faixas": {
+  "6": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 6,
+   "a": "3000210022471.5",
+   "b": "3000210142471.5",
+   "falhas": [],
+   "N(a)": "12363301907757",
+   "N(b)": "12363302421353",
+   "zeros_esperados": 513596,
+   "segundos_nzeros": [
+    3.4,
+    4.8
+   ],
+   "segundos": 854.5
+  },
+  "7": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 7,
+   "a": "3000210142471.5",
+   "b": "3000210262471.5",
+   "falhas": [],
+   "N(a)": "12363302421353",
+   "N(b)": "12363302934949",
+   "zeros_esperados": 513596,
+   "segundos_nzeros": [
+    5.0,
+    4.0
+   ],
+   "segundos": 914.7
+  },
+  "8": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 8,
+   "a": "3000210262471.5",
+   "b": "3000210382471.5",
+   "falhas": [],
+   "N(a)": "12363302934949",
+   "N(b)": "12363303448545",
+   "zeros_esperados": 513596,
+   "segundos_nzeros": [
+    5.0,
+    4.5
+   ],
+   "segundos": 9.5
+  },
+  "9": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 9,
+   "a": "3000210382471.5",
+   "b": "3000210502471.5",
+   "falhas": [],
+   "N(a)": "12363303448545",
+   "N(b)": "12363303962141",
+   "zeros_esperados": 513596,
+   "segundos_nzeros": [
+    3.6,
+    2.4
+   ],
+   "segundos": 6.0
+  },
+  "10": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 10,
+   "a": "3000210502471.5",
+   "b": "3000210622471.5",
+   "falhas": [],
+   "N(a)": "12363303962141",
+   "N(b)": "12363304475738",
+   "zeros_esperados": 513597,
+   "segundos_nzeros": [
+    2.2,
+    2.5
+   ],
+   "segundos": 826.5
+  },
+  "11": {
+   "fonte": "FLINT/Arb: acb_dirichlet_zeta_nzeros, acb_dirichlet_platt_local_hardy_z_zeros",
+   "faixa": 11,
+   "a": "3000210622471.5",
+   "b": "3000210742471.5",
+   "falhas": [],
+   "N(a)": "12363304475738",
+   "N(b)": "12363304989334",
+   "zeros_esperados": 513596,
+   "segundos_nzeros": [
+    2.4,
+    3.9
+   ],
+   "segundos": 819.4
+  }
+ },
+ "colagem": [
+  {
+   "altura": "3000210142471.5",
+   "N_pela_faixa": "12363302421353",
+   "N_pela_seguinte": "12363302421353",
+   "confere": true
+  },
+  {
+   "altura": "3000210262471.5",
+   "N_pela_faixa": "12363302934949",
+   "N_pela_seguinte": "12363302934949",
+   "confere": true
+  },
+  {
+   "altura": "3000210382471.5",
+   "N_pela_faixa": "12363303448545",
+   "N_pela_seguinte": "12363303448545",
+   "confere": true
+  },
+  {
+   "altura": "3000210502471.5",
+   "N_pela_faixa": "12363303962141",
+   "N_pela_seguinte": "12363303962141",
+   "confere": true
+  },
+  {
+   "altura": "3000210622471.5",
+   "N_pela_faixa": "12363304475738",
+   "N_pela_seguinte": "12363304475738",
+   "confere": true
+  }
+ ],
+ "pares_mais_frageis": [],
+ "deficits": {
+  "10": null,
+  "11": null,
+  "6": null,
+  "7": null,
+  "8": null,
+  "9": null
+ },
+ "falhas": {},
+ "colagem_ok": true,
+ "contiguo": {
+  "de": "3000210022471.5",
+  "ate": "3000210022471.5",
+  "zeros_na_reta": 0
+ },
+ "conclusao": "inconclusivo: ver faixas"
+}
