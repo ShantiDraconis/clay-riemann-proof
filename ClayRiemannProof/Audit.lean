@@ -5230,3 +5230,15 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.PsiZeros.controle_psi_abaixo_do_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_psi_abaixo_do_meio
+
+/-- info: 'EixoRiemann.PsiZeros.soma_erro_chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.soma_erro_chebyshev
+
+/-- info: 'EixoRiemann.PsiZeros.controle_psi_de_chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.controle_psi_de_chebyshev
+
+/-- info: 'EixoRiemann.PsiZeros.sem_zeros_acima_chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.sem_zeros_acima_chebyshev
+
+/-- info: 'EixoRiemann.PsiZeros.rh_de_chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.rh_de_chebyshev

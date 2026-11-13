@@ -1,4 +1,5 @@
 import ClayRiemannProof.EixoRiemann.Familia
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.LSeries.SumCoeff
 import Mathlib.NumberTheory.LSeries.Dirichlet
 import Mathlib.NumberTheory.LSeries.Nonvanishing
@@ -29,6 +30,8 @@ import Mathlib.Analysis.Normed.Module.Connected
   horizontal tem `|δ| ≤ 2θ − 1`.
 * `rh_de_controle_psi`: `ψ(x) − x = O(x^{1/2 + ε})` para todo `ε > 0` ⟹ RH.
 * `controle_psi_abaixo_do_meio`: havendo um zero na faixa, nenhum controle com `θ < 1/2` vale.
+* `controle_psi_de_chebyshev`, `sem_zeros_acima_chebyshev`, `rh_de_chebyshev`: as mesmas afirmações com o
+  `Chebyshev.psi` da Mathlib em variável real: `ψ(x) − x = O(x^θ)` ⟹ `ζ(ρ) ≠ 0` para `Re ρ > θ`.
 
 A direção recíproca (RH ⟹ `ψ(x) − x = O(x^{1/2} log² x)`, von Koch) não está aqui: ela pede a fórmula explícita
 truncada (Perron), que a Mathlib ainda não tem. `ψ(x) − x = O(x^{1/2})` exatamente é **falso** (Littlewood: oscila
@@ -319,5 +322,35 @@ theorem rh_de_controle_psi (h : ∀ θ : ℝ, 1 / 2 < θ → ControlePsi θ) : R
 theorem controle_psi_abaixo_do_meio {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < 1 / 2) (hZ : Z.Nonempty) :
     ¬ ControlePsi θ :=
   fun h ↦ Valores.abaixo_do_meio_falso hθ hZ (controle_psi_faixa hθ0 h)
+
+/-- `∑_{k=1}^{n} E(k) = ψ(n) − n` com o `Chebyshev.psi` da Mathlib. -/
+theorem soma_erro_chebyshev (n : ℕ) :
+    ∑ k ∈ Finset.Icc 1 n, erro k = ((Chebyshev.psi n - n : ℝ) : ℂ) := by
+  have hI : Finset.Ioc 0 n = Finset.Icc 1 n := by
+    ext k
+    simp only [Finset.mem_Ioc, Finset.mem_Icc]
+    constructor <;> intro h <;> omega
+  rw [Chebyshev.psi, Nat.floor_natCast, hI]
+  push_cast
+  simp [erro, Finset.sum_sub_distrib]
+
+/-- `ψ(x) − x = O(x^θ)` em variável real (com o `ψ` da Mathlib) ⟹ `ControlePsi θ`. -/
+theorem controle_psi_de_chebyshev {θ : ℝ}
+    (h : (fun x : ℝ ↦ Chebyshev.psi x - x) =O[atTop] fun x ↦ x ^ θ) : ControlePsi θ := by
+  show (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, erro k) =O[atTop] fun n ↦ (n : ℝ) ^ θ
+  refine isBigO_norm_left.mp ((isBigO_norm_left.mpr h.natCast_atTop).congr_left fun n ↦ ?_)
+  rw [soma_erro_chebyshev, Complex.norm_real]
+
+/-- **`ψ(x) − x = O(x^θ)` ⟹ `ζ(ρ) ≠ 0` para `Re ρ > θ`** (com o `Chebyshev.psi` da Mathlib). -/
+theorem sem_zeros_acima_chebyshev {θ : ℝ} (hθ : 0 ≤ θ)
+    (h : (fun x : ℝ ↦ Chebyshev.psi x - x) =O[atTop] fun x ↦ x ^ θ) {ρ : ℂ} (hρ : θ < ρ.re) :
+    riemannZeta ρ ≠ 0 :=
+  sem_zeros_acima hθ (controle_psi_de_chebyshev h) hρ
+
+/-- `ψ(x) − x = O(x^{1/2 + ε})` para todo `ε > 0` (com o `ψ` da Mathlib) ⟹ RH. -/
+theorem rh_de_chebyshev
+    (h : ∀ θ : ℝ, 1 / 2 < θ → (fun x : ℝ ↦ Chebyshev.psi x - x) =O[atTop] fun x ↦ x ^ θ) :
+    RiemannHypothesis :=
+  rh_de_controle_psi fun θ hθ ↦ controle_psi_de_chebyshev (h θ hθ)
 
 end EixoRiemann.PsiZeros
