@@ -5301,3 +5301,179 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.PsiZeros.pontes_onze_doze' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.PsiZeros.pontes_onze_doze
+
+/-! ## Eixo Riemann: os lemas que ainda não tinham guarda -/
+
+/-- info: 'EixoRiemann.R3.mul_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.mul_re
+
+/-- info: 'EixoRiemann.R3.mul_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.mul_im
+
+/-- info: 'EixoRiemann.R3.mul_r' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.mul_r
+
+/-- info: 'EixoRiemann.R3.i_mul_i' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.i_mul_i
+
+/-- info: 'EixoRiemann.R3.R_mul_R' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.R_mul_R
+
+/-- info: 'EixoRiemann.R3.i_mul_R' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.i_mul_R
+
+/-- info: 'EixoRiemann.R3.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.mul_comm
+
+/-- info: 'EixoRiemann.R3.one_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.R3.one_mul
+
+/-- info: 'EixoRiemann.sem_raiz_de_menos_um_dim3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.sem_raiz_de_menos_um_dim3
+
+/-- info: 'EixoRiemann.Dual.mul_z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Dual.mul_z
+
+/-- info: 'EixoRiemann.Dual.mul_w' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Dual.mul_w
+
+/-- info: 'EixoRiemann.Dual.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Dual.mul_comm
+
+/-- info: 'EixoRiemann.Idem.mul_z' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.mul_z
+
+/-- info: 'EixoRiemann.Idem.mul_w' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.mul_w
+
+/-- info: 'EixoRiemann.Idem.e_mul_e' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.e_mul_e
+
+/-- info: 'EixoRiemann.Idem.i_mul_e' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.i_mul_e
+
+/-- info: 'EixoRiemann.decomposicao_vale_sempre' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.decomposicao_vale_sempre
+
+/-- info: 'EixoRiemann.Idem.par_aplica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.par_aplica
+
+/-- info: 'EixoRiemann.Idem.aplica_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Idem.aplica_eq_zero
+
+/-- info: 'EixoRiemann.idempotente_complexo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.idempotente_complexo
+
+/-- info: 'EixoRiemann.somaPrimos_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.somaPrimos_mul
+
+/-- info: 'EixoRiemann.norm_exp_I_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.norm_exp_I_mul
+
+/-- info: 'EixoRiemann.norma_integral_exp_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.norma_integral_exp_le
+
+/-- info: 'EixoRiemann.soma_real_eq_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.soma_real_eq_torcao
+
+/-- info: 'EixoRiemann.PsiZeros.resto_mensuravel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.resto_mensuravel
+
+/-- info: 'EixoRiemann.PsiZeros.resto_topo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.resto_topo
+
+/-- info: 'EixoRiemann.PsiZeros.resto_base' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.resto_base
+
+/-- info: 'EixoRiemann.re_esp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.re_esp
+
+/-- info: 'EixoRiemann.im_esp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.im_esp
+
+/-- info: 'EixoRiemann.im_ten' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.im_ten
+
+/-- info: 'EixoRiemann.im_tor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.im_tor
+
+/-- info: 'EixoRiemann.ten_esp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.ten_esp
+
+/-- info: 'EixoRiemann.esp_ten' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.esp_ten
+
+/-- info: 'EixoRiemann.tor_esp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.tor_esp
+
+/-- info: 'EixoRiemann.esp_tor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.esp_tor
+
+/-- info: 'EixoRiemann.ten_tor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.ten_tor
+
+/-- info: 'EixoRiemann.tor_ten' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.tor_ten
+
+/-- info: 'EixoRiemann.mem_orbita_self' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.mem_orbita_self
+
+/-- info: 'EixoRiemann.orbita_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_espelho
+
+/-- info: 'EixoRiemann.orbita_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_tensao
+
+/-- info: 'EixoRiemann.orbita_torcao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_torcao
+
+/-- info: 'EixoRiemann.orbita_eq_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_eq_of_mem
+
+/-- info: 'EixoRiemann.orbita_im' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_im
+
+/-- info: 'EixoRiemann.orbita_re' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.orbita_re
+
+/-- info: 'EixoRiemann.card_dobra' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.card_dobra
+
+/-- info: 'EixoRiemann.quartetos_geral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.quartetos_geral
+
+/-- info: 'EixoRiemann.Tres.codA_bij' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codA_bij
+
+/-- info: 'EixoRiemann.Tres.codB_bij' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codB_bij
+
+/-- info: 'EixoRiemann.Tres.codC_bij' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codC_bij
+
+/-- info: 'EixoRiemann.Tres.meio_nao_contradicao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.meio_nao_contradicao
+
+/-- info: 'EixoRiemann.Tres.vClass_nao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.vClass_nao
+
+/-- info: 'EixoRiemann.Tres.vClass_true' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.vClass_true
+
+/-- info: 'EixoRiemann.Tres.luk_aberto_implica_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.luk_aberto_implica_aberto
+
+/-- info: 'EixoRiemann.Tres.kleene_aberto_implica_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.kleene_aberto_implica_aberto
+
+/-- info: 'EixoRiemann.Tres.luk_modus_ponens' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.luk_modus_ponens
+
+/-- info: 'EixoRiemann.Tres.kleene_nao_absorve' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.kleene_nao_absorve
+
+/-- info: 'EixoRiemann.Valores.belnap_dupla_negacao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_dupla_negacao
+
+/-- info: 'EixoRiemann.Valores.belnap_nem_ambos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.belnap_nem_ambos
