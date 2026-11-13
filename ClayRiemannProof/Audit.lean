@@ -4923,6 +4923,15 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'EixoRiemann.Valores.cauda_primos_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.cauda_primos_iff
 
+/-- info: 'EixoRiemann.Valores.contraQ_espelho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.contraQ_espelho
+
+/-- info: 'EixoRiemann.Valores.contraQ_tensao' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.contraQ_tensao
+
+/-- info: 'EixoRiemann.Valores.contraQ_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.contraQ_zero
+
 /-- info: 'EixoRiemann.Valores.cos_impar_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.cos_impar_zero
 
@@ -4952,6 +4961,9 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.Valores.reta_unica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.reta_unica
+
+/-- info: 'EixoRiemann.Valores.simetria_nao_implica_reta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.simetria_nao_implica_reta
 
 /-- info: 'EixoRiemann.Valores.tensao_parte_linear' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.tensao_parte_linear
