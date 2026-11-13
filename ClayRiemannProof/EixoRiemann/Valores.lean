@@ -238,6 +238,38 @@ theorem acima_de_um_trivial : ∀ ρ ∈ Z, ρ.re ≤ 1 := fun ρ hρ => by
   obtain ⟨-, -, h1⟩ := hρ
   exact h1.le
 
+/-! ## A lei irredutível e por que ela sozinha não resolve
+
+A lei irredutível é a simetria de Klein: `f(1 − s) = f(s)` e `f(s̄) = conj f(s)`. Ela dá o eixo (fixo da torção), os
+quartetos e o piso `θ ≥ 1/2`. Mas um conjunto invariante pode conter órbitas de 4 pontos fora da reta. `contraQ` tem
+exatamente as mesmas simetrias de ζ e um quarteto de zeros fora da reta (`3/5 ± i`, `2/5 ± i`). Logo nenhum argumento
+que use só a simetria pode provar RH (`simetria_nao_implica_reta`). Na literatura, o mesmo vale para uma função com a
+própria equação funcional de ζ (Davenport–Heilbronn), que tem zeros fora da reta e não tem produto de Euler. -/
+
+noncomputable def contraQ (s : ℂ) : ℂ := ((s - 3 / 5) ^ 2 + 1) * ((s - 2 / 5) ^ 2 + 1)
+
+theorem contraQ_tensao (s : ℂ) : contraQ (1 - s) = contraQ s := by
+  unfold contraQ
+  ring
+
+theorem contraQ_espelho (s : ℂ) : contraQ ((starRingEnd ℂ) s) = (starRingEnd ℂ) (contraQ s) := by
+  unfold contraQ
+  simp [map_add, map_mul, map_sub, map_pow, map_div₀, map_ofNat, map_one]
+
+theorem contraQ_zero : contraQ (3 / 5 + Complex.I) = 0 := by
+  unfold contraQ
+  have h : (3 / 5 + Complex.I - 3 / 5 : ℂ) = Complex.I := by ring
+  rw [h, Complex.I_sq]
+  ring
+
+/-- **A simetria sozinha não decide**: existe função com as simetrias de ζ e um zero fora da reta. -/
+theorem simetria_nao_implica_reta :
+    ¬ ∀ f : ℂ → ℂ, (∀ s, f (1 - s) = f s) → (∀ s, f ((starRingEnd ℂ) s) = (starRingEnd ℂ) (f s)) →
+      ∀ ρ, f ρ = 0 → ρ.re = 1 / 2 := by
+  intro h
+  have h' := h contraQ contraQ_tensao contraQ_espelho _ contraQ_zero
+  norm_num at h'
+
 end EixoRiemann.Valores
 
 #print axioms EixoRiemann.Valores.lukasiewicz_fixo_iff
@@ -263,3 +295,7 @@ end EixoRiemann.Valores
 #print axioms EixoRiemann.Valores.abaixo_do_meio_falso
 #print axioms EixoRiemann.Valores.quase_rh_iff_pontes
 #print axioms EixoRiemann.Valores.acima_de_um_trivial
+#print axioms EixoRiemann.Valores.contraQ_tensao
+#print axioms EixoRiemann.Valores.contraQ_espelho
+#print axioms EixoRiemann.Valores.contraQ_zero
+#print axioms EixoRiemann.Valores.simetria_nao_implica_reta
