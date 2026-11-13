@@ -1,6 +1,7 @@
 import ClayRiemannProof.EixoRiemann.Tres
 import Mathlib.NumberTheory.SumPrimeReciprocals
 import Mathlib.NumberTheory.LSeries.HurwitzZetaValues
+import Mathlib.NumberTheory.LSeries.Nonvanishing
 
 /-!
 # Valores, par e ímpar, e o que é chão firme
@@ -270,6 +271,18 @@ theorem simetria_nao_implica_reta :
   have h' := h contraQ contraQ_tensao contraQ_espelho _ contraQ_zero
   norm_num at h'
 
+/-! ## O uso dos primos que a simetria não tem
+
+`positividade_dos_primos`: para `x > 0`, `‖ζ(1+x)³ ζ(1+x+iy)⁴ ζ(1+x+2iy)‖ ≥ 1`. Vem do produto de Euler: `log ζ` é uma
+série de Dirichlet com coeficientes `Λ(n)/log n ≥ 0`, combinada com `3 + 4 cos θ + cos 2θ ≥ 0`. É o que exclui zeros em
+`Re s = 1`. `contraQ` e Davenport–Heilbronn não têm produto de Euler; a simetria não dá essa desigualdade. -/
+
+theorem positividade_dos_primos {x : ℝ} (hx : 0 < x) (y : ℝ) :
+    ‖riemannZeta (1 + x) ^ 3 * riemannZeta (1 + x + Complex.I * y) ^ 4 *
+      riemannZeta (1 + x + 2 * Complex.I * y)‖ ≥ 1 := by
+  have h := DirichletCharacter.norm_LFunction_product_ge_one (N := 1) (1 : DirichletCharacter ℂ 1) hx y
+  simpa [DirichletCharacter.LFunctionTrivChar] using h
+
 end EixoRiemann.Valores
 
 #print axioms EixoRiemann.Valores.lukasiewicz_fixo_iff
@@ -299,3 +312,4 @@ end EixoRiemann.Valores
 #print axioms EixoRiemann.Valores.contraQ_espelho
 #print axioms EixoRiemann.Valores.contraQ_zero
 #print axioms EixoRiemann.Valores.simetria_nao_implica_reta
+#print axioms EixoRiemann.Valores.positividade_dos_primos
