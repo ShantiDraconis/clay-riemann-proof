@@ -69,7 +69,7 @@ import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
-import ClayRiemannProof.EixoRiemann.Mapa
+import ClayRiemannProof.EixoRiemann.Tres
 
 /-!
 # Auditoria de axiomas
@@ -4792,7 +4792,7 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Grade.simples_iff_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Grade.simples_iff_queda
 
-/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa) -/
+/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa, Tres) -/
 
 /-- info: 'EixoRiemann.C4_idempotentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.C4_idempotentes
@@ -4856,6 +4856,42 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.R3.nao_associativa' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.R3.nao_associativa
+
+/-- info: 'EixoRiemann.Tres.bochvar_absorve' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.bochvar_absorve
+
+/-- info: 'EixoRiemann.Tres.codA_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codA_eq
+
+/-- info: 'EixoRiemann.Tres.codA_quebra_min' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codA_quebra_min
+
+/-- info: 'EixoRiemann.Tres.codB_aritmetica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codB_aritmetica
+
+/-- info: 'EixoRiemann.Tres.codC_aritmetica' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codC_aritmetica
+
+/-- info: 'EixoRiemann.Tres.codC_eq' depends on axioms: [propext] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.codC_eq
+
+/-- info: 'EixoRiemann.Tres.impL_T_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.impL_T_iff
+
+/-- info: 'EixoRiemann.Tres.luk_condicional_aberto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.luk_condicional_aberto
+
+/-- info: 'EixoRiemann.Tres.meio_tercio_excluido' depends on axioms: [propext] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.meio_tercio_excluido
+
+/-- info: 'EixoRiemann.Tres.rh_nao_e_meio' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.rh_nao_e_meio
+
+/-- info: 'EixoRiemann.Tres.sem_meio_em_Prop' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.sem_meio_em_Prop
+
+/-- info: 'EixoRiemann.Tres.vClass_ou' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Tres.vClass_ou
 
 /-- info: 'EixoRiemann.Z_nonempty_de_hardy' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Z_nonempty_de_hardy
