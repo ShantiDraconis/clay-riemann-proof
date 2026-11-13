@@ -1,4 +1,5 @@
 import ClayRiemannProof.EixoRiemann.Familia
+import ClayRiemannProof.QuasiRH
 import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.LSeries.SumCoeff
 import Mathlib.NumberTheory.LSeries.Dirichlet
@@ -32,6 +33,12 @@ import Mathlib.Analysis.Normed.Module.Connected
 * `controle_psi_abaixo_do_meio`: havendo um zero na faixa, nenhum controle com `θ < 1/2` vale.
 * `controle_psi_de_chebyshev`, `sem_zeros_acima_chebyshev`, `rh_de_chebyshev`: as mesmas afirmações com o
   `Chebyshev.psi` da Mathlib em variável real: `ψ(x) − x = O(x^θ)` ⟹ `ζ(ρ) ≠ 0` para `Re ρ > θ`.
+
+* `SemiplanoSemZeros σ₀` (hipótese nomeada: `ζ(s) ≠ 0` para `Re s > σ₀`), `pontes_de_semiplano`: semiplano sem zeros
+  `Re s > σ₀` ⟹ toda ponte horizontal tem `|δ| ≤ 2σ₀ − 1`. `semiplano_de_controle`: `ControlePsi θ` dá o semiplano.
+* `semiplano_de_openai`, `pontes_openai_78`: com o quasi-RH `1/8–7/8` anunciado pela OpenAI (hipótese nomeada
+  `OpenAIQuasiRH78`, §2 do README; não verificado aqui), `Re s > 7/8` fica sem zeros e toda ponte horizontal tem
+  `|δ| ≤ 3/4`. `pontes_onze_doze`: com `Re s > 11/12` sem zeros, `|δ| ≤ 5/6`.
 
 A direção recíproca (RH ⟹ `ψ(x) − x = O(x^{1/2} log² x)`, von Koch) não está aqui: ela pede a fórmula explícita
 truncada (Perron), que a Mathlib ainda não tem. `ψ(x) − x = O(x^{1/2})` exatamente é **falso** (Littlewood: oscila
@@ -352,5 +359,41 @@ theorem rh_de_chebyshev
     (h : ∀ θ : ℝ, 1 / 2 < θ → (fun x : ℝ ↦ Chebyshev.psi x - x) =O[atTop] fun x ↦ x ^ θ) :
     RiemannHypothesis :=
   rh_de_controle_psi fun θ hθ ↦ controle_psi_de_chebyshev (h θ hθ)
+
+/-- Semiplano sem zeros: `ζ(s) ≠ 0` para `Re s > σ₀` (hipótese nomeada). -/
+def SemiplanoSemZeros (σ₀ : ℝ) : Prop := ∀ s : ℂ, σ₀ < s.re → riemannZeta s ≠ 0
+
+/-- `ControlePsi θ` ⟹ semiplano sem zeros `Re s > θ`. -/
+theorem semiplano_de_controle {θ : ℝ} (hθ : 0 ≤ θ) (h : ControlePsi θ) : SemiplanoSemZeros θ :=
+  fun _ hs ↦ sem_zeros_acima hθ h hs
+
+/-- Semiplano sem zeros `Re s > σ₀` ⟹ toda ponte horizontal tem `|δ| ≤ 2σ₀ − 1`. -/
+theorem pontes_de_semiplano {σ₀ : ℝ} (h : SemiplanoSemZeros σ₀) :
+    ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 2 * σ₀ - 1 :=
+  (Valores.quase_rh_iff_pontes σ₀).mp fun ρ hρ ↦ not_lt.mp fun hlt ↦ h ρ hlt hρ.1
+
+/-- O quasi-RH `1/8–7/8` anunciado pela OpenAI (hipótese nomeada) dá o semiplano `Re s > 7/8` sem zeros. -/
+theorem semiplano_de_openai (h : ClayRiemannProof.OpenAIQuasiRH78) : SemiplanoSemZeros (7 / 8) := by
+  intro s hs hz
+  by_cases h1 : 1 ≤ s.re
+  · exact riemannZeta_ne_zero_of_one_le_re h1 hz
+  · have hpos : 0 < s.re := by linarith
+    have hne : s ≠ 1 := by
+      rintro rfl
+      simp at h1
+    have := (h s hz (ClayRiemannProof.not_trivial_of_re_pos hpos) hne).2
+    linarith
+
+/-- Com o quasi-RH `1/8–7/8` (hipótese nomeada): toda ponte horizontal entre zeros da faixa tem `|δ| ≤ 3/4`. -/
+theorem pontes_openai_78 (h : ClayRiemannProof.OpenAIQuasiRH78) :
+    ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 3 / 4 := fun s r hs hsr ↦ by
+  have := pontes_de_semiplano (semiplano_de_openai h) s r hs hsr
+  linarith
+
+/-- Com `Re s > 11/12` sem zeros (hipótese nomeada): toda ponte horizontal tem `|δ| ≤ 5/6`. -/
+theorem pontes_onze_doze (h : SemiplanoSemZeros (11 / 12)) :
+    ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 5 / 6 := fun s r hs hsr ↦ by
+  have := pontes_de_semiplano h s r hs hsr
+  linarith
 
 end EixoRiemann.PsiZeros

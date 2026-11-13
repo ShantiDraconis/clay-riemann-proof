@@ -5242,3 +5242,18 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.PsiZeros.rh_de_chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.PsiZeros.rh_de_chebyshev
+
+/-- info: 'EixoRiemann.PsiZeros.semiplano_de_controle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.semiplano_de_controle
+
+/-- info: 'EixoRiemann.PsiZeros.pontes_de_semiplano' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.pontes_de_semiplano
+
+/-- info: 'EixoRiemann.PsiZeros.semiplano_de_openai' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.semiplano_de_openai
+
+/-- info: 'EixoRiemann.PsiZeros.pontes_openai_78' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.pontes_openai_78
+
+/-- info: 'EixoRiemann.PsiZeros.pontes_onze_doze' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.PsiZeros.pontes_onze_doze
