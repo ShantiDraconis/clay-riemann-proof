@@ -178,6 +178,66 @@ theorem torcao_parte_linear (a b : ℂ) : torcao a - torcao b = -(starRingEnd �
   rw [map_sub]
   ring
 
+/-! ## A reta em `1/x`
+
+O `1/2` não é parâmetro: zeros vêm em pares `ρ`, `1 − ρ̄` (mesma altura, partes reais `β` e `1 − β`).
+* `reta_unica`, `hardy_reta_unica`: se todo zero estivesse numa reta `Re = c`, então `c = 1/2`.
+* `faixa_simetrica`: "todo zero tem `Re ≤ θ`" ⟺ "todo zero está a distância `≤ θ − 1/2` da reta".
+* `abaixo_do_meio_falso`: para `θ < 1/2` (`1/x` com `x > 2`), "todo zero tem `Re ≤ θ`" é falso.
+* `quase_rh_iff_pontes`: para `1/2 ≤ θ < 1` (`1 < x ≤ 2`), "todo zero tem `Re ≤ θ`" ⟺ toda ponte horizontal tem
+  `|δ| ≤ 2θ − 1`. Em `θ = 1/2` é RH; em `1/2 < θ < 1` é a quase-RH, aberta para todo `θ`.
+* `acima_de_um_trivial`: para `θ ≥ 1` (`x ≤ 1`) é verdade sem hipótese. -/
+
+theorem reta_unica {c : ℝ} (hZ : Z.Nonempty) (h : ∀ ρ ∈ Z, ρ.re = c) : c = 1 / 2 := by
+  obtain ⟨ρ, hρ⟩ := hZ
+  have a := h ρ hρ
+  have b := h _ (torcao_mem_Z hρ)
+  rw [re_torcao] at b
+  linarith
+
+theorem hardy_reta_unica (hH : Hardy1914) {c : ℝ} (h : ∀ ρ ∈ Z, ρ.re = c) : c = 1 / 2 :=
+  reta_unica (Z_nonempty_de_hardy hH) h
+
+theorem faixa_simetrica (θ : ℝ) :
+    (∀ ρ ∈ Z, ρ.re ≤ θ) ↔ ∀ ρ ∈ Z, |ρ.re - 1 / 2| ≤ θ - 1 / 2 := by
+  constructor
+  · intro h ρ hρ
+    have a := h ρ hρ
+    have b := h _ (torcao_mem_Z hρ)
+    rw [re_torcao] at b
+    rw [abs_le]
+    constructor <;> linarith
+  · intro h ρ hρ
+    have h1 := h ρ hρ
+    have h2 := le_abs_self (ρ.re - 1 / 2)
+    linarith
+
+theorem abaixo_do_meio_falso {θ : ℝ} (hθ : θ < 1 / 2) (hZ : Z.Nonempty) : ¬ ∀ ρ ∈ Z, ρ.re ≤ θ := by
+  intro h
+  obtain ⟨ρ, hρ⟩ := hZ
+  have h1 := (faixa_simetrica θ).mp h ρ hρ
+  have h2 := abs_nonneg (ρ.re - 1 / 2)
+  linarith
+
+theorem quase_rh_iff_pontes (θ : ℝ) :
+    (∀ ρ ∈ Z, ρ.re ≤ θ) ↔ ∀ (s : ℂ) (r : ℝ), s ∈ Z → s + (r : ℂ) ∈ Z → |r| ≤ 2 * θ - 1 := by
+  rw [faixa_simetrica]
+  constructor
+  · intro h s r hs hsr
+    have a := h s hs
+    have b := h _ hsr
+    rw [Complex.add_re, Complex.ofReal_re] at b
+    rw [abs_le] at a b ⊢
+    constructor <;> linarith [a.1, a.2, b.1, b.2]
+  · intro h ρ hρ
+    have hb := h ρ (1 - 2 * ρ.re) hρ (by rw [soma_real_eq_torcao]; exact torcao_mem_Z hρ)
+    rw [abs_le] at hb ⊢
+    constructor <;> linarith [hb.1, hb.2]
+
+theorem acima_de_um_trivial : ∀ ρ ∈ Z, ρ.re ≤ 1 := fun ρ hρ => by
+  obtain ⟨-, -, h1⟩ := hρ
+  exact h1.le
+
 end EixoRiemann.Valores
 
 #print axioms EixoRiemann.Valores.lukasiewicz_fixo_iff
@@ -197,3 +257,9 @@ end EixoRiemann.Valores
 #print axioms EixoRiemann.Valores.cauda_meio_diverge
 #print axioms EixoRiemann.Valores.tensao_parte_linear
 #print axioms EixoRiemann.Valores.torcao_parte_linear
+#print axioms EixoRiemann.Valores.reta_unica
+#print axioms EixoRiemann.Valores.hardy_reta_unica
+#print axioms EixoRiemann.Valores.faixa_simetrica
+#print axioms EixoRiemann.Valores.abaixo_do_meio_falso
+#print axioms EixoRiemann.Valores.quase_rh_iff_pontes
+#print axioms EixoRiemann.Valores.acima_de_um_trivial
