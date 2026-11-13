@@ -69,7 +69,7 @@ import ClayRiemannProof.GasPrimos
 import ClayRiemannProof.WeilXi
 import ClayRiemannProof.Toeplitz
 import ClayRiemannProof.Grade
-import ClayRiemannProof.EixoRiemann.Valores
+import ClayRiemannProof.EixoRiemann.Familia
 
 /-!
 # Auditoria de axiomas
@@ -4792,7 +4792,7 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 /-- info: 'ClayRiemannProof.Grade.simples_iff_queda' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms ClayRiemannProof.Grade.simples_iff_queda
 
-/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa, Tres, Valores) -/
+/-! ## Eixo Riemann: todos os teoremas (Algebra, Quarteto, Pontes, Reformulacao, Argumento, Mapa, Tres, Valores, Familia) -/
 
 /-- info: 'EixoRiemann.C4_idempotentes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.C4_idempotentes
@@ -4802,6 +4802,18 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.Dual.mul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Dual.mul_assoc
+
+/-- info: 'EixoRiemann.Familia.familia_finita_estrita_nao_basta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Familia.familia_finita_estrita_nao_basta
+
+/-- info: 'EixoRiemann.Familia.meio_no_fecho' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Familia.meio_no_fecho
+
+/-- info: 'EixoRiemann.Familia.modelo_beta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Familia.modelo_beta
+
+/-- info: 'EixoRiemann.Familia.teste_fixo_cego' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Familia.teste_fixo_cego
 
 /-- info: 'EixoRiemann.Idem.aplica_puxado' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Idem.aplica_puxado
@@ -4955,6 +4967,9 @@ Se aparecer qualquer axioma diferente de `propext`, `Classical.choice`, `Quot.so
 
 /-- info: 'EixoRiemann.Valores.lukasiewicz_fixo_unico' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.lukasiewicz_fixo_unico
+
+/-- info: 'EixoRiemann.Valores.positividade_dos_primos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms EixoRiemann.Valores.positividade_dos_primos
 
 /-- info: 'EixoRiemann.Valores.quase_rh_iff_pontes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms EixoRiemann.Valores.quase_rh_iff_pontes
